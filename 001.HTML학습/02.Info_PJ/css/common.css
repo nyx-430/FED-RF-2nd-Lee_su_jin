@@ -1,10 +1,11 @@
 /* Info PJ 공통 CSS - common.css */
 
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Nanum+Gothic&family=Orbit&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Noto+Sans+KR:wght@100..900&&display=swap');
 
 /* 
 
-font-family: 'IBM Plex Sans KR', sans-serif;
+기사본문용 font-family: 'Bagel Fat One', system-ui;
+서브본문용 font-family: 'IBM Plex Sans KR', sans-serif;
 font-family: 'Nanum Gothic', sans-serif;
 font-family: 'Orbit', sans-serif;
 
@@ -81,11 +82,6 @@ width/height/padding/margin/border
     
 */
     margin: 20px auto;
-}
-
-/* 메인 이미지 크기 변경하기 */
-main#main-area img {
-    width: 100%;
 }
 
 /* 상단영역, 하단영역 공통
