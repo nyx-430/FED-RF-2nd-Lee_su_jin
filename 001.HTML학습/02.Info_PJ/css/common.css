@@ -1,14 +1,16 @@
+@charset "utf-8";
+/* 맨위에 utf-8 인코딩 설정 필수! 
+- 외부 CSS 파일은 파일 자체적으로 처리되므로 인코딩 형식도 따로 지정해야 한다 */
+
 /* Info PJ 공통 CSS - common.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Noto+Sans+KR:wght@100..900&&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
 
 /* 
-
-기사본문용 font-family: 'Bagel Fat One', system-ui;
-서브본문용 font-family: 'IBM Plex Sans KR', sans-serif;
-font-family: 'Nanum Gothic', sans-serif;
+기사본문용 font-family: "Noto Sans KR", sans-serif;
+서브타이틀용 font-family: "Black Han Sans", sans-serif;
 font-family: 'Orbit', sans-serif;
-
+font-family: 'IBM Plex Sans KR', sans-serif;
 */
 
 /* CSS코딩구역 */
@@ -27,7 +29,7 @@ CSS 설정 코딩방식
 width/height/padding/margin/border
 -> 기본박스 디자인은 가로,세로크기를 줄경우
 패딩과 보더는 박스 크기에 포함되지 않는다!
-->>> 이런박스를 컨텐트박스라고함!
+->>> 이런 박스를 컨텐트박스라고함!
 
 
 */
@@ -111,7 +113,7 @@ footer {
 
 /* 타이틀 */
 .tit {
-    font-family: "Orbit", sans-serif;
+    font-family: 'Orbit', sans-serif;
 }
 
 /* 메뉴 */
@@ -124,7 +126,7 @@ footer {
     color: #222;
     /* 글자 밑줄 없앰 */
     text-decoration: none;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 /* 메뉴링크 오버시

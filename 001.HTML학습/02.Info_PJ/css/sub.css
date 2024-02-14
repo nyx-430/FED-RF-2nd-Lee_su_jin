@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 /* Info PJ 서브페이지용 CSS - sub.css */
 
 /* 공통 외부 CSS 불러오기 */
@@ -7,24 +9,32 @@
 이것의 이점은 (http request)이 줄어들어 html의 렌더링 속도가 향상된다!
 */
 
-/* 서브페이지 타이틀 */
+
+/* 서브 페이지 글씨체 지정하기 */
+#main-area{
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 서브 페이지 타이틀 */
 h2.sub-title{
 
 /* 글자색 : color (c)
-color: #51b65b;
- */
+color: #51b65b; */
 /* 글자 크기 : font-size (fz) */
 font-size: 38px;
+
 /* 글자 두께 : font-weight (fw) */
 /* font-weight: bold; */ /* fwb */
 font-weight: normal;
+
 /* 글자체: font-family
 - 콤마로 구분된 글자체는 대체체임
 앞의 글자체가 없으면 뒤의 글자체가 적용됨, 만약 모두 없으면 브라우저 기본체가 적용됨 */
-font-family: 'Bagel Fat One', system-ui;
-/* 텍스트 정렬 : text-allignLcenter
-(tac:중앙정렬) */
+font-family: 'Orbit', sans-serif;
+
+/* 텍스트 정렬 : text-allign:center (tac:중앙정렬) */
 text-align: center;
+
 /* 글자 그림자 : text-shdow */
 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.35);
 
@@ -87,4 +97,52 @@ background-image: url(../images/titbg4.jpg);
 .tv{
 color:#fff;
 background-image: url(../images/titbg5.jpg);
+}
+
+/* 언론사 로고 */
+.press-logo img{
+    height: 32px;
+    /* 이미지는 가로/세로 하나만 주면 비율을 유지하여 변경된다 */
+}
+
+/* 기사 타이틀 */
+.article-title{
+    font-size: 30px;
+}
+
+/* 기사 이미지박스 */
+.article-picture{
+    margin: 0px 0px 20.5px;
+}
+
+/* 기사 이미지 */
+.article-picture img{
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+/* 기사 이미지 설명 */
+.article-picture figcaption{
+    /* tac - 글자 중앙정렬 */
+    text-align: center;
+    padding: 0 5px;
+    font-size: 15px;
+}
+
+/* 기사 이미지 설명 크자 크기 변경 */
+.article-picture figcaption small{
+    font-size: 15px;
+    /* small에 글자 크게가 지정되어 있으므로 여기에서 글자 크기를 변경해야 반영된다! */
+}
+
+/* 기사 내용 */
+.contents p{
+    /* 글자 크기 */
+    font-size: 17px;
+    /* 줄간격 : 1h
+    line-heigth 줄간격은 글자의 중앙에서 위아래 높이값을 말하며 글자는 중앙에 흐른다
+    단위가 없을 경우 글자 크기의 배수로 셋팅됨 */
+    line-height: 1.56;
+    /* 글자색 */
+    color: #333;
 }
