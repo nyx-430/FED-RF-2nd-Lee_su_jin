@@ -9,8 +9,9 @@
 
 /* 서브페이지 타이틀 */
 h2.sub-title{
-/* 글자색 : color (c) */
+/* 글자색 : color (c)
 color: #51b65b;
+ */
 /* 글자 크기 : font-size (fz) */
 font-size: 38px;
 /* 글자 두께 : font-weight (fw) */
@@ -41,9 +42,9 @@ padding: 20px;
 /* 배경색 : background-color (bgc) */
 background-color: #fff;
 
-/* 배경이미지 : background-image (bgi) */
+/* 배경이미지 : background-image (bgi)
 background-image: url(../images/titbg4.jpg);
-/* 외부 CSS에서 이미지 경로 주의!
+외부 CSS에서 이미지 경로 주의!
 html파일 아닌 CSS파일 위치에서 상대경로를 잡아야 이미지가 나온다 */
 
 /* 배경 반복 여부 : background-repeat (bgr) */
@@ -62,9 +63,27 @@ background-position: center;
 
 /* 정치 */
 .politics{
+color:#f4ffa4;
 background-image: url(../images/titbg1.jpg);
+}
+
 /* 경제 */
+.economics{
+color:#e5f785;
+background-image: url(../images/titbg2.jpg);
+}
 /* 사회 */
+.social{
+color:#ffeda6;
+background-image: url(../images/titbg3.jpg);
+}
 /* IT/과학 */
+.it{
+color:#e5f785;
+background-image: url(../images/titbg4.jpg);
+}
 /* TV/연예 */
+.tv{
+color:#fff;
+background-image: url(../images/titbg5.jpg);
 }
