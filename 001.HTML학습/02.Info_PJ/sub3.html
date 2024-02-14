@@ -1,52 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <!-- 뷰포트: 모바일 기기에서 실제 픽셀을 맞춰주는 메타설정 -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- 탭에 출력되는 타이틀 -->
-        <title>네이버 요약뉴스</title>
-        <!-- CSS 인터널방식 코드 -->
-        <style></style>
-        <!-- CSS 익스터널방식 코드 -->
-        <link rel="stylesheet" href="./css/sub.css">
-    </head>
-    <body>
-        <!-- 1. 상단영역 : 제목, 메뉴 -->
-        <header id="top-area" class="part">
-            <!-- 1-1. 타이틀 -->
-            <h1 class="tit">네이버 요약뉴스 - 사회 뉴스</h1>
-            <!-- 1-2. 메뉴 -->
-            <nav class="menu">
-                <a href="index.html">
-                    <img src="./images/logo.png" alt="네이버로고" style="width: 50px; vertical-align: middle" />
-                    <!-- style 속성으로 개별요소에 CSS를 설정할 수 있다! 이런 방식을 인라인 방식이라고 함 -->
-                </a>
-                <a href="sub1.html">정치</a> ㅣ 
-                <a href="sub2.html">경제</a> ㅣ 
-                <a href="sub3.html">사회</a> ㅣ 
-                <a href="sub4.html">IT/과학</a> ㅣ
-                <a href="sub5.html">TV/연예</a>
-            </nav>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 뷰포트: 모바일 기기에서 실제 픽셀을 맞춰주는 메타설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 탭에 출력되는 타이틀 -->
+    <title>네이버 요약뉴스</title>
+    <!-- CSS 인터널방식 코드 -->
+    <style></style>
+    <!-- CSS 익스터널방식 코드 -->
+    <link rel="stylesheet" href="./css/sub.css" />
+  </head>
+  <body>
+    <!-- 1. 상단영역 : 제목, 메뉴 -->
+    <header id="top-area" class="part">
+      <!-- 1-1. 타이틀 -->
+      <h1 class="tit">네이버 요약뉴스 - 사회 뉴스</h1>
+      <!-- 1-2. 메뉴 -->
+      <nav class="menu">
+        <a href="index.html">
+          <img
+            src="./images/logo.png"
+            alt="네이버로고"
+            style="width: 50px; vertical-align: middle"
+          />
+          <!-- style 속성으로 개별요소에 CSS를 설정할 수 있다! 이런 방식을 인라인 방식이라고 함 -->
+        </a>
+        <a href="sub1.html">정치</a> ㅣ <a href="sub2.html">경제</a> ㅣ
+        <a href="sub3.html">사회</a> ㅣ <a href="sub4.html">IT/과학</a> ㅣ
+        <a href="sub5.html">TV/연예</a>
+      </nav>
+    </header>
     <!-- 2. 메인영역: 컨텐츠 -->
     <main id="main-area" class="part">
+      <!-- 2-1. 서브 타이틀 -->
+      <h2 class="sub-title social">사회 뉴스</h2>
+      <h3 class="article-title">
+        초·중·고 심리위기 학생 돕기위해 전문가팀 찾아간다
+      </h3>
+      <figure class="article-picture">
+        <img src="" alt="" />
+      </figure>
+      <figcaption>
+        심리 위기학생 지원방안 발표하는 조희연 서울시교육감 [사진 제공:연합뉴스]
+      </figcaption>
+      <section class="contents">
+        <p>
+          올해 새학기부터 서울 초·중·고교에선 문제행동 학생에 대한 학급 지도를
+          돕기 위해 서울시교육청의 '행동 중재 전문가'가 학교를 찾아갑니다.
+        </p>
+        <p>
+          또한 자살 시도 등 심각한 정서 위기를 겪는 학생을 위해서는 소아정신과
+          의사 등 심리 전문가로 구성된 '위기지원단'이 학교로 찾아가 전문적인
+          상담에 나섭니다.
+        </p>
+        <p>
+          조희연 서울시교육감은 오늘 서울시교육청에서 기자회견을 열고 이같은
+          내용을 담은 '교실 속 정서행동 위기학생 지원방안'을 발표했습니다.
+        </p>
+        <p>
+          서울시교육청은 지난 2022년부터 일부 학교를 대상으로 학생의 문제행동
+          원인을 분석해 사전에 문제행동이 발생하지 않게 하는 '긍정적 행동 지원'
+          체계를 지원해왔습니다.
+        </p>
+        <p>
+          문제행동 학생은 자해를 한다거나, 주변 친구를 공격하고 물건을 던지는 등
+          주변의 안전을 위협하거나, 학습활동에 참여를 거부하는 학생 등이
+          포함됩니다.
+        </p>
+        <p>
+          올해부턴 이같은 긍정적 행동 지원 체계를 서울의 모든 학교에 적용합니다.
+        </p>
+      </section>
+      <figure class="article-picture">
+        <img src="" alt="" />
+      </figure>
+      <section class="contents">
+        <p>
+          먼저 문제 행동 학생을 찾기 위해 온라인 상담창구를 운영하고, 마음건강
+          진단을 할 수 있는 '마음이지 검사'를 각 학교에 배포합니다.
+        </p>
+        <p>
+          문제 행동 학생이 발견되면 서울시교육청 소속 행동 중재 전문가가 교실을
+          찾아가 교사와 협업합니다.
+        </p>
+        <p>
+          전문가는 교사의 요구가 있을 경우 3~5주나 한 학기 등 정해진 기간 동안
+          학생을 관찰하고 학급 내에서 실행이 가능한 중재 전략을 제공합니다.
+        </p>
+        <p>
+          행동 중재 전략이란 문제행동 학생의 동기를 파악하고 이를 예방하는
+          것으로, 실제 동기에 따라 문제 행동이 아닌 다른 행동 방안을 권유해주게
+          됩니다.
+        </p>
+        <p>
+          또한 문제 행동이 반복되는 학생을 위해서는 정신과 의사 등으로 구성된
+          '마음건강 전문가'가 학교를 직접 방문해 개별 상담을 지원합니다.
+        </p>
+        <p>
+          전문가는 소아정신과 의사, 정신건강 간호사, 사회복지사, 정신건강
+          임상심리사 등으로 구성됩니다.
+        </p>
+        <p>
+          전문가는 학생을 심층 평가한 후 필요하다면 병·의원과 연계하며, 치료비도
+          1인당 100만원까지 지원합니다.
+        </p>
+        <p>
+          다만 학생의 보호자가 원치 않을 경우 병·의원 강제 연계는 불가능합니다.
+        </p>
+        <p>
+          조희연 서울시교육감은 이날 "학생 문제행동 원인을 정확히 파악하고
+          교육환경을 개선해 학생 한 명 한 명이 건강하고 안전한 환경에서 교육받을
+          수 있도록 하겠다"고 밝혔습니다.
+        </p>
+      </section>
+    </main>
 
-        <!-- 2-1. 서브 타이틀 -->
-        <h2 class="sub-title social">사회 뉴스</h2>
-      </main>
+    <!-- 3. 하단영역 : 회사정보 -->
+    <footer id="info-area" class="part">
+      <!-- address : 주소, 전화번호, 대표자 등을 포함하는 시멘틱 태그 -->
+      <address>
+        서울시 강남구 역삼동 119 대호B 8F <br />
+        대표: Tom Brace Parker <br />
+        전화: 010-7777-8888
+      </address>
+    </footer>
 
-        <!-- 3. 하단영역 : 회사정보 -->
-        <footer id="info-area" class="part">
-            <!-- address : 주소, 전화번호, 대표자 등을 포함하는 시멘틱 태그 -->
-            <address>
-                서울시 강남구 역삼동 119 대호B 8F <br />
-                대표: Tom Brace Parker <br />
-                전화: 010-7777-8888
-            </address>
-        </footer>
-
-        <!-- 
+    <!-- 
 
         [ 이름규칙 ]
         1. 파스칼 케이스 : JS에서
@@ -134,5 +214,5 @@
         
 
      -->
-    </body>
+  </body>
 </html>

@@ -1,52 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <!-- 뷰포트: 모바일 기기에서 실제 픽셀을 맞춰주는 메타설정 -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- 탭에 출력되는 타이틀 -->
-        <title>네이버 요약뉴스</title>
-        <!-- CSS 인터널방식 코드 -->
-        <style></style>
-        <!-- CSS 익스터널방식 코드 -->
-        <link rel="stylesheet" href="./css/sub.css">
-    </head>
-    <body>
-        <!-- 1. 상단영역 : 제목, 메뉴 -->
-        <header id="top-area" class="part">
-            <!-- 1-1. 타이틀 -->
-            <h1 class="tit">네이버 요약뉴스 - 경제 뉴스</h1>
-            <!-- 1-2. 메뉴 -->
-            <nav class="menu">
-                <a href="index.html">
-                    <img src="./images/logo.png" alt="네이버로고" style="width: 50px; vertical-align: middle" />
-                    <!-- style 속성으로 개별요소에 CSS를 설정할 수 있다! 이런 방식을 인라인 방식이라고 함 -->
-                </a>
-                <a href="sub1.html">정치</a> ㅣ 
-                <a href="sub2.html">경제</a> ㅣ 
-                <a href="sub3.html">사회</a> ㅣ 
-                <a href="sub4.html">IT/과학</a> ㅣ
-                <a href="sub5.html">TV/연예</a>
-            </nav>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 뷰포트: 모바일 기기에서 실제 픽셀을 맞춰주는 메타설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 탭에 출력되는 타이틀 -->
+    <title>네이버 요약뉴스</title>
+    <!-- CSS 인터널방식 코드 -->
+    <style></style>
+    <!-- CSS 익스터널방식 코드 -->
+    <link rel="stylesheet" href="./css/sub.css" />
+  </head>
+  <body>
+    <!-- 1. 상단영역 : 제목, 메뉴 -->
+    <header id="top-area" class="part">
+      <!-- 1-1. 타이틀 -->
+      <h1 class="tit">네이버 요약뉴스 - 경제 뉴스</h1>
+
+      <!-- 1-2. 메뉴 -->
+      <nav class="menu">
+        <a href="index.html">
+          <img
+            src="./images/logo.png"
+            alt="네이버로고"
+            style="width: 50px; vertical-align: middle"
+          />
+          <!-- style 속성으로 개별요소에 CSS를 설정할 수 있다! 이런 방식을 인라인 방식이라고 함 -->
+        </a>
+        <a href="sub1.html">정치</a> ㅣ <a href="sub2.html">경제</a> ㅣ
+        <a href="sub3.html">사회</a> ㅣ <a href="sub4.html">IT/과학</a> ㅣ
+        <a href="sub5.html">TV/연예</a>
+      </nav>
+    </header>
     <!-- 2. 메인영역: 컨텐츠 -->
     <main id="main-area" class="part">
+      <!-- 2-1. 서브 타이틀 -->
+      <h2 class="sub-title economics">경제 뉴스</h2>
+      <h3 class="article-title">
+        오픈AI, '이전 대화 기억' 기능 추가한 챗GPT 새 버전 내놔
+      </h3>
+      <figure class="article-picture">
+        <img src="" alt="경제 뉴스 이미지" />
+      </figure>
+      <figcaption>챗GPT 로고 관련 이미지 [EPA 연합뉴스 자료사진]</figcaption>
+      <section class="contents">
+        <p>
+          (서울=연합뉴스) 차병섭 기자 = 생성형 인공지능(AI) 챗봇을 둘러싼 경쟁이
+          심해지는 가운데, AI 개발업체 오픈AI가 사용자와의 기존 대화를
+          기억했다가 다음 대화 때 활용할 수 있는 새로운 버전의 챗GPT를 내놨다.
+        </p>
+        <p>
+          오픈AI는 13일(현지시간) 블로그 게시물을 통해 챗GPT 이용자가 대화 속
+          특정 정보를 기억하도록 하거나 챗GPT가 자체적으로 어떤 내용을 기억할지
+          정할 수 있는 옵션을 테스트 중이라고 밝혔다고
+          블룸버그통신·뉴욕타임스(NYT) 등이 전했다.
+        </p>
+        <p>
+          그동안 챗GPT는 한 대화 내에서의 내용만 제한적으로 기억하는
+          수준이었는데, 정보 활용 범위를 더 늘린 것이다.
+        </p>
+        <p>
+          챗GPT와의 이전 대화에서 자녀가 곧 5살이 되고 해파리와 분홍색을
+          좋아한다고 적은 뒤 다른 대화에서 자녀의 생일 축하 카드를 써달라고
+          요청하면, 챗GPT가 이미지 생성 AI를 이용해 "5번째 생일을 축하한다"는
+          문구와 분홍색 해파리 등이 들어간 카드를 만들어주는 식이다.
+        </p>
+        <p>
+          이용자들은 저장된 개인 정보를 삭제할 수 있으며, 어떤 내용을 기억하는지
+          챗GPT에 설명을 요청할 수 있다. 또 해당 기능 이용을 완전히 중단할 수도
+          있다.
+        </p>
+        <p>
+          오픈AI 관계자는 "가장 유용한 비서는 당신과 함께 진화하고 당신을 잘
+          아는 이"라고 말했다.
+        </p>
+        <p>
+          오픈AI 측은 우선 유료·무료 이용자 가운데 수십만명을 대상으로 테스트 후
+          적용을 늘려갈 예정이다. 샘 올트먼 CEO는 챗GPT 주간 이용자 수가 약
+          1억명 수준이라고 지난해 11월 밝힌 바 있다.
+        </p>
+        <p>
+          이번 조치를 통해 이용자들에게 개인화된 사용 경험을 제공할 수 있다는
+          평가가 나오는 가운데, 개인정보 침해에 대한 우려도 제기되고 있다.
+        </p>
+        <p>
+          챗GPT가 기억한 내용이 일반적인 대화처럼 취급되는 만큼 이용자가
+          요청하지 않는 한 오픈AI가 AI 모델을 학습하는 데 정보를 사용할 수도
+          있다.
+        </p>
+        <p>
+          이에 대해 오픈AI 측은 해당 기능은 기존 검색엔진·브라우저들이 이용자의
+          인터넷 이용 이력을 저장하는 것과 크게 다르지 않다는 입장을 밝혔다.
+        </p>
+        <p>bscha@yna.co.kr</p>
+      </section>
+    </main>
 
-        <!-- 2-1. 서브 타이틀 -->
-        <h2 class="sub-title economics">경제 뉴스</h2>
-      </main>
+    <!-- 3. 하단영역 : 회사정보 -->
+    <footer id="info-area" class="part">
+      <!-- address : 주소, 전화번호, 대표자 등을 포함하는 시멘틱 태그 -->
+      <address>
+        서울시 강남구 역삼동 119 대호B 8F <br />
+        대표: Tom Brace Parker <br />
+        전화: 010-7777-8888
+      </address>
+    </footer>
 
-        <!-- 3. 하단영역 : 회사정보 -->
-        <footer id="info-area" class="part">
-            <!-- address : 주소, 전화번호, 대표자 등을 포함하는 시멘틱 태그 -->
-            <address>
-                서울시 강남구 역삼동 119 대호B 8F <br />
-                대표: Tom Brace Parker <br />
-                전화: 010-7777-8888
-            </address>
-        </footer>
-
-        <!-- 
+    <!-- 
 
         [ 이름규칙 ]
         1. 파스칼 케이스 : JS에서
@@ -134,5 +194,5 @@
         
 
      -->
-    </body>
+  </body>
 </html>
