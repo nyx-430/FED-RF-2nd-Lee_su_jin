@@ -4,11 +4,12 @@
 
 /* Info PJ 공통 CSS - common.css */
 
+/* 웹폰트 구글CDN(Content Delivery Network) */
 @import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
 
 /* 
 기사본문용 font-family: "Noto Sans KR", sans-serif;
-서브타이틀용 font-family: "Black Han Sans", sans-serif;
+서브타이틀용 font-family: 'Black Han Sans', sans-serif;
 font-family: 'Orbit', sans-serif;
 font-family: 'IBM Plex Sans KR', sans-serif;
 */
@@ -103,7 +104,7 @@ footer {
 
 /* 상단영역 */
 #top-area {
-    background-color: #d6edcf;
+    background-color: #d9e9d5;
 }
 
 /* 하단영역 */
@@ -121,11 +122,13 @@ footer {
 /* 타이틀 */
 .tit {
     font-family: 'Orbit', sans-serif;
+    font-size: 35px;
 }
 
 /* 메뉴 */
 .menu {
-    font-family: "Nanum Gothic", sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 15px;
 }
 
 /* 메뉴링크 */
@@ -133,7 +136,7 @@ footer {
     color: #222;
     /* 글자 밑줄 없앰 */
     text-decoration: none;
-    font-size: 22px;
+    font-size: 21px;
 }
 
 /* 메뉴링크 오버시
