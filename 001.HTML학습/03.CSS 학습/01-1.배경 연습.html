@@ -5,7 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>01-1.배경 연습</title>
     <style>
-        
+        /* 초기화 */
+        html,body,h1{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+            /* 
+            보이는 화면만큼 높이값을 줄 때
+            100%의 의미는?
+            body는 html을 기준함
+            html은 무엇을 기준으로 하는가?
+            보이는 화면을 기준으로 한다. (window)
+            그래서 보이는 화면만큼 확장된다.
+            */
+        }
+    
+        /* 타이틀 */
+        h1{
+            padding: 50px;
+            text-align: center;
+        }
+
+        /* body요소 안에 배경넣기 */
+        body{
+            /* html에는 배경을 넣지 말자! 전체 배경은 body에! */
+
+            /* 1. 배경색 : bgc */
+            background-color: pink;
+
+            /* 2. 배경 이미지 : bgi -> url */
+            background-image: url(./imgs/bg_logo_a_01.png);
+
+            /* 3. 배경 반복여부 */
+            
+        }
     </style>
 </head>
 <body>
