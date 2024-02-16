@@ -11,11 +11,11 @@
 
 /* 서브 페이지 글씨체 지정하기 */
 #main-area {
-    font-family: "Noto Sans KR", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 /* 서브 페이지 타이틀 */
-h2.sub-title{
+h2.sub-title {
   /* 글자색 : color (c)
     color: #fff; */
   /* 글자 크기 : font-size (fz) */
@@ -29,7 +29,7 @@ h2.sub-title{
 - 콤마로 구분된 글자체는 대체체임
 앞의 글자체가 없으면 뒤의 글자체가 적용됨
 만약 모두 없으면 브라우저 기본체가 적용됨 */
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: "Black Han Sans", sans-serif;
 
   /* 텍스트 정렬 : text-allign:center (tac:중앙정렬) */
   text-align: center;
@@ -179,7 +179,7 @@ html파일 아닌 CSS파일 위치에서 상대경로를 잡아야 이미지가 
 }
 
 /* 구분 박스 공통 */
-.bd-box{
+.bd-box {
   border-top: 1px dashed #ccc;
   border-bottom: 1px dashed #ccc;
   margin: 20px 0;
@@ -187,8 +187,8 @@ html파일 아닌 CSS파일 위치에서 상대경로를 잡아야 이미지가 
 }
 
 /* 인용구 제목 */
-.bd-box h4{
-/* 기본 display가 block 이어서
+.bd-box h4 {
+  /* 기본 display가 block 이어서
 글씨만큼의 크기를 가지려면 로 바뀌어야 한다 */
   font-size: 20px;
   display: inline-block;
@@ -212,48 +212,48 @@ html파일 아닌 CSS파일 위치에서 상대경로를 잡아야 이미지가 
 }
 
 /* 블록 인용 박스 */
-.quote-box blockquote{
-    /* 기본 마진 없애기 */
-    margin: 0;
-    font-size: 15px;
-    line-height: 2.1;
-    /* 양쪽 정렬 : taj */
-    text-align: justify;
-    /* 자식요소인 이미지에 float속성을 사용할 경우
+.quote-box blockquote {
+  /* 기본 마진 없애기 */
+  margin: 0;
+  font-size: 15px;
+  line-height: 2.1;
+  /* 양쪽 정렬 : taj */
+  text-align: justify;
+  /* 자식요소인 이미지에 float속성을 사용할 경우
     부모박스에서 자식요소를 인식하지 못하는 경우가 발생함
     이것을 해결하기 위한 한 가지 방법으로 넘치는 요소 숨기기
     속성을 셋팅하면 된다! */
-    overflow: hidden; /* oh */
-    
-    /* 넘치는 자식요소 숨기는 설정 때문에 그림자가 잘리므로
+  overflow: hidden; /* oh */
+
+  /* 넘치는 자식요소 숨기는 설정 때문에 그림자가 잘리므로
     패딩으로 이를 처리함 */
-    padding: 5px;
-    padding-left: 0;
+  padding: 5px;
+  padding-left: 0;
 }
 
 /* 블록 인용 이미지 */
-.quote-box img{
-    /* 기본적으로 이미지는 인라인 요소이며
+.quote-box img {
+  /* 기본적으로 이미지는 인라인 요소이며
     글자가 왼쪽으로 한줄 하단에 나열됨
     글자가 옆에 올라와서 흘러가게 하려면
     float 속성을 사용해야 한다!
         float: left 이미지 왼쪽, 글자는 오른쪽
         float: right는 글자 왼쪽, 이미지 오른쪽
     */
-float: right;
-/* 이미지 옆에 공간 주기 */
-margin-left: 10px;
-/* 상단 여백으로 이미지 이동 */
-margin-top: 11px;
-/* 둥근 모서리 */
-border: 1px solid #333;
-border-radius: 10px;
-/* 박스 그림자 */
-box-shadow: 0 0 5px #ccc;
+  float: right;
+  /* 이미지 옆에 공간 주기 */
+  margin-left: 10px;
+  /* 상단 여백으로 이미지 이동 */
+  margin-top: 11px;
+  /* 둥근 모서리 */
+  border: 1px solid #333;
+  border-radius: 10px;
+  /* 박스 그림자 */
+  box-shadow: 0 0 5px #ccc;
 }
 
 /* 동영상 박스 : 유튜브 iframe */
-.mvbox{
+.mvbox {
   /* 비율 유지 박스 설정 
   aspect-ratio : 가로비/세로비
   -> 주의: 가로, 세로가 유동적이므로 특정값을 셋팅하지 말 것!
@@ -267,18 +267,18 @@ box-shadow: 0 0 5px #ccc;
 }
 
 /* iframe */
-.mvbox iframe{
+.mvbox iframe {
   border: none;
   width: 100%;
   height: 100%;
 }
 
 /* 기사 원문 */
-.article-link{
+.article-link {
   text-align: right;
 }
 /* 기사 원문 a요소 */
-.article-link a{
+.article-link a {
   /* 부모박스 인라인 정렬도 적용되고
   크기 디자인도 적용되는 display는? inilne-block */
   display: inline-block;
@@ -291,19 +291,101 @@ box-shadow: 0 0 5px #ccc;
   /* 줄간격을 높이값과 같이 주면 세로 중앙됨! */
   line-height: 100px;
   font-size: 20px;
-  
+
   /* a요소 기본 글자색, 밑줄없앰 */
   color: #222;
   text-decoration: none;
-  
+
   /* 배경색 */
   background-color: #ccc;
 }
 
 /* 기사 원문 마우스 오버 시 */
-.article-link a:hover{
+.article-link a:hover {
   color: hotpink;
   background-color: aquamarine;
   box-shadow: 0 0 10px 5px darkblue;
   /* box-shadow : x y (spread) color; */
+}
+
+/* <!-- 오늘의 작품 느낌 --> */
+.work {
+  text-align: center;
+
+  /* 그라데이션 
+        [ 선형 그라데이션 : linear-gradient ]
+        linear-gradient(방향,색1,색2,...);
+        linear-gradient(방향,색1 몇%,색2 몇%,...);
+        linear-gradient(각도,색1 몇%,색2 몇%,...);
+        - 옵션 : 
+        1. 방향: to top, to bottom, to left, to right
+        2. 각도: 각도deg
+        3. 콤마로 나열된 색상 뒤에 %수치를 쓰면 비율조정가능
+    */
+
+  /* background-image: linear-gradient(-45deg,red 5%,blue 80%,yellow); */
+  background-image: linear-gradient(
+    46deg,
+    rgb(219, 242, 255),
+    rgb(199, 227, 214),
+    rgb(231, 192, 255)
+  );
+
+  /* padding */
+  padding: 20px;
+  border: 10px dotted #7db3ff;
+  /* 
+부모 박스에 패딩이 없는 상태에서 첫 번째 자식 블록박스의 마진은
+부모 바깥쪽으로 나가서 셋팅된다!
+이유는 마진은 바깥쪽으로 셋팅하는 개념이고 부모가 이를 셋팅하지 않았다면
+첫 번째 블록박스에서 마진을 셋팅할 수 있도록 기본 설계되어 있다!
+-> 패딩을 주는 순간 자식의 마진은 패딩의 내부 공간을 밀게 된다!
+*/
+
+  /*
+  [배경 관련 표시 영역 지정 : background-clip]
+    값 : boder-box 보더 영역까지 표시(기본값)
+    값 : padding-box 패딩 영역까지 표시
+    값 : content-box 내용 영역까지 표시
+  */
+background-clip: border-box;
+  
+  /*
+  [배경 관련 시작 영역 지정 : background-origin]
+    값 : boder-box 보더 영역부터 시작
+    값 : padding-box 패딩 영역부터 시작(기본값)
+    값 : content-box 내용 영역부터 시작
+  */
+background-origin: padding-box;
+/* 배경 반복 제거 */
+background-repeat: no-repeat;
+/* 박스 내부 그림자 */
+box-shadow: inset 0 0 10px #333;
+}
+
+/* 작품 타이틀 */
+.work h4 {
+  font-family: "Black And White Picture", system-ui;
+  font-weight: normal;
+  font-size: 28px;
+  color: #333;
+
+  margin: 0;
+  /* 부모에 패딩이 없는 상태에서 첫 번째 자식 마진은 부모 바깥으로 나감!
+  참고) 마지막 자식블록요소도 부모 박스 하단 마진은 바깥으로 나감! */
+}
+
+/* 작품 이미지 */
+.work img{
+  border: 12px ridge goldenrod;
+}
+
+.work figcaption{
+  font-size: 20px;
+}
+
+.work cite{
+  font-family: "Gugi", sans-serif;
+  font-style: normal;
+  color: brown;
 }
