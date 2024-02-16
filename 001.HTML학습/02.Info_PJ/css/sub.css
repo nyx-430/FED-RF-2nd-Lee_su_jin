@@ -178,8 +178,8 @@ html파일 아닌 CSS파일 위치에서 상대경로를 잡아야 이미지가 
   font-weight: bold;
 }
 
-/* 인용구 박스 */
-.quote-box {
+/* 구분 박스 공통 */
+.bd-box{
   border-top: 1px dashed #ccc;
   border-bottom: 1px dashed #ccc;
   margin: 20px 0;
@@ -187,7 +187,7 @@ html파일 아닌 CSS파일 위치에서 상대경로를 잡아야 이미지가 
 }
 
 /* 인용구 제목 */
-.quote-box h4{
+.bd-box h4{
 /* 기본 display가 block 이어서
 글씨만큼의 크기를 가지려면 로 바뀌어야 한다 */
   font-size: 20px;
@@ -250,4 +250,60 @@ border: 1px solid #333;
 border-radius: 10px;
 /* 박스 그림자 */
 box-shadow: 0 0 5px #ccc;
+}
+
+/* 동영상 박스 : 유튜브 iframe */
+.mvbox{
+  /* 비율 유지 박스 설정 
+  aspect-ratio : 가로비/세로비
+  -> 주의: 가로, 세로가 유동적이므로 특정값을 셋팅하지 말 것!
+  */
+  aspect-ratio: 16/9;
+  /* height: 550px; */
+  /* 
+  div와 같은 block요소는 width 설정을 하지 않으면
+  width: auto로 자동설정됨!
+  */
+}
+
+/* iframe */
+.mvbox iframe{
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* 기사 원문 */
+.article-link{
+  text-align: right;
+}
+/* 기사 원문 a요소 */
+.article-link a{
+  /* 부모박스 인라인 정렬도 적용되고
+  크기 디자인도 적용되는 display는? inilne-block */
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 1px solid darkcyan;
+  border-radius: 50%; /* 정원 */
+  /* 글자 가로 중앙 */
+  text-align: center;
+  /* 줄간격을 높이값과 같이 주면 세로 중앙됨! */
+  line-height: 100px;
+  font-size: 20px;
+  
+  /* a요소 기본 글자색, 밑줄없앰 */
+  color: #222;
+  text-decoration: none;
+  
+  /* 배경색 */
+  background-color: #ccc;
+}
+
+/* 기사 원문 마우스 오버 시 */
+.article-link a:hover{
+  color: hotpink;
+  background-color: aquamarine;
+  box-shadow: 0 0 10px 5px darkblue;
+  /* box-shadow : x y (spread) color; */
 }
