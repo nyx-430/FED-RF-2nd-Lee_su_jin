@@ -6,51 +6,46 @@
     <title>수진 아카이브 사이트</title>
     <link rel="stylesheet" href="./css/main.css" />
     <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-      }
-      body {
-        background-image: url(./images/moon.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-
-        /* 
-        background-image: 
-        linear-gradient(to bottom,rgb(248, 255, 251),rgb(201, 214, 241)); */
-        /* 
-                [ 선형 그라데이션 ]
-                background-image: 
-                linear-gradient(방향,색1,색2,색3,...)
-                - 방향: 
-                to top, to left, to right, to bottom
-            */
-      }
-      .wrap {
-        /*  
-        border: 1px solid #fff;
-        border-radius: 20px;
-        */
-        color: #ffffff;
-        width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-      }
-      .wrap a:hover {
-        color: #ffe600;
-        text-decoration: none;
-      }
     </style>
   </head>
+
+    <!-- 첫 번째 페이지 -->
   <body>
-    <section class="wrap">
+    <section class="page" id="pg1">
+      <!-- 네비게이션 -->
+      <nav class="menu">
+      <!-- 로고 -->
+      <img src="./images/mylogo_14.png" alt="로고">
       <h1>수진 아카이브</h1>
+      <!-- 메뉴 모음 -->
       <h2>
-        <a href="../001.HTML학습/02.Info_PJ/" target="_blank" >Info PJ</a>
+        <a href="#pg1">HTML 학습</a>
+        <span>ㅣ</span>
+        <a href="#pg2">CSS 학습</a>
       </h2>
+    </nav>
+    <!-- 링크 박스 -->
+    <section class="link-box">
+      <h2>HTML 학습</h2>
+      <p>
+          <a href="../001.HTML학습/02.Info_PJ/" target="_blank" >Info PJ</a>
+
+        </p>
+      </section>
+    </section>
+  </body>
+
+  <!-- 두 번째 페이지 -->
+  <body>
+    <section class="page" id="pg2">
+ 
+    <!-- 링크 박스 -->
+    <section class="link-box">
+      <h2>CSS 학습</h2>
+        <p><a href="../001.HTML학습/03.CSS 학습/01-1.배경연습.html" target="_blank" >Info PJ</a></p>
+        <p><a href="../001.HTML학습/03.CSS 학습/01-2.배경크기설정.html" target="_blank" >Info PJ</a></p>
+        <p><a href="../001.HTML학습/03.CSS 학습/02.블록과인라인.html" target="_blank" >Info PJ</a></p>
+      </section>
     </section>
   </body>
 </html>

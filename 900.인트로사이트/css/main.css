@@ -1,3 +1,53 @@
 @charset "utf-8";
 
 /* 인트로 사이트 메인 CSS */
+
+/* 스크롤 애니메이션 셋팅 */
+html{
+    scroll-behavior: smooth;
+    /* html 즉, Root에 부드러운 스크롤 설정을 하면 이동 시 스크롤 애니메이션이 연출된다! */
+}
+
+/* 마진, 패딩 초기화 */
+html,body,h1,h2,h3,p{
+margin: 0;
+padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  background-image: url(../images/moon.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.page {
+  color: #ffffff;
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+.page a:hover {
+  color: #ffe600;
+}
+
+/* 메뉴 박스 */
+.menu{
+    width: 600px;
+    margin: 0 auto;
+    background-color: rgba(9, 9, 9, 0.485);
+    padding: 15px;
+}
+
+/* 메뉴 하위 h1, h2 옆으로 흐르게 display 변경하기 */
+.menu>*{
+    display: inline-block;
+}
+
+/* 컨텐츠 박스 */
+
