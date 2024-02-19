@@ -348,19 +348,19 @@ html파일 아닌 CSS파일 위치에서 상대경로를 잡아야 이미지가 
     값 : padding-box 패딩 영역까지 표시
     값 : content-box 내용 영역까지 표시
   */
-background-clip: border-box;
-  
+  background-clip: border-box;
+
   /*
   [배경 관련 시작 영역 지정 : background-origin]
     값 : boder-box 보더 영역부터 시작
     값 : padding-box 패딩 영역부터 시작(기본값)
     값 : content-box 내용 영역부터 시작
   */
-background-origin: padding-box;
-/* 배경 반복 제거 */
-background-repeat: no-repeat;
-/* 박스 내부 그림자 */
-box-shadow: inset 0 0 10px #333;
+  background-origin: padding-box;
+  /* 배경 반복 제거 */
+  background-repeat: no-repeat;
+  /* 박스 내부 그림자 */
+  box-shadow: inset 0 0 10px #333;
 }
 
 /* 작품 타이틀 */
@@ -376,30 +376,31 @@ box-shadow: inset 0 0 10px #333;
 }
 
 /* 작품 이미지 */
-.work img{
+.work img {
   /* 액자틀 보더 */
   border: 12px ridge goldenrod;
 }
 
-.work figcaption{
+.work figcaption {
   font-size: 20px;
 }
 
-.work cite{
+.work cite {
   font-family: "Gugi", sans-serif;
   font-style: normal;
   color: brown;
 }
 
 /* 뉴스 파트 공통 클래스 */
-.news-box{
+.news-box {
   border-top: 2px dashed #ccc;
   margin: 20px 0; /* 위,아래,양쪽 */
   padding: 20px 0; /* 위,아래,양쪽 */
 }
 
 /* 뉴스 파트 공통 a요소 */
-.news-box a, .sec-news a{
+.news-box a,
+.sec-news a {
   font-size: 17px;
   line-height: 2.5;
   color: #222;
@@ -407,40 +408,43 @@ box-shadow: inset 0 0 10px #333;
 }
 
 /* 공통 a요소 마우스 오버 시 */
-.news-box a:hover{
+.news-box a:hover {
   color: yellowgreen;
   text-shadow: 1px 1px 1px #000;
 }
-.sec-news a:hover{
+.sec-news a:hover {
   color: yellowgreen;
   text-shadow: 1px 1px 1px #000;
 }
 
 /* 뉴스 공통 말줄임 표시 넣기 + 분야별 뉴스도 추가*/
-.news-box li, .sec-news dd{
+.news-box li,
+.sec-news dd {
   /* 기본적으로 블록박스는 내용이 넘치면 줄바꿈이 되는 랩핑박스가 기본이다
   줄바꿈 방지하는 속성은 white-space: nowrap; (기본값은 normal;)
    */
-   /* 1. 줄바꿈 방지 */
-   white-space: nowrap;
-   /* 2. 넘치는 내용 숨기기 */
-   overflow: hidden;
-   /* 3. 넘치는 텍스트 말줄임표 (...) */
-   text-overflow: ellipsis; /* tov */
+  /* 1. 줄바꿈 방지 */
+  white-space: nowrap;
+  /* 2. 넘치는 내용 숨기기 */
+  overflow: hidden;
+  /* 3. 넘치는 텍스트 말줄임표 (...) */
+  text-overflow: ellipsis; /* tov */
 }
 
 /* 뉴스 타이틀 공통 */
-.news-box h3, .sec-news h3{
+.news-box h3,
+.sec-news h3 {
   font-family: "Black And White Picture", system-ui;
   font-weight: normal;
   font-size: 30px;
-  background-image: linear-gradient(to right,rgb(218, 237, 243),transparent);
+  background-image: linear-gradient(to right, rgb(218, 237, 243), transparent);
   /* 투명색 : transprent */
   padding: 10px;
 }
 
 /* 주요 뉴스 ul 변경하기 */
-.main-news ul,.news-box ol{
+.main-news ul,
+.news-box ol {
   /* 기본 리스트 숨기기 */
   list-style: none;
   /* 기본 마진 패딩 */
@@ -449,11 +453,11 @@ box-shadow: inset 0 0 10px #333;
 }
 
 /* 주요 뉴스에 가상요소로 아이콘 넣기 */
-.main-news ul li::before{
-  content: '🌌';
+.main-news ul li::before {
+  content: "🌌";
 }
-.main-news ul li::after{
-  content: '💫';
+.main-news ul li::after {
+  content: "💫";
   /* content: url(../images/logo.png); */
 }
 
@@ -473,22 +477,22 @@ CSS 가상요소 : before, after
 :last-child -> 마지막 자식
 :nth-child(n) -> n번째 자식 (n은 1부터)
 */
-.main-news li:first-child a{
+.main-news li:first-child a {
   color: red;
 }
-.main-news li:nth-child(2) a{
+.main-news li:nth-child(2) a {
   color: blue;
 }
-.main-news li:last-child a{
+.main-news li:last-child a {
   color: green;
 }
 
- /* 분야별 뉴스 dl */
- .sec-news dl{
+/* 분야별 뉴스 dl */
+.sec-news dl {
   margin: 0;
- }
- /* 분야별 뉴스 dt */
- .sec-news dt{
+}
+/* 분야별 뉴스 dt */
+.sec-news dt {
   font-family: "Gugi", sans-serif;
   font-size: 20px;
   border: 4px dashed skyblue;
@@ -496,13 +500,13 @@ CSS 가상요소 : before, after
   margin: 10px;
   padding: 10px;
   display: inline-block;
- }
+}
 
- /* 분야별 뉴스 dd 가상요소 아이콘 넣기 */
- .sec-news dd::before{
-  content: '🌌';
- }
- /*
+/* 분야별 뉴스 dd 가상요소 아이콘 넣기 */
+.sec-news dd::before {
+  content: "🌌";
+}
+/*
 분야별 뉴스 dt의 가상클래스를 사용한 선택법
 [2가지 이상의 종류의 자식요소가 있을 경우 선택법
 :first-of-type -> 같은 타입(요소) 중 첫번째
@@ -511,23 +515,96 @@ CSS 가상요소 : before, after
 */
 
 /* 분야별 뉴스 dt별 글자색, 배경색 변경하기 */
-.sec-news dt:first-of-type{
-color: red;
-background-color: yellowgreen;
-border-color: green;
+.sec-news dt:first-of-type {
+  color: #222;
+  background-color: yellowgreen;
+  border-color: green;
 }
-.sec-news dt:nth-of-type(2){
-color: blue;
-background-color: skyblue;
-border-color: darkcyan;
+.sec-news dt:nth-of-type(2) {
+  color: #222;
+  background-color: skyblue;
+  border-color: darkcyan;
 }
-.sec-news dt:last-of-type{
-color: purple;
-background-color: plum;
-border-color: hotpink;
+.sec-news dt:last-of-type {
+  color: #222;
+  background-color: plum;
+  border-color: hotpink;
 }
 
 /* 첫 번째 dt를 제외한 나머지에 margin-top 주기 */
-.sec-news dd+dt{
+.sec-news dd + dt {
   margin-top: 20px;
+}
+
+/* 사진 뉴스 박스 */
+/* 타이틀 변경하기 */
+.photo-news h3 {
+  background-image: none;
+  /* 중앙 정렬 */
+  text-align: center;
+}
+
+/* 타이틀 앞 가상요소 아이콘 */
+.photo-news h3::before {
+  content: "📷";
+  font-size: 25px;
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+/* 타이틀 뒤 가상요소 아이콘 */
+.photo-news h3::after {
+  content: "📺";
+  font-size: 25px;
+  margin-left: 8px;
+  vertical-align: -1px;
+}
+
+/* 사진 뉴스 테이블
+- 테이블은 기본적으로 내용만큼 가로 크기를 가지며
+부모박스의 크기가 작아질 경우 크기에 맞춰진다
+*/
+.photo-news table {
+  max-width: 500px;
+  /* 최대 width 지정 시 부모박스가 이 크기 보다 작아질 때 전환됨 */
+
+  /* 테이블 중앙 - 마영오! 블록, 테이블 모두 공통! */
+  margin: 0 auto;
+
+  /* 테두리 */
+  border: 2px solid #ccc;
+
+  /* 테이블 기본 간격 없앰 */
+  border-collapse: collapse;
+  /* separate 기본값 (사이 간격 있음)
+  -> table 태그에 boder=1로 확인 가능!*/
+}
+
+/* tr이나 td에 child 선택자 사용 가능!
+왜? table tr td 정해짐! 같은 종류의 형제요소들만 올 수 있음! */
+
+/* 첫 번째 td - 숫자 부분 */
+.photo-news td:first-child{
+  width: 50px;
+  height: 84px;
+  text-align: center;
+  background-color: #ccc;
+}
+
+/* 두 번째 td - 기사 제목 */
+.photo-news td:nth-child(2){
+  background-color: #e4e4e4;
+  padding: 0 20px;
+  border-top: 2px solid #ccc;
+}
+
+/* 세 번째 td */
+.photo-news td:last-child{
+  background-color: #e4e4e4;
+}
+
+/* 사진 뉴스 이미지 */
+.photo-news img{
+  height: 70px;
+  /* 이미지 높이값만 주면 가로 크기는 자동! */
+  vertical-align: middle;
 }
