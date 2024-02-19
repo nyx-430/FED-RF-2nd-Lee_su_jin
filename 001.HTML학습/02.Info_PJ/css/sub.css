@@ -411,9 +411,13 @@ box-shadow: inset 0 0 10px #333;
   color: yellowgreen;
   text-shadow: 1px 1px 1px #000;
 }
+.sec-news a:hover{
+  color: yellowgreen;
+  text-shadow: 1px 1px 1px #000;
+}
 
-/* 뉴스 공통 밑줄임 표시 넣기 */
-.news-box li{
+/* 뉴스 공통 말줄임 표시 넣기 + 분야별 뉴스도 추가*/
+.news-box li, .sec-news dd{
   /* 기본적으로 블록박스는 내용이 넘치면 줄바꿈이 되는 랩핑박스가 기본이다
   줄바꿈 방지하는 속성은 white-space: nowrap; (기본값은 normal;)
    */
@@ -462,6 +466,23 @@ CSS 가상요소 : before, after
 - 이미지는 content 속성값으로 url() 사용
  */
 
+/*
+주요 뉴스 li의 가상클래스를 사용한 선택법
+[같은 종류의 자식요소일 경우 선택법
+:first-child -> 첫번째 자식
+:last-child -> 마지막 자식
+:nth-child(n) -> n번째 자식 (n은 1부터)
+*/
+.main-news li:first-child a{
+  color: red;
+}
+.main-news li:nth-child(2) a{
+  color: blue;
+}
+.main-news li:last-child a{
+  color: green;
+}
+
  /* 분야별 뉴스 dl */
  .sec-news dl{
   margin: 0;
@@ -471,8 +492,42 @@ CSS 가상요소 : before, after
   font-family: "Gugi", sans-serif;
   font-size: 20px;
   border: 4px dashed skyblue;
-  display: inline-block;
   border-radius: 50%;
   margin: 10px;
   padding: 10px;
+  display: inline-block;
  }
+
+ /* 분야별 뉴스 dd 가상요소 아이콘 넣기 */
+ .sec-news dd::before{
+  content: '🌌';
+ }
+ /*
+분야별 뉴스 dt의 가상클래스를 사용한 선택법
+[2가지 이상의 종류의 자식요소가 있을 경우 선택법
+:first-of-type -> 같은 타입(요소) 중 첫번째
+:last-of-type -> 같은 타입(요소) 중 마지막
+:nth-of-type(n) -> 같은 타입(요소) 중 n번째 (n은 1부터)
+*/
+
+/* 분야별 뉴스 dt별 글자색, 배경색 변경하기 */
+.sec-news dt:first-of-type{
+color: red;
+background-color: yellowgreen;
+border-color: green;
+}
+.sec-news dt:nth-of-type(2){
+color: blue;
+background-color: skyblue;
+border-color: darkcyan;
+}
+.sec-news dt:last-of-type{
+color: purple;
+background-color: plum;
+border-color: hotpink;
+}
+
+/* 첫 번째 dt를 제외한 나머지에 margin-top 주기 */
+.sec-news dd+dt{
+  margin-top: 20px;
+}
