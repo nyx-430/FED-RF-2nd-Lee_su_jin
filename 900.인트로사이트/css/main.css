@@ -17,10 +17,13 @@ height: 100%;
 }
 
 body {
-  background-image: url(../images/moon.jpg) no-repeat fixed center/center;
+  background-image: url(../images/moon.jpg);
+  background-repeat: none;
+
 }
 .page {
   color: #ffffff;
+  text-decoration: none;
   width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -28,6 +31,7 @@ body {
 }
 .page a:hover {
   color: #ffe600;
+  text-decoration: none;
 }
 
 /* 메뉴 박스 */
@@ -43,7 +47,7 @@ body {
     display: inline-block;
 }
 
-/* 컨텐츠 박스 */
+/* 컨텐츠 박스
 .link-box{
   border: 2px dashed darkblue; 
-}
+} */
