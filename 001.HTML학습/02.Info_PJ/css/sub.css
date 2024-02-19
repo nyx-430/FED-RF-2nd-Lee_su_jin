@@ -390,3 +390,61 @@ box-shadow: inset 0 0 10px #333;
   font-style: normal;
   color: brown;
 }
+
+/* 뉴스 파트 공통 클래스 */
+.news-box{
+  border-top: 2px dashed #ccc;
+  margin: 20px 0; /* 위,아래,양쪽 */
+  padding: 20px 0; /* 위,아래,양쪽 */
+}
+
+/* 뉴스 파트 공통 a요소 */
+.news-box a{
+  font-size: 17px;
+  line-height: 2.5;
+  color: #222;
+  text-decoration: none;
+}
+
+/* 공통 a요소 마우스 오버 시 */
+.news-box a:hover{
+  color: yellowgreen;
+  text-shadow: 1px 1px 1px #000;
+}
+
+/* 뉴스 타이틀 공통 */
+.news-box h3{
+  font-family: "Black And White Picture", system-ui;
+  font-weight: normal;
+  font-size: 30px;
+  background-image: linear-gradient(to right,rgb(218, 237, 243),transparent);
+  /* 투명색 : transprent */
+  padding: 10px;
+}
+
+/* 주요 뉴스 ul 변경하기 */
+.main-news ul{
+  /* 기본 리스트 숨기기 */
+  list-style: none;
+  /* 기본 마진 패딩 */
+  margin: 0;
+  padding: 0;
+}
+
+/* 주요 뉴스에 가상요소로 아이콘 넣기 */
+.main-news ul li::before{
+  content: '🌌';
+}
+.main-news ul li::after{
+  content: '💫';
+  /* content: url(../images/logo.png); */
+}
+
+/* 
+CSS 가상요소 : before, after
+- 모든 요소는 맨 앞과 맨 뒤에 가상요소를 사용할 수 있다
+- 가상요소 표기법은 요소명 뒤에 콜론 2개를 겹쳐 씀(::)
+- 맨 앞은 before, 맨 뒤는 after
+- 필수속성 : content
+- 이미지는 content 속성값으로 url() 사용
+ */
