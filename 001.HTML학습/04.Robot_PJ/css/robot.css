@@ -61,7 +61,7 @@ body * {
 /* 모서리 라운드 처리 */
 .head{
     /* 왼쪽 위부터 시계방향 수치입력 */
-    border-radius: 90px 90px 90px;
+    border-radius: 90px 90px 90px 90px;
 }
 
 /* 눈 공통 */
@@ -132,5 +132,93 @@ body * {
 .ear2{
     left: 250px;
     border-radius: 20px 20px;
+}
+
+/* 2-1-2. 몸통 */
+.body{
+    position: relative;
+    /* 부모 자격 - 하위 직계 자식 div들 */
+    width: 220px;
+    height: 400px;
+    /* 마영오! */
+    margin: 0 auto;
+    margin-top: 50px;
+    /* 배경이미지 */
+    background-repeat: repeat;
+    background-size: 50%;
+}
+
+/* 목 */
+.neck{
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px/2);
+    /* 
+    가로/세로 중앙보내기 계산법
+    top : calc(50% - 크기/2)
+    left : calc(50% - 크기/2)
+    -> 크기는 left일 경우 width이고
+    top일 경우 height 값이다
+    */
+    width: 50px;
+    height: 50px;
+}
+
+/* 팔 공통 */
+.arm{
+    position: absolute;
+    top: 0;
+    /* 부모는? .body */
+    width: 50px;
+    height: 250px;
+}
+
+/* 팔 하단 공통 */
+.arm span{
+    position: absolute;
+    /* 부모는? .arm */
+    top: 100%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+}
+
+/* 왼팔 */
+.arm1{
+    left: -50px;
+}
+
+/* 오른팔 */
+.arm2{
+    right: -50px;
+}
+
+/* 다리 공통 */
+.leg{
+    position: absolute;
+    /* 부모는? .body */
+    top: 100%;
+    width: 70px;
+    height: 200px;
+}
+
+/* 다리 하단 공통 */
+.leg span{
+    position: absolute;
+    /* 부모는? .leg */
+    top: 100%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+}
+
+/* 왼다리 */
+.leg1{
+    left: 0px;
+}
+
+/* 오른다리 */
+.leg2{
+    right: 0px;
 }
 /*************************************** 3. 하단 영역 ***************************************/
