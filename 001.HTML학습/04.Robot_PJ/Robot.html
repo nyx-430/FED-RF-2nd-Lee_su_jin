@@ -1,12 +1,76 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <!-- 뷰포트 필수! meta:vp -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Robot PJ</title>
-    </head>
-    <body>
-        
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 뷰포트 필수! meta:vp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robot PJ</title>
+    <!-- 메인 CSS -->
+    <link rel="stylesheet" href="./css/robot.css" />
+  </head>
+  <body>
+    <!-- 1. 상단 영역 -->
+    <div id="top-area">
+      <header class="top-area">
+        <!-- 1-1. 로고 -->
+        <!-- 1-2. 탑 이동 버튼 -->
+      </header>
+    </div>
+    <!-- 2. 메인 영역 -->
+    <div id="main-area">
+      <main class="main-area">
+        <!-- 2-1. 로봇 박스 -->
+        <section class="robot-box">
+            <!-- 로봇 머리 -->
+            <div class="head metal1">
+            <!-- 왼눈 -->
+            <div class="eye eye1"></div>
+            <!-- 오른눈 -->
+            <div class="eye eye2"></div>
+            <!-- 코 -->
+            <div class="nose"></div>
+            <!-- 입 -->
+            <div class="mouth"></div>
+            <!-- 왼귀 -->
+            <div class="ear ear1 metal2"></div>
+            <!-- 오른귀 -->
+            <div class="ear ear2 metal2"></div>
+          </div>
+          <!-- 로봇 머리 -->
+          <!-- 로봇 몸통 -->
+          <div id="body">
+            <!-- 목 -->
+            <div class="neck"></div>
+            <!-- 왼팔 -->
+            <div class="arm arm1 metal2"></div>
+            <span class="metal2"></span>
+            <!-- 오른팔 -->
+            <div class="arm arm2 metal2"></div>
+            <span class="metal2"></span>
+          </div>
+            <!-- 왼다리 -->
+            <div class="leg leg1 metal2"></div>
+            <span class="metal2"></span>
+          </div>
+            <!-- 오른다리 -->
+            <div class="leg leg2 metal2"></div>
+            <span class="metal2"></span>
+          </div>
+            <!-- 왼어깨 -->
+            <div class="shdr shdr1 metal1"></div>
+            <!-- 오른어깨 -->
+            <div class="shdr shdr2 metal1"></div>
+            <!-- TV -->
+            <div class="tv"></div>
+        </section>
+        <!-- 2-2. 로봇 설명 박스 -->
+      </main>
+    </div>
+    <!-- 3. 하단 영역 -->
+    <div id="bottom-area">
+      <footer class="bottom-area">
+        <!-- 3-1. 회사 정보 -->
+      </footer>
+    </div>
+  </body>
 </html>
