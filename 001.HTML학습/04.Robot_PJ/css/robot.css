@@ -183,6 +183,58 @@ body * {
     height: 80%;
 }
 
+/* 팔 원형관절 가상요소 공통 */
+.arm::before{
+    content: '';
+    position: absolute;
+    /* 부모는? .arm */
+    top: calc(100% - 50px);
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background-color: #ccc;
+    z-index: 1;
+    /* 보더 때문에 박스가 커지므로 패딩, 보더 포함 박스 설정하기 */
+}
+
+/* 큰 원 */
+.arm::before{
+    content: '';
+    position: absolute;
+    /* 부모는? .arm */
+    top: calc(100% - 50px/2);
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background-color: #ccc;
+    z-index: 1;
+    /* 보더 때문에 박스가 커지므로 패딩, 보더 포함 박스 설정하기 */
+}
+
+/* 작은 원 */
+.arm::after{
+    content: '';
+    position: absolute;
+    /* 부모는? .arm */
+    top: calc(100% - 40px/2);
+    left: calc(50% - 40px/2);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background-color: #ccc;
+    z-index: 1;
+    /* 보더 때문에 박스가 커지므로 패딩, 보더 포함 박스 설정하기 */
+    background-color: 
+    linear-gradient(to bottom,#ccc,#222);
+    box-shadow: inset 0 0 5px #000;
+}
+
+
 /* 왼팔 */
 .arm1{
     left: -50px;
@@ -200,8 +252,7 @@ body * {
     /* 부모는? span */
     top: 100%;
     width: 60px;
-    height: 80px;
-    outline: 2px dotted lime;
+    height: 90px;
     /* 배경 공통 */
     background-image: url(../images/hand_left.png);
     background-repeat: no-repeat;
@@ -210,12 +261,14 @@ body * {
 
 /* 왼손 */
 .arm1 span::after{
-    
+    background-image: url(../images/hand_left.png);
+    left: -6px;
 }
 
 /* 오른손 */
 .arm2 span::after{
     background-image: url(../images/hand_right.png);
+    right: -6px;
 }
 
 /* 다리 공통 */
@@ -254,10 +307,38 @@ body * {
     height: 70px;
 }
 
+/* 부츠 상단 */
+.leg span::after{
+    position: absolute;
+    content: '';
+    top: 160px;
+    left: -8px;
+    width: 60px;
+    height: 160px;
+    background-color: #ccc;
+    background-color: 
+    linear-gradient(to bottom,#ccc,#000);
+    border: 6px solid #000;
+}
+
+/* 부츠 하단 */
+.leg span::before{
+    position: absolute;
+    content: '';
+    top: 260px;
+    left: -30%;
+    width: 80px;
+    height: 60px;
+    background-color: #ccc;
+    border: 6px solid #000;
+    z-index: 1;
+}
+
+
 /* 왼어깨 */
 .shdr1{
     left: -70px;
-    border-radius: 30px 30px 0 ;
+    border-radius: 30px 0 0 30px ;
 }
 
 /* 오른어깨 */
@@ -282,9 +363,8 @@ body * {
     /* 부모는? .tv */
     top: 25px;
     left: 30px;
-    width: 123px;
-    height: 95px;
-    border: 2px dashed blue;
+    width: 126px;
+    height: 100px;
     border-radius: 10px;
     /* 자식 유튜브 넘치는 부분 숨기기 */
     overflow: hidden;
@@ -294,10 +374,10 @@ body * {
 .screen iframe{
     position: absolute;
     /* 부모는? .screen */
-    top: 10px;
-    left: 10px;
-    width: 100px;
-    height: 100px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
 
 }
 
