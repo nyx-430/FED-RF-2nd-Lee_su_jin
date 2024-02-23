@@ -85,9 +85,9 @@ body * {
 /* 귀 공통 */
 .ear{
     position: absolute;
-    top: 70px;
-    width: 70px;
-    height: 80px;
+    top: 75px;
+    width: 60px;
+    height: 85px;
 }
 
 /* 왼눈 */
@@ -124,7 +124,7 @@ body * {
 
 /* 왼귀 */
 .ear1{
-    left: -70px;
+    left: -60px;
     border-radius: 20px 20px;
 }
 
@@ -193,6 +193,31 @@ body * {
     right: -50px;
 }
 
+/* 팔 하단 가상요소 손 만들기 공통 */
+.arm span::after{
+    content: '';
+    position: absolute;
+    /* 부모는? span */
+    top: 100%;
+    width: 60px;
+    height: 80px;
+    outline: 2px dotted lime;
+    /* 배경 공통 */
+    background-image: url(../images/hand_left.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* 왼손 */
+.arm1 span::after{
+    
+}
+
+/* 오른손 */
+.arm2 span::after{
+    background-image: url(../images/hand_right.png);
+}
+
 /* 다리 공통 */
 .leg{
     position: absolute;
@@ -221,4 +246,59 @@ body * {
 .leg2{
     right: 0px;
 }
+
+/* 어깨 공통 */
+.shdr{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+}
+
+/* 왼어깨 */
+.shdr1{
+    left: -70px;
+    border-radius: 30px 30px 0 ;
+}
+
+/* 오른어깨 */
+.shdr2{
+    right: -70px;
+    border-radius: 0 30px 30px 0;
+}
+
+/* TV */
+.tv{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 180px;
+    height: 120px;
+    background: url(../images/tv.jpg) no-repeat center/cover;
+}
+
+/* 스크린 */
+.screen{
+    position: absolute;
+    /* 부모는? .tv */
+    top: 25px;
+    left: 30px;
+    width: 123px;
+    height: 95px;
+    border: 2px dashed blue;
+    border-radius: 10px;
+    /* 자식 유튜브 넘치는 부분 숨기기 */
+    overflow: hidden;
+}
+
+/* 유튜브 iframe */
+.screen iframe{
+    position: absolute;
+    /* 부모는? .screen */
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 100px;
+
+}
+
 /*************************************** 3. 하단 영역 ***************************************/
