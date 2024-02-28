@@ -134,7 +134,11 @@
             // 전체문서.가져와아이디요소(아이디명).html 넣기
             document.getElementById('name').innerHTML='<img src="./images/kim.png" alt="김비서가 왜 그럴까">';
 
-            // CSS 변경하기 /////////////
+            // 콘솔에 아이디 요소 찍기
+            console.log(document.getElementById('name'));
+            // 아이디 요소는 한번에 요소를 선택함
+
+            // 3. CSS 변경하기 /////////////
             // 변경대상 : .pbox
             // CSS 변경 객체 : style.속성명
             // - 모든 속성명은 변수형으로 정의됨!
@@ -145,6 +149,8 @@
             console.log(
                 document.getElementsByClassName('pbox')
                 );
+            // 여러 개를 만들 수 있는 클래스, 태그 선택은 HTML Collection에 담는다
+            // 그래서 구체적인 요소를 선택할 때는 .item(순번)/[순번]를 사용하여 선택함!
 
             // 구체적인 선택요소 선택하기 : item(n)
             // 반복적으로 사용되는 요소는 특정 공간에 저장하여
@@ -153,7 +159,8 @@
             // 선언과 동시에 할당행위를 통해 값을 지정한다!
             // 변수는 여기를 '봐!' var로 선언
             // var 변수명=값
-            var 피박스=document.getElementsByClassName('pbox').item(0);
+            var 피박스=document.getElementsByClassName('pbox')[0];
+            // var 피박스=document.getElementsByClassName('pbox').item(0);
 
             // 변수를 사용하는 이유?
             // - 변수는 재사용
@@ -271,7 +278,106 @@
 
          } ///////////// 김비서 함수 /////////////
 
-    </script>
+            /**********************************************************
+             함수명 : 맘대로해라
+             기능 : 선택요소의 style과 html을 변경함
+            **********************************************************/
+        function 맘대로해라(헐,헉스){
+            // 헐 - .원이야 순번 / 헉스 - 그림제목
+            // 1. 함수 호출 확인
+            console.log("네맘대로해라",헐,헉스);
+
+            // 2. 대상 선정 : .박스야 .원이야
+            var 멍청이=document.querySelectorAll('.박스야 .원이야');
+            // 주의사항 : 따옴표 안은 CSS 선택자 문법을 써야 함!
+            
+            //document.getElementsByClassName('박스야').item(0).getElementsByClassName('원이야');
+            // 기존 기본 선택방식이 너무 길다!
+            // 따라서 간단한 CSS 선택자 선택법이 있다
+            // 1. querySelect(CSS선택자) - 하나만 바로 선택
+            // 2. querySelectAll(CSS선택자) - 컬랙션에 담는다
+            // -> 2번 방식은 .item(순번)/[순번]으로 세부 선택
+            // -> length로 컬랙션 길이도 알 수 있음
+
+            console.log(멍청이,멍청이,length);
+
+            // 3. 변경 내용 : transition으로 화면 왼쪽 하단으로 나열되도록
+            // 위치와 모양을 변경하고 작품명을 하단에 나오게 한다
+
+            // 한 번에 3개가 컬랙션에 있으므로 구체적인 순번으로 선택해 준다!
+            // 헐 전달 변수는 순번값이 있다!
+            멍청이=멍청이.item(헐);
+
+            // 3-1. transition
+            멍청이.style.transition=
+            `1s ease-out,
+            borderRadius .5s ease-in-out 1s`;
+
+            // 3-2. 위치 이동 : top, right
+            멍청이.style.top='calc(100% - 200px)';
+            멍청이.style.right='calc(100% - 200px - '+헐+'*200px)';
+
+            console.log('calc(100% - 200px - '+헐+'*200px)');
+            console.log('calc(100% - 200px - 헐*200px)');
+
+            /* 
+            [문자 데이터와 변수 합치기]
+            따옴표를 내부에 2개 넣고 +를 2개 넣고 사이에 변수를 넣으면
+            중간 변수 삽입됨
+            만약 앞/뒤에 변수를 합칠 때는 더하기 기호만 사용하면 된다!
+
+            예)
+            var na='한국';
+            "나는 사람이다" -> "나는 '+na+'사람이다"
+            '나는 사람이다' -> '나는 '+na+'사람이다'
+            */
+
+            // 3-3. 원형을 사각형으로 변경
+            멍청이.style.borderRadius='0';
+
+
+            // 3-4. 액자 보더 넣기
+            멍청이.style.border='10px ridge goldenrod';
+
+            // 3-5. HTML 넣기 : 그림제목
+            멍청이.innerHTML='<h4>고흐<br>'+헉스+'</h4>';
+
+            // 4-1. 만들어진 h4 태그 확인하기
+            console.log('<h4>고흐<br>'+헉스+'</h4>');
+
+            // 4-2. 넣은 h4요소에 CSS 한 번에 넣기
+            // 한 번에 CSS를 셋팅하는 방법 : style.cssText 속성
+            // 주의사항 : 상단에서 셋팅된 style.속성명이 있다면
+            // 한 번에 셋팅된 CSS로 모두 덮어써진다!
+            // 백틱(`)을 사용하여 엔터를 허용한 문자표시법을 쓴다
+            멍청이.querySelector('h4').style.cssText=
+            `
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            `;
+
+            // 5. .원이야 클래스 on 제거하여 회전애니 없애기
+            // 대상: .원이야(해당순번)
+            멍청이.classList.remove('on');
+            // 멍청이.classList.add('on'); -> 넣기
+            // 멍청이.classList.toggle('on'); -> 넣기/빼기
+
+            /* 
+            [JS의 클래스 제어 객체 : classList]
+            1. 클래스 넣기 : add(클래스명)
+            2. 클래스 빼기 : remove(클래스명)
+            3. 클래스 넣기/빼기 : toggle(클래스명)
+            */
+        } ///////////// 맘대로해라 함수 /////////////
+        
+        
+        </script>
     <style>
         html,body{
             margin: 0;
@@ -288,7 +394,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            /* 부모는? window(보이는화면) */
+            /* 부모는? window(보이는 화면) */
             margin: 0;
             padding: 0;
 
@@ -300,6 +406,7 @@
             line-height: 50px;
             font-size: 30px;
             text-align: center;
+
             /* 줄바꿈방지 */
             white-space: nowrap;
 
@@ -315,6 +422,50 @@
         .pbox{
             z-index: 1;
         }
+
+        /* 원모양 */
+        .원이야{
+            position: absolute;
+            top: 0;
+            right: 0;
+            /* 부모는? window */
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            /* 배경 공통 */
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* 보더박스 : 보더, 패딩 포함 박스 */
+            box-sizing: border-box;
+        }
+
+        /* 원모양 개별 셋팅 */
+        .원이야:nth-child(1){
+            right: 400px;
+            background-image: url(./images/01.png);
+        }
+        .원이야:nth-child(2){
+            right: 200px;
+            background-image: url(./images/02.png);
+        }
+        .원이야:nth-child(3){
+            background-image: url(./images/03.png);
+        }
+
+        /* .원이야.on 일 경우 애니 적용하기 */
+        .원이야.on{
+            /* 애니메이션 키프레임 호출은 animation속성으로! */
+            animation: rotate-ani 5s linear infinite;
+            /* animation: 키프레임이름 시간 가속도 반복횟수; */
+        }
+
+        /* .원이야 회전 키프레임
+        애니메이션을 위한 장면 연출 구역을 키프레임이라고 함 */
+        @keyframes rotate-ani{
+            to{/* css 나중 상태 */
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -325,9 +476,17 @@
         <span id="name"></span>
     </p>
 
-<!--         <div class="pbox"></div>
-        <a href="" class="pbox"></a>
-        <em class="pbox"></em>
-        <section class="pbox"></section> -->
+    <!-- 원모양 박스 -->
+    <div class="박스야">
+        <!-- 원모양 -->
+        <div class="원이야 on" onmouseover="맘대로해라(0,'별이 빛나는 밤')"></div>
+        <div class="원이야 on" onmouseover="맘대로해라(1,'론강의 별이 빛나는 밤')"></div>
+        <div class="원이야 on" onmouseover="맘대로해라(2,'밤의 카페 테라스')"></div>
+    </div>
+
+<!--   <div class="pbox"></div>
+    <a href="" class="pbox"></a>
+    <em class="pbox"></em>
+    <section class="pbox"></section> -->
 </body>
 </html>
