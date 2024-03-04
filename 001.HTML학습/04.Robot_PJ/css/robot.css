@@ -12,7 +12,7 @@
     font-family: 'Orbitron', sans-serif;
 */
 
-/* 초기화 : 마진0,패딩0 */
+/* 초기화 : 마진0, 패딩0 */
 html,
 body,
 h1,
@@ -26,11 +26,12 @@ ol {
 /* html 루트 설정 */
 html{
   font-size: 10px;
-  /* rem단위 글자계산 편위위해 */
+  /* rem단위 글자 계산 편의위해 */
 }
 /* 전체 배경이미지 */
 body {
-  background: url(../images/bg.jpg) no-repeat fixed top/cover;
+  padding-top: 100vh;
+  background: url(../images/bg.jpg) no-repeat fixed top / cover;
 }
 
 /* 공사중 표시 */
@@ -39,7 +40,7 @@ body * {
 }
 
 /**************** 공통 클래스 ****************/
-/* 메탈배경 클래스 */
+/* 메탈 배경 클래스 */
 .metal1 {
   background: url(../images/metal01.jpg) no-repeat center/cover;
 }
@@ -47,7 +48,7 @@ body * {
   background: url(../images/metal02.jpg) no-repeat center/cover;
 }
 
-/**************** 1.상단영역 ****************/
+/**************** 1. 상단 영역 ****************/
 h1.logo{
   position: fixed;
   top: calc(50% - 10vw);
@@ -61,7 +62,7 @@ h1.logo{
   inset 0 0 20px 5px #000,
   0 0 20px 5px aqua;
 
-  /* 글자설정 */
+  /* 글자 설정 */
   text-align: center;
   line-height: 20vw;
   font-family: 'Orbitron';
@@ -70,27 +71,31 @@ h1.logo{
   text-shadow: 0 0 10px #000;
 }
 
-/**************** 2.메인영역 ****************/
-/* 2-1.로봇박스 */
+/**************** 2. 메인 영역 ****************/
+/* 2-1.로봇 박스 */
 .robot-box {
-  padding-top: 200px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: scale(0.3) translate(430%, -32%);
+  /* padding-top: 200px; */
   margin-bottom: 560px;
 }
-/* 2-1-1.로봇머리 */
+/* 2-1-1.로봇 머리 */
 .head {
   position: relative;
   /* 부모자격 - 하위요소 앱솔루트의 부모 */
   width: 210px;
   height: 250px;
-  /*  특정크기를 가지는 블록요소를
-    가로중앙으로 이동하기 - 마영오~! */
+  /*  특정 크기를 가지는 블록요소를
+    가로 중앙으로 이동하기 - 마영오~! */
   margin: 0 auto;
 
   /* 모서리 라운드처리
-    왼쪽위부터 시계방향 수치입력 */
+    왼쪽 위부터 시계방향 수치 입력 */
   border-radius: 90px 90px 95px 95px;
 }
-/* 로봇머리 가상요소로 가발만들기 */
+/* 로봇 머리 가상요소로 가발 만들기 */
 .head::after {
   content: "";
   position: absolute;
@@ -102,30 +107,30 @@ h1.logo{
   background: url(../images/hair2.png) no-repeat 0/100% 100%;
   filter: hue-rotate(0deg);
 }
-/* 눈공통 */
+/* 눈 공통 */
 .eye {
   position: absolute;
   /* 부모는? .head */
   top: 50px;
-  /* 크기공통 */
+  /* 크기 공통 */
   width: 50px;
   height: 50px;
-  /* 배경공통 */
+  /* 배경 공통 */
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: #fff;
 
-  /* 둥근눈 */
+  /* 둥근 눈 */
   border-radius: 50%;
-  /* 이중테두리 */
+  /* 이중 테두리 */
   border: 4px double #000;
 }
-/* 왼눈 */
+/* 왼 눈 */
 .eye1 {
   left: 32px;
   background-image: url(../images/e1.jpg);
 }
-/* 오른눈 */
+/* 오른 눈 */
 .eye2 {
   right: 32px;
   background-image: url(../images/e2.jpg);
@@ -151,20 +156,20 @@ h1.logo{
   background: url(../images/mouth.png) no-repeat 0/100% 100%;
 }
 
-/* 귀공통 */
+/* 귀 공통 */
 .ear {
   position: absolute;
   top: 70px;
   width: 58px;
   height: 90px;
 }
-/* 왼귀 */
+/* 왼 귀 */
 .ear1 {
   left: -58px;
   /* 라운드처리 */
   border-radius: 20px 0 0 20px;
 }
-/* 오른귀 */
+/* 오른 귀 */
 .ear2 {
   right: -58px;
   /* 라운드 처리 */
@@ -214,7 +219,7 @@ h1.logo{
   top: -50px;
   left: calc(50% - 50px / 2);
   /* 
-        [ 가로/세로 중앙보내기 계산법 ]
+        [ 가로/세로 중앙 보내기 계산법 ]
         top : calc(50% - 크기/2)
         left : calc(50% - 크기/2)
         -> 크기는 left일 경우 width이고
@@ -224,7 +229,7 @@ h1.logo{
   height: 50px;
 }
 
-/* 팔공통 */
+/* 팔 공통 */
 .arm {
   position: absolute;
   top: 25px;
@@ -233,7 +238,7 @@ h1.logo{
   height: 180px;
 }
 /* 팔 원형관절 가상요소 공통 */
-/* 큰원 */
+/* 큰 원 */
 .arm::before {
   content: "";
   position: absolute;
@@ -247,11 +252,11 @@ h1.logo{
   border-radius: 50%;
   border: 2px solid #000;
   background-color: #ccc;
-  /* 보더때문에 박스가 커지므로
-    패딩,보더 포함박스설정하기 */
+  /* 보더 때문에 박스가 커지므로
+    패딩, 보더 포함박스 설정하기 */
   box-sizing: border-box;
 }
-/* 작은원 */
+/* 작은 원 */
 .arm::after {
   content: "";
   position: absolute;
@@ -259,7 +264,7 @@ h1.logo{
   top: calc(100% - 40px / 2);
   /* 부모박스 바깥으로 모두 밀고 원크기 절반 빼기 */
   left: calc(50% - 40px / 2);
-  /* 부모박스 절반만큼 밀고 원크기 절반 빼기(가로중앙) */
+  /* 부모박스 절반 만큼 밀고 원 크기 절반 빼기(가로중앙) */
   width: 40px;
   height: 40px;
   z-index: 1;
@@ -267,11 +272,11 @@ h1.logo{
   border-radius: 50%;
   /* 그라데이션 배경 */
   background-image: linear-gradient(to bottom, #ccc, #222);
-  /* 박스 내부그림자 : bsh -> inset 키워드(내부그림자) */
-  box-shadow: inset 0 0 5px #222;
+  /* 박스 내부 그림자 : bsh -> inset 키워드(내부 그림자) */
+  box-shadow: inset 0 0 2px #222;
 }
 
-/* 팔하단공통 */
+/* 팔 하단 공통 */
 .arm span {
   position: absolute;
   /* 부모는? .arm */
@@ -280,7 +285,7 @@ h1.logo{
   width: 80%;
   height: 80%;
 }
-/* 팔하단 가상요소 손만들기 공통 */
+/* 팔 하단 가상요소 손 만들기 공통 */
 .arm span::after {
   content: "";
   position: absolute;
@@ -289,44 +294,44 @@ h1.logo{
   width: 80px;
   height: 110px;
   /* outline: 2px dotted lime; */
-  /* 배경공통 */
+  /* 배경 공통 */
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-/* 왼손 */
+/* 왼 손 */
 .arm1 span::after {
-  /* 배경이미지경로 */
+  /* 배경이미지 경로 */
   background-image: url(../images/hand_left.png);
-  /* left위치값 */
+  /* left 위치값 */
   left: -12px;
 }
-/* 오른손 */
+/* 오른 손 */
 .arm2 span::after {
-  /* 배경이미지경로 */
+  /* 배경이미지 경로 */
   background-image: url(../images/hand_right.png);
-  /* left위치값 */
+  /* left 위치값 */
   left: -25px;
 }
 
-/* 왼팔 */
+/* 왼 팔 */
 .arm1 {
   left: -63px;
 }
-/* 오른팔 */
+/* 오른 팔 */
 .arm2 {
   right: -63px;
 }
 
-/* 다리공통 */
+/* 다리 공통 */
 .leg {
   position: absolute;
-  top: 100%;
+  top: 95%;
   /* 부모는? .body */
   width: 70px;
   height: 200px;
 }
 /* 다리 사각형관절 가상요소 공통 */
-/* 큰사각 */
+/* 큰 사각 */
 .leg::before {
   content: "";
   position: absolute;
@@ -340,11 +345,11 @@ h1.logo{
   border-radius: 20px;
   border: 2px solid #000;
   background-color: #ccc;
-  /* 보더때문에 박스가 커지므로
-    패딩,보더 포함박스설정하기 */
+  /* 보더 때문에 박스가 커지므로
+    패딩, 보더 포함 박스 설정하기 */
   box-sizing: border-box;
 }
-/* 작은사각 */
+/* 작은 사각 */
 .leg::after {
   content: "";
   position: absolute;
@@ -363,7 +368,7 @@ h1.logo{
   /* 박스 내부그림자 : bsh -> inset 키워드(내부그림자) */
   box-shadow: inset 0 0 5px #222;
 }
-/* 다리하단공통 */
+/* 다리 하단 공통 */
 .leg span {
   position: absolute;
   /* 부모는? .leg */
@@ -372,8 +377,8 @@ h1.logo{
   width: 80%;
   height: 80%;
 }
-/* 다리하단 가상요소 부츠만들기 공통 */
-/* 부츠상단 */
+/* 다리 하단 가상요소 부츠 만들기 공통 */
+/* 부츠 상단 */
 .leg span::before {
   content: "";
   position: absolute;
@@ -386,10 +391,10 @@ h1.logo{
   background-image: linear-gradient(to right, #ccc, #222);
   border: 5px solid #000;
   border-top-width: 20px;
-  /* 보더,패딩 포함박스 */
+  /* 보더, 패딩 포함 박스 */
   box-sizing: border-box;
 }
-/* 부츠하단 */
+/* 부츠 하단 */
 .leg span::after {
   content: "";
   position: absolute;
@@ -403,34 +408,34 @@ h1.logo{
   border: 5px solid #000;
   border-bottom-width: 20px;
   border-radius: 40px 40px 0 0;
-  /* 보더,패딩 포함박스 */
+  /* 보더, 패딩 포함 박스 */
   box-sizing: border-box;
 }
-/* 왼다리 */
+/* 왼 다리 */
 .leg1 {
   left: 0px;
 }
-/* 오른다리 */
+/* 오른 다리 */
 .leg2 {
   right: 0px;
 }
 
-/* 어깨공통 */
+/* 어깨 공통 */
 .shdr {
   position: absolute;
   width: 70px;
   height: 70px;
 }
-/* 왼어깨 */
+/* 왼 어깨 */
 .shdr1 {
   left: -81px;
-  /* 둥근모서리 */
+  /* 둥근 모서리 */
   border-radius: 30px 0 0 30px;
 }
-/* 오른어깨 */
+/* 오른 어깨 */
 .shdr2 {
   right: -81px;
-  /* 둥근모서리 */
+  /* 둥근 모서리 */
   border-radius: 0 30px 30px 0;
 }
 /* TV */
@@ -452,7 +457,7 @@ h1.logo{
   height: 90px;
   /* border: 2px dashed blue; */
   border-radius: 10px;
-  /* 자식유튜브 아이프레임 넘치는부분 숨기기 */
+  /* 자식유튜브 아이프레임 넘치는 부분 숨기기 */
   overflow: hidden;
 }
 /* 유튭 아이프레임 */
@@ -465,7 +470,7 @@ h1.logo{
   height: 101px;
 }
 
-/* 2-2.로봇설명박스 */
+/* 2-2.로봇 설명박스 */
 .text-box{
   max-width: 800px;
   margin: 0 auto;
@@ -473,27 +478,27 @@ h1.logo{
   padding: 15px 30px;
   background-color: #0000006f;
   border-radius: 20px;
-  /* 박스 내부그림자 */
+  /* 박스 내부 그림자 */
   box-shadow: 
   inset 0 0 20px blue,
   inset 0 0 50px 10px cyan;
   /* 
   [백드롭 필터효과] 
   - filter속성과 동일한 셋팅을 가지며
-  적용대상이 겹쳐지는 하단의 그래픽을 변경한다!
+  적용 대상이 겹쳐지는 하단의 그래픽을 변경한다!
 
   backdrop-filter: blur(2px); -> 흐림
   backdrop-filter: brightness(60%); -> 밝기
   backdrop-filter: contrast(40%); -> 대비
   backdrop-filter: drop-shadow(4px 4px 10px blue);->그림자
   backdrop-filter: grayscale(30%);-> 흑백
-  backdrop-filter: hue-rotate(120deg); -> 색상변경
+  backdrop-filter: hue-rotate(120deg); -> 색상 변경
   backdrop-filter: invert(70%); -> 반전색
   backdrop-filter: opacity(20%); -> 투명도
-  backdrop-filter: sepia(90%); -> 세피아효과
+  backdrop-filter: sepia(90%); -> 세피아 효과
   backdrop-filter: saturate(80%); -> 채도
 
-  -> 복합적용 가능!
+  -> 복합 적용 가능!
   backdrop-filter: blur(4px) saturate(150%);
   */
   backdrop-filter: blur(6px);
@@ -503,7 +508,7 @@ h1.logo{
 .text-box h2{
   position: sticky;
   top: 10px;
-  /* 글자크기 35px -> em단위 */
+  /* 글자 크기 35px -> em단위 */
   font-size: 3.5rem;
   font-family: 'Chakra Petch', sans-serif;
   text-align: center;
@@ -511,7 +516,7 @@ h1.logo{
   color: lime;
   text-shadow: 2px 2px 2px #0000006f;
   border-radius: 20px;
-  /* 얇은글자 */
+  /* 얇은 글자 */
   font-weight: normal;
 }
 
@@ -520,49 +525,49 @@ h1.logo{
   /* 인라인은 디자인상 블록으로 전환! */
   display: block;
   text-align: center;
-  /* 글자크기 12px */
+  /* 글자 크기 12px */
   font-size: 1.2rem;
   font-family: 'Chakra Petch', sans-serif;
   color: yellow;
   text-shadow: 1px 1px 1px #0000006f;
   padding: 10px;
 }
-/* 2-2-3.내용단락 */
+/* 2-2-3.내용 단락 */
 .text-box p {  
   font-family: 'Barlow';
   font-size: 1.7rem;
-  /* 줄간격 */
+  /* 줄 간격 */
   line-height: 1.7;
   /* 자간 */
   letter-spacing: 1px;
-  /* 단어간격 */
+  /* 단어 간격 */
   word-spacing: 2px;
 
   /* 
-    [ 다단설정하기 ]
-    - 다중열속성
-    -> column-count : 다중열개수
-    -> column-rule : 다중열구분선
-    -> column-gap : 다중열사이간격
+    [ 다단 설정하기 ]
+    - 다중열 속성
+    -> column-count : 다중열 개수
+    -> column-rule : 다중열 구분선
+    -> column-gap : 다중열 사이 간격
   */
   /* 다단수 셋팅 */
   column-count: 3;
-  /* 사이구분선은 border와 유사 */
+  /* 사이 구분선은 border와 유사 */
   column-rule: 5px dotted lightgreen;
   /* column-rule: 두께 종류 색; */
-  /* 사이간격 */
+  /* 사이 간격 */
   column-gap: 55px;
 
-  /* 양쪽정렬 */
+  /* 양쪽 정렬 */
   text-align: justify;
-  /* 영문자는 단어를 깨줘야함! */
+  /* 영문자는 단어를 깨줘야 함! */
   word-break: break-all;
 
-  /* 첫줄 들여쓰기 :  text-indent (ti) */
+  /* 첫 줄 들여쓰기 :  text-indent (ti) */
   text-indent: 40px;
 }
 
-/* 가상요소 첫글자 변경하기 */
+/* 가상요소 첫 글자 변경하기 */
 .text-box p::first-letter {  
   font-size: 2.8rem;
   color: hotpink;
@@ -570,4 +575,4 @@ h1.logo{
 }
 
 
-/**************** 3.하단영역 ****************/
+/**************** 3. 하단 영역 ****************/
