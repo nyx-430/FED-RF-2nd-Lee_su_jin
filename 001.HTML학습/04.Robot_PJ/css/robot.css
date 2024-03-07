@@ -24,9 +24,10 @@ ol {
   padding: 0;
 }
 /* html 루트 설정 */
-html{
+html {
   font-size: 10px;
   /* rem단위 글자 계산 편의위해 */
+  scroll-behavior: smooth;
 }
 /* 전체 배경이미지 */
 body {
@@ -34,10 +35,10 @@ body {
   background: url(../images/bg.jpg) no-repeat fixed top / cover;
 }
 
-/* 공사중 표시 */
+/* 공사중 표시
 body * {
   outline: 2px dashed yellow;
-}
+}  */
 
 /**************** 공통 클래스 ****************/
 /* 메탈 배경 클래스 */
@@ -49,7 +50,8 @@ body * {
 }
 
 /**************** 1. 상단 영역 ****************/
-h1.logo{
+/* 1-1. 로고 */
+h1.logo {
   position: fixed;
   top: calc(50% - 10vw);
   left: calc(50% - 10vw);
@@ -58,17 +60,56 @@ h1.logo{
   border-radius: 50%;
   z-index: 999;
   background: pink url(../images/robot_03.png) no-repeat center/auto 100%;
-  box-shadow: 
-  inset 0 0 20px 5px #000,
-  0 0 20px 5px aqua;
+  box-shadow: inset 0 0 20px 5px #000, 0 0 20px 5px aqua;
 
   /* 글자 설정 */
   text-align: center;
   line-height: 20vw;
-  font-family: 'Orbitron';
+  font-family: "Orbitron";
   font-size: 4.5vw;
   color: lightgreen;
   text-shadow: 0 0 10px #000;
+}
+
+/* 1-2. 탑 이동 버튼 */
+.btn-top{
+  position: fixed;
+  bottom: 3vw;
+  right: 3vw;
+
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  border: 5px outset #fff;
+  background-color: #ccc;
+
+  z-index: 10;
+}
+
+/* a요소 확장 */
+.btn-top a{
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* 글자 셋팅 */
+  color: blue;
+  text-decoration: none;
+  font: 1.5vw/5.5vw 'Black Ops One';
+  /* font: 스두크/줄체 */
+  text-align: center;
+}
+
+/* 오버 시 설정 */
+.btn-top:hover{
+  background-color: blue;
+  /* outset 나온 버튼, inset 들어간 버튼 */
+  border-style: inset;
+}
+
+.btn-top:hover a{
+  color: #fff;
+
 }
 
 /**************** 2. 메인 영역 ****************/
@@ -80,7 +121,92 @@ h1.logo{
   transform: scale(0.3) translate(430%, -32%);
   /* padding-top: 200px; */
   margin-bottom: 560px;
+
+  /* 박스내에 있는 모든 요소의 외곽선에 그림자(글로우)효과 주기
+  filter:drop-shadow를 사용한다*/
+  filter: drop-shadow(0 0 10px aquamarine)
 }
+
+/* 말풍선 */
+.link-title {
+  position: absolute;
+  top: -5vw;
+  left: 50%;
+  width: 40vw;
+  height: 20vw;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: translateX(200px) scale(0);
+  /* 로봇쪽에서 커지게 하기 위해 트랜스폼 기준 변경 (왼쪽 아래) */
+  transform-origin: left bottom;
+
+  outline: 5px dashed darkred;
+
+  font-size: 5vw;
+  font-weight: bold;
+  line-height: 20vw;
+  color: darkred;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* 가상요소로 말풍선 삼각형 만들기 */
+.link-title::after {
+  content: "";
+  position: absolute;
+  top: 68%;
+  left: -6%;
+  /* 왜 %인가? 유동적인 부모를 기준한 위치값이다! */
+
+  transform: rotate(40deg);
+
+  /* 가로 세로 크기 0 */
+  width: 0;
+  height: 0;
+  /* 보더탑 크기 + 색 설정 */
+  border-top: 10vw solid darkred;
+  /* 양쪽 보더 크기 + 투명 설정 */
+  border-left: 2vw solid transparent;
+  border-right: 2vw solid transparent;
+}
+
+/* 로봇 말풍선 오버 시 */
+.link-title:hover {
+  color: #fff;
+  background-image: radial-gradient(farthest-corner,blue 20%, skyblue 100%);
+}
+
+/* 
+    [ 원형 그라데이션 ]
+
+    - 기본형, 영역지정형은 박스모양을 따라감!
+
+    1) 기본형: 중앙중심, 모양은 박스크기에 맞춤
+    background-image: 
+        radial-gradient(색1,색2,색3,...);
+    - 시작색으로부터 중앙에서 시작됨
+
+    2) 영역 지정형:
+    background-image: 
+        radial-gradient(색1 몇%,색2 몇%,색3 몇%,...);
+    - 색 뒤에 한칸 띄고 %수치로 영역지정함
+
+    3) 그라데이션 모양을 원형으로 사용할 경우:
+    background-image: 
+        radial-gradient(circle,색1,색2,색3,...);
+    - circle 키워드를 첫번째에 사용함
+
+    4) 영역옵션 지정형: 중심점 변경
+    background-image: 
+        radial-gradient(옵션 at 가로위치 세로위치,색1,색2,색3,...);
+    - 옵션4가지 : closest-side / farthest-side
+                closest-corner / farthest-corner
+                ___________________________________
+                - closest는 중심점으로 좀더 모아진것
+                - farthest는 중심점에서 멀리 퍼진것
+                - side와 corner는 경계선과 끝부분옵션임
+    - 가로위치, 세로위치 (중심점) - 단위는 px / %
+*/
 
 /* 2-1-1.로봇 머리 */
 .head {
@@ -146,7 +272,7 @@ h1.logo{
   position: absolute;
   top: 101px;
   left: 83px;
-  width: 50px;
+  width: 57px;
   height: 70px;
   background: url(../images/nose.jpg) no-repeat -7px / cover;
   border-radius: 20px;
@@ -156,8 +282,8 @@ h1.logo{
 .mouth {
   position: absolute;
   top: 184px;
-  left: 52px;
-  width: 112px;
+  left: 57px;
+  width: 100px;
   height: 48px;
   background: url(../images/mouth.png) no-repeat 0/100% 100%;
 }
@@ -247,6 +373,7 @@ h1.logo{
   /* 부모는? .body */
   width: 50px;
   height: 180px;
+  z-index: 1;
 }
 
 /* 팔 원형관절 가상요소 공통 */
@@ -449,6 +576,7 @@ h1.logo{
   position: absolute;
   width: 70px;
   height: 70px;
+  z-index: 1;
 }
 
 /* 왼 어깨 */
@@ -500,7 +628,7 @@ h1.logo{
 }
 
 /* 2-2.로봇 설명박스 */
-.text-box{
+.text-box {
   max-width: 800px;
   margin: 0 auto;
   color: #fff;
@@ -508,9 +636,7 @@ h1.logo{
   background-color: #0000006f;
   border-radius: 20px;
   /* 박스 내부 그림자 */
-  box-shadow: 
-  inset 0 0 20px blue,
-  inset 0 0 50px 10px cyan;
+  box-shadow: inset 0 0 20px blue, inset 0 0 50px 10px cyan;
   /* 
   [백드롭 필터효과] 
   - filter속성과 동일한 셋팅을 가지며
@@ -534,12 +660,12 @@ h1.logo{
 }
 
 /* 2-2-1.제목 */
-.text-box h2{
+.text-box h2 {
   position: sticky;
   top: 10px;
   /* 글자 크기 35px -> em단위 */
   font-size: 3.5rem;
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: "Chakra Petch", sans-serif;
   text-align: center;
   background-color: #ffffff86;
   color: lime;
@@ -550,21 +676,21 @@ h1.logo{
 }
 
 /* 2-2-2.출처 */
-.text-box small{
+.text-box small {
   /* 인라인은 디자인상 블록으로 전환! */
   display: block;
   text-align: center;
   /* 글자 크기 12px */
   font-size: 1.2rem;
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: "Chakra Petch", sans-serif;
   color: yellow;
   text-shadow: 1px 1px 1px #0000006f;
   padding: 10px;
 }
 
 /* 2-2-3.내용 단락 */
-.text-box p {  
-  font-family: 'Barlow';
+.text-box p {
+  font-family: "Barlow";
   font-size: 1.7rem;
   /* 줄 간격 */
   line-height: 1.7;
@@ -598,11 +724,31 @@ h1.logo{
 }
 
 /* 가상요소 첫 글자 변경하기 */
-.text-box p::first-letter {  
+.text-box p::first-letter {
   font-size: 2.8rem;
   color: hotpink;
   font-weight: bold;
 }
 
-
 /**************** 3. 하단 영역 ****************/
+/* 3-1. 회사 정보 */
+#bottom-area{
+  position: relative;
+  z-index: 100;
+  /* z-index 때문에 포지션 줌 */
+
+  color: #fff;
+  /* 글자 크기 : 30px, 글자체 'Black Ops One' */
+  font: 3rem 'Black Ops One';
+  /* 글자 그림자 */
+  text-shadow: 2px 2px 2px #000;
+  /* 글자 중앙 */
+  text-align: center;
+  /* 패딩 : 가로/세로 중 작은 화면 기준 7%
+  -> vmin(작은쪽 기준)/vmax(큰쪽 기준) */
+  padding: 7vmin;
+
+  /* 반투명 배경 넣기(0.5)
+  rgb(0 0 0 / 0.5) -> 요즘 쓰는 방식 */
+  background-color: rgb(0 0 0/0.5);
+}
