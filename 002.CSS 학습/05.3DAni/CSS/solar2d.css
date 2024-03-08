@@ -165,7 +165,7 @@ body{
     /* 손가락 커서 */
     cursor: pointer;
 
-    /* 다른 행성보다 위로 */
+    /* 마우스 오버 시 다른 행성보다 위로 */
     z-index: 1;
 }
 
@@ -206,7 +206,8 @@ body{
 }
 
 /* 행성에 마우스 오버 시 정보 보이기 애니 */
-.planet:hover .info{
+.planet:hover > .info,
+#earth:hover .info{
     width: 200px;
 
     /* 최대높이값은 content중 가장 큰 사이즈를 준다 */
@@ -218,8 +219,8 @@ body{
     max-height .4s .4s;
 }
 
-/* 지구 */
-#earth{
+/* 지구+달 랩핑박스 : 실제로 도는 박스*/
+.earth-wrap{
     position: absolute;
     /* 부모는? #solar */
 
@@ -232,10 +233,25 @@ body{
     width: var(--earth-size);
     height: var(--earth-size);
 
-    background: url(../images/earth.png) no-repeat 0/100% 100%;
-
     /* 애니메이션 호출 */
-    animation: earth-ani 10s linear infinite;
+    animation: earth-ani 15s linear infinite; 
+}
+
+/* 지구 */
+#earth{
+    position: absolute;
+    /* 부모는? #solar */
+
+    border-radius: 50%;
+
+    /* 지구 크기의 절반 이동 */
+    top: 0;
+    left: 0;
+
+    width: var(--earth-size);
+    height: var(--earth-size);
+
+    background: url(../images/earth.png) no-repeat 0/100% 100%;
 }
 
 /* 지구 회전 키프레임 */
@@ -251,21 +267,21 @@ body{
         rotate(360deg) 
         translateX(var(--earth-trans-size))
         rotate(-360deg);
+        /* 
+            키프레임 회전 시 2번째 회전의 의미는?
+            transform: 
+                rotate(360deg) -> 중앙 회전
+                translate(300px) -> 이동 회전
+                rotate(-360deg); -> 이동된 요소의 회전
+        
+        */
     }
 }
-
-/* 
-    키프레임 회전 시 2번째 회전의 의미는?
-    transform: 
-        rotate(360deg) -> 중앙 회전
-        translate(300px) -> 이동 회전
-        rotate(-360deg); -> 이동된 요소의 회전
-*/
 
 /* 달 */
 #moon{
     position: absolute;
-    /* 부모는? #earth */
+    /* 부모는? .earth-wrap */
 
     border-radius: 50%;
 
@@ -279,7 +295,7 @@ body{
     background: url(../images/moon.png) no-repeat 0/100% 100%;
 
     /* 애니메이션 호출 */
-    animation: moon-ani 5s linear infinite;
+    animation: moon-ani 10s linear infinite;
 }
 
 /* 달 회전 키프레임 */
@@ -315,7 +331,7 @@ body{
     background: url(../images/jupiter.png) no-repeat 0/100% 100%;
 
     /* 애니메이션 호출 */
-    animation: jupiter-ani 20s linear infinite;
+    animation: jupiter-ani 25s linear infinite;
 }
 
 /* 목성 회전 키프레임 */
@@ -349,7 +365,7 @@ body{
     height: var(--saturn-size);
 
     /* 애니메이션 호출 */
-    animation: saturn-ani 40s linear infinite;
+    animation: saturn-ani 35s linear infinite;
 }
 
 /* 토성 회전 키프레임 */
@@ -396,7 +412,7 @@ body{
     background: url(../images/pluto.png) no-repeat 0/100% 100%;
 
     /* 애니메이션 호출 */
-    animation: pluto-ani 50s linear infinite;
+    animation: pluto-ani 45s linear infinite;
 }
 
 /* 명왕성 회전 키프레임 */
@@ -413,4 +429,44 @@ body{
         translateY(var(--pluto-trans-size))
         rotate(-360deg);
     }
+}
+
+/* 행성 경로 원 그리기 공통*/
+.path-way div{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    opacity: 0.5;
+
+    /* 행성보다 아래에 위치하게 */
+    z-index: -1;
+}
+
+/* 지구 경로 크기 : 마이너스를 곱한 것은 양수값을 만들기 위함 */
+.path-way div.earth{
+    width: calc(var(--earth-trans-size)*-2);
+    height: calc(var(--earth-trans-size)*-2);
+}
+/* 목성 경로 크기 : */
+.path-way div.jupiter{
+    width: calc(var(--jupiter-trans-size)*2);
+    height: calc(var(--jupiter-trans-size)*2);
+}
+
+/* 토성 경로 크기 : 마이너스를 곱한 것은 양수값을 만들기 위함 */
+.path-way div.saturn{
+    width: calc(var(--saturn-trans-size)*-2);
+    height: calc(var(--saturn-trans-size)*-2);
+}
+
+/* 명왕성 경로 크기 */
+.path-way div.pluto{
+    width: calc(var(--pluto-trans-size)*2);
+    height: calc(var(--pluto-trans-size)*2);
 }
