@@ -3,7 +3,7 @@
 /* 네비게이션 유형1 CSS - nav01.css */
 
 /* 12그리드 불러오기 */
-@import url(./grid_12_float.css);
+@import url(./grid_12_flex.css);
 
 html,
 body,
@@ -52,36 +52,26 @@ ul::after,ol::after,.clb::after{
 
 /* GNB 메뉴 */
 .gnb{
-    /* ul이 플렉스박스이므로 정렬은 ul에서 하도록 함 */
-    /* margin-left: 63px; */
+    margin-left: 63px;
 }
 /* GNB 메뉴 하위 a요소 */
 .gnb a{
     display: block;
-    /* 블록요소로 확장설정함! */
+    /* 블록요소로 확장 설정함! */
 }
 
-.gnb ul{
-    display: flex;
-    /* 메뉴 글자 줄바꿈 방지 */
-    white-space: nowrap;
-    /* 진행 방향 오른쪽 끝정렬 */
-    justify-content: flex-end;
-}
-
-/* 상위 메뉴만 적용하기 
-직계자식(>)선택으로 상위 메뉴만 선택함 */
+/* 상위메뉴만 적용하기 
+직계자식(>)선택으로 상위메뉴만 선택함 */
 .gnb ul > li{
     position: relative;
     /* 부모자격 - .smenu의 left값 */
-    /* float: left; -> flex로 전환 */
+    float: left;
     padding: 0 32px;
     line-height: 78px;
     font-weight: bold;
-    /* 글자 관련 셋팅은
+    /* 글자관련셋팅은
     하위요소로 모두 상속됨! */
 }
-
 /* 서브메뉴 */
 .smenu{
     position: absolute;

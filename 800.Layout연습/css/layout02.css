@@ -1,6 +1,8 @@
 @charset "utf-8";
 
-/* 레이아웃 유형1 */
+/* 레이아웃 유형2 */
+
+@import url(./grid12_flex.css);
 
 /* 초기화 */
 html,body,h1,h2,ol,ul{
