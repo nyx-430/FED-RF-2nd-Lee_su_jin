@@ -168,7 +168,7 @@
         if (condition) {
           console.log("통과!");
         } else {
-          console.log(condition, "false처리됨!");
+          // console.log(condition, "false처리됨!");
         }
       }; //////////////////////// if문 처리 함수 ////////////////////////
 
@@ -344,27 +344,26 @@
             break;
           default:
             message = "etc";
-          } /////////////////// switch case ///////////////////
-          
-          console.log("스위치 결과:", message);
+        } /////////////////// switch case ///////////////////
 
-          // 6. 메시지 만들기
-          // message 변수에 최종
-          if (message=='etc'){ // 등록 지역 메시지
-            message='등록되지 않은 지역입니다.';
-          } /// if ///
+        console.log("스위치 결과:", message);
 
-          else{
-            message=`${txt}의 지역번호는 <span style="color:green;font-size:20px;"">${message}</span>입니다.`;
-          } /// else ///
+        // 6. 메시지 만들기
+        // message 변수에 최종
+        if (message == "etc") {
+          // 등록 지역 메시지
+          message = "등록되지 않은 지역입니다.";
+        } /// if ///
+        else {
+          message = `${txt}의 지역번호는 <span style="color:green;font-size:20px;"">${message}</span>입니다.`;
+        } /// else ///
 
-          // 7. 화면출력하기
-          // 출력대상: #info -> info변수
-          info.innerHTML=message;
-          // 선택요소.innerText
-          // -> 요소의 문자데이터 넣기
-          // -> html태그를 넣을 때는 innerHTML 사용
-
+        // 7. 화면출력하기
+        // 출력대상: #info -> info변수
+        info.innerHTML = message;
+        // 선택요소.innerText
+        // -> 요소의 문자데이터 넣기
+        // -> html태그를 넣을 때는 innerHTML 사용
       } /////////////////////// showLocal 함수 구역 ///////////////////////
 
       /*******************************************************
@@ -390,6 +389,189 @@
         없으면 이 부분이 실행됨(단, 필요시 사용)
         -> default문에는 break를 쓰지 않는다!
         *******************************************************/
+
+      // 이벤트 코드 분리하기 ///////////////////////////////
+      // - 직접 요소의 이벤트 속성에 작성하지 않고
+      // JS코드 구역에서 이벤트 속성을 작성하는 것!
+
+      //////////////////////////////////////////////////////
+      // [JS 이벤트 설정 메서드 : addEventListener()]
+      // 사용법: 선택요소.addEventListener(이벤트명,함수)
+      // 기능: 등록된 이벤트 발생시 함수를 실행함
+      //////////////////////////////////////////////////////
+
+      // 로드 구역 설정하기
+      // 대상: window
+      // 이벤트: load (또는 DOMContentLoaded)
+      // load 이벤트는 모든 컨텐츠를 로딩하면 발생
+      // DOMContentLoaded 이벤트는 태그만 그려지면 발생
+      // 익명 함수는 function(){코드}
+      // 화살표 함수는 ()=>{코드}
+      // window.addEventListener('load',function(){});
+      window.addEventListener("DOMContentLoaded", () => {
+        console.log("로딩 완료");
+
+        // for문 연습 선택박스 이벤트 연결하기
+        // 대상: select#sel
+        let sel = document.querySelector("#sel");
+        // console.log('선택 박스:',sel);
+
+        // change이벤트로 showGugu함수와 연결
+
+        // 이벤트 등록 방법 1
+        // sel.onchange=showGugu;
+
+        // 이벤트 등록 방법 2
+        sel.addEventListener("change", showGugu);
+
+        /* 
+          [이벤트와 함수 연결 방법 2가지]
+          1. 이벤트 속성에 함수 할당하기
+          선택요소.on이벤트명=함수
+          예) document.querySelector('.my').onclick=myFunction;
+          
+          2. 이벤트 등록 메서드 사용하기
+          선택요소.addEventListner(이벤트명,함수)
+          예) document.querySelector('.my').addEventListner('click',myFunction);
+          */
+
+          // while문 연습 이벤트 연결하기
+          let sel2=document.querySelector('#sel2');
+          sel2.addEventListener('change',showGugu2);
+
+      }); ///////////// load 구역 /////////////
+
+
+      /********************************************** 
+         함수명: showGugu
+         기능: 선택박스 변경시 해당 구구단을 보여줌
+         이벤트: change 이벤트
+         (선택박스 변경, 체크박스 변경 등 경우에 발생)
+         이벤트 연결: addEventListener()로 연결
+         **********************************************/
+
+      function showGugu() {
+        // 이 함수와 연결된 요소 자신은? this
+        // 선택박스의 선택된 값은 value 속성으로 읽음
+        let optval = this.value;
+
+        // 1. 함수 호출 확인
+        console.log("구구단을 외자!", optval);
+
+        // 2. 선택메시지 출력을 선택시 함수 나가기!
+        // 함수를 나갈 땐 return
+        if (optval == 1) return;
+
+        // 3. 구구단 구성하기
+        // html 데이터 변수
+        let hcode = `<h2>${optval}단</h2>`;
+
+        // 구구단 계산식 만들기 : for문 사용하기!
+        // for(시;한;증){코드}
+        for (let i = 1; i <= 9; i++) {
+          hcode += `${optval}×${i}＝${optval * i}<br>`;
+        } ///////////// for문 /////////////
+
+        // 4. 화면 출력 : 대상 - .g1
+        document.querySelector(".g1").innerHTML = hcode;
+      } ///////////// showGugu 함수/////////////
+
+      /***************************************** 
+       [ for문 ]
+        - 어떤 실행문을 순서대로 여러 번 반복
+        실행할 경우 사용하는 제어문
+
+        ((구문구조))
+        _____________________________________
+
+        for(시;한;증){실행코드}
+        - 시 -> 시작값(변수 선언과 함께 숫자 할당)
+        - 한 -> 한계값(숫자를 조건문으로 사용)
+        - 증 -> 증감(1씩 증가 ++ / 1씩 감소 --)
+
+        ______________________________________
+
+        ((구문해석))
+        1. 먼저 시작값을 변수에 선언 후 할당함
+        2. 중앙에 있는 한계값 조건에 맞는지 검사함
+        3. 맞으면(true) for문의 중괄호{}안의 코드를 실행함
+        4. 중괄호 안의 코드를 실행후 세 번째 증감으로 감
+            ++ / -- 로 1씩 증감함
+        5. 중앙에 있는 한계값 조건에 맞는지 검사함
+        6. 조건에 맞는 동안 중괄호 안의 코드를 실행함
+        7. 중앙의 한계값 조건에 맞지 않으면(false)
+            for문을 빠져나온다!
+       *****************************************/
+
+      /********************************************** 
+         함수명: showGugu2
+         기능: 선택박스 변경시 해당 구구단을 보여줌
+         이벤트: change 이벤트
+         (선택박스 변경, 체크박스 변경 등 경우에 발생)
+         이벤트 연결: addEventListener()로 연결
+         **********************************************/
+
+         function showGugu2() {
+        // 이 함수와 연결된 요소 자신은? this
+        // 선택박스의 선택된 값은 value 속성으로 읽음
+        let optval = this.value;
+
+        // 1. 함수 호출 확인
+        console.log("구구단을 외자! while!", optval);
+
+        // 2. 선택메시지 출력을 선택시 함수 나가기!
+        // 함수를 나갈 땐 return
+        if (optval == 1) return;
+
+        // 3. 구구단 구성하기
+        // html 데이터 변수
+        let hcode = `<h2>${optval}단</h2>`;
+
+        // 구구단 계산식 만들기 : while문 사용하기!
+        // 시작값
+        let i=1;
+        while(i<=9){ // 한계값
+          hcode += `${optval}×${i}＝${optval * i}<br>`;
+
+          // 증감 필수! (없으면 무한 루프)
+          i++
+        } ///////////// while문 /////////////
+
+        // 4. 화면 출력 : 대상 - .g2
+        document.querySelector(".g2").innerHTML = hcode;
+
+        /********************************************* 
+       [ while문 ]
+
+        - 반복실행코드를 위한 조건으로 만드는 제어문
+
+        ((구문구조))
+        ______________________________
+        시작값;
+
+        while(한계값){
+            실행코드;
+            증감;
+        }
+        ______________________________
+
+        ((구문해석))
+
+        - for문과 유사하나 시작값이 while문 윗쪽에 나옴
+        - 한계값은 while문 소괄호 안에 씀
+        - 증감은 while 실행코드 내부에 씀
+        (주의: 증감을 안 쓰면 무한루프에 빠짐!)
+
+        - >>>>> while문과 for문은 무엇이 다른가?
+
+        시작값과 증감 없이 단지 조건에 의해서
+        반복 실행이 필요한 경우 사용할 수 있다!
+
+        while(조건){코드}
+
+        -> 예) 중복 숫자 피하기, 직전 값 피하기 등
+       *********************************************/
+      } ///////////// showGugu2 함수/////////////
     </script>
 
     <!-- CCS코드구역 -->
@@ -430,7 +612,7 @@
         border-radius: 50%;
         background: url(./images/ifshow.jpg) no-repeat;
 
-        /* 배경위치 : 처음에 안보임 */
+        /* 배경위치 : 처음에 안 보임 */
         background-position: -50% 0%;
 
         /* 배경크기 */
@@ -464,6 +646,22 @@
         font-size: 2vw;
         color: pink;
         transform: translateX(-50%);
+      }
+
+      /* 구구단 출력박스 */
+      .gugu {
+        width: 40vw;
+        height: 40vw;
+        border: 2px dashed blue;
+        text-align: center;
+        margin: 3vh auto;
+        /* 박스 y축 스크롤 : 박스보다 내용 많으면
+          스크롤바생김(스크롤바 트랙나와있음) */
+        overflow-y: scroll;
+        font-size: 2.5vw;
+      }
+      .gugu h2 {
+        font-size: 3vw;
       }
     </style>
   </head>
@@ -534,5 +732,85 @@
 
     <br /><br />
     <hr />
+
+    <!-- for문 연습 -->
+    <h2 class="tit">for문 연습</h2>
+    <h3>구구단 출력하기</h3>
+    <select name="sel" id="sel">
+      <option value="1">구구단을 선택하세요!</option>
+      <option value="2">2단</option>
+      <option value="3">3단</option>
+      <option value="4">4단</option>
+      <option value="5">5단</option>
+      <option value="6">6단</option>
+      <option value="7">7단</option>
+      <option value="8">8단</option>
+      <option value="9">9단</option>
+      <option value="10">10단</option>
+      <option value="11">11단</option>
+      <option value="12">12단</option>
+      <option value="13">13단</option>
+      <option value="14">14단</option>
+      <option value="15">15단</option>
+      <option value="16">16단</option>
+      <option value="17">17단</option>
+      <option value="18">18단</option>
+      <option value="19">19단</option>
+      <option value="20">20단</option>
+    </select>
+    <!-- 
+        [ select 요소 ]
+
+        1. 보통 정해진 선택값을 나열하여 선택입력을
+        할 수 있는 입력요소
+
+        2. form요소 내부에 주로 사용되고 데이터를
+        DB에 전송하는 목적을 많이 이용됨!
+
+        3. id를 설정할때 name속성을 같이 셋팅할 경우가
+        많은데 이는 post방식 데이터 전송시 서버사이드에서
+        name으로 데이터를 읽어가기 때문에 일반적으로 씀.
+        보통 id명과 동일하게 이름짓는다
+
+        4. 필수하위 요소 : option
+            -> 속성으로 value를 쓰고 값을 사용하면
+                JS등 프로그래밍에서 이 값을 읽어감!
+            -> value속성을 셋팅하지 않으면
+                option의 데이터를 읽어감!
+
+     -->
+    <!-- 구구단 출력박스 -->
+    <div class="gugu g1"></div>
+
+    <br /><br />
+    <hr />
+
+    <!-- while문 연습 -->
+    <h2 class="tit">while문 연습</h2>
+    <h3>구구단 출력하기</h3>
+    <select name="sel2" id="sel2">
+      <option value="1">구구단을 선택하세요!</option>
+      <option value="2">2단</option>
+      <option value="3">3단</option>
+      <option value="4">4단</option>
+      <option value="5">5단</option>
+      <option value="6">6단</option>
+      <option value="7">7단</option>
+      <option value="8">8단</option>
+      <option value="9">9단</option>
+      <option value="10">10단</option>
+      <option value="11">11단</option>
+      <option value="12">12단</option>
+      <option value="13">13단</option>
+      <option value="14">14단</option>
+      <option value="15">15단</option>
+      <option value="16">16단</option>
+      <option value="17">17단</option>
+      <option value="18">18단</option>
+      <option value="19">19단</option>
+      <option value="20">20단</option>
+    </select>
+    <!-- 구구단 출력박스 -->
+    <div class="gugu g2"></div>
   </body>
 </html>
