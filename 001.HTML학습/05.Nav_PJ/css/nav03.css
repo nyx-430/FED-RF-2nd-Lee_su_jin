@@ -1,0 +1,235 @@
+@charset "utf-8";
+/* 3. 가로네비 서브 전체 드롭다운 전체창 CSS */
+
+/* 초기화 CSS 불러오기 */
+@import url(./reset.css);
+/* 12그리드 불러오기 */
+@import url(./grid_12_flex.css);
+
+/* 웹폰트 CDN */
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro&family=Noto+Sans+KR&display=swap");
+
+/* 
+    font-family: 'Maven Pro', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif; 
+*/
+
+/* 전체배경 */
+body{
+    width: 100vw;
+    height: 100vh;
+    background: url(../images/nav03/main_intro_banner_1_ksr.jpg) no-repeat center/cover;
+}
+
+/* body *{
+    outline: 2px dashed #ccc;
+} */
+
+/* 중앙속박스 */
+.inbox{
+    max-width: 1600px;
+    margin: 0 auto;
+}
+/*********** 1. 상단영역 ***********/
+#top-area{    
+    /* 트랜지션 : 속시이지 */
+    transition: all .6s ease-in-out;
+}
+/* 상단영역 오버시 배경색 흰색 */
+#top-area:hover{
+    background-color: #fff;
+}
+/********* 1-1.로고파트 *********/
+/* 로고 박스 */
+.logo{
+    padding-top: 20px;
+}
+
+/* 로고이미지 */
+.logo img{
+    width: 100%;
+    max-width: 145px;
+    min-width: 120px;
+}
+
+/* 오버시 두 번째 이미지 숨기기 */
+.logo img:nth-child(2){
+    display: none;
+}
+
+/* 오버시 첫 번째 이미지 숨기기 */
+#top-area:hover .logo img:nth-child(1){
+    display: none;
+}
+
+/* 오버시 두 번째 이미지 보이기 */
+#top-area:hover .logo img:nth-child(2){
+   display: inline;
+}
+
+/********* 1-2.네비파트 *********/
+/* GNB박스 */
+.gnb{
+    display: flex;
+    /* 직계자식요소 dl을 옆으로 흐르게함! */
+
+    /* 높이값 제한 */
+    height: 102px;
+    /* 자식요소 하위메뉴 숨기기 */
+    overflow: hidden;
+
+    /* GNB전체 중앙정렬 */
+    text-align: center;
+
+    /* 글자 줄바꿈방지 */
+    white-space: nowrap;
+
+    /* 트랜지션 : 속시이지 */
+    transition: all .6s ease-in-out;
+}
+
+/* 상단영역 오버시 하위메뉴 보이기 */
+#top-area:hover .gnb{
+    height: 412px;
+}
+
+/* 상단영역 오버시 상위메뉴 dt>a 글자색변경 */
+#top-area:hover .gnb dt a{
+    color: #222;
+}
+
+/* 네비게이션 a요소 공통 */
+.gnb dt a{
+    color: #fff;
+}
+
+/* 메뉴 박스 dl */
+.gnb dl{
+    padding: 0 34px;
+}
+
+/* 상위메뉴 dt */
+.gnb dt{
+    line-height: 110px;
+}
+
+/* 상위메뉴 dt의 이미지 */
+.gnb dt img{
+    margin-top: 10px;
+    /* 이미지 3개 다 숨기기 */
+    display: none;
+}
+
+.gnb dt img:nth-child(1){
+    display: inline;
+}
+
+/* 전체 박스에 오버시 둘째 이미지 보이기 */
+#top-area:hover .gnb dt img:nth-child(2){
+  display: inline;
+}
+
+/* 전체 박스에 오버시 첫째 이미지 숨기기 */
+#top-area:hover .gnb dt img:nth-child(1){
+  display: none;
+}
+
+/* 전체 박스에 오버시, dl에 오보시 둘째 이미지 숨기기 */
+#top-area:hover .gnb dl:hover dt img:nth-child(2){
+  display: none;
+}
+
+/* 전체 박스에 오버시, dl에 오버시 셋째 이미지 보이기 */
+#top-area:hover .gnb dl:hover dt img:nth-child(3){
+  display: inline;
+} 
+
+
+/* 상위메뉴 dd */
+.gnb dd{
+    line-height: 45px;
+}
+
+/* 마우스 오버시 빨간색 글자 */
+/* 상위 메뉴는 dl에 오버시로 설정 */
+#top-area .gnb dl:hover dt a,
+/* 하위 메뉴는 a에 오버시로 설정 */
+.gnb dd a:hover{
+    color: red;
+}
+
+
+
+/********* 1-3.기타파트 *********/
+
+.lang{
+    position: relative;
+    display: flex;
+    padding-top: 40px;
+}
+
+/* 박스 리스트 */
+.lang li{
+    padding: 0 10px;
+}
+
+.lang a{
+    color: #fff;
+}
+
+/* 박스 이미지 */
+.lang img{
+    height: 30px;
+}
+
+/* 두번째 li의 KOR글자 가상요소로 a에 넣기 */
+.lang li:nth-child(2) a::after{
+    content: 'KOR';
+    display: block;
+    font-size: 12px;
+    margin-top: -12px;
+    margin-left: 15px;
+}
+
+/* 세번째 li의 STORE글자 가상요소로 넣기 */
+.lang li:nth-child(3) a::after{
+    content: 'STORE';
+    display: block;
+    font-size: 12px;
+    margin-top: -12px;
+    margin-left: 15px;
+}
+
+/* li 이미지 숨기기 */
+.lang li:nth-child(1)~li img{
+    display: none;
+}
+
+/* li요소 중 첫번째 이미지 보이기 */
+.lang li:nth-child(1)~li img:nth-child(1){
+    display: inline;
+}
+
+#top-area:hover .lang li:nth-child(1)~li img:nth-child(1){
+    display: none;
+}
+
+#top-area:hover .lang li:nth-child(1)~li img:nth-child(2){
+    display: inline;
+}
+
+#top-area:hover .lang li:nth-child(1)~li a:hover img:nth-child(2){
+    display: none;
+}
+
+#top-area:hover .lang li:nth-child(1)~li a:hover img:nth-child(3){
+    display: inline;
+}
+
+#top-area:hover .lang a{
+    color: #222;
+}
+
+#top-area:hover .lang a:hover{
+    color: red;
+}
