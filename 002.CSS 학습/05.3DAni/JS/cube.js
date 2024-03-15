@@ -41,4 +41,12 @@ btngo.onclick=function(){
     this.innerText=
     this.innerText=='돌아!'?'멈춰!':'돌아!';
 
+    // if문으로 글자 변경 제어하기
+    /* if(this.innerText=='돌아!'){
+        this.innerText='멈춰!';
+    }
+    else{
+        this.innerText='돌아!';
+    } */
+
 }; ////// click 이벤트 함수 //////
