@@ -539,7 +539,9 @@
           "지현",
           "윤철",
           "정윤",
+          "현우",
         ];
+
         console.log("버튼 배열", choiceName);
 
         // 버튼을 넣을 대상: target[6]
@@ -603,20 +605,94 @@
             // 각자 자기의 변수를 찍는다!
 
             switch (btnTxt) {
-              case '민지 초이스':
-              // 객체의 내용을 덮어쓰기로 변경함
-              suObj = mjObj;
-              break;
-              
-              case '이지영 초이스':suObj=jyObj;
-              break;
+              case "수진 초이스":
+                // 객체의 내용을 덮어쓰기로 변경함
+                suObj = myObj;
+                break;
+
+              case "탐쌤 초이스":
+                suObj = tomObj;
+                break;
+
+              case "민지 초이스":
+                suObj = mjObj;
+                break;
+
+              case "이지영 초이스":
+                suObj = jyObj;
+                break;
+
+              case "도연 초이스":
+                suObj = dyObj;
+                break;
+
+              case "재윤 초이스":
+                suObj = jaeObj;
+                break;
+
+              case "유지영 초이스":
+                suObj = JYObj;
+                break;
+
+              case "노영 초이스":
+                suObj = nyObj;
+                break;
+
+              case "우진 초이스":
+                suObj = wjObj;
+                break;
+
+              case "영진 초이스":
+                suObj = yjObj;
+                break;
+
+              case "은경 초이스":
+                suObj = lekObj;
+                break;
+
+              case "지현 초이스":
+                suObj = jjob;
+                break;
+
+              case "윤철 초이스":
+                suObj = ironObj;
+                break;
+
+              case "정윤 초이스":
+                suObj = jjyObj;
+                break;
+
+              case "현우 초이스":
+                suObj = koObj;
+                break;
             }
+
             console.log("변경 후 영화 객체", suObj);
 
             // 변경 데이터 확인 후 바로 위 박스
             // 영화 정보 업데이트 함수를 호출한다!
+            showMovieInfo();
+
+
+            // JS 클랙스 내장객체: classList
+            // add() / remove() 메서드 사용!
+  
+            // 버튼에 클래스 on 모두 빼기
+            for(let i=0; i<cntBtn; i++){
+              choiceBtn[i].classList.remove('on');
+            } ////// for문 //////
+            
+            // 클릭된 버튼에 클래스 on 넣기
+            // 클릭된 버튼 자신은 this!
+            this.classList.add('on');
+
+
           }; ////// click 이벤트 함수 //////
+
+
         } ////// for문 //////
+
+
       } ///////// loadFn 함수 /////////
       ////////////////////////////////
 
