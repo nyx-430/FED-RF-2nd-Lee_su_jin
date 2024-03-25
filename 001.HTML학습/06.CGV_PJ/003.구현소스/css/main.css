@@ -59,7 +59,7 @@ body * {
 /************************ 2. 메인 영역 ************************/
 .main-area{
     position: relative;
-    /* 부모자격 .screen */
+    /* 부모 자격 - .screen */
     height: 788px;
     /* 배경이미지 */
     background: url(../images/bg.jpg) no-repeat;
@@ -85,22 +85,17 @@ body * {
 }
 
 /* 포스터 ul */
-.poster-menu ul::after{
+/* .poster-menu ul::after{
     content: '';
     display: block;
     clear: both;
-}
+} */
 
-/* 포스터 리스트 */
-.poster-menu li{
-    /* 블록요소 옆으로 흐르게 */
-    float: left;
-}
 
 /* li 리스트 사이 간격 */
-.poster-menu li+li{
+/* .poster-menu li+li{
     margin-left: 15px;
-}
+} */
 
 /* 2-2. 포스터 메뉴 */
 .poster-menu{
@@ -108,13 +103,69 @@ body * {
     /* 부모는? .main-area */
     /* 한 번에 메인 영역 하단으로 위치 이동 포지셔닝을 하기 위한
     최적의 포지션은 absolute다! */
-    bottom: 50px;
-    left: 200px;
+    width: 65%;
+    bottom: 5%;
+    transform: translateX(27%);
+    /* left: 200px; */
+}
+
+/* 포스터 리스트 */
+.poster-menu ul{
+    display: flex;
+    /* 하위 요소 사이 간격 */
+    gap: 0 15px;
+}
+
+/* 상위 ul>li 리스트 */
+.poster-menu>ul>li{
+    position: relative;
+    /* 부모 자격 - 영화 정보 박스 */
+    overflow: hidden;
+    /* 자식 요소인 영화 정보 박스 숨기기 */
 }
 
 /* 포스터 이미지 */
 .poster-menu img{
-    width: 120px;
+    width: 100%;
+}
+
+/* 영화 정보 박스 : 오버시 올라올 박스 */
+.mv-info{
+    position: absolute;
+    /* 부모는? .poster-menu>ul>li */
+    top: 100%; /* 아래쪽에 나가있음 */
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-align: center;
+    /* 트랜지션 */
+    transition: .3s ease-in-out;
+}
+
+/* 부모 li에 오버시 영화 정보 박스 올라오기 */
+.poster-menu>ul>li:hover .mv-info{
+    top: 0;
+}
+
+/* 영화 정보 박스 하위 ol */
+.mv-info ol{
+    /* 플렉스 박스
+    -> 옆으로 흘러가지 않아도 구성 요소의 흐름을 제어할 목적으로 줌! */
+display: flex;
+/* 플렉스 진행 방향 */
+flex-direction: column;
+/* 진행 방향 정렬 */
+justify-content: center;
+/* 부모 박스 채우기 */
+height: 100%;
+/* 줄바꿈 방지 */
+white-space: nowrap;
+/* 글자 크기 */
+font-size: 12px;
+/* 줄간격 - 글자 크기의 2배 */
+line-height: 2;
+/* 반투명 배경 */
+background-color: #000000a9;
 }
 
 /************************ 3. 하단 영역 ************************/
