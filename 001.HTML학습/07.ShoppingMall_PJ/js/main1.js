@@ -83,7 +83,7 @@ function loadFn() {
     `;
   } ////// for ////////
 
-  // li를 생성한 후 그 li다시 수집한다!
+  // li를 생성한 후 그 li를 다시 수집한다!
   // 블릿의 li까지 수집! indic 변수
   indic = document.querySelectorAll('.indic li');
 
@@ -114,6 +114,7 @@ function loadFn() {
     // evt - 이벤트 객체 전달
     // sts - 버튼 클릭인지 자동 호출 변수인지 구분하는 변수
     // -> true면 버튼 클릭, false면 자동 호출로 구분
+    // -> 버튼 클릭시엔 아무것도 안 보내므로 기본값 true가 할당되어 적용됨!
     // -> 만약 전달값이 없으면 기본값으로 셋팅함!
     // -> ES6문법에서 전달변수 초기값 주기 문법이 생김
 
@@ -123,11 +124,17 @@ function loadFn() {
   
       console.log('전달변수:',evt,sts);
 
+    // 만약 버튼 클릭일 경우 인터발 지우기 함수 호출!
+    if(sts){
+      clearAuto();
+    } ////// if ////// 
+    
     // 광클 금지 설정하기 ///////////
     // 클릭 신호를 막아서 못 들어오게 하고
     // 일정 시간 후 다시 열어준다!
     if (prot) return; // 돌아가! (함수 나감!)
     prot = true; // 잠금! (뒤의 호출 막기!)
+
     setTimeout(() => {
       prot = false; // 0.6초 후 해제!
     }, 600);
@@ -179,26 +186,26 @@ function loadFn() {
     else {
       // 하위 li수집
       let list = slide.querySelectorAll("li");
-      // (1)맨뒤 li 맨앞으로 이동하기
+      // (1)맨 뒤 li 맨 앞으로 이동하기
       // 놈놈놈 시리즈!
       // insertBefore(넣을놈,넣을놈전놈)
-      // insertBefore(맨뒤li,맨앞li)
+      // insertBefore(맨 뒤 li,맨 앞 li)
       slide.insertBefore(list[list.length - 1], list[0]);
 
       // (2) left 값을 -100%로 변경하여
-      // 맨뒤 li가 맨앞으로 온것을 숨긴다!
+      // 맨 뒤 li가 맨 앞으로 온 것을 숨긴다!
       // 왼쪽에서 슬라이드 들어올 준비!!!
       slide.style.left = "-100%";
-      // 트랜지션이 한번 버튼클릭후 생기므로 없애줌
+      // 트랜지션이 한번 버튼 클릭 후 생기므로 없애줌
       slide.style.transition = "none";
 
       //////////////////////////////////
       // 같은 left 값을 변경하기 때문에
-      // 코드 처리구역을 분리하여준다!
+      // 코드 처리구역을 분리하여 준다!
       // 이때 사용되는 메서드는  setTimeout()!
       // 시간차는 어쪄죠? 0을 줘도 코드를
       // 분리하여 처리하므로 동시처리가 아니고
-      // 비동기처리하기 때문에 코드가 잘 작동한다!
+      // 비동기 처리하기 때문에 코드가 잘 작동한다!
       setTimeout(() => {
         // (3) left 값을 0으로 트랜지션하여 들어옴
         slide.style.left = "0";
@@ -243,6 +250,9 @@ function loadFn() {
   // 인터발용 변수 (지울 목적)
   let autoI;
 
+  // 타임아웃용 변수 (지울 목적)
+  let autoT;
+
   // 자동 넘김 함수 최초 호출하기
   autoSlide();
 
@@ -254,18 +264,28 @@ function loadFn() {
     // - 변수에 담긴 인터발을 지움(멈춤)
     autoI = setInterval(() => {
       // 값을 2개 보내야 함
-      // 첫번째 전달값은 이벤트 객체가 들어가는 변수이므로 false값을 쓰고
+      // 첫번째 전달값은 이벤트 객체가 들어가는 변수이므로 false값을 쓰고,
       // 두번째 전달값은 자동 호출임을 알리는 변수이므로 false값을 전달한다!
       goSlide(false,false);
-    }, 3000);
+    }, 4000);
 
   } ////////////// autoSlide 함수 //////////////
-
+  
   // [인터발 지우기 함수] //////
   function clearAuto(){
     // 지우기 확인
     console.log('인터발 지워!');
+
+    // 1. 인터발 지우기
     clearInterval(autoI);
+
+    // 2. 타임아웃 지우기 : 실행 쓰나미 방지!!!
+    clearTimeout(autoT);
+
+    // 3. 5초 후 아무것도 안 하면 다시 인터발 호출
+    setTimeout(() => {
+      autoSlide();
+    }, 5000);
   } ////////////// clearAuto 함수 //////////////
 
 } //////////////// loadFn 함수 ///////////////
