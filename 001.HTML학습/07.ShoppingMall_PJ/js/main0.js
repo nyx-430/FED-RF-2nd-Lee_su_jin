@@ -116,6 +116,21 @@ function loadFn() {
 
         slide.style.left=(-100*snum)+'%';
         slide.style.transition='.6s ease-in-out';
+
+        // 5. 블릿표시 구현하기
+       // 모든 클래스 on지우기 + 현재 순번 클래스 넣기
+       indic.forEach((ele,idx)=>{
+        // ele - 각각의 li, idx - 각각의 순번
+        if(idx===snum){ // 현재 순번 on넣기
+            ele.classList.add('on');
+        } /// if ///
+        else{ // 나머지는 on빼기
+            ele.classList.remove('on');
+        } /// else ///
+
+       }); ///// forEach /////
+
+
    } /////////// goSlide 함수 ///////////
 
 } //////////////// loadFn 함수 ///////////////
