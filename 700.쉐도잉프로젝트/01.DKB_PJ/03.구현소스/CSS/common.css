@@ -153,7 +153,11 @@ z-index: 999;
 
 /* 양분 박스 aside */
 .evt-cover aside{
+  /* 등분할 */
   flex: 1;
+
+  /* 손가락 모양 커서 */
+  cursor: pointer;
 }
 
 /* 버튼 요소 */
@@ -167,6 +171,15 @@ z-index: 999;
   color: #fff;
   text-shadow: 0 0 5px #000;
   display: none; /* 처음에 안 보이기 */
+
+  /* 따라다니는 버튼 요소 오버시 무시하기 */
+  pointer-events: none;
+
+  /* 트랜지션 */
+  transition: .3s ease-out;
+
+  /* 트랜스폼 */
+  transform: translate(-50%, -50%);
 }
 
 /* 슬라이더 */

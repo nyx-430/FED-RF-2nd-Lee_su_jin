@@ -304,6 +304,9 @@ export default function slideFn() {
         abtn[idx].style.left=e.pageX+'px';
       }; /// mousemove ///
 
+      // 이벤트 셋팅하기4 : click - 이동 함수 호출
+      ele.onclick=goSlide;
+
     }); /// forEach ///
 
     
