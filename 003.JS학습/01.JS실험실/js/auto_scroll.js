@@ -177,4 +177,3 @@ function chgMenu(idx){ // idx - 순번
   // parentElement는 선택요소의 부모요소다!
 
 } ///////////////// chgMenu 함수 /////////////////
-

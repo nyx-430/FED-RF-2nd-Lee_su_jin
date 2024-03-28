@@ -5,7 +5,7 @@
 
 // 슬라이드 전체 함수 ///////////////
 export default function slideFn() {
-  // DOM 선택함수
+  // DOM 선택 함수
   const qs = (x) => document.querySelector(x);
   const qsa = (x) => document.querySelectorAll(x);
 
