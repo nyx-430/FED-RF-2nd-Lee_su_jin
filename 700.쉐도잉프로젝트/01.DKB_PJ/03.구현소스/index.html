@@ -4,8 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>쓸쓸하고 찬란하神 도깨비 드라마 소개</title>
+    <!-- 외부 CSS -->
     <link rel="shortcut icon" href="./images/pavicon_tvN.png" />
     <link rel="stylesheet" href="./css/main.css" />
+    <!-- 외부 JS : 모듈로 불러오기 -->
+    <script type="module" src="./js/main.js"></script>
+    <!-- 
+      type module로 JS를 호출하면 모듈 문법이 적용된다!
+      다른 JS 외부 파일을 모듈로 호출한 파일에서 부를 수 있다.
+      기본적으로 모듈을 사용하는 호출은 defer 처리된다.
+      즉, html요소 로딩 후 호출하게 된다!
+      
+      [주의사항] 반드시 서버형 호출을 해야 본 문법을 사용할 수 있다!
+      로컬에서 바로 열기하면 JS는 호출되지 않는다.
+      그래서 서버에 올리거나 가상 서버로 열어야 함!
+     -->
   </head>
   <body>
     <div class="scbar"></div>
@@ -152,34 +165,43 @@
     </div>
     <!-- 2. 배너영역 -->
     <div id="ban-area">
-      <!-- 배너는 중앙속박스 적용안함! -->
-      <section class="ban-area">
-        <h2 class="temp-tit">2. 배너영역</h2>
-        <div class="cont-box">
-          <div class="col-12">
+    </div>
+    <!-- 배너는 중앙속박스 적용안함! -->
+    <section class="ban-area">
+      <h2 class="temp-tit">2. 배너영역</h2>
+      <!-- 이동 버튼 -->
+      <div class="btn-box">
+        <a href="#" class="abtn ab1">이전</a>
+        <a href="#" class="abtn ab2">다음</a>
+      </div>
+      <!-- 임시 블릿 -->
+      <ol style="font-size: 24px; position: relative; z-index: 999;" class="indic"></ol>
+      <div class="cont-box">
+        <div class="col-12">
             <!-- 슬라이드 박스 -->
             <div class="slide-box">
-              <ul class="slider">
-                <li class="snum-01"></li>
-                <li class="snum-02"></li>
-                <li class="snum-03"></li>
-              </ul>
+              <ul class="slider"></ul>
+              <!-- 이벤트 커버 박스 -->
+              <div class="evt-cover">
+                <aside></aside>
+                <aside></aside>
+              </div>
             </div>
             <!-- 캐릭터 박스 -->
             <div class="cat-box">
               <div class="cat-inbox">
-                <!-- 개별캐릭터박스 -->
+                <!-- 개별 캐릭터 박스 -->
                 <article>
-                  <!-- 이미지박스 -->
+                  <!-- 이미지 박스 -->
                   <div class="imbx">
                     <img src="./images/dc1.png" alt="공유" />
-                    <!-- 이름이미지박스 -->
+                    <!-- 이름 이미지 박스 -->
                     <span class="iname">
-                      <img src="./images/d011.png" alt="흐린이름" />
-                      <img src="./images/d01.png" alt="진한이름" />
+                      <img src="./images/d011.png" alt="흐린 이름" />
+                      <img src="./images/d01.png" alt="진한 이름" />
                     </span>
                   </div>
-                  <!-- 설명박스 -->
+                  <!-- 설명 박스 -->
                   <div class="descbx scbar">
                     <!-- 타이틀 -->
                     <h3>도깨비(김신), 939세</h3>
@@ -205,7 +227,7 @@
                       싶은 날은 멀리 했다가 하루에도 열 두 번씩 마음이 오락가락
                       했다. 은탁의 웃음에 그는 몇 번이나 어딘가를 돌아보고 싶은
                       마음에 사로잡혔다. 돌아서 한 번 더 보려는 것이 불멸의
-                      삶인가, 너의 얼굴인가. 아, 너의 얼굴인 것 같다
+                      삶인가, 너의 얼굴인가. 아, 너의 얼굴인 것 같다.
                     </p>
                   </div>
                 </article>
