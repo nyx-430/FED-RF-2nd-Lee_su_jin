@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+/* CGV_PJ 미디어쿼리 CSS - media.css */
+
+/* max-width를 사용한 미디어쿼리를 큰 사이즈부터 작은 사이즈 순으로 셋팅함! */
+
+/************ 1427px 이하 미디어쿼리 시작 ************/
+@media screen and (max-width: 1427px) {
+  /* GNB 위치 이동 */
+  .gnb {
+    right: 70px;
+  }
+}
+/************ 1427px 이하 미디어쿼리 종료 ************/
+
+/************ 1220px 이하 미디어쿼리 시작 ************/
+@media screen and (max-width: 1220px) {
+  /* GNB 메뉴 위치 및 배치 변경 */
+  .gnb {
+    bottom: auto;
+    /* 기존 위치 기준을 auto로 초기화 */
+    top: 77px;
+    /* 새로운 기준인 top을 사용함! */
+    right: 20px;
+  }
+
+  .gnb ul {
+    flex-direction: column;
+    align-items: flex-end;
+    /* 높이값을 이용한 메뉴 숨기기 */
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s ease-in-out;
+  }
+
+  .gnb:hover ul {
+    height: 127px;
+  }
+
+  /* 서브메뉴 오버시 숨기기 */
+  .gnb ul > li:hover .smenu {
+    display: none;
+  }
+
+  /* 영사기 위치변경 */
+  .cam {
+    top: -60px;
+    right: -40px;
+    padding-bottom: 10px;
+    /* 하단 gnb와 오버시 연결필요! */
+  }
+}
+/************ 1220px 이하 미디어쿼리 종료 ************/
+
+/************ 800px 이하 미디어쿼리 시작 ************/
+@media screen and (max-width: 800px) {
+    /* 2. 메인 영역 */
+    .main-area{
+        aspect-ratio: 1/1.25;
+        /* 극장이미지 배경 */
+        background: url(../images/bg.jpg) no-repeat center -37%/148%;
+    }
+    /* 2-1.스크린 */
+    .screen{
+        top: 5.1%;
+        left: 7.7%;
+        width: 86.5%;
+        height: 39.3%;
+    }
+
+  /* 하단 영역 박스 */
+  .footer-area {
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  /* 3-3.SNS */
+  .sns-box {
+    margin-left: 0;
+  }
+
+  /* 포스터 리스트 */
+  .poster-menu ul {
+    flex-wrap: wrap;
+    /* 가로 방향 사이 갭이 가로폭의 2%로 변경 */
+    gap: 0 2%;
+  }
+
+  /* 상위 ul>li 리스트 */
+  .poster-menu > ul > li {
+    flex-basis: calc(100% / 3 - 1.4%);
+    /* 100%를 3등분에 사이값 gap 2%에서
+    오른쪽에 남는 gap을 등분할한 적당한 수치인 1.4%를 빼줌! */
+  }
+
+  /* 포스터 영화 정보 글자 크기 */
+  .mv-info ol {
+    font-size: 3vw;
+  }
+  
+  .mv-info ol li:first-child {
+    font-size: 3.3vw;
+  }
+}
+/************ 800px 이하 미디어쿼리 종료 ************/

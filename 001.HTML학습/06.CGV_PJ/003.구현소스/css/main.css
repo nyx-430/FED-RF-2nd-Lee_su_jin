@@ -59,7 +59,7 @@ body{
 /* 1-2. GNB 메뉴 */
 .gnb{
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     right: 10px;
     z-index: 999;
 }
@@ -101,7 +101,6 @@ body{
 
     /* 처음에 안 보이게 */
     display: none;
-    
 }
 
 /* 상위 메뉴 오버시 서브 보이기 */
@@ -222,7 +221,7 @@ body{
 .cam::after{
     content: '';
     position: absolute;
-    width: 150px;
+    width: 0px; /* 오버시 129px */
     height: 70px;
     top: -20px;
     right: 230px;
@@ -232,9 +231,10 @@ body{
     transition: .3s .3s;
 }
 
-/*  */
+/* 오버시 스크린 보이기 */
 .gnb:hover .cam::after{
     opacity: 1;
+    width: 100px;
     transition: opacity .3s .6s;
 }
 
@@ -242,11 +242,13 @@ body{
 .main-area{
     position: relative;
     /* 부모 자격 - .screen */
+    
     /* height: 788px; */
     /* 높이값 주지 말고 비율박스 만들기 - aspect-ratio */
-    aspect-ratio: 1200/788;
+    aspect-ratio: 1200 / 788;
+    
     /* 배경이미지 */
-    background: url(../images/bg.jpg) no-repeat;
+    background: url(../images/bg.jpg) no-repeat center/cover;
 }
 
 /* 스크린 */
@@ -290,7 +292,7 @@ body{
 
     width: 65%;
     bottom: 5%;
-    transform: translateX(27%);
+    transform: translateX(28%);
     /* left: 200px; */
 }
 

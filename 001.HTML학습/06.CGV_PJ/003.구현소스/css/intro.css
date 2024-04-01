@@ -2,7 +2,7 @@
 
 /* CGV_PJ 인트로 페이지 CSS - intro.css */
 
-/* CSS 호출 */
+/*************** CSS 호출 ***************/
 @import url(./reset.css);
 @import url(./core.css);
 
@@ -67,7 +67,6 @@ body{
 
 #enter img{
     transition: .4s ease-out .4s;
-
 }
 
 /* Click Here 글자 */
