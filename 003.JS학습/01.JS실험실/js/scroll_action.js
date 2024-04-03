@@ -12,10 +12,10 @@ const myFn = {
   addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
 
   // 바운딩 함수
-  getBCR: ele => ele.getBoundingClientRect().top,
+  getBCR: (ele) => ele.getBoundingClientRect().top,
 
   // offsetTop 반환 함수
-  getOT:ele => ele.offsetTop,
+  getOT: (ele) => ele.offsetTop,
 }; ////////////// myFn 객체 //////////////
 
 /**************************************************** 
@@ -60,7 +60,7 @@ const myFn = {
 
 // 1. 대상 선정 /////////////
 // 스크롤 등장 대상 : .hide-el (별도의 클래스를 줌!)
-const scAct=myFn.qsa('.hide-el');
+const scAct = myFn.qsa(".hide-el");
 // console.log('대상:',scAct);
 
 // 2. 이벤트 설정 및 함수 호출 /////////////
@@ -68,53 +68,51 @@ const scAct=myFn.qsa('.hide-el');
 showLetters();
 
 // 2-2. 스크롤 등장 함수 호출하기
-myFn.addEvt(window,'scroll',showIt);
+myFn.addEvt(window, "scroll", showIt);
 
 // 3. 함수 만들기 /////////////
 // 3-1. 스크롤 등장 액션 함수
-function showIt(){
+function showIt() {
+  // 클래스 on 넣기 함수 호출하기
 
-    // 클래스 on 넣기 함수 호출하기
+  // for of 제어문 처리 방법
+  // for(let x of scAct) addOn(x);
 
-    // for of 제어문 처리 방법
-    // for(let x of scAct) addOn(x);
+  // forEach 메서드 처리 방법
+  scAct.forEach((ele) => addOn(ele));
 
-    // forEach 메서드 처리 방법
-    scAct.forEach(ele=>addOn(ele));
+  // let pos = myFn.getBCR(scAct[0]);
+  // let pos2 = myFn.getBCR(scAct[1]);
+  // let pos3 = myFn.getBCR(scAct[2]);
+  // 함수 호출 확인
+  // console.log('첫번째 대상 위치:',pos);
 
-    // let pos = myFn.getBCR(scAct[0]);
-    // let pos2 = myFn.getBCR(scAct[1]);
-    // let pos3 = myFn.getBCR(scAct[2]);
-    // 함수 호출 확인
-    // console.log('첫번째 대상 위치:',pos);
-
-    // if(pos<500) scAct[0].classList.add('on');
-    // if(pos2<500) scAct[1].classList.add('on');
-    // if(pos3<500) scAct[2].classList.add('on');
-
+  // if(pos<500) scAct[0].classList.add('on');
+  // if(pos2<500) scAct[1].classList.add('on');
+  // if(pos3<500) scAct[2].classList.add('on');
 } ////// showIt 함수 //////
 
 // 스크롤 등장 기준 설정 : 화면의 2/3
-const CRITERIA=window.innerHeight/3*2;
+const CRITERIA = (window.innerHeight / 3) * 2;
 // console.log('기준값:',CRITERIA);
 
 // 클래스 on 넣기 함수 /////////////
-function addOn(ele){ // ele - 대상 요소
-    // 바운딩 값 구하기
-    let bcrVal=myFn.getBCR(ele);
+function addOn(ele) {
+  // ele - 대상 요소
+  // 바운딩 값 구하기
+  let bcrVal = myFn.getBCR(ele);
 
-    // 기준 값보다 작을 때 등장
-    if(bcrVal<CRITERIA) ele.classList.add('on');
-    // 기준 값보다 크면 원상복귀 (숨김 -> on 빼기)
-    else ele.classList.remove('on');
+  // 기준 값보다 작을 때 등장
+  if (bcrVal < CRITERIA) ele.classList.add("on");
+  // 기준 값보다 크면 원상복귀 (숨김 -> on 빼기)
+  else ele.classList.remove("on");
 } ////// addOn 함수 //////
-
 
 // 글자 등장 셋팅하기 /////////////
 function showLetters() {
   // 1. 대상 선정 : .stage
   const stage = myFn.qs(".stage");
-  
+
   // console.log("대상:", stage);
 
   // 2. 글자 데이터 할당
@@ -156,13 +154,13 @@ function showLetters() {
 
   // 글자 스크롤 이벤트 설정하기 /////////////
   // 이벤트 대상: window
-  myFn.addEvt(window,'scroll',moveTit);
+  myFn.addEvt(window, "scroll", moveTit);
 
   // 기준이 되는 포스터 박스 위치 구하기
-  const posTop=[];
+  const posTop = [];
 
-  scAct.forEach((ele,idx)=>{
-    posTop[idx]=myFn.getOT(ele);
+  scAct.forEach((ele, idx) => {
+    posTop[idx] = myFn.getOT(ele);
   }); /// forEach ///
 
   // -> 특정 요소의 offsetTop 값은 최상위 라인으로부터 떨어진 위치를 의미함!
@@ -171,48 +169,45 @@ function showLetters() {
   // posTop[순번] - window.innerHeight/2
 
   // 화면 절반 크기 변수 (포스터 위치에서 뺄 값)
-  const gap=window.innerHeight/2;
+  const gap = window.innerHeight / 2;
 
   // console.log('포스터 위치',posTop,gap);
-  
+
   // 글자 이동 함수 /////////////
-  function moveTit (){
+  function moveTit() {
     // 스크롤 위치값 구하기
-    let scTop=window.scrollY;
+    let scTop = window.scrollY;
 
     // console.log('타이틀 이동',scTop);
 
     // 1. 맨 위 원위치하기 : 첫번째 기준보다 작을 때
-    if(scTop < posTop[0] - gap){
-        stage.style.top='0%';
-        stage.style.left='50%';
-        stage.style.transition='1s';
-    } 
+    if (scTop < posTop[0] - gap) {
+      stage.style.top = "0%";
+      stage.style.left = "50%";
+      stage.style.transition = "1s";
+    }
 
     // 2. 첫번째 포스터 옆으로 이동
-    if(scTop > posTop[0] - gap && scTop < posTop[0]){
-        stage.style.top='50%';
-        stage.style.left='25%';
-        stage.style.transition='2s';
-    } 
-    
+    if (scTop > posTop[0] - gap && scTop < posTop[0]) {
+      stage.style.top = "50%";
+      stage.style.left = "25%";
+      stage.style.transition = "2s";
+    }
+
     // 3. 두번째 포스터 옆으로 이동
-    if(scTop > posTop[1] - gap && scTop < posTop[1]){
-        stage.style.top='70%';
-        stage.style.left='65%';
-        stage.style.transition='1s';
-    } 
-    
+    if (scTop > posTop[1] - gap && scTop < posTop[1]) {
+      stage.style.top = "70%";
+      stage.style.left = "65%";
+      stage.style.transition = "1s";
+    }
+
     // 4. 세번째 포스터 옆으로 이동
-    if(scTop > posTop[2] - gap && scTop < posTop[2]){
-        stage.style.top='50%';
-        stage.style.left='25%';
-        stage.style.transition='.5s';
-    } 
-
-
+    if (scTop > posTop[2] - gap && scTop < posTop[2]) {
+      stage.style.top = "50%";
+      stage.style.left = "25%";
+      stage.style.transition = ".5s";
+    }
   } ////// moveTit 함수 //////
-
 } ////////////// showLetters 함수 //////////////
 ///////////////////////////////////////////////
 
@@ -224,30 +219,40 @@ function showLetters() {
 // 비례식을 세운다!
 
 // 스크롤 한계값 : 윈도우 높이 = 스크롤 이동값 : 이미지 이동값
-// 이미지 이동값 = 윈도우 높이 = 스크롤 이동값 / 스크롤 한계값
+// 이미지 이동값 = 윈도우 높이 * 스크롤 이동값 / 스크롤 한계값
 
 // 0. 변수값 셋팅하기
 // (1) 스크롤 한계값 : 전체 document 높이값 - 화면 높이
 // 전체 document 높이
-let docH=document.body.clientHeight;
+let docH = document.body.clientHeight;
 // 화면 높이
-let winH=window.innerHeight;
+let winH = window.innerHeight;
 // 스크롤 한계값
-let scLimite=docH-winH;
+let scLimite = docH - winH;
 
-console.log('문서높이:',docH,'화면높이:',winH,'한계값:',scLimite);
+console.log("문서높이:", docH, "\n화면높이:", winH, "\n한계값:", scLimite);
 
 // 1. 대상 선정 : 떨어지는 여자요소
-const woman=myFn.qs('#woman');
+const woman = myFn.qs("#woman");
 
 // 2. 스크롤 이벤트 설정하기 : window가 이벤트 대상임!
-myFn.addEvt(window,'scroll',moveWoman)
+myFn.addEvt(window, "scroll", moveWoman);
 
 // 3. 스크롤 이벤트 함수
-function moveWoman(){
+function moveWoman() {
   // 1. 스크롤 위치값
-  let scTop=window.scrollY;
+  let scTop = window.scrollY;
 
-  console.log('스크롤 위치값:',scTop);
+  // 2. 떨녀 top값
+  let wTop = winH * scTop / scLimite;
+  // 이미지 이동값 = 윈도우 높이(winH) * 스크롤 이동값(scTop) / 스크롤 한계값(scLimit)
+
+  console.log("스크롤 위치값:", scTop, '\n여자:', wTop);
+
+  // 3. 떨녀에게 적용하기
+  woman.style.top=wTop+'px';
+
+  // 4. 맨 위일 때 위쪽으로 숨기기
+  if(scTop===0) window.style.top='-20%';
 
 } ////////////// moveWoman 함수 //////////////
