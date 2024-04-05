@@ -373,6 +373,7 @@ z-index: 999;
   position: sticky;
   top: 0;
   background-color: #fff;
+  z-index: 1;
 }
 .spart-menu ul{
   /* 플렉스박스 */
