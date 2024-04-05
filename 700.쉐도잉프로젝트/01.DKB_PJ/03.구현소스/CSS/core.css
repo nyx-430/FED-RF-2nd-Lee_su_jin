@@ -23,10 +23,14 @@
     font-family: 'Nanum Gothic', sans-serif;
 */
 
-/* 전체 글자 크기 */
 html{
+    /* 전체 글자 크기 */
     font-size: 10px;
     /* rem단위 계산 편의를 위해 */
+}
+
+body{
+    font-family: "Noto Sans KR", Malgun Gothic, dotum, "돋움", Arial, AppleGothic, Sans-serif;
 }
 
 .gnb,.top-menu{
@@ -46,8 +50,48 @@ html{
 .inbox{
     /* 최대 가로 크기 */
     max-width: 1360px;
+    padding: 0 20px;
     /* 블록박스 중앙정렬 -> 마.영.오! */
     margin: 0 auto;
+}
+
+/* 그룹파트박스 */
+.group-part{
+    /* 상하패딩 넣기 */
+    padding: 60px 0;
+}
+
+/* 플렉스박스 클래스 */
+.fx-box{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* 파트 박스 */
+.partbox {
+    /* 보더/패딩 포함박스 */
+    box-sizing: border-box;
+}
+
+/* 공통 서브타이틀 */
+.stit{
+    padding-bottom: 32px;
+    font-size: 3.8rem;
+    font-weight: normal;
+}
+
+/* IR(Images Replacement) 
+- 배경이미지 설명 숨기기 클래스 */
+.ir{
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* 화면출력 숨기기 클래스 */
+.blind{
+    display: none;
 }
 
 /* 스크롤바 디자인 클래스 */
@@ -57,11 +101,13 @@ html{
     /* 전체 스크롤바 크기 변경 */
     width: 7px;
 }
+
 .scbar::-webkit-scrollbar-thumb{
     /* 스크롤바 */
     background-color: #555;
     border-radius: 5px;
 }
+
 .scbar::-webkit-scrollbar-track{
     /* 스크롤바 트랙 */
     background-color: #ddd;
