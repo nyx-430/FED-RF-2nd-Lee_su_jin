@@ -216,40 +216,38 @@ z-index: 999;
     background-image: url(../images/bg_main_03.jpg);
 }
 
-/* 블릿 박스 */
+/* 블릿박스 */
 .indic-box{
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: 30px;
   width: 450px;
   height: 5px;
   z-index: 1;
 }
-
 .indic{
-display: flex;
-gap: 0 15px;
+  display: flex;
+  gap: 0 15px;
 }
-
 .indic li{
   width: 150px;
   height: 5px;
-  background-color: #ffffff89;
+  background-color: #ffffff66;
 }
 
-/* 가상요소바 */
+/* 가상요소 바 */
 .indic li::before{
   content: '';
   display: block;
   width: 0;
   height: 5px;
-  background-color: red;
+  background-color: #fff;
 }
 
-/* li.on일 경우 가상요소 width 변경 */
+/* li.on일 경우 가상요소 width변경 */
 .indic li.on::before{
   width: 100%;
-  transition: width .6s linear;
+  transition: width 3s linear;
 }
 
 /* 캐릭터 박스
@@ -382,20 +380,20 @@ gap: 0 15px;
   padding: 12px 0;
   transition: .4s ease-out;
 }
-/* 도깨비메뉴 상위메뉴a */
+/* 도깨비 메뉴 상위메뉴a */
 .spart-menu ul>li>a{
   color: #999;
   font-size: 1.8rem;
   display: block;
   padding: 9px 24px;
-  /* 줄바꿈방지 */
+  /* 줄바꿈 방지 */
   white-space: nowrap;
 }
-/* 도깨비메뉴 상위li 오버시 a */
+/* 도깨비 메뉴 상위li 오버시 a */
 .spart-menu ul>li:hover>a{
   color: #222;
 }
-/* 하위메뉴가 있는 li만 하위 표시하기 */
+/* 하위 메뉴가 있는 li만 하위 표시하기 */
 .spart-menu ul>li.be-sub>a::after{
   content: '∨';
   display: inline-block;
