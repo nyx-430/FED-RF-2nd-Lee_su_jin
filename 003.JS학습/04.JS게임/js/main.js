@@ -164,10 +164,55 @@ function whoWinner(){
         else if(r1pos<t1pos) winner = '거북';
         else winner = '비김';
 
-        // (4) 메시지 랜덤으로 커버박스에 넣기
-        msg.innerText=msgTxt[winner][0];
-        // 보이기
+        // (4) 랜덤수 만들기
+        // Math.floor(Math.random()*배열개수)
+        // 배열 개수는 .length
+        // 0부터 배열 끝번호 사이 수가 랜덤으로 생성됨
+        let rdmNum=Math.floor(Math.random()*msgTxt[winner].length);
+        console.log('랜덤수:',rdmNum);
+
+        // (5) 메시지 할당하기 (랜덤수로 불러오기)
+        msg.innerText=msgTxt[winner][rdmNum];
+        // 메시지 박스 보이기
         msg.style.display='block';
+        // 커버보다 위로
+        msg.style.zIndex='100';
+
+        // (6) 전체 반투명 커버 암전주기
+        myFn.qs('.cover').style.cssText=`
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-color:#000;
+            opacity:0.5;
+            z-index:99;
+        `;
+
+        // (7) 버튼 박스 위로 올리기
+        myFn.qs('#btns').style.zIndex='200';
+
     } /// if ///
 
 } ///////// whoWinner 함수 ////////////////
+
+/****************************************************** 
+    [ 내가 원하는 랜덤수 만들기]
+    1. Math.random()
+        -> 0~1 사이 소수점 16자리 랜덤수 생성
+    2. 내가 원하는 1~몇까지의 랜덤수 만들기
+        (1) Math.random() * 원하는 최대수
+        -> 0~원하는 수보다 1 작은 수까지 랜덤수 발생
+        (2) 올림 처리하여 1~원하는 수를 만들어준다!
+        -> Math.ceil(Math.random() * 원하는 최대수)
+        -> 만약 0부터 1 작은 최대수를 만들고 싶으면
+        내림 처리하면 된다! Math.floor()
+        (3) 중간 범위의 랜덤수를 만들고자 할 때에는
+        1부터 최대수를 구하고, 특정 시작수를 구해주면 된다
+        예) 4~12는 Math.ceil(Math.random()*8)+3
+******************************************************/
+// console.log('Math.random:',Math.random());
+// console.log('Math.random*8:',Math.random()*8);
+// console.log('Math.ceil(Math.random*8):',Math.ceil(Math.random()*8));
+// console.log('4~12 사이 랜덤수:',Math.ceil(Math.random()*8)+3);
