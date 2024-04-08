@@ -75,8 +75,7 @@ body{
 
 /* 메인 영역 col- 박스 */
 .main-area [class*='col-'] {
-    padding-top: 80px;
-    padding-bottom: 60px;
+    padding: 10px;
 }
 
 /* 메인파트 직계 하위 박스(겉박스) div 두번째부터 패팅탑 주기 */

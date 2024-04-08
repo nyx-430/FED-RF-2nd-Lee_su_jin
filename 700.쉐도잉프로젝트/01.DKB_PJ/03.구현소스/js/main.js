@@ -39,16 +39,20 @@ introMv.onclick = () => {
 }; ////// click 이벤트 함수 //////
 
 // 미리보기 파트 //////////////////////////////////
-// 로딩시 바로 실행됨 -> 실행 코드를 지역화하고자 할 때
-// 함수로 만들고 이를 호출하면 됨. 그러나 불편!
-// 익명함수로 만들고 바로 실행하게 하면 됨!
-// 방법: (익명함수)() -> 바로 실행됨!
-// 실제 코드: (()=>{코드})()
-// 실제 코드: (function(){코드})()
-// -> 이런 처리 방법을 '코드의 지역화' 또는 '코드랩핑'이라고 부르기도 함
-// -> 이렇게 하는 목적은 변수, 함수 충돌 방지!
 
-// 미리보기 구현 코드 랩핑 구역 /////////////////
+/************************************************* 
+  [ 코드랩핑이란? ]
+  로딩시 바로 실행됨 -> 실행 코드를 지역화하고자 할 때
+  함수로 만들고 이를 호출하면 됨. 그러나 불편!
+  익명함수로 만들고 바로 실행하게 하면 됨!
+  방법: (익명함수)() -> 바로 실행됨!
+  실제 코드: (()=>{코드})()
+  실제 코드: (function(){코드})()
+  -> 이런 처리 방법을 '코드의 지역화' 또는 '코드랩핑'이라고 부르기도 함
+  -> 이렇게 하는 목적은 변수, 함수 충돌 방지!
+*************************************************/
+
+// 2. 미리보기 구현 코드 랩핑 구역 /////////////////
 (() => {
   // 대상: .preview-box
   const previewBox = myFn.qs(".preview-box");
@@ -56,7 +60,7 @@ introMv.onclick = () => {
   // 데이터: dkb_data.js의 previewData 배열
   const pData = dkbData.previewData;
 
-  // 구조: ul>li>h3+p
+  // 구조: ul > li > h3 + p
   // 1. 8개만 데이터를 구성하여 넣는다!
   // html 코드변수
   let hcode = `<ul class="fx-box">`;
@@ -79,4 +83,77 @@ introMv.onclick = () => {
 
   // 2. 화면출력하기
   previewBox.innerHTML = hcode;
-})(); // 코드 랩핑 구역 종료 /////////////////
+})(); // 미리보기 코드 랩핑 구역 종료 /////////////////
+
+// 3. 현장포토 구현 코드 랩핑 구역 /////////////////
+(() => {
+  // 대상: .live-box
+  const liveBox = myFn.qs(".live-box");
+
+  // 데이터: dkb_data.js의 liveData 배열
+  const lvData = dkbData.liveData;
+
+  // 구조: ul > li > figure > img + figcation
+  // 1. 8개만 데이터를 구성하여 넣는다!
+  // html 코드변수
+  let hcode = `<ul>`;
+
+  // li구성을 hcode변수에 대입연산자로 할당함!
+  // liveData는 총 8개임. 모두 돌기를 셋팅하자
+  lvData.forEach((v)=>{
+    hcode += `
+    <li>
+      <figure>
+      <img src="./images/live_photo/${v.imgName}.jpg" alt="${v.title}">
+      <figcaption>${v.title}</figcaption>
+      </figure>
+    </li>
+    `;
+  }); /// forEach ///
+  
+  hcode += `</ul>`;
+
+  // 데이터 확인
+  // console.log('대상:',liveBox,'현장포토 data:',lvData);
+  // console.log(hcode);
+
+  // 2. 화면출력하기
+  liveBox.innerHTML = hcode;
+})(); // 현장포토 코드 랩핑 구역 종료 /////////////////
+
+// 4. 대표이미지 구현 코드 랩핑 구역 /////////////////
+(() => {
+  // 대상: .poster-box
+  const posterBox = myFn.qs(".poster-box");
+
+  // 데이터: dkb_data.js의 posterData 배열
+  const pData = dkbData.posterData;
+
+  // 구조: ul > li > figure > img + figcation
+  // 1. 8개만 데이터를 구성하여 넣는다!
+  // html 코드변수
+  let hcode = `<ul>`;
+
+  // li구성을 hcode변수에 대입연산자로 할당함!
+  // posterData는 총 8개임. 모두 돌기를 셋팅하자
+
+  pData.forEach((v)=>{
+    hcode += `
+    <li>
+      <figure>
+      <img src="./images/poster_img/${v.imgName}.jpg" alt="${v.title}">
+      <figcaption>${v.title}</figcaption>
+      </figure>
+    </li>
+    `;
+  }); /// forEach ///
+
+  hcode += `</ul>`;
+
+  // 데이터 확인
+  // console.log('대상:',posterBox,'대표이미지 data:',pData);
+  // console.log(hcode);
+
+  // 2. 화면출력하기
+  posterBox.innerHTML = hcode;
+})(); // 대표이미지 코드 랩핑 구역 종료 /////////////////
