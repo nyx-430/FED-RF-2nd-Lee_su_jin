@@ -92,7 +92,7 @@
   left: 0;
   /* 부모는? 보이는 화면 */
   width: 100%;
-z-index: 999;
+  z-index: 999;
   background-color: #fff;
 
   /* 최대높이값 0 */

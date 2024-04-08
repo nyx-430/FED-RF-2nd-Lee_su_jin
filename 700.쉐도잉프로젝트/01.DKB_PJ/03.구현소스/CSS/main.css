@@ -15,7 +15,7 @@
 
 /*********** 3. 인트로영역 : .intro-area ***********/
 .intro-area{
-    height: 575px;
+    /* height: 575px; */
 }
 
 /* 인트로 동영상 박스 */
@@ -92,19 +92,68 @@
     font-weight: bold;
 }
 
-/* 4. 미리보기영역 */
+/*********** 4. 미리보기영역 ***********/
 .preview-area{
-    height: 803px;
+    /* height: 803px;
+    -> 높이값을 지정하면 내용만큼 자동으로 높이값이 잡히지 않아서
+    매번 크기에 따라 값을 셋팅해야 하는 불편함이 있다
+    -> auto로 두기!
+    */
 }
-/* 5. 현장포토영역 */
+
+.preview-area ul{
+    gap: 20px
+}
+
+/* 리스트박스 : 한 줄에 4개 플렉스 배치 */
+.preview-box li{
+    flex-basis: calc(100%/4 - 15px);
+    padding: 24px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #222;
+    cursor: pointer;
+}
+
+/* 리스트박스 타이틀 */
+.preview-box li h3{
+    font-size: 2rem;
+    font-weight: normal;
+    color: #000;
+}
+
+/* 리스트박스 내용 */
+.preview-box li p {
+    font-size: 1.5rem;
+    margin-top: 1.4rem;
+    color: #00000099;
+    line-height: 1.7;
+
+    /* 여러 줄 말줄임 표시 셋팅 */
+    display: -webkit-box;
+    overflow: hidden;
+    /* 말줄임 표시 : elipsis */
+    text-overflow: ellipsis;
+    /* 보여줄 라인 수 셋팅 속성 */
+    -webkit-line-clamp: 7;
+    /* 라인 진행 방향 */
+    -webkit-box-orient: vertical;
+}
+
+/* 리스트박스 오버시 내용 글자색 */
+.preview-box li:hover p{
+    color: #000;
+}
+
+
+/***********  5. 현장포토영역 ***********/
 .real-photo-area{
     height: 1043px;
 }
-/* 6. 대표이미지 영역 */
+/***********  6. 대표이미지 영역 ***********/
 .main-photo-area{
     height: 731px;
 }
-/* 7. 최신동영상영역 */
+/***********  7. 최신동영상영역 ***********/
 .clip-video-area{
     height: 548px;
 }
