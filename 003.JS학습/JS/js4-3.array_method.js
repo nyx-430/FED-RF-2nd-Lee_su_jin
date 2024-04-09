@@ -33,7 +33,7 @@ import mFn from './my_function.js';
 
 // 2. 대상 선정 ////////////////////////////
 // 2-1. 이벤트 대상 : .mbtn (기능 버튼들)
-const mbtn=mFn.qs('.mbtn');
+const mbtn=mFn.qsa('.mbtn');
 
 // 2-2. 변경 대상 : .showit (배열정보출력) / .cont (과일출력박스)
 const showIt=mFn.qs('.showit');
@@ -52,9 +52,15 @@ const delNum=mFn.qs('#delnum');
 
 // 3. 초기화 작업 : 처음 배열 출력 / 콤보박스 바인딩
 
-// 3-1. 처음 배열 출력
-showIt.innerText = fruit.join('♥');
-// 배열.join(구분자) : 배열값 사이에 구분자를 넣은 문자열값 변환
+// 3-1. 처음 배열 출력 ////////////////////////////
+// fruit 배열 변경시 다시 출력해야하므로 함수로 만들기
+const showArray=()=>{
+    showIt.innerText = fruit.join('♥');
+    // 배열.join(구분자) : 배열값 사이에 구분자를 넣은 문자열값 변환
+}; ////////////// showArray 함수 //////////////
+
+// 처음 배열 출력 함수 최초 호출은 아래쪽에서!!!
+showArray();
 
 // 3-2. 전체 과일 콤보박스 바인딩 ////////////////////////////
 // 대상 : #sel -> sel 변수
@@ -76,6 +82,10 @@ const arrFruits=Object.keys(frObj);
 // ->>> 새로운 배열은 새로운 변수에 할당한다!
 // ->>> map에 사용한 원본 배열은 보존된다!
 let newArr = arrFruits.map(v=>`<option>${v}</option>`);
+
+// let newArr = arrFruits.map(v=>{return`<option>${v}</option>`});
+// -> 화살표 함수에서 중괄호를 사용하면 return할 경우, return 키워드를 써줘야 함!
+// 따라서 중괄호 생략시 return 키워드 자동 생략 문법을 사용하면 간단히 사용할 수 있다!
 
 // console.log('map 변환 후 배열값:',newArr);
 
@@ -103,13 +113,13 @@ mbtn.forEach(ele=>{
 // 5. 함수 만들기
 // 기능 : 배열을 조작하여 과일을 화면에 출력
 function showFruit(){
-    // (1) 버튼 텍스트 읽기
+    // 버튼 텍스트 읽기
     let btxt=this.innerText;
 
     // 호출 확인
     console.log(btxt);
 
-    // (2) 버튼별 기능 분기하기
+    // (1) 버튼별 기능 분기하기
     // '과일 주세요' 버튼 : 하단 과일 이미지 출력
     if(btxt==='과일 주세요~!'){
         // 출력박스에 배열 정도로 태그 넣기
@@ -125,7 +135,41 @@ function showFruit(){
 
         // 출력 박스에 태그 넣기
         cont.innerHTML=hcode;
-
     } /// if ///
+
+    // (2) '뒷배열 추가요' 버튼 : push()
+    else if (btxt==='뒷배열 추가요~!'){
+        // 대상 : fruit 배열
+        // 읽어올 곳 : #sel 박스 -> 값은 vlaue
+        fruit.push(sel.value);
+    } /// else if ///
+    
+    // (3) '앞배열 추가요' 버튼 : unshift()
+    else if (btxt==='앞배열 추가요~!'){
+        // 대상 : fruit 배열
+        // 읽어올 곳 : #sel 박스 -> 값은 vlaue
+        fruit.unshift(sel.value);
+    } /// else if ///
+
+    // (4) '뒷배열 삭제요' 버튼 : pop()
+    else if (btxt==='뒷배열 삭제요~!'){
+        // 대상 : fruit 배열
+        fruit.pop();
+    } /// else if ///
+    
+    // (5) '앞배열 삭제요' 버튼 : shift()
+    else if (btxt==='앞배열 삭제요~!'){
+        // 대상 : fruit 배열
+        fruit.shift();
+    } /// else if ///
+    
+
+    // 공통 실행 코드구역 //////////////////////
+    // 처음 배열 출력 함수!
+    showArray();
+
+    // fruit 배열 확인
+    console.log('fruit 배열:',fruit);
+
 } ////////////// showFruit 함수 //////////////
 
