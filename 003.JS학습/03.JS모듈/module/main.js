@@ -25,7 +25,7 @@ import * as txtData from "./text_data.js";
 // console.log(
 //myFn, mTitle, sTitle, personInfo, mvData);
 // console.log(myFn, mTit, sTit, pInfo, mdt);
-console.log(txtData, txtData.mTitle);
+console.log(txtData, txtData.mTitle,txtData.myObj,txtData.myFunc);
 
 // [export default 로 내보낸 단일 함수 불러오기]
 // import makeMessage from "./msg_format.js";
@@ -68,7 +68,7 @@ console.log(makeMsg);
 
     import {전달변수 as 별칭} from 파일경로;
     예) import {mymymy as m} from 파일경로;
-    -> 별칭 사용이유:  단순변경요구, 같은이름 변수 피하기
+    -> 별칭 사용이유:  단순 변경 요구, 같은 이름 변수 피하기
 
     ____________________________________________
 
