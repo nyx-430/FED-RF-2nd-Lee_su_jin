@@ -123,7 +123,7 @@ ol {
     /* 트랜지션 */
     transition: .4s ease-in-out;
 }
-/* 3번째가 주인공이므로 원래밝기로 조금 크게변경! */
+/* li.on이 주인공이므로 원래 밝기로 조금 크게 변경! */
 .slide li:nth-child(3){
     filter: brightness(100%);
     transform: scale(1.1);
@@ -136,7 +136,7 @@ ol {
     /* 이미지 비율유지 채우기! */
 }
 
-/*이동버튼*/
+/*이동 버튼*/
 .abtn {
     position: absolute;
     top: 90%;
@@ -145,12 +145,12 @@ ol {
     z-index: 1;
 }
 
-/*왼쪽버튼*/
+/*왼쪽 버튼*/
 .ab1 {
     right: 15%;
 }
 
-/*오른쪽버튼*/
+/*오른쪽 버튼*/
 .ab2 {
     right: 5%;
 }
