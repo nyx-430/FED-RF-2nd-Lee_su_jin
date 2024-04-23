@@ -276,7 +276,7 @@ function slideFn(selEl) {
   } ///////// slideAuto 함수 /////////
 
   // 인터발함수 최초 호출!
-  slideAuto();
+  // slideAuto();
 
   /****************************************** 
     함수명: clearAuto
@@ -523,7 +523,7 @@ function slideFn(selEl) {
     
     // 드래그 상태값 false로 변경!
     dFalse();
-    
+
     // 마지막 위치포인트 셋팅!
     lastPoint();
 
@@ -595,6 +595,15 @@ function slideFn(selEl) {
   // (3) 터치무브 이벤트 함수연결하기
   mFn.addEvt(dtg, "touchmove", dMove);
   //////////// touchmove /////////////
+
+  // (4) 버튼,블릿에 오버시 자동처리호출셋팅 ///
+  mFn.qsa('.abtn').forEach((ele) =>
+    mFn.addEvt(ele,"mouseenter", 
+    () => {
+      moveDragSlide();
+      clearAuto();
+    }) /////// 
+  ); /// forEach ///
 
   // 브라우저 크기 리사이즈시 동적 변경값 업데이트 함수
   mFn.addEvt(window, "resize", () => {

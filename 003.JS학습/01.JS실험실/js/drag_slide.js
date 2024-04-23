@@ -69,7 +69,7 @@ function slideFn(selEl) {
                 <img src="images/dot2.png" alt="회색">
             </li>
         `;
-  } /////// for문 ////////////
+  } /// for문 ///
 
   // 블릿li 재선택할당하기 /////
   indic = mFn.qsaEl(sldWrap, ".indic li");
@@ -96,29 +96,29 @@ function slideFn(selEl) {
     event.preventDefault();
 
     // 광클금지 //////////////
-    if (clickSts) return; //나가!
-    clickSts = 1; //잠금!
-    setTimeout(() => (clickSts = 0), TIME_SLIDE); //해제!
+    if (clickSts) return; // 나가!
+    clickSts = 1; // 잠금!
+    setTimeout(() => (clickSts = 0), TIME_SLIDE); // 해제!
 
-    // 호출확인
+    // 호출 확인
     // console.log("나야나!", this, this.classList.contains("ab2"));
 
     // classList.contains(클래스명)
-    // 선택요소에 해당클래스가 있으면 true
+    // 선택요소에 해당 클래스가 있으면 true
 
     // 1. 오른쪽 버튼 여부 알아내기
     let isRight = this.classList.contains("ab2");
 
-    // 2. 버튼분기하기 '.ab2' 이면 오른쪽버튼
+    // 2. 버튼 분기하기 '.ab2' 이면 오른쪽 버튼
     if (isRight) {
-      // 오른쪽버튼
-      // 오른쪽에서 들어오는 슬라이드함수 호출!
+      // 오른쪽 버튼
+      // 오른쪽에서 들어오는 슬라이드 함수 호출!
       rightSlide();
-    } ////// if //////////////
+    } /// if ///
     else {
-      // 왼쪽버튼
+      // 왼쪽 버튼
       leftSlide();
-    } /////// else //////////////
+    } /// else ///
 
     // 3. 블릿순번 변경 함수 호출
     chgIndic(isRight); // 방향값을 보냄!
@@ -173,18 +173,18 @@ function slideFn(selEl) {
     기능: 왼쪽 방향 이동 (오른쪽 버튼)
   ******************************************/
   function rightSlide() {
-    //1.대상 이동하기 : -330%
+    //1. 대상 이동하기 : -330%
     slide.style.left = "-330%";
-    //2.트랜지션 주기
+    //2. 트랜지션 주기
     slide.style.transition = TIME_SLIDE + "ms ease-out";
     // 이동시간 후 맨 앞 li 잘라서 맨 뒤로 이동하기
     // appendChild (요소)
     setTimeout(() => {
-      // 3.맨 앞 li 맨 뒤로 이동
+      // 3. 맨 앞 li 맨 뒤로 이동
       slide.appendChild(slide.querySelectorAll("li")[0]);
-      // 4.slide left값 -220% -> 최종 left값은 px로!
+      // 4. slide left값 -220% -> 최종 left값은 px로!
       slide.style.left = originalValue + "px";
-      // 5.트랜지션 없애기
+      // 5 .트랜지션 없애기
       slide.style.transition = "none";
     }, TIME_SLIDE);
 
@@ -221,7 +221,7 @@ function slideFn(selEl) {
     slide.style.transition = "none";
 
     // 같은 left값을 동시에 변경하면 효과가 없음!
-    // 비동기적으로 처리해야함!
+    // 비동기적으로 처리해야 함!
     // -> setTimeout으로 싸주기!
     // 시간은 0이어도 비동기 처리므로 효과있음!
 
@@ -352,7 +352,7 @@ function slideFn(selEl) {
   let lastX = leftVal;
   // -> 중첩된 최종 위치가 처음에는 계산되지 않았으므로
   // 출발 위치인 0값으로 초기값을 넣어준다!
-  // 초기값을 안넣으면 최초에 값을 더할 때 에러가 발생한다!
+  // 초기값을 안 넣으면 최초에 값을 더할 때 에러가 발생한다!
 
   // (4) 움직일때 위치 포인트 : move x, move y
   let moveX;
@@ -415,14 +415,14 @@ function slideFn(selEl) {
       // console.log(`resultX: ${resultX}`);
     } //// if ////////
 
-    // 드래그 중(dragSts===true)일때는 주먹손(grabbing),
-    // 드래그아닐때(dragSts===false) 편손(grab)
+    // 드래그 중(dragSts===true)일 때는 주먹손(grabbing),
+    // 드래그 아닐 때(dragSts===false) 편손(grab)
     dtg.style.cursor = dragSts ? "grabbing" : "grab";
   }; ///////// dMove 함수 /////////////////
 
-  // (4) 첫번째 위치포인트 셋팅함수 : firstX, firstY 값셋팅
+  // (4) 첫번째 위치 포인트 셋팅함수 : firstX, firstY 값셋팅
   const firstPoint = (e) => {
-    // DT용값과 Mobile값을 동시에 OR문으로 할당함!
+    // DT용 값과 Mobile값을 동시에 OR문으로 할당함!
     firstX = e.pageX || e.touches[0].screenX;
     // firstX = e.pageX;
     // firstY = e.pageY;
@@ -442,8 +442,8 @@ function slideFn(selEl) {
   // -> mouseup / touchend 이벤트 발생시 호출함!
   const moveDragSlide = () => {
     // 중앙li순번 방향별 셋팅하기
-    let slideSeq = 2; // 왼쪽버튼(오른쪽이동)
-    // 만약 오른쪽버튼 왼쪽이동일 경우 순번은 3이된다!
+    let slideSeq = 2; // 왼쪽 버튼 (오른쪽 이동)
+    // 만약 오른쪽 버튼 왼쪽 이동일 경우 순번은 3이된다!
     // 업데이트는 오른쪽일 경우에만 해준다!
     // 기타일 경우는 세번째 순번인 2를 유지한다!
 
@@ -477,15 +477,15 @@ function slideFn(selEl) {
     } /// else ////
 
     // 드래그 시 더해지는 마지막 위치값 lastX를
-    // -220%의 left px 값으로 초기화해준다!(숫자만!)
+    // -220%의 left px 값으로 초기화해 준다 (숫자만!)
     lastX = originalValue;
     // -> 이것을 해야 오작동이 없다!!!
 
-    // 중앙 li에 클래스 on넣기
-    // slideSeq값은 오른쪽버튼2,왼쪽버튼3
+    // 중앙 li에 클래스 on 넣기
+    // slideSeq값은 오른쪽 버튼 2, 왼쪽 버튼 3
     addOnSlide(slideSeq);
 
-    // 블릿변경함수호출 : 오른쪽이 3 일때 true
+    // 블릿변경 함수 호출 : 오른쪽이 3일 때 true
     chgIndic(slideSeq === 3 ? true : false);
   }; ////////// moveDragSlide 함수 /////////////
 
@@ -496,12 +496,13 @@ function slideFn(selEl) {
   mFn.addEvt(dtg, "mousedown", (e) => {
     // 0. 자동넘김 멈춤함수 호출하기
     // clearAuto();
-    // -> 자동 호출을 지우기만 해서 자동시작 안 함!
+    // -> 자동 호출을 지우기만 해서 자동 시작 안 함!
     clearInterval(autoI);
     clearTimeout(autoT);
 
     // 드래그 상태값 true로 변경!
     dTrue();
+
     // 첫번째 위치 포인트 셋팅!
     firstPoint(e);
     // 단독 할당되지 않고 내부 함수 호출로 연결되어 있으므로
@@ -513,10 +514,11 @@ function slideFn(selEl) {
     // z-index 전역변수(zNum) 숫자를 1씩 높이기
     // dtg.style.zIndex = ++zNum;
 
+
     // console.log("마우스 다운!", dragSts);
   }); ///////// mousedown //////////
 
-  // (2) 마우스 업 이벤트 함수연결하기
+  // (2) 마우스 업 이벤트 함수 연결하기
   mFn.addEvt(dtg, "mouseup", () => {
     // 0. 자동넘김 멈춤 함수 호출하기
     clearAuto();
@@ -560,7 +562,7 @@ function slideFn(selEl) {
   mFn.addEvt(dtg, "touchstart", (e) => {
     // 0. 자동넘김 멈춤 함수 호출하기
     // clearAuto();
-    // -> 자동 호출을 지우기만 해서 자동시작 안 함!
+    // -> 자동 호출을 지우기만 해서 자동 시작 안 함!
     clearInterval(autoI);
     clearTimeout(autoT);
     
@@ -568,8 +570,8 @@ function slideFn(selEl) {
     dTrue();
     // 첫번째 위치포인트 셋팅!
     firstPoint(e);
-    // 단독할당되지 않고 내부 함수호출로 연결되어있으므로
-    // 이벤트 전달을 토스해줘야 한다!(전달변수 e)
+    // 단독 할당되지 않고 내부 함수 호출로 연결되어 있으므로
+    // 이벤트 전달을 토스해줘야 한다! (전달변수 e)
 
     // z-index 전역변수(zNum) 숫자를 1씩 높이기
     // dtg.style.zIndex = ++zNum;
@@ -577,7 +579,7 @@ function slideFn(selEl) {
     // console.log("터치스타트!", dragSts);
   }); ///////// touchstart //////////
 
-  // (2) 터치엔드 이벤트 함수연결하기
+  // (2) 터치엔드 이벤트 함수 연결하기
   mFn.addEvt(dtg, "touchend", () => {
     // 0. 자동넘김 멈춤함수 호출하기
     clearAuto();
@@ -597,13 +599,22 @@ function slideFn(selEl) {
   mFn.addEvt(dtg, "touchmove", dMove);
   //////////// touchmove /////////////
 
-  // 브라우저 크기 리사이즈시 동적 변경값 업데이트 함수
+  // (4) 버튼, 블릿에 오버시 자동처리 호출 셋팅
+  mFn.qsa('.abtn').forEach((ele) =>
+    mFn.addEvt(ele,"mouseenter", 
+    () => {
+      moveDragSlide();
+      clearAuto();
+    }) /////// 
+  );/// forEach ///
+
+  // (5) 브라우저 크기 리사이즈시 동적 변경값 업데이트 함수
   mFn.addEvt(window, "resize", () => {
     // 1. 기준위치값 left 업데이트
     originalValue = selEl.offsetWidth * -2.2;
     // 2. 기준위치값으로 실제 슬라이드 CSS left값 변경하기
     slide.style.left = originalValue + "px";
-    // 3. 초기left값 셋팅
+    // 3. 초기 left값 셋팅
     leftVal = originalValue;
     // 4. 왼쪽으로 이동할 기준값(기준위치값*1.1)
     valFirst = leftVal * 1.1;
