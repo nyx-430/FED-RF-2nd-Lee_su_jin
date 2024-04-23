@@ -65,8 +65,8 @@ function slideFn(selEl) {
   for (let i = 0; i < sldCnt; i++) {
     indic.innerHTML += `
             <li ${i == 0 ? 'class="on"' : ""}>
-                <img src="images/dot1.png" alt="흰색">
-                <img src="images/dot2.png" alt="회색">
+                <img src="images/img_nav06/dot1.png" alt="흰색">
+                <img src="images/img_nav06/dot2.png" alt="회색">
             </li>
         `;
   } /////// for문 ////////////
@@ -523,7 +523,7 @@ function slideFn(selEl) {
     
     // 드래그 상태값 false로 변경!
     dFalse();
-
+    
     // 마지막 위치포인트 셋팅!
     lastPoint();
 
@@ -540,16 +540,15 @@ function slideFn(selEl) {
   mFn.addEvt(dtg, "mousemove", dMove);
   //////////// mousemove /////////////
 
-  // (4) 마우스가 대상을 벗어나면 드래그 상태값 false처리하기
+  // (4) 마우스가 대상을 벗어나면 드래그상태값 false처리하기
   mFn.addEvt(dtg, "mouseleave", () => {
     // 드래그 상태값 false로 변경!
     dFalse();
-    // 과도한 드래그로 갑자기 아웃되면 lastX, lastY값이 셋팅되지 못한다!
-    // 이것을 기존 요소의 위치값으로 보정함!
+    // 과도한 드래그로 갑자가 아웃되면 lastX,lastY값이
+    // 셋팅되지 못한다! 이것을 기존 요소의 위치값으로 보정함!
     // 단, style위치값 코드는 'px'단위가 있으므로 parseInt처리!
     // lastX = parseInt(dtg.style.left);
     // -> 드래그 배너에서는 불필요!(있으면 오작동!)
-
 
     // console.log("마우스나감!", dragSts);
   }); ///////// mouseleave //////////
