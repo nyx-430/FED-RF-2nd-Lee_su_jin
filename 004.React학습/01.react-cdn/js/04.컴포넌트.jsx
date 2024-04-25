@@ -8,7 +8,7 @@
     1. 컴포넌트는 독립적이고 재사용이 가능한 코드집합
     2. JS함수와 비슷하지만
         HTML코드 반환이 필수라는 점이 다름!
-    3. 컴포넌트는 다음 2가지로 생성가능함
+    3. 컴포넌트는 다음 2가지로 생성 가능함
         1) 클래스형 컴포넌트
         2) 함수형 컴포넌트
         (-> 우리는 함수형 컴포넌트에 집중할 예정!)
@@ -26,7 +26,7 @@
 
     [ 클래스 컴포넌트 ]
     클래스 컴포넌트에서는 
-    extends React.Component 상속문이 포함돼야함!
+    extends React.Component 상속문이 포함돼야 함!
 
     -> 컴포넌트에서도 메서드가 필요함
     render() 메서드는 HTML을 반환함
@@ -73,9 +73,14 @@ ReactDOM.render(<IronMan/>,target[1]);
 
 
 /// [ 이미지 생성 공통 컴포넌트 ] ///
-function MakeImage(props){
+// function MakeImage(props){
+// function MakeImage({ialt,isrc}){
+function MakeImage({ialt:ㅎㅎ,isrc:ㅋㅋ}){
+    // 하나의 변수에는 전달된 값이 보낼 때 설정된 객체로 전달된다!
+    // {속성:값,속성:값,...}
+    // console.log(props);
     return (
-    <img src={"./images/"+props.isrc} alt={props.ialt} />
+    <img src={"./images/"+ㅋㅋ} alt={ㅎㅎ} />
     );
 } /// MakeImage 컴포넌트 ///
 
