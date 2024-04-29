@@ -157,7 +157,7 @@ z-index: 999;
   cursor: pointer;
 }
 /* 버튼요소 */
-.abtn{
+.ban-area .abtn{
   position: fixed;
   top: 0;
   left: 0;
@@ -166,7 +166,7 @@ z-index: 999;
   color: #fff;
   text-shadow: 0 0 5px #000;
   z-index: 99;
-  display: none;/* 처음에 숨기기 */
+  display: none; /* 처음에 숨기기 */
   /* 따라다니는 버튼요소 오버시 무시하기 */
   pointer-events: none;
   /* 트랜지션 */
@@ -233,7 +233,7 @@ z-index: 999;
   height: 5px;
   background-color: #fff;
 }
-/* li.on일 경우 가상요소 width변경 */
+/* li.on일 경우 가상요소 width 변경 */
 .indic li.on::before{
   width: 100%;
   transition: width 3s linear;

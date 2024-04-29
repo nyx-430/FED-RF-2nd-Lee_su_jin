@@ -5,7 +5,7 @@
 @import url(./common.css);
 
 /* 드래그 슬라이드 JS */
-@import url(../js/drag_slide.js);
+@import url(../js/drag_slide_multi.js);
 
 /* 배너 전체 박스 */
 .banbx {

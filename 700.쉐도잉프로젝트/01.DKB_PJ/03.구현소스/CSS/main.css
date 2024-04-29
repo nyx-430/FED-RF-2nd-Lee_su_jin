@@ -5,6 +5,7 @@
 @import url(./reset.css);
 @import url(./core.css);
 @import url(./common.css);
+
 /* 그리드 12 불러오기 */
 @import url(./grid_12_flex.css);
 
@@ -308,16 +309,17 @@ body * {
     font-weight: bold;
     color: #fff;
     border: none;
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
 }
 /* 왼쪽버튼 */
 .btn-box button:first-child{
     left: -35px;
-    /* 처음에 안보임 */
+    /* 처음에 안 보임 */
     display: none;
 }
 /* 오른쪽버튼 */
 .btn-box button:last-child{
     right: -35px;
-    display: none;
+    /* display: none; */
 }
