@@ -23,7 +23,7 @@ font-family: 'Roboto Condensed', sans-serif;
 }
 
 /* 
-  [ 공통 클래스 이름정의 ]
+  [ 공통 클래스 이름 정의 ]
   1. ibx - inside box 속박스
   2. pt1, pt2 - part1, part2 각 부분박스(비율적용)
   3. cbx - content box 내용박스
@@ -31,9 +31,9 @@ font-family: 'Roboto Condensed', sans-serif;
 */
 
 /* 공사중 표시 */
-/* body * {
+body * {
     outline: 1px dashed gray;
-} */
+}
 
 /************* 2. 공통 class *************/
 
