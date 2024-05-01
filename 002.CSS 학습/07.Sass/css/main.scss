@@ -233,7 +233,16 @@
     font-size: 20px;
     cursor: pointer;
     margin-left: 20px;
+    // 마우스 오버시 셋팅하기
+    &:hover{
+        background-color: hotpink;
+        text: {
+            decoration: overline;
+            decoration-style: wavy;
+        }
+    }
 }
+
 
 // 일반 박스 기본
 .box-basic{
@@ -252,6 +261,16 @@
     // 다른 디자인 요소는 추가로 구현
     background-color: orange;
     color: #fff;
+
+    &.my{
+        text: {
+            decoration: underline;
+            decoration-style: dotted;
+            underline-offset: 10px;
+            decoration-thickness: 5px;
+
+        }
+    }
 }
 
 // 기본 박스 디자인을 입혀서 버튼 박스를 셋팅
