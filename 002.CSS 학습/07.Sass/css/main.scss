@@ -40,15 +40,66 @@
         - 변수의 범위는 변수 선언 후 하위로 상속되어 값이 유지됨.
     (4) 파일 분리기법 : @import
         - 부분 파일을 분리하여 공통 모듈로 합쳐서 사용한다.
-        - 부분 파일명은 사스에서 언더바를 붙여서 사용하는 것이
+        - 부분 파일명은 사스에서 앞에 언더바를 붙여서 사용하는 것이
         원칙이지만, 앞에 언더바를 안 써도 기본적으로 부분 파일 처리를 해줌.
+        (자동으로 앞에 언더바와 확장자를 생략해 준다!)
         - 파일 호출시 확장자 생략 가능함.
         예) @import "reset";
         -> 일반 CSS @import와 다른 점은 http 요청을 하지 않음!
+    (5) 믹스인 : 일종의 공통 CSS코드를 리턴하는 함수
+        1) 셋팅 형식
+        [1] 전달변수가 없는 믹스인
+        @mixin 믹스인이름{CSS코드}
+        
+        [2] 전달변수가 있는 믹스인
+        @mixin 믹스인이름(변수){CSS코드}
+        
+        [3] 전달변수가 있고, 기본값도 있는 믹스인
+        @mixin 믹스인이름(변수:기본값){CSS코드}
+
+        2) 믹스인 호출 방법 : 믹스인을 포함하라!(include)
+        -> @include 믹스인이름;
+        -> @include 믹스인이름(전달값);
 *************************************************************/
 
 // 외부 변수 셋팅 sass 불러오기
 @import "./data/variables";
+
+// 초기화 셋팅 scss 불러오기
+@import "./common/reset";
+
+// @mixin 셋팅하기
+// (1) 타이틀 디자인 믹스인
+// [1] 전달해서 변경할 값이 없다면 전달변수 없는 믹스인 만들기
+// @mixin title-text{
+
+// [2] 글자색을 변경해야 하므로 전달변수를 만들어 준다!
+// 변수는 $변수명으로 만들고 지역변수로 사용된다!
+// @mixin title-text($selColor){ // $selColor 글자색 전달변수
+
+// [3] 전달값을 보내지 않아도 에러나지 않도록 기본값 저장하기
+@mixin title-text($selColor:red){ // $selColor 글자색 전달변수
+    color: $selColor;
+    font: {
+        size: 40px;
+        family: "Times New Roman";
+    }
+    text: {
+        align: center;
+        decoration: underline;
+        underline-offset: 10px;
+        shadow: 5px 5px 4px #0000006e;
+    }
+}
+
+// (2) 박스 테두리 믹스인
+@mixin box-border($bdColor:blue){
+    border: {
+        color: $bdColor;
+        style: dashed;
+        width: 7px;
+    }
+}
 
 // 전체 페이지 요소
 .wrapper{
@@ -61,19 +112,23 @@
     color: $mainColor1;
     // 네스팅 기법
     h1{
-        color: $fontColor;
+        // 타이틀 텍스트 믹수인 호출하기
+        @include title-text($fontColor);
 
+        // font와 text를 믹스인으로 만든다!(재사용!)
+        // color: $fontColor;
+        
         // 속성접두어 묶음기법
-        font: {
-            size: 40px;
-            family: "Times New Roman";
-        }
-        text: {
-            align: center;
-            decoration: underline;
-            underline-offset: 10px;
-            shadow: 5px 5px 4px #0000006e;
-        }
+        // font: {
+        //     size: 40px;
+        //     family: "Times New Roman";
+        // }
+        // text: {
+        //     align: center;
+        //     decoration: underline;
+        //     underline-offset: 10px;
+        //     shadow: 5px 5px 4px #0000006e;
+        // }
         background: {
             color: $mainColor1-2;
             image: url(../images/flower.png);
@@ -84,4 +139,32 @@
 
         padding: 20px;
     }
+}
+
+/* 메인영역 */
+.main-area{
+    // 내부박스 section
+    section{
+        // 박스 테두리 믹스인 호출
+        @include box-border(pink);
+
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    // 메인영역 타이틀 믹스인 호출
+    h3{
+        @include title-text(darkblue);
+    }
+
+    // 리스트, 문단 디자인
+    ul,ol,p{
+        line-height: 2;
+        font-size: 24px;
+    }
+}
+
+/* 하단 타이틀 */
+.bottom-title{
+    @include title-text;
 }
