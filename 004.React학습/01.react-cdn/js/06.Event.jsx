@@ -115,13 +115,41 @@ function EventShow() {
         
       }, 500);
 
+      // 4. 소원빌기 버튼 3초 후 보이기
+      setTimeout(() => {
+        mFn.qsa("button")[1].style.display = "inline-block";
+
+
+      }, 3000);
+
 
     // 컴포넌트 호출시 전달변수를 셋팅하여 보내야하는데
     // 만약 전달변수 이름이 잘못되었거나 보내주지 않으면
     // 컴포넌트에서 에러가 나지 않고 해당 항목을 제외하여
     // 표시하지 않는 특징이 있음!
     // 여기서 icss가 있으나 안 보내주니 표시되지 않는다!
+
   }; ////////// getLamp 함수 ///////////
+
+  // (3) 페라리 가져오기 함수
+  const getFerrari = () => {
+    console.log("페라리 줄게~!");
+    // 페라리 이미지 넣기
+    // 대상: #ferrari
+    ReactDOM.render(
+    <MakeImg 
+      isrc="./images/ferrari.png"
+      ialt="페라리 레드"
+      itit="클릭하면 시운전 해요!"
+      idName="fcar"
+      clickFn={moveCar}
+      />,mFn.qs("#ferrari"));
+    // ReactDOM.render(어쩌구,저쩌구);
+    // 어쩌구를 저쩌구에 넣기
+    
+
+
+  }; //////////// getFerrari 함수 ////////////
 
   /// 2. 리턴 코드 만들기 ////////////
   return (
@@ -140,8 +168,8 @@ function EventShow() {
         <div className="lamp"></div>
 
         {/* 버튼들 */}
-        <button onClick={getLamp}>램프 가져오기~!</button>
-        <button>소원 빌기~! 페라리 주세요~!!!</button>
+        <button onClick={getLamp}>램프 가져오기~!</button><br/>
+        <button onClick={getFerrari}>소원 빌기~! 페라리 주세요~!!!</button>
 
         {/* 소원이 무엇이냐 말풍선박스 */}
         <div className="tit"></div>
@@ -153,7 +181,7 @@ function EventShow() {
 /************************************************* 
   이미지 생성 컴포넌트 : makeImg
 *************************************************/
-function MakeImg({ isrc, ialt, icss, overFn }) {
+function MakeImg({ isrc, ialt, icss, overFn, clickFn, itit, idName }) {
   // 리턴 코드 : return코드 바로 뒤에 JSX 태그를 바로 이어쓰거나
   // 소괄호 시작 부분을 같은 라인에 써야 에러가 나지 않는다!
   return (<img 
@@ -161,9 +189,18 @@ function MakeImg({ isrc, ialt, icss, overFn }) {
     alt={ialt} 
     style={icss}
     onMouseOver={overFn}
+    title={itit}
+    id={idName}
+    onClick={clickFn}
     />);
 } /////////////// makeImg 컴포넌트 ///////////////
 
 // 화면출력하기 ////////////
 // ReactDOM.render(넣을코드,대상)
 ReactDOM.render(<EventShow />, mFn.qs("#root"));
+
+
+// 일반함수로 페라리 움직이기 구현
+function moveCar(){
+  console.log("페라리 움직여!");
+} ////////// moveCar 함수 //////////
