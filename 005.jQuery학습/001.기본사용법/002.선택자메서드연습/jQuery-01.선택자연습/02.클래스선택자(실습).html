@@ -8,14 +8,26 @@
     $(()=>{
       // 미션: 클래스가 group인 요소를 선택하여
         // li를 클릭할 경우 배경색을 lime
-        // 글자크기는 52px로 변경하시오.
+        // 글자 크기는 52px로 변경하시오.
         // 단, transition 을 "all .6s"로 
         // 설정하여 애니메이션 되게 하시오.
-        // 그리고 개별적으로 적용되게할것!(this사용)
+        // 그리고 개별적으로 적용되게 할 것!(this사용)
 
         // 대상: .group li
+        $(".group li").click(()=>{
+          let me = event.currentTarget;
+          console.log("나야 나!",me);
 
-       
+          // CSS 변경하기
+          $(me).css({
+            "background-color": "lime",
+            "font-size":"52px",
+            "transition": "6s"
+          }); /// css ///
+         
+
+
+        }); 
 
     }); /////////// jQB /////////////////
 
