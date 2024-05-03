@@ -90,8 +90,9 @@ const clearAuto = () => {
   // 인터발 지우기
   clearAuto(autoI);
 
-  // 타임아웃 지우기
+  // 타임아웃 지우기 (실행 쓰나미 방지)
   clearTimeout(autoT);
+  // 일정시간 후 작동
   autoT = setTimeout(autoSlide,5000);
 
 }; //////// clearAuto 함수 ////////
