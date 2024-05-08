@@ -8,7 +8,7 @@ setElement(); // 함수호출!!!
 import myFn from "./my_function.js";
 
 // 부드러운 스크롤 불러오기
-import { startSS, setScrollPos } from "./smoothScroll23.js";
+
 
 // 데이터 셋팅 불러오기 //////
 import * as dkbData from "../data/dkb_data.js";
