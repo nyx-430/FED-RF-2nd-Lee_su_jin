@@ -24,8 +24,10 @@ function LostDeveloper() {
 } //////// LostDeveloper 컴포넌트 ////////
 
 // 3번 컴포넌트
-function MakeImage({ isrc, ialt, itit }) {
-  return <img src={isrc} alt={ialt} title={itit} />;
+function MakeImage({ isrc, ialt, itit, icss }) {
+  // isrc - 파일경로, ialt - 설명, itit - 툴팁, icss - 스타일 설정
+  // 만약 속성 중 안 보낸 것은 출력되지 않는다!
+  return <img src={isrc} alt={ialt} title={itit} sytle={icss} />;
 } //////// MakeImage 컴포넌트 ////////
 
 // 메인 출력 컴포넌트
@@ -162,6 +164,7 @@ ReactDOM.render(<WishList wList={[]} />,root[3]);
 
 // 3. 좀 더 복잡한 리스트를 출력하는 컴포넌트
 const movs = [
+  {year:"2020",mtit:"남산의 부장들",poster:"https://i.namu.wiki/i/d-g1xW3vvsfh71KCQIxl2es_i0wKyMJhkwEaXKdCgDAyhJVRb4vWA_TNnRHMksw0S6pK_nFrDITK2ISIJRuRpA.webp"},
   {year:"2021",mtit:"모가디슈",poster:"https://upload.wikimedia.org/wikipedia/ko/9/92/%EC%98%81%ED%99%94_%EB%AA%A8%EA%B0%80%EB%94%94%EC%8A%88.jpg"},
   {year:"2022",mtit:"범죄도시2",poster:"https://upload.wikimedia.org/wikipedia/ko/b/b9/%EB%B2%94%EC%A3%84%EB%8F%84%EC%8B%9C_2_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg"},
   {year:"2023",mtit:"가디언즈 오브 갤럭시3",poster:"https://i.namu.wiki/i/qA_v1drdO1CusnMcmQVZDEGXEspqfuS0-sAHYUFExpgZMF_GSyCSrxSh-_IWua2lqD6GnNNlqw0hMvNzXYrefA.webp"},
@@ -183,31 +186,37 @@ const movs = [
 function MovieWishList ({wList}){
   return (
     <React.Fragment>
-      {/* 영화 위시리스트 타이틀 출력 */}
+      {/* 영화위시리스트 타이틀 출력 */}
       <SetTitle title="영화" />
+      {/* 영화리스트 출력 */}
+      {wList.length > 0 && (
+        <div>
+          <h2>
+            개발자가 좋아하는 영화는 최근 {wList.length}년간 아래와 같습니다!
+          </h2>
+          <ul>
+            {wList.map((x) => (
+              <MakeList movieInfo={x} />
+            ))}
+          </ul>
+          {/* 영화포스터 이미지 영화순서대로 만들기 */}
+          {wList.map((x) => (
+            <MakeImage
+              isrc={x.poster}
+              ialt={x.mtit}
+              icss={{ width: "100px" }}
+            />
+          ))}
+        </div>
+      )}
 
-      {/* 영화 리스트 출력 */}
-      {wList.length > 0 &&
-      <div>
-        <h2>
-          개발자가 좋아하는 영화는 최근 {wList.length}년간 아래와 같습니다!
-        </h2>
-        <ul>
-          {wList.map(x=><MakeList movieInfo={x} />)}
-        </ul>
-        {/* 영화 포스터 이미지 영화 순서대로 만들기 */}
-        {wList.map()}
-      </div>}
-      
-      {/* 빈 배열인 경우 출력 */}
-      {wList.length == 0 &&
-      <div>
-        <h2>
-          아직 개발자 영화 리스트가 업데이트 되지 않았습니다!
-        </h2>
-      </div>}
+      {/* 빈 배열일 경우 출력 */}
+      {wList.length == 0 && (
+        <div>
+          <h2>아직 개발자 영화 리스트가 업데이트 되지 않았습니다!</h2>
+        </div>
+      )}
     </React.Fragment>
-
   );
 } ////////// MovieWishList 컴포넌트 //////////
 
