@@ -304,7 +304,15 @@ function ShowLikePainter({ isChange }) {
       <SetTitle title="명화" />
 
       {/* 2. 변경 버튼 */}
-      <button>작가 변경!!!</button>
+      <button 
+      onClick={()=>{setResult(!result)}}
+      style={{
+        fontSize:"30px",
+        padding:"10px",
+        fontWeight:"bold",
+        backgroundColor:result?"red":"blue",
+        color:result?"yellow":"aqua",
+        }}>작가 변경!!!</button>
 
       {/* 3. 작품 출력 */}
       {
