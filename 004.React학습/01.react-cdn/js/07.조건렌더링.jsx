@@ -27,7 +27,7 @@ function LostDeveloper() {
 function MakeImage({ isrc, ialt, itit, icss }) {
   // isrc - 파일경로, ialt - 설명, itit - 툴팁, icss - 스타일 설정
   // 만약 속성 중 안 보낸 것은 출력되지 않는다!
-  return <img src={isrc} alt={ialt} title={itit} sytle={icss} />;
+  return <img src={isrc} alt={ialt} title={itit} style={icss} />;
 } //////// MakeImage 컴포넌트 ////////
 
 // 메인 출력 컴포넌트
