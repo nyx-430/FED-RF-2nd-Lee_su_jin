@@ -346,14 +346,23 @@
         // 맨 앞 요소를 맨 뒤로 이동하기 ///
         // 이벤트 대상: .mvl
         // 변경 대상: #div02 ul -> box2변수
-
-
-
+        qs(".mvl").onclick = () => {
+          // appendChild(맨앞요소)
+          box2.appendChild(qsaEl(box2,"li")[0]);
+        }; /// click ///
+        
+        
         /// [ 맨 앞 이동 버튼 클릭시 ] ////////////
         // 맨 뒤 li가 맨 앞으로 이동됨
         // 이벤트 대상: .mvf
         // 변경 대상: #div02 ul -> box2변수
-
+        qs(".mvf").onclick = () => {
+          let tg = qsaEl(box2,"li");
+          
+          // insertBefore(넣을놈,넣을놈전놈)
+          box2.insertBefore(tg[tg.length-1],tg[0]);
+        }; /// click ///
+        
 
 
         /************************************************** 
