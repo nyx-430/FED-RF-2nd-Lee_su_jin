@@ -8,9 +8,15 @@ import mFn from "./my_function.js";
 // 드래그 슬라이드 기능 함수 불러오기
 import setSlide from "./drag_slide.js";
 
+// GNB메뉴 생성 함수 파일 불러오기
+import makeMenu from "./gnb_menu.js";
+
 // [2] 기능구현 파트 ///////////////
 
-// 바로실행 구역함수1 /////////
+// 메뉴 구현함수 호출하기
+makeMenu(mFn.qs(".gnb"));
+
+// 바로실행 구역함수 1 /////////
 (()=>{
   // 1. 배너 리스트 셋팅하기 ////
   // (1) 대상: .ban-slide
@@ -21,10 +27,10 @@ import setSlide from "./drag_slide.js";
   
   // (2) 슬라이드 li코드 만들기
   for(let i=12; i<=24; i++){
-    // 끝번호둘 12,13부터 시작하고 1부터 11까지나열
+    // 끝번호 둘 12, 13부터 시작하고 1부터 11까지 나열
     let temp = (i>13) ? (i-13) : i;
     
-    // 세번째 슬라이드(이미지1번)에만 클래스on넣기
+    // 세번째 슬라이드(이미지 1번)에만 클래스 on넣기
     slideCode += `
     <li ${temp===1?'class="on"':''}>
     <img 
@@ -32,7 +38,7 @@ import setSlide from "./drag_slide.js";
     alt="시코르배너">
     </li>
     `;
-  } //////// for //////////
+  } /// for ///
   
   // (3) 리스트 코드 요소에 출력하기
   slideBox.innerHTML = slideCode;
@@ -40,7 +46,7 @@ import setSlide from "./drag_slide.js";
 })();
 
 
-// 바로실행 구역함수2 /////////
+// 바로실행 구역함수 2 /////////
 (()=>{
   // 2. 서브배너 리스트 셋팅하기 ////
   // (1) 대상: .sub-slide
@@ -51,10 +57,10 @@ import setSlide from "./drag_slide.js";
   
   // (2) 슬라이드 li코드 만들기
   for(let i=6; i<=12; i++){
-    // 끝번호둘 6,7부터 시작하고 1부터 5까지나열
+    // 끝번호 둘 6,7부터 시작하고 1부터 5까지 나열
     let temp = (i>7) ? (i-7) : i;
     
-    // 세번째 슬라이드(이미지1번)에만 클래스on넣기
+    // 세번째 슬라이드(이미지 1번)에만 클래스 on넣기
     slideCode += `
     <li ${temp===1?'class="on"':''}>
     <img 
@@ -62,7 +68,7 @@ import setSlide from "./drag_slide.js";
     alt="시코르서브배너">
     </li>
     `;
-  } //////// for //////////
+  } /// for ///
   
   // (3) 리스트 코드 요소에 출력하기
   slideBox.innerHTML = slideCode;

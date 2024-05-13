@@ -18,7 +18,7 @@ export default function setSlide(clsName) {
     // 하위슬라이드 선택요소(드래그 대상요소인 슬라이드)
     // let subSlide = mFn.qsEl(ele, ".slide");
     // -> slideFn함수에서 하위 .slide를 수집하고 있음!
-    // 따로 보낼 필요 없음!!!
+    // 따로 보낼필요 없음!!!
 
     // 슬라이드 함수 호출하기
     slideFn(ele);
@@ -28,23 +28,23 @@ export default function setSlide(clsName) {
 
 /****************************************** 
     함수명: slideFn
-    기능: 로딩 후 버튼 이벤트 및 기능 구현
-        + 드래그 이동 기능(goDrag함수 합침)
+    기능: 로딩 후 버튼 이벤트 및 기능구현
+        + 드래그 이동기능(goDrag함수 합침)
  ******************************************/
 function slideFn(selEl) {
   // selEl 선택 슬라이드 부모 요소(.banbx)
-  // // console.log("슬라이드 함수 호출 확인!");
+  // // console.log("슬라이드 함수 호출확인!");
 
   // 0.슬라이드 공통변수 /////
-  // 0-1. 광클금지 상태변수 : 0-허용, 1-불허용
+  // 0-1. 광클금지상태변수 : 0-허용,1-불허용
   let clickSts = 0;
   // 0-2. 슬라이드 이동시간 : 상수로 설정
   const TIME_SLIDE = 400;
   // 0-3. 슬라이드 기준위치값 :
   let originalValue = selEl.offsetWidth * -2.2;
-  // -> 슬라이드 가로 크기의 2.2배 음수값
+  // -> 슬라이드 가로크기의 2.2배 음수값
 
-  // 1. 대상 선정
+  // 1. 대상선정
   // 1-1. 슬라이드 부모요소 : 전달된 선택요소 -> selEl
   const sldWrap = selEl; // DOM요소를 직접 받음!!!
   // 1-2.변경 대상: 선택요소 하위 .slide
@@ -54,14 +54,14 @@ function slideFn(selEl) {
   // 1-4.블릿박스 대상: 선택요소 하위 .indic li
   let indic = mFn.qsEl(sldWrap, ".indic");
 
-  // 대상 확인
+  // 대상확인
   // // console.log("대상", abtn, slide, indic);
 
-  // 1.4. 슬라이드 개수와 동일한 블릿동적 생성
+  // 1.4. 슬라이드 개수와 동일한 블릿동적생성
   // 대상: .indic -> indic변수
-  // 슬라이드 개수
+  // 슬라이드개수
   let sldCnt = mFn.qsaEl(slide, "li").length;
-  // for문으로 블릿 li 생성 (0번만 클래스 on넣기)
+  // for문으로 블릿li생성(0번만 클래스 on넣기)
   for (let i = 0; i < sldCnt; i++) {
     indic.innerHTML += `
             <li ${i == 0 ? 'class="on"' : ""}>
@@ -71,13 +71,13 @@ function slideFn(selEl) {
         `;
   } /////// for문 ////////////
 
-  // 블릿 li 재선택 할당하기 /////
+  // 블릿li 재선택할당하기 /////
   indic = mFn.qsaEl(sldWrap, ".indic li");
 
-  // 1.5. li 리스트에 순번 속성 만들어 넣기
-  // 만드는 이유: 블릿 변경 등에 현재 슬라이드 순번 필요!
-  // 사용자 정의 속성은 반드시 'data-'로 시작해야 함! (W3C규칙)
-  // data-seq로 순번 속성을 넣을 것임!
+  // 1.5. li리스트에 순번속성 만들어 넣기
+  // 만드는이유: 블릿변경 등에 현재 슬라이드 순번 필요!
+  // 사용자 정의 속성은 반드시 'data-'로시작해야함!(W3C규칙)
+  // data-seq 로 순번 속성을 넣을 것임!
   slide
     .querySelectorAll("li")
     .forEach((ele, idx) => ele.setAttribute("data-seq", idx));
@@ -109,7 +109,7 @@ function slideFn(selEl) {
     // 1. 오른쪽 버튼 여부 알아내기
     let isRight = this.classList.contains("ab2");
 
-    // 2. 버튼 분기하기 '.ab2' 이면 오른쪽버튼
+    // 2. 버튼분기하기 '.ab2' 이면 오른쪽버튼
     if (isRight) {
       // 오른쪽버튼
       // 오른쪽에서 들어오는 슬라이드함수 호출!
@@ -160,8 +160,8 @@ function slideFn(selEl) {
 
     // // console.log("현재슬라이드 순번:", nowSeq);
 
-    // 2. 해당 순번 블릿li에 클래스 on넣기
-    // 블릿 전체 순회시 해당 순번에 on넣고 나머지는 on빼기
+    // 2. 해당순번 블릿li에 클래스 on넣기
+    // 블릿전체순회시 해당순번에 on넣고 나머지는 on빼기
     indic.forEach((ele, idx) => {
       if (idx == nowSeq) ele.classList.add("on");
       else ele.classList.remove("on");
@@ -170,17 +170,17 @@ function slideFn(selEl) {
 
   /********************************** 
     함수명: rightSlide
-    기능: 왼쪽방향 이동 (오른쪽버튼)
+    기능: 왼쪽방향 이동(오른쪽버튼)
   **********************************/
   function rightSlide() {
-    //1.대상 이동하기 : -330%
+    //1.대상이동하기 : -330%
     slide.style.left = "-330%";
-    //2.트랜지션 주기
+    //2.트랜지션주기
     slide.style.transition = TIME_SLIDE + "ms ease-out";
-    // 이동시간 후 맨 앞 li 잘라서 맨 뒤로 이동하기
+    // 이동시간 후 맨앞li 잘라서 맨뒤로 이동하기
     // appendChild(요소)
     setTimeout(() => {
-      // 3. 맨 앞li 맨 뒤로 이동
+      // 3.맨앞li 맨뒤로 이동
       slide.appendChild(slide.querySelectorAll("li")[0]);
       // 4.slide left값 -220% -> 최종 left값은 px로!
       slide.style.left = originalValue + "px";
@@ -349,7 +349,7 @@ function slideFn(selEl) {
   let lastX = leftVal;
   // -> 중첩된 최종위치가 처음에는 계산되지 않았으므로
   // 출발위치인 0값으로 초기값을 넣어준다!
-  // 초기값을 안넣으면 최초에 값을 더할 때 에러가 발생한다!
+  // 초기값을 안넣으면 최초에 값을 더할때 에러가 발생한다!
 
   // (4) 움직일때 위치 포인트 : move x, move y
   let moveX;
@@ -372,20 +372,22 @@ function slideFn(selEl) {
     // e - 이벤트 객체 전달변수
     // 드래그 상태는 dragSts값이 true인 경우에만 허용!
 
-    // 이동버튼+블릿 이벤트 없앰 설정하기
-      // 상위 selEl에 클래스 .no을 주면 된다!
-    if (dragSts) selEl.classList.add("no");
-    else selEl.classList.remove("no");
+    // 이동버튼+블릿 이벤트 없앰설정하기
+    // 상위 selEl에 클래스 .no 주면된다!
+    if (dragSts) selEl.classList.add('no');
+    else selEl.classList.remove('no');
 
     if (dragSts) {
       // 0. 자동넘김 멈춤함수 호출하기
       // clearAuto();
 
-      // 1. 드래그 상태에서 움질일 때 포인터 위치값
+      // // // console.log('드래그중~!');
+
+      // 1. 드래그 상태에서 움질일대 포인터 위치값
       // - 브라우저용 포인터 위치는 pageX, pageY를 사용!
       // - 모바일용 터치 스크린 터치위치는
       // touches[0].screenX, touches[0].screenY
-      // -> 두 가지를 모두 사용하는 방법은 OR문 할당법을 쓴다!
+      // -> 두가지를 모두 사용하는 방법은 OR문 할당법을 쓴다!
       // -> 변수 = 할당문1 || 할당문2
       // ->>> 두 할당문중 값이 유효한(true)값이 할당됨!
       // DT용 코드와 Mobile코드를 동시에 셋팅할 수 있다!
@@ -395,12 +397,12 @@ function slideFn(selEl) {
       // moveY = e.pageY;
 
       // 2. 움직일 위치 결과값
-      // 움직일 때 위치 포인트 - 첫번째 위치 포인트
+      // 움직일때 위치 포인트 - 첫번째 위치 포인트
       // moveX - firstX
       // moveY - firstY
       resultX = moveX - firstX;
       // -> 순수하게 움직인 거리를 계산함!
-      // -> 움직인 위치 - 첫번째 위치 순으로 빼준 이유는?
+      // -> 움직인위치 - 첫번째위치 순으로 빼준 이유는?
       // ->>> top, left위치이동 양수 음수차를 고려한 순서임
 
       // 3. 이동차를 구한 resultX,resultY값을 대상 위치값에 적용
@@ -413,7 +415,7 @@ function slideFn(selEl) {
       // 값확인
       // // console.log(`moveX: ${moveX}`);
       // // console.log(`resultX: ${resultX}`);
-    } /// if ///
+    } //// if ////////
 
     // 드래그 중(dragSts===true)일때는 주먹손(grabbing),
     // 드래그아닐때(dragSts===false) 편손(grab)
@@ -545,14 +547,14 @@ function slideFn(selEl) {
     // 하단 컨트롤 mouseenter 에서 처리하는
     // dragSts값처리시 mouseleave에서 처리하는
     // 코드가 가장 나중에 처리하게 하려면
-    // 해당 코드를 setTimeout() 함수에 넣는다!
+    // 해당코드를 setTimeout() 함수에 넣는다!
     // 결과적으로 이 코드는 큐(Queue)에 들어가서
     // 기존 처리되는 일반 요청처리 코드가 모두
-    // 스택(stack)에서 처리가 끝날 때까지 기다렸다가
+    // 스택(stack)에서 처리가 끝날때까지 기다렸다가
     // 큐에서 순서대로 스택으로 넘어가 처리된다!
     setTimeout(dFalse, 0);
 
-    // 마우스가 벗어나면 이동판별 함수호출
+    // 마우스가 벗어나면 이동판별함수 호출!
     if(dragSts) moveDragSlide();
 
     // dFalse();
@@ -566,13 +568,13 @@ function slideFn(selEl) {
     // // console.log("마우스나감!", dragSts);
   }); ///////// mouseleave //////////
 
-  // (5) 버튼,블릿에 오버시 자동처리 호출셋팅 ///
-  // (조건: 드래그상태 변수인 dragSts값이 true일 때 )
+  // (5) 버튼,블릿에 오버시 자동처리호출셋팅 ///
+  // (조건:드래그상태 변수인 dragSts값이 true일때 )
   // mFn.qsaEl(selEl, ".controls").forEach(
   //   (ele) =>
   //     mFn.addEvt(ele, "mouseenter", () => {
   //       console.log('dragSts:',dragSts);
-  //       if(dragSts){ // 드래그 중일 때 처리
+  //       if(dragSts){ // 드래그 중일때 처리
   //         moveDragSlide();
   //         clearAuto();
   //       } /// if /////

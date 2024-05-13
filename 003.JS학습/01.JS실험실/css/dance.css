@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* 05. 중간스크롤가로이동 CSS - dance.css */
+/* 09. 중간스크롤가로이동 CSS - dance.css */
 
 
 html,
@@ -34,7 +34,7 @@ body {
     border-radius: 40px;
     /* 트랜지션 */
     transition: .4s ease-in-out;
-    opacity: 0;/* 처음에 투명 */
+    opacity: 0; /* 처음에 투명 */
 }
 .gnb ul {
     position: relative;
@@ -69,7 +69,7 @@ body {
 /* 타겟박스 */
 .tpg {
     height: calc(100vh + 3000px);
-    /* 타겟 박스는 보이는 화면 맨 윗 줄부터
+    /* 타겟 박스는 보이는 화면 맨윗줄부터
      시작해서 아래로 마지막 박스 끝라인까지
     총 이동거리는 3000px이다!!! */
     /* background-color: lightblue; */
@@ -90,7 +90,7 @@ body {
     left: 0;
     display: flex;
     width: calc(100vw + 3000px);
-    /* 가로크기는 타겟박스가 이동하는 크기인
+    /* 가로크기는 타겟박스가 이동하는크기인
     3000px에 맞도록 100vw에 더하여 잡아준다!
     이유는 JS의 getBoundingClientRect().top
     값의 수치와 정확히 일치 시키기 위함! */
@@ -112,3 +112,4 @@ body {
     width: 50%;
     border-radius: 20px;
 }
+
