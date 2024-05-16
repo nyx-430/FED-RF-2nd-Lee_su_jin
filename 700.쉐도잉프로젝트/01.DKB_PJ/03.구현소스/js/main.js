@@ -106,7 +106,7 @@ introMv.onclick = () => {
 
   // 2. 화면출력하기 -> map()으로 한번에 출력하자! ///////
   previewBox.innerHTML = `
-    <ul class="fx-box">
+    <ul class="fx-box" data-db="previewData">
       ${pData
         .map(
           (v) => `
@@ -121,8 +121,8 @@ introMv.onclick = () => {
   `;
 })(); //// 미리보기 코드랩핑구역 종료 /////////
 
-// 3. 현장포토 파트 내용 넣기 //////////
-/////// 현장포토 구현 코드랩핑구역 시작 //////
+// 3. 현장포토 파트 내용 넣기 /////////////////////
+///////// 현장포토 구현 코드랩핑구역 시작 /////////
 (() => {
   // 대상: .live-box
   const liveBox = myFn.qs(".live-box");
@@ -132,33 +132,46 @@ introMv.onclick = () => {
 
   // 1. 8개의 데이터를 html로 구성하여 넣는다!
   // html 코드변수
-  let hcode = `<ul>`;
+  // let hcode = `<ul>`;
 
   // li구성을 hcode변수에 대입연산자로 할당함!
   // liveData 배열은 총8개임. 모두 돌기를 셋팅하자!
-  lvData.forEach((v) => {
-    hcode += `
-              <li>
-                  <figure>
-                      <img src="./images/live_photo/${v.imgName}.jpg" alt="${v.title}">
-                      <figcaption>${v.title}</figcaption>
-                  </figure>      
-              </li>
-          `;
-  }); /////// forEach /////////////////
+  // lvData.forEach((v) => {
+  //   hcode += `
+  //             <li>
+  //                 <figure>
+  //                     <img src="./images/live_photo/${v.imgName}.jpg" alt="${v.title}">
+  //                     <figcaption>${v.title}</figcaption>
+  //                 </figure>      
+  //             </li>
+  //         `;
+  // }); /////// forEach /////////////////
 
-  hcode += `</ul>`;
+  // hcode += `</ul>`;
 
   // 데이터 확인
   // console.log(hcode);
-  //   console.log('대상:',liveBox,'현장포토 data:',lvData);
+  // console.log('대상:',liveBox,'현장포토 data:',lvData);
 
-  // 2. 화면출력하기 ///////
-  liveBox.innerHTML = hcode;
-})(); //// 현장포토 코드랩핑구역 종료 /////////
+  // 2. 화면출력하기 -> map()으로 데이터 생성하기
+  liveBox.innerHTML = `
+    <ul>
+    ${lvData.map((v) =>`
+    <li data-idx="${v.idx}">
+      <figure>
+        <img 
+        src="./images/live_photo/${v.imgName}.jpg" 
+        alt="${v.title}">
+        <figcaption>${v.title}</figcaption>
+      </figure>  
+    </li>
+    `).join('')}
+    </ul>   
+    `;
+})(); ///////// 현장포토 코드랩핑구역 종료 /////////
 
-// 4. 대표이미지 파트 내용 넣기 //////////
-/////// 대표이미지 구현 코드랩핑구역 시작 //////
+// 4. 대표이미지 파트 내용 넣기 /////////////////////
+///////// 대표이미지 구현 코드랩핑구역 시작 /////////
 (() => {
   // 대상: .poster-box
   const posterBox = myFn.qs(".poster-box");
@@ -181,13 +194,13 @@ introMv.onclick = () => {
                   </figure>      
               </li>
           `;
-  }); /////// forEach /////////////////
+  }); /// forEach ///
 
   hcode += `</ul>`;
 
   // 데이터 확인
   // console.log(hcode);
-  //   console.log('대상:',posterBox,'대표이미지 data:',pData);
+  // console.log('대상:',posterBox,'대표이미지 data:',pData);
 
   // 2. 화면출력하기 ///////
   posterBox.innerHTML = hcode;
@@ -217,7 +230,7 @@ introMv.onclick = () => {
       <h3>${v.title}</h3>
     </li>
     `;
-  }); /////////// forEach /////////////////
+  }); /// forEach ///
 
   hcode += `</ul>`;
 

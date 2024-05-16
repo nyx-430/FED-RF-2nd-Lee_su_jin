@@ -27,48 +27,53 @@ export default function showSubBox() {
 
   // 2. 이벤트 설정 및 함수구현하기 ////
   subViewBox.click(function () {
-    let confPrt = $(this).parent().parent().is(".preview-box");
-    // parent() 바로위 상위요소로 이동
+    // let confPrt = $(this).parent().parent().is(".preview-box");
+    // parent() 바로 위 상위 요소로 이동
     // 두번 위로 이동해서 li위 ul위 div
     // 그 div박스의 클래스가 preview-box인가?
     // is(클래스명) 메서드로 알아봄
+
+    let db = $(this).parent().attr("data-idx");
 
     // JS문법에서는 아래와 같음!
     // this.parentElement.parentElement
     // .classList.contains(클래스명)
 
-    console.log("나야나!", this, confPrt);
+    console.log("나야나!", this, db, dkbData[db]);
 
-    if (confPrt) {
-      // 1. 키속성값 읽어오기
-      let idx = $(this).attr("data-idx");
-      // attr(속성명) -> 속성값 읽어오기 메서드
-      // attr(속성명,속성값) -> 속성값 넣기 메서드
-      console.log("idx:", idx);
+    // if (confPrt) {
+    // 1. 키 속성값 읽어오기
+    let idx = $(this).attr("data-idx");
+    // attr(속성명) -> 속성값 읽어오기 메서드
+    // attr(속성명,속성값) -> 속성값 넣기 메서드
 
-      // [ 배열순회 메서드 비교 : forEach / find ]
-      // forEach() 는 모두 순회한다!
-      // find() 는 조건에 맞을때 return true하면
-      // 해당 배열값이 변수에 할당된다!
-      // 만약 일치하는 데이터가 없으면 undefined됨!
+    console.log("idx:", idx);
 
-      // dkbData.previewData.forEach(v=>{
-      let selData = dkbData.previewData.find((v) => {
-        if (v.idx == idx) {
-          // console.log("찾았다!",v);
-          return true;
-        }
-        console.log("돌아!");
-      });
+    // [ 배열순회 메서드 비교 : forEach / find ]
+    // forEach() 는 모두 순회한다!
+    // find() 는 조건에 맞을 때 return true하면
+    // 해당 배열값이 변수에 할당된다!
+    // 만약 일치하는 데이터가 없으면 undefined됨!
 
-      console.log("검색결과:", selData);
+    // dkbData.previewData.forEach(v=>{
 
-      // 서브박스에 내용 넣기
-      // 제이쿼리는 innerHTML 할당대신
-      // html() 메서드를 사용한다!
-      subContBox
-        .html(
-          `
+    // dkbData[db] -> 해당 데이터 매칭하기
+    let selData = dkbData[db].find((v) => {
+      if (v.idx == idx) {
+        // console.log("찾았다!",v);
+        return true;
+      } /// if ///
+
+      console.log("돌아!");
+    }); /// selData ///
+
+    console.log("검색 결과:", selData);
+
+    // 서브박스에 내용 넣기
+    // 제이쿼리는 innerHTML 할당대신 html() 메서드를 사용한다!
+    subContBox
+      .html(
+        `
                 <button class="cbtn">×</button>
                 <div class="sub-inbox inbox">
                     <h1>${selData.title}</h1>
@@ -77,14 +82,14 @@ export default function showSubBox() {
                     </div>
                 </div>
             `
-        )
-        .show();
-      // show() 는 display를 보여주는 메서드
-      // hide() 는 display를 숨기는 메서드
-      // toggle() 는 display를 토글하는 메서드
+      )
+      .show();
+    // show() 는 display를 보여주는 메서드
+    // hide() 는 display를 숨기는 메서드
+    // toggle() 는 display를 토글하는 메서드
 
-      // 닫기버튼 이벤트 설정하기
-      $(".cbtn").click(() => subContBox.hide());
-    } /// if /////
+    // 닫기 버튼 이벤트 설정하기
+    $(".cbtn").click(() => subContBox.hide());
+    // } /// if ///
   });
 } /////////// showSubBox 함수 ///////////////
