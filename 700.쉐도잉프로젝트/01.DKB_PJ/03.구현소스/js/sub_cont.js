@@ -3,12 +3,14 @@
 // 데이터 셋팅 불러오기 //////
 import * as dkbData from "../data/dkb_data.js";
 
+console.log(dkbData);
+
 export default function showSubBox() {
   // console.log("나를 부르면 서브가 보여~!");
 
   // 1. 서브 컨텐츠 보이기 기능 구현 ///
   // (1) 대상 선정
-  // (1-1)이벤트 대상 :
+  // (1-1) 이벤트 대상 :
   // 미리보기 : .preview-box li
   // 현장포토 : .live-box li
   // 대표포스터 : .poster-box li
@@ -34,6 +36,8 @@ export default function showSubBox() {
     // is(클래스명) 메서드로 알아봄
 
     let db = $(this).parent().attr("data-db");
+    // $(this).parent()는 li 바로 위의 부모인 ul이다
+    // attr("data-db") 속성값 읽어오기
 
     // JS문법에서는 아래와 같음!
     // this.parentElement.parentElement
@@ -50,8 +54,8 @@ export default function showSubBox() {
     console.log("idx:", idx);
 
     // [ 배열순회 메서드 비교 : forEach / find ]
-    // forEach() 는 모두 순회한다!
-    // find() 는 조건에 맞을 때 return true하면
+    // forEach()는 모두 순회한다!
+    // find()는 조건에 맞을 때 return true하면
     // 해당 배열값이 변수에 할당된다!
     // 만약 일치하는 데이터가 없으면 undefined됨!
 
@@ -65,31 +69,78 @@ export default function showSubBox() {
       } /// if ///
 
       console.log("돌아!");
-    }); /// selData ///
+    }); //////////// selData ////////////
 
     console.log("검색 결과:", selData);
 
     // 서브박스에 내용 넣기
-    // 제이쿼리는 innerHTML 할당대신 html() 메서드를 사용한다!
+    // 제이쿼리는 innerHTML 할당 대신 html() 메서드를 사용한다!
     subContBox
       .html(
+        // 1. 미리보기 출력
+        db == "previewData"?
         `
-                <button class="cbtn">×</button>
-                <div class="sub-inbox inbox">
-                    <h1>${selData.title}</h1>
-                    <div class="sub-item">
-                        ${selData.story}
-                    </div>
+          <button class="cbtn">×</button>
+          <div class="sub-inbox inbox">
+              <h1>${selData.title}</h1>
+              <div class="sub-item">
+                  ${selData.story}
+              </div>
+          </div>
+        `:
+        // 2. 현장포토 출력
+        db == "liveData"?
+        `
+          <button class="cbtn">×</button>
+            <div class="sub-inbox inbox">
+                <h1>현장포토 : ${selData.title}</h1>
+                <div class="sub-item">
+                    <img 
+                    src="./images/live_photo/${selData.imgName}.jpg" 
+                    alt="${selData.title}">
                 </div>
-            `
-      )
-      .show();
-    // show() 는 display를 보여주는 메서드
-    // hide() 는 display를 숨기는 메서드
-    // toggle() 는 display를 토글하는 메서드
+            </div>
+        `:
+        // 3. 대표 포스터 출력
+        db == "posterData"?
+        `
+          <button class="cbtn">×</button>
+            <div class="sub-inbox inbox">
+                <h1>대표 포스터 : ${selData.title}</h1>
+                <div class="sub-item">
+                    <img 
+                    src="./images/poster_img/${selData.imgName}.jpg" 
+                    alt="${selData.title}">
+                </div>
+            </div>
+        `:
+        // 4. 최신 동영상 출력
+        db == "clipData"?
+        `
+          <button class="cbtn">×</button>
+            <div class="sub-inbox inbox">
+                <h1>클립 영상 : ${selData.title}</h1>
+                <div class="sub-item">
+                  <iframe src="https://www.youtube.com/embed/${selData.mvid}?autoplay=1" allow="autoplay"></iframe>
+                  <h2>${selData.subtit}</h2>
+                </div>
+            </div>
+        `:
+        // 5. 위의 해당 사항이 없을 경우
+        `
+        <button class="cbtn">×</button>
+            <div class="sub-inbox inbox">
+              <h1>DB 정보 확인 필요!</h1>
+            </div>
+        `
+      ).show();
+    // show()는 display를 보여주는 메서드
+    // hide()는 display를 숨기는 메서드
+    // toggle()는 display를 토글하는 메서드
 
     // 닫기 버튼 이벤트 설정하기
     $(".cbtn").click(() => subContBox.hide());
     // } /// if ///
   });
-} /////////// showSubBox 함수 ///////////////
+} /////////////// showSubBox 함수 ///////////////
+/////////////////////////////////////////////////
