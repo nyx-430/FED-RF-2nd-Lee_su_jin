@@ -16,7 +16,7 @@ import gnbData from "../data/gnb_data.js";
 
 // 콤보박스 데이터 불러오기
 import comboData from "../data/combo_data.js";
-console.log(comboData);
+// console.log(comboData);
 
 export default function setElement() {
   // 1.대상선정: #top-area, #ban-area,
@@ -52,7 +52,7 @@ function makeMenu() {
   // 그래서 gnbData를 키배열로 변환해서 사용함!
   // 그리고 이 객체의 key는 상위메뉴 이기도 함!
   // Object.keys(객체) -> 해당객체의 속성명(키) 배열생성!
-  console.log(Object.keys(gnbData));
+  // console.log(Object.keys(gnbData));
 
   mFn.qs(".gnb").innerHTML = `
   <ul>
@@ -101,7 +101,7 @@ function bindCombo(){
   // 1. 대상 선정 : #brand, #corp
   const brandBox = document.querySelector("#brand");
   const corpBox = document.querySelector("#corp");
-  console.log("콤보 바인딩!",brandBox,corpBox);
+  // console.log("콤보 바인딩!",brandBox,corpBox);
 
   // 2. 데이터 바인디하기
   // 2-1. 브랜드 바로가기 콤보박스 : 단순 바인딩(option만)
@@ -124,7 +124,7 @@ function bindCombo(){
 
   // 데이터 대상 : comboData.corp
   const corpData = Object.keys(comboData.corp);
-  console.log(corpData);
+  // console.log(corpData);
 
   // 데이터 만들어서 넣기
   corpBox.innerHTML = 
@@ -166,7 +166,7 @@ function openWindow(){
    // 객체 이름 조합을 (아이디명+"Link")
    // 그 하위의 option값을 url값으로 가져옴!
     let url = comboData[this.id+"Link"][this.value];
-    console.log("브랜드 어디?",url);
+    // console.log("브랜드 어디?",url);
     // 만약 데이터가 없으면 url()변수의 값은 셋팅되지 못하여
     // undefinded 처리된다! 이것을 if문으로 처리하여
     // 아래 새창 띄우기 코드를 감싸준다!

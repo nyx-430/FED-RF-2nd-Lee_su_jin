@@ -8,7 +8,7 @@ setElement(); // 함수호출!!!
 import myFn from "./my_function.js";
 
 // 부드러운 스크롤 불러오기
-
+import SmoothScroll from "./smoothScroll23.js";
 
 // 데이터 셋팅 불러오기 //////
 import * as dkbData from "../data/dkb_data.js";
@@ -17,11 +17,20 @@ import * as dkbData from "../data/dkb_data.js";
 // 드래그 슬라이드 불러오기 ///////
 import setSlide from "./drag_slide_multi.js";
 
+// 서브박스 셋팅 코드 불러오기 ////
+import showSubBox from "./sub_cont.js";
+// 박스 생성후 호출(큐로 보내면 스택실행후 호출!)
+setTimeout(showSubBox);
+// 시간을 0으로 써도, 심지어 시간을 안써도
+// setTimout()으로 함수를 호출하면
+// 스택에 실행후 큐에서 가지고 있다가
+// 스택 코드 실행이 모두 끝난후 호출하여 실행함!
+
 ///////////////////////////////////////////////
 
 /// 구현코드 파트 /////////////////////////////
 // 1. 부드러운 스크롤 호출
-startSS();
+const mySmooth = new SmoothScroll(document, 30, 20);
 
 // console.log('모듈로 메인JS호출!!!',
 // document.querySelector('.top-menu'));
@@ -76,26 +85,35 @@ introMv.onclick = () => {
 
   // 1. 8개만 데이터를 html로 구성하여 넣는다!
   // html 코드변수
-  let hcode = `<ul class="fx-box">`;
+  //let hcode = `<ul class="fx-box">`;
 
-  // li구성을 hcode변수에 대입연산자로 할당함!
-  for (let i = 0; i < 8; i++) {
-    hcode += `
-        <li>
-            <h3>${pData[i].title}</h3>
-            <p>${pData[i].story}</p>
-        </li>
-    `;
-  } //// for //////
+  //// li구성을 hcode변수에 대입연산자로 할당함!
+  //for (let i = 0; i < 8; i++) {
+  //  hcode += `
+  //      <li>
+  //          <h3>${pData[i].title}</h3>
+  //          <p>${pData[i].story}</p>
+  //      </li>
+  //  `;
+  //} //// for //////
 
-  hcode += `</ul>`;
+  //hcode += `</ul>`;
 
   // 데이터 확인
   // console.log(hcode);
   // console.log('대상:',previewBox,'미리보기 data:',pData);
 
-  // 2. 화면출력하기 ///////
-  previewBox.innerHTML = hcode;
+  // 2. 화면출력하기 -> map()으로 한꺼번에 출력하자!
+  previewBox.innerHTML = `
+  <ul class="fx-box">
+    ${pData.map(v=>`
+      <li data-idx="${v.idx}">
+        <h3>${v.title}</h3>
+        <p>${"방송일 : "+v.date+" "+v.story}</p>
+      </li>
+    `).join('')}
+  </ul>
+  `;
 })(); //// 미리보기 코드랩핑구역 종료 /////////
 
 // 3. 현장포토 파트 내용 넣기 //////////
@@ -112,7 +130,7 @@ introMv.onclick = () => {
   let hcode = `<ul>`;
 
   // li구성을 hcode변수에 대입연산자로 할당함!
-  // liveData 배열은 총8개임. 모두 돌기를 셋팅하자!
+  // liveData 배열은 총 8개임. 모두 돌기를 셋팅하자!
   lvData.forEach((v) => {
     hcode += `
               <li>
@@ -128,7 +146,7 @@ introMv.onclick = () => {
 
   // 데이터 확인
   // console.log(hcode);
-  //   console.log('대상:',liveBox,'현장포토 data:',lvData);
+  // console.log('대상:',liveBox,'현장포토 data:',lvData);
 
   // 2. 화면출력하기 ///////
   liveBox.innerHTML = hcode;
