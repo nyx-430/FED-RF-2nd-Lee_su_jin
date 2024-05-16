@@ -33,7 +33,7 @@ export default function showSubBox() {
     // 그 div박스의 클래스가 preview-box인가?
     // is(클래스명) 메서드로 알아봄
 
-    let db = $(this).parent().attr("data-idx");
+    let db = $(this).parent().attr("data-db");
 
     // JS문법에서는 아래와 같음!
     // this.parentElement.parentElement
