@@ -195,6 +195,17 @@
 }
 /********* 최대사이즈 1024px 이하 끝 *********/
 
+/********* 최대사이즈 800px 이하 시작 *********/
+@media screen and (max-width: 800px) {
+  .sub-cont h1 {
+    font-size: 5vw;
+  }
+  .sub-item {
+    font-size: 4vw;
+  }
+}
+/********** 최대사이즈 800px 이하 끝 **********/
+
 /********* 최대사이즈 500px 이하 시작 *********/
 @media screen and (max-width: 500px) {
   /* 소제목 공통 */

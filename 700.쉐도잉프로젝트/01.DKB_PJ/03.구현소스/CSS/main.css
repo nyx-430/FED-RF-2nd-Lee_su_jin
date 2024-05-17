@@ -221,6 +221,7 @@ body * {
     font-size: 2rem;
     padding-top: 1.4rem;
 }
+
 /************** 7. 최신동영상영역 **************/
 .clip-video-area{
     position: relative;
@@ -241,7 +242,7 @@ body * {
     flex-basis: 25%;
     flex-shrink: 0;
     /* 플렉스 gap 속성대신 패딩으로 처리!
-    이유는? 드래그시 영역아웃현상때문! */
+    이유는? 드래그시 영역 아웃현상 때문! */
     padding: 0 1.1%;
     box-sizing: border-box;
 }
@@ -251,6 +252,7 @@ body * {
     position: relative;
     /* 부모자격 */
 }
+
 /* 동영상 이미지박스 이미지 */
 .clip-mv-box img {
     width: 100%;
@@ -258,6 +260,7 @@ body * {
     user-select: none;
     -webkit-user-drag: none;
 }
+
 /* 동영상 이미지박스 가상요소로 플레이버튼 */
 .clip-mv-box::after {
     content: '';
@@ -297,7 +300,6 @@ body * {
     overflow: hidden;
 }
 
-
 /* 양쪽버튼만들기 */
 .btn-box button{
     position: absolute;
@@ -314,6 +316,7 @@ body * {
     background-color: rgba(0, 0, 0, 0.6); 
     cursor: pointer;
 }
+
 /* 왼쪽버튼 */
 .btn-box button:first-child{
     left: 0;
@@ -349,7 +352,7 @@ body * {
     background-color: #000;
     color: #fff;
     z-index: 999999;
-    overflow: auto;
+    overflow: hidden;
     display: none;
 }
 .sub-cont a{
@@ -382,4 +385,21 @@ body * {
 .sub-item{
     font-size: 3rem;
     padding: 7vw;
+    height: 60vh;
+    outline: 1px solid yellow;
+    text-align: center;
+    overflow: auto;
+}
+/* 내용박스 하위 이미지 */
+.sub-item img{
+    max-width: 100%;
+    /* 박스가 이미지 최대 크기보다 작아지면
+    이미지가 박스에 100%로 패딩 안쪽을 모두 채움 */
+}
+
+/* 내용박스 아이프레임 */
+.sub-item iframe {
+    width: 100%;
+    aspect-ratio: 2 / 1.15;
+    border: none;
 }

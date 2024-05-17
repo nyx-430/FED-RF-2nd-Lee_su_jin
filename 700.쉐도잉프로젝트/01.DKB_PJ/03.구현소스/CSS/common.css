@@ -86,13 +86,32 @@
   transform: scaleX(2);
 }
 
+/* 모바일 햄버거 버튼 */
+.ham {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 40px;
+  color: #555;
+  transform: scaleX(1.5);
+  display: none;
+}
+/* 햄버거 버튼 가상요소 */
+.ham::before {
+  content: '≡';
+}
+
 /* 서브메뉴 */
 .smenu {
   position: absolute;
   left: 0;
   /* 부모는? 보이는 화면 */
   width: 100%;
-z-index: 999;
+  z-index: 999;
   background-color: #fff;
 
   /* 최대높이값 0 */
