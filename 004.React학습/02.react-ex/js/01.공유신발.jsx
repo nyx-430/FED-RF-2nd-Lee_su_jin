@@ -108,7 +108,8 @@ function GoodsList({viewDetail, updateIdx}) {
 function GoodsDetail({backList, gNo}) {
   // backList - 부모 컴포넌트가 전달해준 상태변수
   // (viewList를 업데이트하는 setViewList메서드임!)
-  // gNo - 상품 데이터 idx 번호
+  // gNo - 상품 데이터 배열순번
+  // (idx 상태관리변수가 전달됨 - 이 값 변경시 컴포넌트 변경됨)
   return (
     <ol
       style={{
