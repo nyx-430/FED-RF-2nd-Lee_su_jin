@@ -91,9 +91,19 @@ function makeMenu() {
       `
       )
       .join("")}
-  </ul>
-    
+  </ul>  
 `;
+
+  // 햄버거 버튼 클릭시 .top-area에 클래스 넣기
+  $(".ham").click(()=>{
+    console.log("나야 나");
+    $(".top-area").toggleClass("on");
+    // 제이쿼리 클래스 관련 메서드
+    // addClass()/removeClass()/toggleClass()
+    // -> js의 classList 객체 하위 메서드와 유사
+    // add() / remove() / toggle()
+  })
+
 } ////////// makeMenu 함수 //////////
 
 // 콤보박스 바인딩 함수

@@ -636,5 +636,12 @@ function slideFn(selEl) {
     // 5. 오른쪽으로 이동할 기준값(기준위치값*0.9)
     valSecond = leftVal * 0.9;
   }); ////////////// resize함수 //////////////////
+
+  // 해당 슬라이드 박스 (selEl) 휠 이벤트 버블링 막기
+  mFn.addEvt(selEl,"wheel",(e)=>{
+    console.log(111);
+    e.preventDefault();
+  }); /// wheel ///
+
 } /////////////// slideFn 함수 ///////////////
 /////////////////////////////////////////////
