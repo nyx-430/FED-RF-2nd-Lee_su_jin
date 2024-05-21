@@ -64,7 +64,7 @@ function MainComponent() {
         selItem == "공유" ?
         "공유가 신고 다닌다는!":
         selItem == "효진" ?
-        "효진이 입고 다닌다는!":
+        "효진이 입고 다닌다는!": 
         "없음"
       }
       </h1>
