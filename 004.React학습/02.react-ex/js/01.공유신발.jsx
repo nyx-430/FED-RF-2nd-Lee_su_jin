@@ -38,7 +38,23 @@ function MainComponent() {
     ㄴ 상품리스트 : ul > li > ol > li > img/text 
     ㄴ 상품상세보기 : ol > li > img/text/button
   **********************************************/
+  // useEffect 테스트 함수 ////////////////
+  const testFn = () => {
+    console.log("테스트 중~!");
+  } /////////// testFn ///////////
 
+  // [ 1. useEffect : 컴포넌트 생성, 변경, 삭제 전 DOM 완성 후
+  // 매번 실행되는 구역 ]
+  React.useEffect(()=>{
+    console.log("DOM이 완성되었어!");
+    // 글자 커지기 테스트
+    $(".tit").animate({fontSize:"50px"},1000)
+    .animate({fontSize:"20px"},1000);
+  });
+
+ 
+
+  //////////////////////////////////
   // 코드 리턴 구역 ////////////////
   return (
     <React.Fragment>
@@ -59,7 +75,7 @@ function MainComponent() {
             selItem == "공유" ?
             "공유는 오늘도 멋집니다!":
             selItem == "효진" ?
-            "효진은 오늘도 쨍~합니다!":
+            "효진은 오늘도 쨍~ 합니다!":
             "없음"
           }
         </h2>
@@ -78,6 +94,9 @@ function MainComponent() {
         <button
         onClick={()=>setSelItem(selItem=="공유"?"효진":"공유")}
         >{selItem=="공유"?"효진":"공유"} 초이스 바로가기</button>
+        <br />
+        {/* 테스트버튼 */}
+        <button onClick={testFn}>useEffect 의존성 테스트</button>
       </div>
       {/* 4. 상품리스트박스 */}
       <div className="gwrap">

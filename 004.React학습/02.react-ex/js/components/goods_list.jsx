@@ -30,7 +30,7 @@ export default function GoodsList({ viewDetail, updateIdx, selItem }) {
         // 반복요소 li에 key속성을 쓸 것을 리액트는 필수적이라고 함!
         // 어디에 쓰나? 업데이트시 순번 구분을 위함
         // node.js 개발환경에서는 안 쓰면 에러남!
-        guData.map((v, i) => (
+        selData.map((v, i) => (
           <li key={i}>
             <a
               href="#"
