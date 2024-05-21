@@ -1,4 +1,5 @@
-// [ vans신발 데이터 ]
+// [ vans 신발 데이터 ]
+
 const guData = [
         {
             "idx": "1",
