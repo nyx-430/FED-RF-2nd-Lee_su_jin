@@ -25,6 +25,18 @@ export default function GoodsDetail({ backList, gNo, selItem }) {
   ? hjData 
   : [];
 
+  // useEffect구역 : 화면 업데이트 후 실행구역
+  React.useEffect(()=>{
+    console.log("나는 디테일 컴포넌트다!");
+
+    // useEffect 함수 구역에 return 함수 코드를 쓰면
+    // 함수 컴포넌트 소멸시 실행된다
+    return (()=>{
+      console.log("디테일 컴포넌트 소멸!");
+    });
+
+  }); ///////// useEffect /////////
+
   return (
     <ol
       style={{
