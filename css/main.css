@@ -69,7 +69,7 @@ font-family: 'Roboto Condensed', sans-serif;
 */
 /* 공사중 표시 */
 body * {
-  /* outline: 1px dashed gray; */
+  outline: 1px dashed gray;
 }
 
 /************* 2. 공통 class *************/
@@ -201,61 +201,8 @@ body * {
 /* 보그 PJ 공통 CSS - common.css */
 /* 상단, 하단 공통 모듈 CSS */
 /****************** 1.상단영역 ******************/
-#top-area {
-  position: relative;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  /* 박스 그림자가 위로 올라오게 함 */
-  z-index: 1;
-}
-#top-area.on {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  z-index: 999;
-  /* 1. 상단영역 최소 높이 해제 */
-  /* 2. 상단 메뉴 없애기 */
-  /* 3. 로고 박스 */
-  /* 5. GNB박스 */
-}
-#top-area.on .top-area {
-  min-height: 50px;
-}
-#top-area.on .tmenu {
-  display: none;
-}
-#top-area.on .logo {
-  position: absolute;
-  left: 0;
-  /* 부모는? #top-area */
-  padding: 10px;
-  height: auto;
-  margin-bottom: 0;
-  /* 4. 로고 이미지 */
-}
-#top-area.on .logo img {
-  width: 100px;
-}
-#top-area.on .gnb {
-  min-height: 45px;
-  padding-top: 5px;
-  /* GNB ul */
-  /* 6. GNB 메뉴 a */
-}
-#top-area.on .gnb ul {
-  gap: 0 35px;
-}
-#top-area.on .gnb a {
-  color: #333;
-  font-size: 14px;
-}
-#top-area.on .gnb a.hover {
-  color: red;
-}
-
 .top-area {
-  /* 최소 높이 */
+  /* 최소높이 */
   min-height: 206px;
 }
 
@@ -276,13 +223,13 @@ body * {
   text-align: center;
   line-height: 16px;
   vertical-align: top;
-  /* 마진으로 사이 간격 주기 */
+  /* 마진으로 사이간격주기 */
   margin-top: 14px;
   margin-right: 17px;
-  /* 트랜지션 : 속시이지 */
+  /* 트랜지션: 속시이지 */
   transition: opacity 0.2s;
-  /* 트위터 크기 조정 */
-  /* 유튜브 크기 조정 */
+  /* 트위터 크기조정 */
+  /* 유튜브 크기조정 */
   /* 카카오스토리 배경이미지 넣기 */
 }
 .tmenu .sns a:hover {
@@ -304,7 +251,7 @@ body * {
 .tmenu .sideMenu .smbx {
   /* 플렉스박스 */
   display: flex;
-  /* 플렉스 진행방향 정렬 - 오른쪽 끝 */
+  /* 플렉스 진행방향 정렬 - 오른쪽끝 */
   justify-content: flex-end;
   /* 글자체: Roboto, 나눔바른고딕 */
   font-family: "Roboto", nbg;
@@ -312,7 +259,7 @@ body * {
   /* 사이드메뉴 상위 a요소 */
 }
 .tmenu .sideMenu .smbx > li {
-  /* 사이드 메뉴 상위 메뉴 첫번째 li 사이 구분선 */
+  /* 사이드메뉴 상위메뉴 첫번째li 사이구분선 */
 }
 .tmenu .sideMenu .smbx > li > a {
   display: block;
@@ -329,7 +276,7 @@ body * {
 .tmenu .sideMenu .smbx > li .smsub {
   position: absolute;
   border: 1px solid #e5e5e5;
-  /* 박스 숨기기 */
+  /* 박스숨기기 */
   height: 0;
   overflow: hidden;
   /* display: none; */
@@ -368,18 +315,18 @@ body * {
 .gnb ul {
   /* 플렉스박스 */
   display: flex;
-  /* 플렉스 진행방향 정렬 */
+  /* 플렉스진행방향 정렬 */
   justify-content: center;
-  /* 플렉스 줄바꿈 설정 */
+  /* 플렉스 줄바꿈설정 */
   flex-wrap: wrap;
-  /* 사이 간격 속성 -> gap: 위아래 양쪽 (flex에서 사용함)
-        -> 숫자를 하나만 쓰면 양방향이 모두 같은 수치 셋팅 */
+  /* 사이간격 속성 -> gap: 위아래 양쪽 (flex에서 사용함)
+        -> 숫자를 하나만 쓰면 양방향이 모두같은수치 셋팅 */
   gap: 0 45px;
   /* GNB li 리스트 */
 }
 .gnb ul li {
   /* padding-right: 45px; 
-    -> 사이 간격을 li에 패딩으로 안 주고
+    -> 사이간격을 li에 패딩으로 안주고
     부모요소인 flex박스에서 gap속성으로 준다! */
   font-family: "Roboto Condensed", sans-serif;
   line-height: 40px;
@@ -401,75 +348,14 @@ body * {
 
 /****************** 2.메인영역 ******************/
 .main-area {
-  /* 최소 높이 : 컨텐츠가 작을 경우 대비 */
+  /* 최소높이 : 컨텐츠가 작을 경우대비 */
   min-height: 600px;
 }
 
 /****************** 3.하단영역 ******************/
 .footer-area {
-  /* 최소 높이 */
+  /* 최소높이 */
   min-height: 285px;
-  background-color: #000;
-  padding: 70px;
-  /* 박스 크기 유지 */
-  box-sizing: border-box;
-  /* 글씨체 공통 */
-  font-family: "Roboto", nbg;
-}
-.footer-area .blogo {
-  text-align: center;
-}
-.footer-area .addr {
-  color: #747474;
-  text-align: center;
-  font-size: 11px;
-  /* address 요소 기본 이탤릭 해제 */
-  font-style: normal;
-  margin: 20px 0 10px;
-}
-.footer-area .blink {
-  /* 플렉스박스 */
-  display: flex;
-  /* 진행방향정렬 : 중앙 */
-  justify-content: center;
-  /* 플렉스 랩핑박스 */
-  flex-wrap: wrap;
-  /* 사이 간격 gap : 위아래 양쪽 */
-  gap: 0 12px;
-}
-.footer-area .blink a {
-  color: #747474;
-  font-size: 13px;
-}
-.footer-area .blink li:last-child a {
-  font-weight: bold;
-}
-
-/* 위로가기 버튼 */
-.tbtn {
-  position: fixed;
-  bottom: -35px; /* 아랫쪽에 나가있음 */
-  right: 75px;
-  width: 48px;
-  height: 35px;
-  text-align: center;
-  line-height: 35px;
-  background-color: #333;
-  border-radius: 4px 4px 0 0;
-  color: #fff;
-  z-index: 9999;
-  font-size: 12px;
-  opacity: 0; /* 처음에 투명 */
-  /* 트랜지션 - bottom엔 적용되면 안 되므로 별도 지정함 */
-  transition: background-color 0.3s, opacity 0.3s;
-  /* 클래스 on 추가시 디자인 변경 */
-}
-.tbtn.on {
-  opacity: 1;
-  bottom: 0;
-}
-.tbtn:hover {
-  background-color: red;
 }
 
 /* 개별배경이미지 */
