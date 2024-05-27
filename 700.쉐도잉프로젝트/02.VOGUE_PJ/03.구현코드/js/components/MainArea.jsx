@@ -1,7 +1,7 @@
-// 메인영역 컴포넌트 ///////
+// 메인 영역 컴포넌트 ///////
 
 export default function MainArea() {
-  // 코드 리턴구역 /////
+  // 코드 리턴 구역 /////
   return (
     <div id="main-area">
       <main className="main-area ibx">

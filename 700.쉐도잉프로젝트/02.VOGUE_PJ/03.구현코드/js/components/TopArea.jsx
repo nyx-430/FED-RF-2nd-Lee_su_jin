@@ -1,7 +1,7 @@
-// 상단영역 컴포넌트 ///////
+// 상단 영역 컴포넌트 ///////
 
 export default function TopArea({ changeMenu }) {
-  // changeMenu - 부모의 setMenu 상태관리 메서드
+  // changeMenu - 부모의 setMenu 상태 관리 메서드
 
   // 메뉴 배열
   const menuArr = [
@@ -20,19 +20,19 @@ export default function TopArea({ changeMenu }) {
 
     console.log(v);
 
-    // 전달값 변경하기 : 소문자,특수문자 변경
+    // 전달값 변경하기 : 소문자, 특수문자 변경
     v = v.toLowerCase();
 
-    // 부모 메뉴변경 상태메서드로 메뉴변경
+    // 부모 메뉴 변경 상태 메서드로 메뉴 변경
     changeMenu(v);
 
   }; ////////// chgMenuFn 함수 /////////
 
-  // 코드 리턴구역 /////
+  // 코드 리턴 구역 /////
   return (
     <div id="top-area">
       <header className="top-area ibx common-area">
-        {/* <!-- 1-1.상단메뉴 --> */}
+        {/* <!-- 1-1.상단 메뉴 --> */}
         <div className="tmenu">
           {/* <!-- 1-1-1.sns박스 --> */}
           <div className="sns">
@@ -55,19 +55,20 @@ export default function TopArea({ changeMenu }) {
             <a href="#" className="fi fi-user-secret" title="회원가입">
               <span className="ir">회원가입</span>
             </a>
-            <a href="#" className="fi fi-camera" title="갤러리">
+            <a href="#" className="fi fi-camera" title="갤러리" 
+            onClick={()=>chgMenuFn("gallery")}>
               <span className="ir">갤러리</span>
             </a>
             <a href="#" className="fi cas" title="카카오스토리">
               <span className="ir">카카오스토리</span>
             </a>
           </div>
-          {/* <!-- 1-1-2.사이드메뉴 --> */}
+          {/* <!-- 1-1-2.사이드 메뉴 --> */}
           <div className="sideMenu">
             <ul className="smbx">
               <li>
                 <a href="#">SIDE MENU</a>
-                {/* <!-- 서브메뉴 --> */}
+                {/* <!-- 서브 메뉴 --> */}
                 <ol className="smsub">
                   <li>
                     <a href="#">회사 소개</a>
@@ -107,7 +108,7 @@ export default function TopArea({ changeMenu }) {
             ))}
 
             <li>
-              {/* <!-- 돋보기 검색버튼 --> */}
+              {/* <!-- 돋보기 검색 버튼 --> */}
               <i href="#" className="fi fi-search">
                 <span className="ir">search</span>
               </i>
