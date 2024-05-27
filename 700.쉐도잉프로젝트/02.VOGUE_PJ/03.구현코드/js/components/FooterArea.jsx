@@ -1,20 +1,21 @@
-// 하단 영역 컴포넌트
+// 하단영역 컴포넌트 ///////
 
 export default function FooterArea() {
+  // 코드 리턴구역 /////
   return (
     <React.Fragment>
       <div id="footer-area">
         <footer className="footer-area ibx common-area">
-          {/* <!-- 3-1.하단 로고 --> */}
+          {/* <!-- 3-1.하단로고 --> */}
           <div className="blogo">
             <img src="./images/footer_logo.png" alt="하단로고" />
           </div>
-          {/* <!-- 3-2.회사 주소 --> */}
+          {/* <!-- 3-2.회사주소 --> */}
           <address className="addr">
             WWW.VOGUE.COM Ⓒ CONDÉNAST ASIA PACIFIC. INC. ALL RIGHTS RESERVED.
             VOGUE.COM KOREA IS OPERATED BY DOOSAN MAGAZINE.
           </address>
-          {/* <!-- 3-3.하단 링크 --> */}
+          {/* <!-- 3-3.하단링크 --> */}
           <ul className="blink">
             <li>
               <a href="#">정기구독</a>
@@ -31,11 +32,11 @@ export default function FooterArea() {
           </ul>
         </footer>
       </div>
-      
-      {/* <!-- 위로 가기 버튼 --> */}
+
+      {/* <!-- 위로가기버튼 --> */}
       <a href="#" class="tbtn fi fi-angle-up">
-        <span class="ir">위로 가기</span>
+        <span class="ir">위로가기버튼</span>
       </a>
     </React.Fragment>
   );
-} ///////////// FooterArea 컴포넌트 /////////////
+} ///////// FooterArea 컴포넌트 ///////////

@@ -1,16 +1,17 @@
-// 메인 영역 컴포넌트
+// 메인영역 컴포넌트 ///////
 
 export default function MainArea() {
+  // 코드 리턴구역 /////
   return (
     <div id="main-area">
       <main className="main-area ibx">
-        {/* <!-- 컨텐츠 1 --> */}
+        {/* <!-- 컨텐츠1 --> */}
         <section className="pt1">
           <div className="cbx bgi bg1">
             <h2>복싱과 맺은 모델 수주의 이야기</h2>
           </div>
         </section>
-        {/* <!-- 컨텐츠 2 --> */}
+        {/* <!-- 컨텐츠2 --> */}
         <section className="pt2">
           <div className="cbx bgi bg2">
             <h2>안현모,홍지민,강주은 써마지 더 리얼 인터뷰</h2>
@@ -22,7 +23,7 @@ export default function MainArea() {
             <h2>아미(Ami)와 장폴구드(Jean-Paul Goude)의 컬래버레이션</h2>
           </div>
         </section>
-        {/* <!-- 컨텐츠 3 --> */}
+        {/* <!-- 컨텐츠3 --> */}
         <section className="pt1">
           <div className="cbx bgi bg5">
             <h2>
@@ -30,7 +31,7 @@ export default function MainArea() {
             </h2>
           </div>
         </section>
-        {/* <!-- 컨텐츠 4 --> */}
+        {/* <!-- 컨텐츠4 --> */}
         <section className="pt2">
           <div className="cbx bgi bg6">
             <h2>마리아 그라치아 치우리의 디올 크루즈 2022 컬렉션 쇼</h2>
@@ -42,13 +43,13 @@ export default function MainArea() {
             <h2>셀럽들이 하는 여름 주얼리</h2>
           </div>
         </section>
-        {/* <!-- 컨텐츠 5 --> */}
+        {/* <!-- 컨텐츠5 --> */}
         <section className="pt1">
           <div className="cbx bgi bg9">
             <h2>김여진이 감행하는 변화에 대하여</h2>
           </div>
         </section>
-        {/* <!-- 컨텐츠 6 --> */}
+        {/* <!-- 컨텐츠6 --> */}
         <section className="pt2">
           <div className="cbx bgi bg10">
             <h2>모델 아이린이 선택한 여름 원피스 Best</h2>
@@ -60,7 +61,7 @@ export default function MainArea() {
             <h2>샛노란 ‘자무 주스’가 뜬다!</h2>
           </div>
         </section>
-        {/* <!-- 컨텐츠 7 --> */}
+        {/* <!-- 컨텐츠7 --> */}
         <section className="pt2">
           <div className="cbx bgi bg13">
             <h2>체커보드의 색다른 매력</h2>
@@ -75,4 +76,4 @@ export default function MainArea() {
       </main>
     </div>
   );
-} ///////////// MainArea 컴포넌트 /////////////
+} ///////// MainArea 컴포넌트 ///////////
