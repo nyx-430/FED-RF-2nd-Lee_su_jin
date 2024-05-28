@@ -1,0 +1,3 @@
+// 전역 변수 useContext를 사용하기 위한 생성 메서드
+
+export const 누구냐 = React.createContext();
