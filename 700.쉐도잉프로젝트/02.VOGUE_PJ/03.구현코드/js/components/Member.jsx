@@ -1,6 +1,12 @@
 // 보그 JS 회원가입 컴포넌트
 
+// 유효성 검사함수 불러오기
+import validateFn from "../validation";
+
 export default function Member (){
+
+  // 페이지 랜더링 후 실행 구역
+  React.useEffect(validateFn,[]);
 
     // 코드 리턴 구역
     return (
@@ -84,17 +90,17 @@ export default function Member (){
                   type="text"
                   id="email1"
                   name="email1"
-                  placeholder="이메일앞주소"
+                  placeholder="이메일 앞주소"
                 />
                 <span className="gol">@</span>
                 <select name="seleml" id="seleml">
-                  <option value="init">선택해주세요</option>
+                  <option value="init">선택해 주세요</option>
                   <option value="naver.com">naver.com</option>
                   <option value="daum.net">daum.net</option>
                   <option value="hotmail.com">hotmail.com</option>
                   <option value="hanmail.net">hanmail.net</option>
                   <option value="gmail.com">gmail.com</option>
-                  <option value="free">직접입력</option>
+                  <option value="free">직접 입력</option>
                 </select>
                 <span className="msg"></span>
               </li>
@@ -105,7 +111,7 @@ export default function Member (){
                   type="text"
                   name="email2"
                   id="email2"
-                  placeholder="이메일뒷주소"
+                  placeholder="이메일 뒷주소"
                 />
               </li>
               {/* <!-- 서브밋버튼 --> */}
