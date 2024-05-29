@@ -17,7 +17,7 @@ export default function Member (){
           {/* <!-- 2-1-1. 서브타이틀 --> */}
           <h2 className="stit">Member</h2>
         </header>
-        {/* <!-- 2-2. 갤러리 페이지 컨텐츠 박스 --> */}
+        {/* <!-- 2-2. 갤러리 페이지 컨텐츠박스 --> */}
         <section className="scont">
           <form action="process.php" method="post" className="logF">
             <ul>
@@ -54,7 +54,7 @@ export default function Member (){
                   name="mpw2"
                   id="mpw2"
                   maxlength="20"
-                  placeholder="비밀번호확인을 입력해 주세요!"
+                  placeholder="비밀번호 확인을 입력해 주세요!"
                 />
                 <span className="msg"></span>
               </li>
