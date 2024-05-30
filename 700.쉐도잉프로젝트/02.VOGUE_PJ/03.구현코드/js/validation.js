@@ -24,9 +24,11 @@ export default function validateFn (){
         -> 요소 뒤 대괄호는 속성선택자(CSS 원래 문법)
             [id!=email2] !=은 같지 않다(제이쿼리용 문법)
     **************************************************/
-    $(`form.logF input[type=text][id!=email2],
-    form.logF input[type=password]`)
-    .blur(function(){
+   // 대상 요소 변수 할당
+    const tgInput = `form.logF input[type=text][id!=email2],
+    form.logF input[type=password]`;
+
+    $(tgInput).blur(function(){
 
         /****************************************** 
             1. 현재 블러가 발생한 요소의 아이디는?
@@ -68,6 +70,9 @@ export default function validateFn (){
             $(this).siblings(".msg").text("필수입력");
             // 형제요소들 중 .msg인 요소에 글자를 출력함
             // 형제요소 선택은 sibligns(특정이름)
+
+            // [ 불통과 pass변수 업데이트 ]
+            pass = false;
         } /// if ///
         
         /****************************************** 
@@ -85,6 +90,9 @@ export default function validateFn (){
                 // 메시지 지우기
                 $(this).siblings(".msg").text("영문자로 시작하는 6~20글자 영문자/숫자")
                 .removeClass("on");
+
+                // [ 불통과 pass변수 업데이트 ]
+                pass = false;
             } /// if ///
             else{ // 아이디 검사 통과시
                 // 1. DB에 조회하여 같은 아이디가 있다면
@@ -115,6 +123,9 @@ export default function validateFn (){
                 // 메시지 지우기
                 $(this).siblings(".msg")
                 .text("특수문자,문자,숫자포함 형태의 5~15자리");
+
+                // [ 불통과 pass변수 업데이트 ]
+                pass = false;
             } /// if ///
             else{ // 맞으면 메시지 삭제
                 $(this).siblings(".msg").empty();
@@ -135,6 +146,9 @@ export default function validateFn (){
                 // 메시지 지우기
                 $(this).siblings(".msg").text("비밀번호가 일치하지 않습니다.")
                 .removeClass("on");
+
+                // [ 불통과 pass변수 업데이트 ]
+                pass = false;
             } /// if ///
             else{ // 맞으면 메시지 삭제
                 $(this).siblings(".msg").empty();
@@ -175,8 +189,8 @@ export default function validateFn (){
         함수명 : resEml (result Email)
         기능 : 이메일 검사결과 처리
     ******************************************/
-    const resEml = comp => { // comp - 이메일주소
-        // console.log('이메일주소:',comp);
+    const resEml = (comp) => { // comp - 이메일주소
+        console.log('이메일주소:',comp);
         // console.log('이메일검사결과:',vReg(comp,'eml'));
 
         // 이메일 정규식 검사에 따른 메시지 보이기
@@ -190,6 +204,8 @@ export default function validateFn (){
             .text('맞지 않는 이메일 형식입니다!')
             .removeClass('on');
 
+            // [ 불통과 pass변수 업데이트 ]
+            pass = false;
         } //////// else : 불통과시 ////////
 
     }; ///////////// resEml /////////////
@@ -265,20 +281,26 @@ export default function validateFn (){
     $("#email1, #email2").on("keyup",function(){
         // 1. 현재 이벤트 발생 대상 아이디 읽어오기
         let cid = $(this).attr("id");
-        console.log("입력창id:",cid);
+        // console.log("입력창id:",cid);
 
         // 2. 이메일 뒷주소 셋팅하기 (선택!)
-        let backEml = cid == "email1" ? seleml.val() :eml2.val();
-        // 현재 입력 아이디가 "email1"이면 선택박스값을 읽고,
-        // 아니면 두번째 이메일 창에 입력하는 것이므로
-        // 두번째 이메일 입력값을 뒷주소로 설정함!
+        let backEml = 
+        cid == "email1"
+        ? eml2.val()
+        : seleml.val() != "free"
+        ? seleml.val()
+        : eml2.val();
+        // 현재 입력 아이디가 "email1"이면 직접입력창을 읽는다.
+        // 그리고 선택박스값이 "free"가 아닌 경우 선택값을 읽고
+        // 아니면 직접입력창 값을 뒷주소로 설정한다
 
         // 이메일 전체 주소 만들기
         let comp = eml1.val() + "@" + backEml;
+
         // 이메일 유효성 검사함수 호출하기
         resEml(comp);
 
-        console.log($(this).val());
+        // console.log($(this).val());
     }); ///////////////// keyup /////////////////
 
     /**************************************** 
@@ -294,7 +316,7 @@ export default function validateFn (){
         // 투명도 값 읽어오기
         let opa = $(e.target).css("opacity");
         
-        console.log(opa);
+        // console.log(opa);
         
         // 1. 글자 보이기 전환
         $("#mpw").attr("type",opa=="0.5"?"text":"password");
@@ -306,6 +328,45 @@ export default function validateFn (){
             opacity: opa=="0.5"?"1":"0.5",
         });
     });
+
+    /********************************************* 
+        가입하기(submit) 버튼 클릭시 처리하기 
+        __________________________________
+
+        - form요소 내부의 submit버튼을 클릭하면
+        기본적으로 form요소에 설정된 action속성값인
+        페이지로 전송된다! 전체 검사를 위해 이를 중지해야 함!
+        -> 중지 방법은? event.preventDefault()!!!
+
+        전체 검사의 원리 : 
+        전역변수 pass를 설정하여 true를 할당하고
+        검사중간에 불통과 사유발생시 false로 변경!
+        유효성 검사 통과여부를 판단한다!
+
+        검사 방법 :
+        기존 이벤트 blur 이벤트를 강제로 발생시킨다!
+        이벤트를 강제로 발생시키는 제이쿼리 메서드는?
+        ->>> trigger(이벤트명)
+
+    *********************************************/
+   // 통과여부 변수(true/false값)
+    let pass;
+
+    $("#btnj").click((e)=>{
+        // 1. 기본 이동(submit) 막기
+        e.preventDefault();
+
+        console.log("가입해!");
+
+        // 2. pass 통과여부 변수에 true 할당하기
+        pass = true;
+
+        // 3. 입력창에 blur 이벤트 강제발생하기
+        $(tgInput).trigger("bulr");
+
+        console.log("통과여부:",pass);
+    }); /////////// click ///////////
+    
 } ////////////// validateFn 함수 //////////////
 //////////////////////////////////////////////
     
