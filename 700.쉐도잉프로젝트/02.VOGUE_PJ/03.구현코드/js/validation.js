@@ -1,6 +1,8 @@
 // 회원가입 유효성 검사 JS
 
-export default function validateFn (){
+export default function validateFn (changeMenu){
+    // changeMenu - 상태변수 메서드 setMenu 전달
+
     console.log("검사해!");
 
     ///////////// 이메일 관련 대상선정 ////////////
@@ -39,7 +41,7 @@ export default function validateFn (){
         
         /****************************************** 
          2. 현재 블러가 발생한 요소의 값은?
-         ******************************************/
+        ******************************************/
         let cv = $(this).val();
         // val() -> 입력값 읽어오기
         // trim() -> 앞뒤 공백 제거
@@ -145,7 +147,6 @@ export default function validateFn (){
 
                 // 메시지 지우기
                 $(this).siblings(".msg").text("비밀번호가 일치하지 않습니다.")
-                .removeClass("on");
 
                 // [ 불통과 pass변수 업데이트 ]
                 pass = false;
@@ -365,6 +366,33 @@ export default function validateFn (){
         $(tgInput).trigger("bulr");
 
         console.log("통과여부:",pass);
+
+        // 4. 검사결과에 따라 메시지 보이기
+        if (pass) {
+          alert("회원가입을 축하드립니다! 짝짝짝!");
+          // 원래는 POST방식으로 DB에 회원가입 정보를
+          // 전송하여 입력후 DB처리 완료시 성공 메시지나
+          // 로그인 페이지로 넘겨준다!
+          // 그런데 개별 페이지가 아닌 리액트 SPA방식이므로
+          // 일반적인 페이지 이동이 불가함!
+          // 어떻게 하나?
+          // -> 리액트 페이지 변경에 사용하는 상태변수를
+          // 업데이트하여 페이지 이동을 해야 함!
+          changeMenu("login");
+          // 리액트 상태변수 변경시 관련 컴포넌트 모두 업데이트
+        
+          // 로그인 페이지로 리디렉션!
+          // location.href = 'login.html';
+        
+          // 민감한 입력 데이터 페이지가 다시 돌아와서
+          // 보이면 안 되기 때문에 히스토리를 지우는
+          // replace()로 이동한다!
+        //   location.replace("login.html");
+        } //////// if : 통과시 ///////////
+        else {
+          ///// 불통과시 //////
+          alert("입력을 수정하세요~!");
+        } //////// else : 불통과시 //////
     }); /////////// click ///////////
     
 } ////////////// validateFn 함수 //////////////

@@ -1,6 +1,13 @@
 // 보그 JS 로그인 컴포넌트
 
-export default function Login() {
+// 로그인 유효성 검사 JS 불러오기
+import validateLogin from "../valid_login";
+
+export default function Login({changeMenu}) {
+
+  // 페이지 랜더링 후 실행 구역
+  React.useEffect(()=>validateLogin(changeMenu),[]);
+
   // 코드 리턴 구역
   return (
     <div id="main-area">
@@ -16,7 +23,7 @@ export default function Login() {
             입력데이터를 전송하기 위한 요소 속성
             action - 전송할 처리페이지
             method - post : post방식 전달 설정
-                    get : get방식 전달 설정
+                      get : get방식 전달 설정
 
             (get방식:url로 키=값 쌍으로 데이터 전달)
             (post방식:페이지로 데이터를 전달하는 숨김 방식)
