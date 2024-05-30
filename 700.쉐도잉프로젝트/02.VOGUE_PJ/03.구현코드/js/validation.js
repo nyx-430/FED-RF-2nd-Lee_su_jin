@@ -68,7 +68,7 @@ export default function validateFn (){
             영문자로 시작하는 6~20글자 영문자/숫자
         ******************************************/
         else if(cid == "mid"){
-            // 검사결과
+            // 검사 결과
             // console.log(vRed(cv));
 
             if(!vReg(cv,cid)){ // 아이디 검사 불통과시
@@ -98,7 +98,21 @@ export default function validateFn (){
             특수문자,문자,숫자포함 형태의 5~15자리
         ******************************************/
         else if(cid == "mpw"){
-        
+            // 검사 결과
+            // console.log("비번:",vRed(cv,cid));
+
+            if(!vReg(cv,cid)){ // 아이디 검사 불통과시
+                // false 결과시 돌아와야 하므로 Not(!)연산자 사용
+
+                // 메시지 지우기
+                $(this).siblings(".msg")
+                .text("특수문자,문자,숫자포함 형태의 5~15자리");
+            } /// if ///
+            else{ // 맞으면 메시지 삭제
+                $(this).siblings(".msg").empty();
+                // empty() - 내용 지우기
+            } /// else ///
+
         } /// else if ///
 
         /****************************************** 
@@ -106,6 +120,18 @@ export default function validateFn (){
             - 검사기준: 비빌번호 항목과 일치 여부
         ******************************************/
         else if(cid == "mpw2"){
+
+            if(cv !=$("#mpw").val()){ // 아이디 검사 불통과시
+                // false 결과시 돌아와야 하므로 Not(!)연산자 사용
+
+                // 메시지 지우기
+                $(this).siblings(".msg").text("비밀번호가 일치하지 않습니다.")
+                .removeClass("on");
+            } /// if ///
+            else{ // 맞으면 메시지 삭제
+                $(this).siblings(".msg").empty();
+                // empty() - 내용 지우기
+            } /// else ///
     
         } /// else if ///
 
@@ -127,8 +153,33 @@ export default function validateFn (){
 
     }); /////////// blur 함수 ///////////
 
-
+    /**************************************** 
+     비밀번호 글자 보이기/숨기기 셋팅
+     ****************************************/
+    $(".eye")
+    .css({
+        textDecoration:"line-through",
+        opacity: 0.5,
+        cursor: "pointer",
+    })
+    .click(e=>{
+        // 투명도 값 읽어오기
+        let opa = $(e.target).css("opacity");
+        
+        console.log(opa);
+        
+        // 1. 글자 보이기 전환
+        $("#mpw").attr("type",opa=="0.5"?"text":"password");
+        
+        // 2. CSS 디자인 전환
+        $(e.target)
+        .css({
+            textDecoration:"0.5"?"none":"line-through",
+            opacity: opa=="0.5"?"1":"0.5",
+        });
+    });
 } ////////// validateFn 함수 //////////
+    
 
 /*//////////////////////////////////////////////////////
     함수명: vReg (validation with Regular Expression)

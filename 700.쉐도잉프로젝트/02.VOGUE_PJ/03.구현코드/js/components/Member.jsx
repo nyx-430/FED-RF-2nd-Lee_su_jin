@@ -46,7 +46,7 @@ export default function Member (){
                 <b className="eye">👁</b>
                 <span className="msg"></span>
               </li>
-              {/* <!-- 비밀번호확인 --> */}
+              {/* <!-- 비밀번호 확인 --> */}
               <li>
                 <label htmlFor="mpw2" className="itit">비밀번호 확인</label>
                 <input
