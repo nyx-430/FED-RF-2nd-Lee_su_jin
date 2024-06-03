@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import Main from "./components/pages/Main";
+import Charactor from "./components/pages/Charactor";
+import Comics from "./components/pages/Comics";
 
 /********************************************* 
     [ 리액트 라우터 ]
@@ -35,12 +39,20 @@ import { BrowserRouter, Routes } from "react-router-dom";
 export default function Maincomponent() {
   return (
     // 라우터 루트로 구성 시작
-    <browserRouter>
+    <BrowserRouter>
       <Routes>
-        {/* 중요!!! 레이아웃 컴포넌트를 루트로 설정! */}
-        <Route path="/" element={<Layout />} />
+        {/* 중요!!! 레이아웃 컴포넌트를 루트로 설정!
+        루트 Route는 홀로 닫지 말고 반드시 다른 하위 라우트를 감싸도록 한다!!! */}
+        <Route path="/" element={<Layout />}>
+          {/* 하위 라우트 셋팅
+          -> path 설정 대신 index 키워드를 쓰면 첫 페이지로 구성됨
+          -> MainArea 컴포넌트 <Outlet />에 출력된다! */}
+          <Route index element={<Main />} />
+          <Route path="charactor" element={<Charactor />} />
+          <Route path="comics" element={<Comics />} />
+        </Route>
       </Routes>
-    </browserRouter>
+    </BrowserRouter>
   );
 }
 
