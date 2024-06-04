@@ -33,7 +33,6 @@ import Comics from "./components/pages/Comics";
     2. Layout.jsx 레이아웃 컴포넌트를 루트로 선택
     3. 상단영역 GNB에 <Link to> 셋팅
     4. 메인영역에 <Outlet /> 셋팅
-    
 *********************************************/
 
 export default function Maincomponent() {
