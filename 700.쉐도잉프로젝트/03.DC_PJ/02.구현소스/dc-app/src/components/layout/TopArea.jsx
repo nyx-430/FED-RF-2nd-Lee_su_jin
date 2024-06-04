@@ -4,6 +4,10 @@
 import { Link } from "react-router-dom";
 import {menu} from "../data/gnb.js";
 
+// 상단영역 CSS 불러오기
+import "../../css/top_area.scss";
+import Logo from "../modules/Logo.jsx";
+
 export default function TopArea (){
     // 코드 리턴 구역 ////////////
     return (
@@ -16,7 +20,7 @@ export default function TopArea (){
                 <ul>
                   {/* 1. 로고 컴포넌트 */}
                   <li>
-
+                    <Logo />
                   </li>
                   {/* 2. GNB메뉴  */}
                   {menu.map((v,i)=>

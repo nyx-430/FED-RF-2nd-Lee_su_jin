@@ -4,6 +4,7 @@ import MainArea from "./MainArea";
 import TopArea from "./TopArea";
 import FooterArea from "./FooterArea";
 
+
 export default function Layout (){
     // 코드 리턴 구역 ////////////
     return (
