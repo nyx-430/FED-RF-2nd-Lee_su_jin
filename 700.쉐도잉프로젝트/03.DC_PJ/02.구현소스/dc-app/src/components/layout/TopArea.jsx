@@ -20,7 +20,7 @@ export default function TopArea (){
                 <ul>
                   {/* 1. 로고 컴포넌트 */}
                   <li>
-                    <Logo />
+                    <Logo logoStyle="top" />
                   </li>
                   {/* 2. GNB메뉴  */}
                   {menu.map((v,i)=>

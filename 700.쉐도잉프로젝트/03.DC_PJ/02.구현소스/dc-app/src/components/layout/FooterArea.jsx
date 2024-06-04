@@ -2,6 +2,9 @@
 
 import Logo from "../modules/Logo";
 
+// 하단영역 CSS 불러오기
+import "../../css/footer_area.scss";
+
 export default function FooterArea() {
   // 코드 리턴 구역 ////////////
   return (
