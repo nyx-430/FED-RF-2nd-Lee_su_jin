@@ -7,7 +7,7 @@ export default function Main (){
     return (
         <>
             {/* 배너 컴포넌트 */}
-            <Banner catName={"CHARACTERS"} />
+            <Banner catName={"main1"} />
         </>
     );
 } ////////////// Main //////////////
