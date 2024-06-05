@@ -20,18 +20,17 @@ export default function FooterArea() {
         <li>
           {/* 하단 링크박스 */}
           <ol className="bmenu">
-            {
-                bmData.map((v,i)=>
-                <li key={i}>
-                    <a href={v.link} target="_blank">
-                        {
-                        v.txt.toUpperCase()
-                        // toUpperCase() 대문자 변환
-                        // toLowerCase() 소문자 변환
-                        }
-                    </a>
-                </li>)
-            }
+            {bmData.map((v, i) => (
+              <li key={i}>
+                <a href={v.link} target="_blank">
+                  {
+                    v.txt.toUpperCase()
+                    // toUpperCase() 대문자변환
+                    // toLowerCase() 소문자변환
+                  }
+                </a>
+              </li>
+            ))}
           </ol>
         </li>
         <li>© & ™ DC. ALL RIGHTS RESERVED</li>

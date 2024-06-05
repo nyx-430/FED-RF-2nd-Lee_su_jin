@@ -1,20 +1,21 @@
-// 상단영역 컴포넌트
+// 상단영역 컴포넌트 ///
 
 // GNB 데이터 불러오기
 import { Link } from "react-router-dom";
-import { menu } from "../data/gnb.js";
+import { menu } from "../data/gnb";
 
 // 상단영역 CSS 불러오기
 import "../../css/top_area.scss";
-import Logo from "../modules/Logo.jsx";
+import Logo from "../modules/Logo";
 
 export default function TopArea() {
-  // 코드 리턴 구역 ////////////
+  //// 코드 리턴구역 //////////////
   return (
     <>
       {/* 1.상단영역 */}
       <header className="top-area">
         {/* 로그인 환영메시지 박스 */}
+
         {/* 네비게이션 GNB파트 */}
         <nav className="gnb">
           <ul>
@@ -48,7 +49,6 @@ export default function TopArea() {
                     </div>
                   )
                 }
-                <Link to={v.link}>{v.txt}</Link>
               </li>
             ))}
           </ul>
@@ -56,4 +56,4 @@ export default function TopArea() {
       </header>
     </>
   );
-} ////////////// TopArea //////////////
+} /////////// TopArea /////////////////////

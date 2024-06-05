@@ -2,7 +2,7 @@
 
 export const menu = [
     {
-        txt:"Home",
+        txt:"HOME",
         link:"/",
     },
     {
