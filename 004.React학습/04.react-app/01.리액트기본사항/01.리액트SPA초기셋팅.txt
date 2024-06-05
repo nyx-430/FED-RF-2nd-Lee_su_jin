@@ -48,7 +48,7 @@ ______________________________________________
 
 (참고사항)
 
-[ NPX (Node Package eXecute)란?]
+[ NPX (Node Package eXecute)란? ]
 
 ((개요))
 npx는 bin 형태로 배포되는 npm 패키지를 위한 툴
