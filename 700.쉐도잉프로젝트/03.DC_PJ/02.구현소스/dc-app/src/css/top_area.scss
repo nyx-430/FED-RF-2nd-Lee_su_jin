@@ -10,7 +10,7 @@
   background-color: #fff;
   font-family: "Ubuntu Condensed", sans-serif;
 }
-/* 로그인 환영 메시지 박스 */
+/* 로그인 환영메시지 박스 */
 .logmsg {
   position: absolute;
   left: 50%;
@@ -28,7 +28,7 @@
   gap: 0 20px;
 }
 .gnb > ul > li {
-  /* 상위 메뉴 부모자격 */
+  /* 상위메뉴 부모자격 */
   position: relative;
   line-height: 58px;
 }
@@ -42,7 +42,7 @@
   color: #007aff;
 }
 
-/* 서브 메뉴 */
+/* 서브메뉴 */
 .smenu {
   position: absolute;
   left: 50%;
@@ -52,19 +52,19 @@
   border-radius: 10px;
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.503));
   /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.503); 
-    -> 일반 박스 그림자를 주면 가상요소에는 그림자 안 생김
-    filter의 드롭쉐도우를 사용하면 전체 구성요소를 통합한
+    -> 일반박스 그림자를 주면 가상요소에는 그림자 안생김
+    filter의 드롭쉐도우를 사용하면 전체구성요소를 통합한
     그림자가 생성된다!!! */
   white-space: nowrap;
   line-height: 2.5;
-  /* 처음에 안 보임 */
+  /* 처음에 안보임 */
   display: none;
 }
-/* 오버시 보임 */
+/* 오버시보임 */
 .gnb > ul > li:hover .smenu {
   display: block;
 }
-/* 삼각형 모양 디자인 */
+/* 삼각형모양 디자인 */
 .smenu::after {
   content: "";
   position: absolute;
@@ -95,7 +95,7 @@ h1 {
   background-color: #efefef;
   box-sizing: border-box;
   padding: 0 5px;
-  display: none; /* 처음에 안 보임! */
+  display: none; /* 처음에 안보임! */
 }
 .searchingGnb input {
   font-size: 15px;
@@ -114,7 +114,7 @@ input:focus {
   margin-left: 10px;
 }
 
-/* 메인 영역 */
+/* 메인영역 */
 
 
 

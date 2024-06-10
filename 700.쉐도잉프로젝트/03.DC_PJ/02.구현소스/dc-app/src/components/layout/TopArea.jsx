@@ -21,7 +21,9 @@ export default function TopArea() {
           <ul>
             {/* 1. 로고 컴포넌트 */}
             <li>
-              <Logo logoStyle="top" />
+              <Link to="/">
+                <Logo logoStyle="top" />
+              </Link>
             </li>
             {/* 2. GNB메뉴 데이터 배열로 만들기 */}
             {menu.map((v, i) => (
@@ -36,7 +38,7 @@ export default function TopArea() {
                   )
                 }
                 {
-                  // 서브 메뉴 데이터가 있으면 하위 그리기
+                  // 서브 메뉴 데이터가 있으면 하위그리기
                   v.sub && (
                     <div className="smenu">
                       <ol>

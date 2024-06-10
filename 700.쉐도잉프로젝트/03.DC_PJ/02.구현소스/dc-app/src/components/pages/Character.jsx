@@ -1,15 +1,15 @@
-// 시리즈 페이지 컴포넌트 ///
+// 캐릭터 페이지 컴포넌트 ///
 
 import Banner from "../modules/Banner";
 
-export default function Series(){
+export default function Character(){
 
     //// 코드 리턴구역 //////////////
     return(
         <>
            {/* 1. 배너 컴포넌트 */}
-           <Banner catName="SERIES" />
+           <Banner catName="CHARACTERS" />
         </>
     );
 
-} /////////// Series /////////////////////
+} /////////// Character /////////////////////

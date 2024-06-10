@@ -1,24 +1,24 @@
-// 하단영역 컴포넌트
+// 하단영역 컴포넌트 ///
 
 import Logo from "../modules/Logo";
 
-// 하단 메뉴 데이터 불러오기
+// 하단메뉴 데이터 불러오기
 import { bmData } from "../data/bmenu";
 
 // 하단영역 CSS 불러오기
 import "../../css/footer_area.scss";
 
 export default function FooterArea() {
-  // 코드 리턴 구역 ////////////
+  //// 코드 리턴구역 //////////////
   return (
     <footer className="info">
       <ul>
-        {/* 하단 로고 컴포넌트 넣기 */}
+        {/* 하단로고 컴포넌트 넣기 */}
         <li>
           <Logo logoStyle="bottom" />
         </li>
         <li>
-          {/* 하단 링크박스 */}
+          {/* 하단링크박스 */}
           <ol className="bmenu">
             {bmData.map((v, i) => (
               <li key={i}>
@@ -37,4 +37,4 @@ export default function FooterArea() {
       </ul>
     </footer>
   );
-} ////////////// FooterArea //////////////
+} /////////// FooterArea /////////////////////
