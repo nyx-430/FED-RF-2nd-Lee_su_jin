@@ -28,7 +28,7 @@ export default function TopArea({ changeMenu }) {
 
   }; ////////// chgMenuFn 함수 /////////
 
-  // 코드 리턴구역 /////
+  // 코드 리턴 구역 /////
   return (
     <div id="top-area">
       <header className="top-area ibx common-area">

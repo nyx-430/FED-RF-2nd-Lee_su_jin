@@ -1,6 +1,6 @@
 // 보그 JS 메인 페이지 SCSS
 
-// 공통 부분파일 불러오기
+// 공통 부분 파일 불러오기
 // 부분 사스파일도 언더바를 생략하여 부를 수 있다
 // 확장자가 scss/sass 가 기본이므로 생략함!
 @import "./common/reset";
@@ -77,3 +77,6 @@
       translate: 0 0;
     }
 }
+
+// 메인 페이지 미디어쿼리 풀러오기
+@import "../css/media/main-media"
