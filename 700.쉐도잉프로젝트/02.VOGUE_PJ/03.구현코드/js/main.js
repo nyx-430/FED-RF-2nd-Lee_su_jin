@@ -14,8 +14,7 @@ import Gallery from "./components/Gallery";
 import Login from "./components/Login";
 // 회원가입 모듈 불러오기
 import Member from "./components/Member";
-// 부드러운 스크롤 불러오기
-import {scrolled, setPos} from "./smoothScroll24";
+
 
 // [1] 메인 페이지 전체 레이아웃 로딩 컴포넌트 ///
 function Layout() {
@@ -43,61 +42,9 @@ function Layout() {
     // menu값이 "member"인 경우 member.css를 로딩하고
     // 기타 메뉴인 경우 items.css를 로딩한다!
 
-    // 페이지 최상단이동코드
+    // 페이지 최상단 이동코드
     window.scrollTo(0, 0);
 
-    ////////////////////////////////////////////////////////
-    // [ 이벤트의 해제는 removeEventListener()를 사용한다!!! ]
-    // 부드러운 스크롤은 "home"에서만 적용함!
-    if (menu == "home")
-      document.addEventListener("wheel", scrolled, { passive: false });
-    // "home"이 아닌경우는 모두 이벤트를 해재한다!
-    else document.removeEventListener("wheel", scrolled, { passive: false });
-    /////////////////////////////////////////////////////////
-
-    // 슬림 적용 대상: #top-area
-    const topMenu = document.querySelector("#top-area");
-
-    // 상단 이동 버튼 대상: .tbtn
-    const tbtn = document.querySelector(".tbtn");
-    // 상단 이동 기능
-    tbtn.onclick = (e) => {
-      // 기본 이동 막기
-      e.preventDefault();
-      // 상단 이동하기 : 부드러운 스크롤 위치값 업데이트
-      setPos(0);
-      // 위치값 이동하기
-      window.scrollTo(0, 0);
-    }; ////// click //////
-
-    // 슬림 메뉴 적용하기 : "home"에서만 적용
-    const chkSlim = () => {
-      console.log("현재 메뉴:",menu);
-      if(menu == "home"){
-        // 스크롤 위치값 구하기
-        let scTop = window.scrollY;
-
-        // 슬림 메뉴 적용
-        if (scTop > 200) topMenu.classList.add("on");
-        else topMenu.classList.remove("on");
-  
-        // 상단 이동 버튼 적용
-        if (scTop > 300) tbtn.classList.add("on");
-        else tbtn.classList.remove("on");
-      } // 메뉴 "home"일 때만 적용 //////
-
-    }; //////// chkSlim 함수 /////////
-
-    // 스크롤 이벤트 적용하기 : scroll이벤트
-    // "home"에서만 적용하기
-    if (menu == "home") {
-      setPos(0);
-      window.addEventListener("scroll", chkSlim);
-    } /// if ///
-    else {
-      setPos(0);
-      window.removeEventListener("scroll", chkSlim);
-    } /// else ///
   }, [menu]);
 
   // 코드 리턴 구역 ////////////
