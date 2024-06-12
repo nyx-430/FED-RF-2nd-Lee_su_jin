@@ -11,7 +11,7 @@ export default function Games(){
            {/* 1. 배너 컴포넌트 */}
            <Banner catName="GAMES" />
 
-           {/* 2. 비디오 소개 컴포넌트 */}
+           {/* 2. 비디오소개 컴포넌트 */}
            <VidIntro catName="GAMES" clsName="on" />
         </>
     );

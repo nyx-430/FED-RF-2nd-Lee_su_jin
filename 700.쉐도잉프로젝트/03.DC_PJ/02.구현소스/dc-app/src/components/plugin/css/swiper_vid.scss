@@ -1,5 +1,4 @@
-/* 스와이퍼 플러그인 CSS */
-
+/* SwiperVid 플러그인 CSS - swiper_vid.css */
 #app {
   height: 100%;
 }
@@ -99,13 +98,13 @@
 
 /* 기존 화살표 디자인 크기변경 */
 .swiper-button-prev::after,
-.swiper-button-next::after{
-    font-size: 25px;
+.swiper-button-next::after {
+  font-size: 25px;
 }
 /* 오버시 화살표색 변경 */
 .swiper-button-prev:hover::after,
-.swiper-button-next:hover::after{
-    color: #000;
+.swiper-button-next:hover::after {
+  color: #000;
 }
 
 @media screen and (max-width: 1200px) {
@@ -121,7 +120,7 @@
     width: 90vw;
   }
   /* 버튼위치 */
-  .play-vid button.cbtn{
+  .play-vid button.cbtn {
     top: -150px;
     right: 0;
   }

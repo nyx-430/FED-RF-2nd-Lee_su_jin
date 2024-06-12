@@ -1,17 +1,16 @@
-// 비디오 소개 컴포넌트용 데이터 - vid_intro.js
-
+// 비디오소개 컴포넌트용 데이터 - vid_intro.js
 /********************************************** 
     {
-        "vsrc":"유튜브 동영상 경로",
-        "stit":"작은 타이틀",
-        "btit":"큰 타이틀",
-        "sum":"요약 소개",
+        "vsrc":"유튜브동영상경로",
+        "stit":"작은타이틀",
+        "btit":"큰타이틀",
+        "sum":"요약소개",
         "desc":"설명",
-        "link":"관련 링크",
+        "link":"관련링크",
     }
     
-    [ 데이터 조건 ]
-    link 속성 값 셋팅시 하나의 링크만 셋팅할 것!
+    [ 데이터조건 ]
+    link 속성 값 셋팅시 하나의 링크만 셋팅할것!
     링크가 있을 경우 sum 또는 desc 속성값에
     단 하나의 *표시만 어디든지 넣는다!
 **********************************************/
@@ -22,9 +21,9 @@ export const vidIntroData = {
     stit: "FEATURED VIDEO",
     btit: "THE FLASH - FINAL TRAILER",
     sum: "Are YOU ready? THE FLASH - Only in Theaters June 16.",
-    /* 링크 삽입 부분을 특수문자(*)로 자리 표시 */
+    /* 링크삽입부분을 특수문자(*)로 자리표시 */
     desc: "Advance tickets available now! * hub for tickets and showtimes!",
-    /* 실제 링크 정보 : 배열[링크글자,링크주소] */
+    /* 실제링크 정보 : 배열[링크글자,링크주소] */
     link: ["Visit our official Flash", "https://www.dc.com/theflash"],
   },
   COMICS: {

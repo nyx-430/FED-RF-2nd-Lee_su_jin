@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import Main from "./components/pages/Main";
-import Comics from "./components/pages/Comics";
 import Character from "./components/pages/Character";
 import Movies from "./components/pages/Movies";
 import Series from "./components/pages/Series";
 import Video from "./components/pages/Video";
 import Games from "./components/pages/Games";
 import News from "./components/pages/News";
+import Main from "./components/pages/Main";
+import Comics from "./components/pages/Comics";
 import Board from "./components/pages/Board";
 
 // 전체 공통 CSS 불러오기
@@ -44,24 +44,24 @@ import "../src/css/index.scss";
     4. 메인영역에 <Outlet /> 셋팅
     5. 라우터 연결흐름:
       (1) Route 의 path 정보셋팅
-      (2) Link to 정보 클릭시 1번정보와 대조
-      (3) 1번정보 일치시 element에 등록된 컴포넌트로딩
+      (2) Link to 정보 클릭시 1번 정보와 대조
+      (3) 1번정보 일치시 element에 등록된 컴포넌트 로딩
       (4) Outlet 표시 컴포넌트에 삽입
     
 *********************************************/
 
 export default function MainComponent() {
   return (
-    // 라우터 루트로 라우터 구성시작
+    // 라우터 루트로 라우터 구성 시작
     <BrowserRouter>
       <Routes>
         {/* 중요!!! 레이아웃 컴포넌트를 루트로 설정!
-        루트 Route 는 홀로닫지말고 반드시 다른
-        하위 라우트를 감싸도록한다!!! */}
+        루트 Route 는 홀로 닫지 말고 반드시 다른
+        하위 라우트를 감싸도록 한다!!! */}
         <Route path="/" element={<Layout />}>
           {/* 하위 라우트 셋팅 
         -> path설정대신 index키워드를 쓰면 
-        첫페이지로 구성됨 -> MainArea 컴포넌트 <Outlet/>에
+        첫 페이지로 구성됨 -> MainArea 컴포넌트 <Outlet/>에
         출력된다!*/}
           <Route index element={<Main />} />
           <Route path="character" element={<Character />} />

@@ -28,20 +28,19 @@ function VidSwipe({catName}) {
         {/* 1. 모듈타이틀 */}
         <h2 className="tit">{catTit[catName]}</h2>
         {/* 2. 스와이퍼 컴포넌트 : SwiperVid
-        -> 전달속성 cat은 데이터 선택을 위한값 */}
+        -> 전달속성 cat은 데이터 선택을 위한 값 */}
         <SwiperVid catName="main" />
         {/* 3. 비디오 재생창 */}
         <section className="vid-bx">
           {/* 비디오 중앙박스 */}
           <div className="play-vid">
-            {/* 비디오 타이틀 */}
+            {/* 비디오타이틀 */}
             <h2 className="ifr-tit"></h2>
             {/* 아이프레임 */}
             <iframe src="" allow="autoplay"></iframe>
             {/* 닫기버튼 */}
             <button className="cbtn">×</button>
           </div>
-
         </section>
       </section>
     </>

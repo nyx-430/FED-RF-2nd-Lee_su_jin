@@ -1,10 +1,10 @@
-/* 비디오 소개 모듈용 CSS - vid_intro.css */
+/* 비디오소개모듈용 CSS - vid_intro.css */
 
-/* 전체 박스 */
+/* 전체박스 */
 .vidbox {
   position: relative;
   /* margin-top: 30px; */
-
+  /* 속박스 */
   > div {
     max-width: 1320px;
     margin: 0 auto;
@@ -12,9 +12,8 @@
     display: flex;
   }
 }
-/* 속 박스 */
 
-/* 클래스 "on" 적용시 배경색, 글자색 변경 적용 */
+/* 클래스 "on" 적용시 배경색,글자색 변경적용 */
 .vidbox.on {
   background-color: #0074e8;
   color: #fff;
@@ -23,7 +22,7 @@
   color: #fff;
 }
 
-/* 비디오 파트 박스 */
+/* 비디오파트 박스 */
 .vb1 {
   width: 55%;
   aspect-ratio: 4/3;
