@@ -127,12 +127,22 @@ function App() {
 // 리랜더링 되지 않도록 하는 방법은?
 // -> React.memo(()=>{})
 // ((주의사항!)) 컴포넌트가 할당형으로 만들어져야 함!
-const ShowTit = ({txt}) => {
+const ShowTit = React.memo(({txt}) => {
     console.log("ShowTit 컴포넌트 랜더링");
-    
+
     return <h1 style={{fontSize: "45px"}}>
         ⚽{txt}⚽</h1>;
-}; //////////// ShowTit 컴포넌트 ////////////
+}); //////////// ShowTit 컴포넌트 ////////////
+
+/*********************************************** 
+    [ 함수형 컴포넌트의 2가지 유형 ]
+
+    1. 선언적 함수형 컴포넌트
+    function 컴포넌트명(){return();}
+
+    2. 화살표 함수형 컴포넌트 (익명함수할당형)
+    const 컴포넌트명 = () => {return();};
+*************************************************/
 
 // 리액트 루트객체 생성
 const root = ReactDOM.createRoot(document.getElementById("root"));
