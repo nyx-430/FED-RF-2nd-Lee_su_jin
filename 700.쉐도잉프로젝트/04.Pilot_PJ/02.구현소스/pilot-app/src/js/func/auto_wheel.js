@@ -153,7 +153,7 @@ const addOn = () => {
     기능 : 등장요소 처음상태 셋팅
   ***************************************/
 function initSet() {
-  // 1. 초기화하기
+  // 1. 초기화 하기
 
   // 대상: 이미지 - .imgc
   $(".imgc").css({
@@ -175,10 +175,10 @@ function initSet() {
 
 /***************************************** 
   함수명: actPage
-  기능: 페이지 도착후 등장 애니메이션
+  기능: 페이지 도착 후 등장 애니메이션
  *****************************************/
 function actPage() {
-  console.log("액숀~!!!", pno);
+  // console.log("액숀~!!!", pno);
 
   // pno가 0 또는 4가 아니면 작동!
   if (pno != 0 || pno != 4) {
@@ -189,7 +189,7 @@ function actPage() {
     }); ///////// css /////////
   } ///////// if //////////////
 
-  // 첫페이지일때 등장요소 초기화!
+  // 첫 페이지일 때 등장요소 초기화!
   if (pno == 0) initSet();
 } ///////// actPage 함수 //////////////////
 
@@ -203,14 +203,14 @@ function evtFn() {
     let idx = $(this).index();
     // console.log('나야나~!',idx);
 
-    // 2. 순번을 페이지번호에 할당(일치시킴!)
+    // 2. 순번을 페이지 번호에 할당(일치시킴!)
     pno = idx;
 
     // 3. 페이지 이동
     movePg();
   }); ///// click //////////
 
-  // 키보드 이벤트발생시 업데이트
+  // 키보드 이벤트 발생시 업데이트
   // 1. Page Up(33) / Up Arrow (38)
   // 2. Page Down(34) / Down Arrow (40)
   $(document).keydown((e) => {
@@ -218,13 +218,13 @@ function evtFn() {
     if (prot[0]) return;
     chkCrazy(0);
 
-    // 이전페이지이동
+    // 이전 페이지 이동
     if (e.keyCode === 33 || e.keyCode === 38) {
       pno--;
       if (pno === -1) pno = 0;
       movePg();
     }
-    // 다음페이지이동
+    // 다음 페이지 이동
     else if (e.keyCode === 34 || e.keyCode === 40) {
       pno++;
       if (pno === pgcnt) pno = pgcnt - 1;
@@ -232,7 +232,7 @@ function evtFn() {
     }
   }); ///////////// keydown ////////////////
 
-  // 메인 페이지 상단로고 클릭시 맨위로 이동하기!
+  // 메인 페이지 상단 로고 클릭시 맨위로 이동하기!
   $("#logo a").click((e) => {
     e.preventDefault();
     pno = 0;
