@@ -12,6 +12,10 @@ function MainCont (props){
   useEffect(()=>{
     console.log("useEffect");
 
+    // document / body / window 이 세가지는
+    // 이벤트를 등록하고 삭제할 수 있도록 여기서 이벤트를 걸어준다!
+    window.addEventListener("wheel",wFn,wFn.wheelFn);
+
   },[]);
   // useLayoutEffect(()=>{
   //   console.log("useLayoutEffect");
