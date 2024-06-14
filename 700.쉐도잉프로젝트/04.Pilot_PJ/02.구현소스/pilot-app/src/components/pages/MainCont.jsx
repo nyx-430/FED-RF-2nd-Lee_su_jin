@@ -1,7 +1,10 @@
 // 메인페이지 컨텐츠 컴포넌트 - MainCont.jsx
 
 import React, { useEffect, useLayoutEffect } from "react";
+
+// 모듈 불러오기
 import Banner from "../modules/Banner";
+import FashionIntro from "../modules/FashionIntro";
 
 // 자동휠 함수 불러오기
 import * as wFn from "../../js/func/auto_wheel";
@@ -14,9 +17,17 @@ function MainCont (props){
 
     // document / body / window 이 세가지는
     // 이벤트를 등록하고 삭제할 수 있도록 여기서 이벤트를 걸어준다!
-    window.addEventListener("wheel",wFn,wFn.wheelFn);
+    window.addEventListener("wheel",wFn.wheelFn);
 
-  },[]);
+    // 메뉴+인디케이터 이벤트 기능설정함수 호출
+    wFn.evtFn();
+
+    // 컴포넌트 소멸시 이벤트 삭제하기
+    return (()=>{
+      console.log("메인 소멸");
+    });
+
+  },[]); //////////// useEffect ////////////
   // useLayoutEffect(()=>{
   //   console.log("useLayoutEffect");
   // },[]);
@@ -33,7 +44,9 @@ function MainCont (props){
         <Banner />
       </section>
       {/* 2. 남성패션 영역 */}
-      <section className="page"></section>
+      <section className="page">
+        <FashionIntro />
+      </section>
 
       {/* 3. 여성패션 영역 */}
       <section className="page"></section>
