@@ -8,6 +8,10 @@ import { menu } from "../data/gnb";
 import "../../css/top_area.scss";
 import Logo from "../modules/Logo";
 
+// 폰트어썸 아이콘
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 export default function TopArea() {
   // 이동 함수
   const goNav = useNavigate();
@@ -35,11 +39,15 @@ export default function TopArea() {
           <ul>
             {/* 1. 로고 컴포넌트 */}
             <li>
-              <a href="#" onClick={(e) => {
-                // 기본 이동 막기
-                e.preventDefault();
-                // 페이지 라우터 이동 메서드 호출
-                goNav("/")}}>
+              <a
+                href="#"
+                onClick={(e) => {
+                  // 기본 이동 막기
+                  e.preventDefault();
+                  // 페이지 라우터 이동 메서드 호출
+                  goNav("/");
+                }}
+              >
                 <Logo logoStyle="top" />
               </a>
               {/* <Link to="/">
@@ -74,6 +82,30 @@ export default function TopArea() {
                 }
               </li>
             ))}
+            {/* 3. 검색, 회원가입, 로그인 링크 */}
+            <li
+              style={{
+                marginLeft: "auto",
+                marginRight: "25px",
+              }}
+            >
+              {/* 검색 입력 박스 */}
+              <div className="searchingGnb"
+              style={{display: "block"}}>
+                {/* 검색 버튼 돋보기 아이콘 */}
+                <FontAwesomeIcon 
+                icon={faSearch}
+                className="schbtnGnb"
+                title="Open search" />
+                {/* 입력창 */}
+                <input 
+                type="text" 
+                name="schinGnb" 
+                id="schinGnb"
+                placeholder="Filter by Keyword"
+                />
+              </div>
+            </li>
           </ul>
         </nav>
       </header>

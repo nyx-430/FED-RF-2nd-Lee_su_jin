@@ -12,6 +12,7 @@ import Main from "./components/pages/Main";
 import Comics from "./components/pages/Comics";
 import Board from "./components/pages/Board";
 import CatDetail from "./components/pages/CatDetail";
+import SearchPage from "./components/pages/SearchPage";
 
 // 전체 공통 CSS 불러오기
 import "../src/css/index.scss";
@@ -57,13 +58,12 @@ export default function MainComponent() {
     <BrowserRouter>
       <Routes>
         {/* 중요!!! 레이아웃 컴포넌트를 루트로 설정!
-        루트 Route 는 홀로닫지말고 반드시 다른
-        하위 라우트를 감싸도록한다!!! */}
+        루트 Route 는 홀로 닫지 말고 반드시 다른
+        하위 라우트를 감싸도록 한다!!! */}
         <Route path="/" element={<Layout />}>
           {/* 하위 라우트 셋팅 
-        -> path설정대신 index키워드를 쓰면 
-        첫페이지로 구성됨 -> MainArea 컴포넌트 <Outlet/>에
-        출력된다!*/}
+        -> path 설정 대신 index키워드를 쓰면 첫 페이지로 구성됨
+        -> MainArea 컴포넌트 <Outlet/>에 출력된다!*/}
           <Route index element={<Main />} />
           <Route path="character" element={<Character />} />
           <Route path="comics" element={<Comics />} />
@@ -74,6 +74,7 @@ export default function MainComponent() {
           <Route path="news" element={<News />} />
           <Route path="board" element={<Board />} />
           <Route path="detail" element={<CatDetail />} />
+          <Route path="search" element={<SearchPage />} />
         </Route>
         {/* Layout 루트 Route로 하위 Route를 감싼다! */}
       </Routes>
