@@ -90,19 +90,19 @@ export default function TopArea() {
               }}
             >
               {/* 검색 입력 박스 */}
-              <div className="searchingGnb"
-              style={{display: "block"}}>
+              <div className="searchingGnb" style={{ display: "block" }}>
                 {/* 검색 버튼 돋보기 아이콘 */}
-                <FontAwesomeIcon 
-                icon={faSearch}
-                className="schbtnGnb"
-                title="Open search" />
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className="schbtnGnb"
+                  title="Open search"
+                />
                 {/* 입력창 */}
-                <input 
-                type="text" 
-                name="schinGnb" 
-                id="schinGnb"
-                placeholder="Filter by Keyword"
+                <input
+                  type="text"
+                  name="schinGnb"
+                  id="schinGnb"
+                  placeholder="Filter by Keyword"
                 />
               </div>
             </li>
