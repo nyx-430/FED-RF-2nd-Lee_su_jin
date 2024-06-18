@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>07.리액트 조건 렌더링</title>
+    <title>04.콜백 : useCallback</title>
+
+    <!-- 제이쿼리 라이브러리 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- 제이쿼리 UI CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 
     <!-- 1.리액트 기본 라이브러리 -->
     <script
@@ -15,32 +21,18 @@
       src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
       crossorigin
     ></script>
+
     <!-- 3.리액트 바벨 라이브러리 -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-    <!-- 4. 모듈화 JS 호출 -->
-    <!-- 나의 함수 -->
+    <!-- 메인 JSX 호출 -->
     <script
-      src="./js/my_function.js"
-      data-plugins="transform-es2015-modules-umd"
-      type="text/babel"
-    ></script>
-
-    <!-- 리액트 조건렌더링 JSX 호출 -->
-    <script
-      src="./js/07.조건렌더링.jsx"
+      src="./js/04.콜백.jsx"
       data-plugins="transform-es2015-modules-umd"
       type="text/babel"
     ></script>
   </head>
   <body>
-    <!-- 리액트 출력요소 -->
-    <div class="root"></div>
-    <div class="root"></div>
-    <div class="root"></div>
-    <div class="root"></div>
-    <div class="root"></div>
-    <div class="root"></div>
-    <div class="root"></div>
+    <div id="root"></div>
   </body>
 </html>

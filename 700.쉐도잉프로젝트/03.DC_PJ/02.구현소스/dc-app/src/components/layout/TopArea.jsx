@@ -4,6 +4,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { menu } from "../data/gnb";
 
+// 제이쿼리
+import $ from "jquery";
+
 // 상단영역 CSS 불러오기
 import "../../css/top_area.scss";
 import Logo from "../modules/Logo";
@@ -27,10 +30,55 @@ export default function TopArea() {
   // 슬래쉬(/) 없어도 루트로 인식함
   // -> 빈값이면 루트로 이동함!
 
+  // 검색 관련 함수들 /////////////
+  // 1. 검색창 보이기 함수
+  const showSearch = (e)=>{
+    // 기본 기능 막기
+    e.preventDefault();
+
+    // 1. 검색창 보이기
+    $(".searchingGnb").show();
+    // show() display를 보이게 하는 메서드
+
+    // 2. 입력창에 포커스
+    $("#schinGnb").focus();
+
+    
+  }; ///////// showSearch 함수 /////////
+
+  // 2. 검색창에 엔터키 누르면 검색 함수 호출
+  const enterKey = e => {
+    // console.log(e.key,e.keyCode);
+    // e.keyCode는 숫자, e.key문자로 리턴함
+
+    if(e.key=="Enter"){
+      // 입력창의 입력값 읽어오기 : val() 사용
+      let txt = $(e.target).val().trim();
+      console.log(txt);
+
+      // 빈값이 아니면 검색 함수 호출 (검색어 전달!)
+      if(txt!=''){
+        // 입력창 비우고 부모박스 닫기
+
+        // 검색 보내기
+        goSearch();
+      } /// if ///
+    } /// if ///
+
+  }; ///////// showSearch 함수 /////////
+
+  // 3. 검색 페이지로 검색어와 함께 이동하기 함수
+  const goSearch = txt => {
+    console.log("나는 검색하러 간다규~!");
+    // 라우터 이동 함수로 이동하기
+    // 네비게이트메서드("라우터 주소",{state:{보낼 객체}})
+    goNav("search",{state:{keyword:txt}})
+  }; ///////// goSearch 함수 /////////
+
   // 코드 리턴 구역 //////////////
   return (
     <>
-      {/* 1.상단영역 */}
+      {/* 1. 상단영역 */}
       <header className="top-area">
         {/* 로그인 환영메시지 박스 */}
 
@@ -103,8 +151,13 @@ export default function TopArea() {
                   name="schinGnb"
                   id="schinGnb"
                   placeholder="Filter by Keyword"
+                  onKeyUp={enterKey}
                 />
               </div>
+              {/* 검색 기능 링크 - 클릭시 검색창 보이기 */}
+              <a href="#" onClick={showSearch}>
+                <FontAwesomeIcon icon={faSearch} />
+              </a>
             </li>
           </ul>
         </nav>
