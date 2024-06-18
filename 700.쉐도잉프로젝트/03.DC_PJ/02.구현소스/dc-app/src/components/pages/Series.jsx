@@ -12,4 +12,4 @@ export default function Series(){
         </>
     );
 
-} /////////// Series /////////////////////
+} /////////// Series ///////////
