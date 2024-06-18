@@ -42,8 +42,6 @@ export default function TopArea() {
 
     // 2. 입력창에 포커스
     $("#schinGnb").focus();
-
-    
   }; ///////// showSearch 함수 /////////
 
   // 2. 검색창에 엔터키 누르면 검색 함수 호출
@@ -59,9 +57,10 @@ export default function TopArea() {
       // 빈값이 아니면 검색 함수 호출 (검색어 전달!)
       if(txt!=''){
         // 입력창 비우고 부모박스 닫기
+        $(e.target).val("").parents().hide();
 
         // 검색 보내기
-        goSearch();
+        goSearch(txt);
       } /// if ///
     } /// if ///
 
@@ -93,7 +92,7 @@ export default function TopArea() {
                   // 기본 이동 막기
                   e.preventDefault();
                   // 페이지 라우터 이동 메서드 호출
-                  goNav("/");
+                  goNav("");
                 }}
               >
                 <Logo logoStyle="top" />
@@ -138,7 +137,7 @@ export default function TopArea() {
               }}
             >
               {/* 검색 입력 박스 */}
-              <div className="searchingGnb" style={{ display: "block" }}>
+              <div className="searchingGnb">
                 {/* 검색 버튼 돋보기 아이콘 */}
                 <FontAwesomeIcon
                   icon={faSearch}

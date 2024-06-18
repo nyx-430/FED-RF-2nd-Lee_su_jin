@@ -4,7 +4,7 @@ import React from "react";
 // 캐릭터 리스트 CSS
 import "../../css/cat_list.scss";
 import { SwiperCat } from "../plugin/SwiperCat";
-import { useNavigate } from "react-router-dom";
+
 /* 
 Root >
     section.cat-swbox >
