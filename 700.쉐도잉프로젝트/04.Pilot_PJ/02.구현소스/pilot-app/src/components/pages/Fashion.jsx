@@ -1,5 +1,8 @@
 import React from 'react';
 
+// CSS 불러오기
+import "../../css/fashion.scss";
+
 function Fashion(props) {
     return (
         <div>

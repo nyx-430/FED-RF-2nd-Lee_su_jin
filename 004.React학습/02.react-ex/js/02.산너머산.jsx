@@ -7,7 +7,7 @@ import 이야기 from "./components/story";
 import { 누구냐 } from "./components/provider";
 
 /********************************************** 
-    1. props로 데이터를 전달하여 제목출력하기 
+    1. props로 데이터를 전달하여 제목 출력하기 
     -> props Down으로 데이터를 하위 컴포넌트에 전달
 **********************************************/
 
@@ -27,6 +27,7 @@ const cssObj = {
 function MyHome(){
     return <MyRoom aa="세계의 산" bb="🌄" cc={cssObj} />;
 } /////// MyHome 컴포넌트 ///////////////
+
 function MyRoom({aa,bb,cc}){
     return <MyBag cc={aa} dd={bb} cdata={cc} />;
 } /////// MyRoom 컴포넌트 ///////////////
