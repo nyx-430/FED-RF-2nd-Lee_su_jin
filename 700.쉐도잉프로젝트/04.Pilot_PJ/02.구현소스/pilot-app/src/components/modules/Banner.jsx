@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 
 // 배너모듈 CSS
 import "../../css/banner.scss";
-import { dragBanner } from "../../js/func/grag_banner";
+import { dragBanner } from "../../js/func/drag_banner";
 
-function Banner (props) {
-  // 배너 리스트 개수
+function Banner(props) {
+  // 배너리스트 개수
   const BAN_CNT = 6;
 
   // 리스트를 만드는 함수 ////
@@ -17,21 +17,21 @@ function Banner (props) {
     // 이 숫자를 하단에 출력함! 따라서 true/false로
     // 변경하여 코딩하면 이 문제는 해결됨!
 
-    // for문을 돌려서 태그를 생성할 때 배열에 담는다!
+    // for문을 돌려서 태그를 생성할때 배열에 담는다!
     // -> 문자형이 아닌 JSX의 태그이므로 배열에 담고
     // for문 없이 그대로 태그를 출력할 수 있다!
     let hcode = [];
 
     for (let i = 0; i < BAN_CNT; i++) {
       if (gubun) {
-        // 배너 코드
+        // 배너코드
         hcode[i] = (
           <li className={"ban" + (i == 0 ? "6" : i)} key={i}>
             <span className="ir">배너{i == 0 ? "6" : i}</span>
           </li>
         );
       } else {
-        // 블릿 코드
+        // 블릿코드
         hcode[i] = (
           <li className={i == 0 ? "on" : ""} key={i}>
             <a href="#">
@@ -40,21 +40,21 @@ function Banner (props) {
           </li>
         );
       }
-    } /// for ///
+    } //////// for //////////
 
     // console.log(hcode);
 
-    // 코드 리턴
+    // 코드리턴
     return hcode;
   }; ///////// makeList 함수 /////////
 
-  // 화면 랜더링 실행 구역 /////////
+  // 화면 랜더링 실행구역 ///////
   useEffect(()=>{
-    // 드래그 배너 기능 함수 호출
+    // 배너기능함수 호출!
     dragBanner();
   },[]);
 
-  /// 코드 리턴 구역 /////////
+  /// 코드 리턴구역 //////////
   return (
     <>
       <ul className="slide">{makeList(true)}</ul>

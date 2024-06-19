@@ -14,7 +14,7 @@ export function TotalMenu() {
         <nav className="mlist">
           <dl>
             <dt>
-              <a href="#">MAN</a>
+              <a href="#">MEN</a>
             </dt>
             <dd>
               <a href="#">T-SHIRT</a>
@@ -31,7 +31,7 @@ export function TotalMenu() {
           </dl>
           <dl>
             <dt>
-              <a href="#">WOMAN</a>
+              <a href="#">WOMEN</a>
             </dt>
             <dd>
               <a href="#">T-SHIRT</a>
