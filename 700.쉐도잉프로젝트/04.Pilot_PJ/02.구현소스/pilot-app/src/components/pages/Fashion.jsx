@@ -13,30 +13,30 @@ import $ from "jquery";
 import "../../css/fashion.scss";
 import { SwiperBan } from "../plugin/SwiperBan";
 
-function Fashion({ subCat }) {
-  // subCat - 서브 카테고리명
-  // 값 : men / women / style
+function Fashion({subCat}) {
+    // subCat - 서브 카테고리명
+    // 값: men / women / style
 
-  // 컨텍스트 API 사용하기
+  // 컨텍스트 API사용하기
   const myCon = useContext(pCon);
 
-  // 화면랜더링 실행구역
-  // 실제 DOM이 화면 출력 전 가상 DOM에서 태그가
+  // (( 화면랜더링 실행구역 : useLayoutEffect ))
+  // 실제DOM이 화면출력전 가상 DOM에서 태그가
   // 모두 만들어진 후가 useLayoutEffect임!
   // 뭔가 미리 DOM셋팅이 필요한 코드는 여기서작성!
   useLayoutEffect(() => {
     document.addEventListener("wheel", scrolled, { passive: false });
     // 이벤트 설정시 passive:false 설정의 이유는
     // 기본 설정값은 true이고 이것은 window,document,body
-    // 이 세가지에 preventDefault() 기본 작동 막기를 할 경우
+    // 이 세가지에 preventDefault() 기본작동막기를 할 경우
     // 이것을 사용할 수 없도록 설정된 값이 treu다!
     // passive모드를 false로 꺼놔야 window,document,body
     // 에 대한 기본 막기가 가능함!(여기서는 스크롤 기능임!)
 
-    // 부드러운 스크롤 위치 초기화
+    // 부드러운 스크롤 위치초기화
     // setPos(0);
 
-    // 실제 스크롤 위치값 초기화
+    // 실제 스크롤위치값 초기화
     window.scrollTo(0, 0);
 
     // 스크롤바 생성하기(x축은 숨김)
@@ -63,9 +63,9 @@ function Fashion({ subCat }) {
     };
   }, []);
 
-  // 화면 랜더링 코드 구역 ///////////////
-  // -> 화면에 요소가 실제로 출력된 후 ////
-  // DOM 이벤트 설정시 여기서 코딩해야 적용됨!
+  // (( 화면랜더링 실행구역 : useEffect ))
+  // -> 화면에 요소가 실제로 출력된후 ////
+  // DOM이벤트 설정시 여기서 코딩해야 적용됨!
   useEffect(() => {
     // 로고 클릭시 페이지 이동하기
     $("#logo a").on("click", (e) => {

@@ -26,13 +26,14 @@ export function SwiperBan({ cat }) {
     for (let x = 0; x < num; x++) {
       temp[x] = (
         <SwiperSlide key={x}>
-          {cat == "men" && x == 2 ? (
+          {(cat == "men" || cat == "women") && x == 0 ? (
             <video
-              src={"./images/sub/" + cat + "/banner/cgv.mp4"}
+              src={"./images/sub/" + cat + "/banner/mv.mp4"}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              muted
+              //   muted
               loop
-              autoPlay
+              className={cat+"-vid"}
+              //   autoPlay
             />
           ) : (
             <img
@@ -47,7 +48,7 @@ export function SwiperBan({ cat }) {
     return temp;
   }; ///////////// makeList 함수 //////////
 
-  // 리턴 코드 ///////////////////
+  // 리턴코드 ///////////////////
   return (
     <>
       <Swiper
@@ -66,9 +67,25 @@ export function SwiperBan({ cat }) {
         /* 사용할 모듈을 여기에 적용시킨다 */
         modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper"
-        onSlideChange={(swp)}
+        // 슬라읻 이동 후 실행 코드 구역
+        onSlideChange={(swp) => {
+          // swp는 내부로 전달되는 스와이퍼 자신 객체
+          // activeIndex는 loop시 오류 있음
+          // realIndex는 loop에도 잘 나옴!
+
+          // 현재 진짜 순번
+          let idx = swp.realIndex;
+
+          console.log("슬라이드 순번:", idx);
+          
+          if (idx == 0) {
+            document.querySelector(`.${cat}-vid`).play();
+          } else {
+            document.querySelector(`.${cat}-vid`).pause();
+          }
+        }}
       >
-        {makeList(props.cat == "style" ? 5 : 3)}
+        {makeList(cat == "style" ? 5 : 3)}
       </Swiper>
     </>
   );

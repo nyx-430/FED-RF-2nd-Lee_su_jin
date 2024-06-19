@@ -11,16 +11,16 @@ import { fsData } from "../../js/data/fashion_intro";
 import "../../css/fashion_intro.scss";
 
 function FashionIntro({ catName, subCat, opt }) {
-  // 1. catName - 카테고리명 (men, women, style)
+  // 1. catName - 카테고리명 (men/women/style)
   // 2. subCat - 서브 카테고리명
-  //  (서브가 아닌 경우 subCat의 값은 "etc"임!)
+  //  (서브가 아닌경우 subCat의 값은 "etc"임!)
   // 3. opt - 방향옵션(역방향은 true / 정방향은 false)
   //  (역방향은 flex-direction: row-reverse 적용!)
 
   // 컨텍스트 API사용하기
   const myCon = useContext(pCon);
 
-  // 선택 데이터 변수 할당
+  // 선택 데이터 변수할당
   const selData = fsData[catName];
 
   return (
@@ -28,7 +28,7 @@ function FashionIntro({ catName, subCat, opt }) {
       <ul
         className="pgc"
         style={{
-          // 정방향, 역방향 적용 코드
+          // 정방향, 역방향 적용코드
           flexDirection: opt ? "row-reverse" : "row",
         }}
       >
@@ -52,7 +52,7 @@ function FashionIntro({ catName, subCat, opt }) {
             </a>
           </h2>
           {
-            // 스타일인 경우 글자박스 하나 더 출력됨
+            // 스타일인 경우 글자박스 하나더 출력됨
             catName == "style" && (
               <h2 className="tw">
                 <a href="#">
