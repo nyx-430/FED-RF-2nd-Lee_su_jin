@@ -1,7 +1,7 @@
 // DC PJ 캐릭터 검색결과 리스트 컴포넌트
 import React from "react";
 
-// CSS불러오기
+// CSS 불러오기
 import "../../css/searching_cat.scss";
 
 // 라우터돔 Link
@@ -17,7 +17,7 @@ function SearchingCat({ dt }) {
   return (
     <>
       {
-        // 데이터 개수가 0이 아닐때 출력
+        // 데이터 개수가 0이 아닐 때 출력
         total > 0 && (
           <ul className="clist">
             {dt.map((v, i) => (
@@ -26,9 +26,9 @@ function SearchingCat({ dt }) {
                   to="/detail"
                   /* state로 3가지 값을 넘겨준다! */
                   state={{
-                    cname: v.cname, // 캐릭터이름
-                    cdesc: v.cdesc, // 캐릭터설명
-                    facts: v.facts, // 캐릭터상세
+                    cname: v.cname, // 캐릭터 이름
+                    cdesc: v.cdesc, // 캐릭터 설명
+                    facts: v.facts, // 캐릭터 상세
                   }}
                 >
                   <img src={v.tmsrc} alt={v.cname} />
