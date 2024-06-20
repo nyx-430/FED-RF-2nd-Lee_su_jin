@@ -11,7 +11,7 @@ import { pCon } from './components/modules/pCon';
 import "./css/index.scss";
 
 function MainComponent(props) {
-  // 상태관리 변수 셋팅 ///////
+  // 상태관리변수 셋팅 ///////
   // 1. 페이지변경 상태변수
   const [pgName, setPgName] = useState("main");
 
