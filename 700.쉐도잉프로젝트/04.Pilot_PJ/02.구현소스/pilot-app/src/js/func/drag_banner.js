@@ -91,12 +91,12 @@ export function dragBanner() {
 
     // 해당 슬라이드 순번 : 클래스명의 숫자 - 1
     // -> 슬라이드 순번은 클래스명의 숫자 - 1
-    // Number() 숫자형변환 : 문자를 잘라서 문자형숫자임
-    // 그런데 요즘 브라우저는 이렇게 안해도 자동형변환하여 계산함!
+    // Number() 숫자형 변환 : 문자를 잘라서 문자형 숫자임
+    // 그런데 요즘 브라우저는 이렇게 안 해도 자동형 변환하여 계산함!
     let indicSeq = Number(selCls.substr(3)) - 1;
     // console.log('블릿순번:',indicSeq);
 
-    // 해당순번 블릿 클래스 'on'넣기/ 나머지는 빼기
+    // 해당 순번 블릿 클래스 'on'넣기/ 나머지는 빼기
     indic.eq(indicSeq).addClass("on").siblings().removeClass("on");
   }; ////////// chgIndic 함수 ///////
 
@@ -110,17 +110,17 @@ export function dragBanner() {
     ban4: "T-Shirt<br>Collection",
     ban5: "Shoes<br>Collection",
     ban6: "Wind Jacket<br>Collection",
-  }; ///////////// banTxt객체 //////////////
+  }; ///////////// banTxt 객체 //////////////
 
-  ///////// 배너 글자등장 함수 /////////
+  ///////// 배너 글자 등장 함수 /////////
   const showTit = () => {
-    // 항상 이동후 배너는 1번째 순번이 주인공!
+    // 항상 이동 후 배너는 1번째 순번이 주인공!
     const currBan = slide.find("li").eq(1);
 
     // 현재 배너 클래스 읽기
     const currCls = currBan.attr("class");
 
-    // console.log("글자등장~~~!", banTxt[currCls]);
+    // console.log("글자 등장~~~!", banTxt[currCls]);
 
     // 기존h2태그는 삭제
     $(".btit").remove();
@@ -128,8 +128,8 @@ export function dragBanner() {
     // 타이틀을 현재 배너에 추가함
     currBan.append(`<h2 class="btit">${banTxt[currCls]}</h2>`);
 
-    // 타이틀 left위치 변수처리
-    // ban2, ban3만 오른쪽위치
+    // 타이틀 left위치 변수 처리
+    // ban2, ban3만 오른쪽 위치
     let leftVal = "30%";
     if (currCls === "ban2" || currCls === "ban3") leftVal = "70%";
 
@@ -138,7 +138,7 @@ export function dragBanner() {
       .find(".btit")
       .css({
         position: "absolute",
-        top: "55%", // 약간아래
+        top: "55%", // 약간 아래
         left: leftVal,
         transform: "translate(-50%,-50%)",
         font: "bold 4.5vmax Verdana",
@@ -157,6 +157,6 @@ export function dragBanner() {
       );
   }; ///////////// showTit 함수 /////////
 
-  // 첫배너 등장호출
+  // 첫 배너 등장 호출
   setTimeout(showTit, 1000);
 } /////////// dragBanner 함수 //////////////

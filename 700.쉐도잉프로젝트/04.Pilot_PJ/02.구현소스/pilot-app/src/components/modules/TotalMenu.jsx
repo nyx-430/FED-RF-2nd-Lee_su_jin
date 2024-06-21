@@ -1,11 +1,11 @@
 // Pilot PJ 전체 메뉴 컴포넌트
 
-import { useState } from "react";
+import { useContext } from "react";
 import { pCon } from "./pCon";
 
 export function TotalMenu() {
   // 컨텍스트 사용하기
-  const myCon = useState(pCon);
+  const myCon = useContext(pCon);
 
   // 서브페이지 이동함수
   const goSub = (e) => {
@@ -14,10 +14,10 @@ export function TotalMenu() {
 
     // 2. 이동할 서브페이지 명 : a요소의 글자를 소문자로!
     let pgName = e.target.innerText.toLowerCase();
-    console.log(pgName);
+    console.log("이동할 페이지:", pgName);
 
     // 3. 서브페이지 이동을 위한 상태변수 업데이트
-    myCon.setPgName("men");
+    myCon.setPgName(pgName);
 
     // 4. 햄버거버튼 클릭 이벤트 발생하여 전체 메뉴 닫기
     document.querySelector(".ham").click();
@@ -55,7 +55,9 @@ export function TotalMenu() {
           </dl>
           <dl>
             <dt>
-              <a href="#">WOMEN</a>
+              <a href="#" onClick={goSub}>
+                WOMEN
+              </a>
             </dt>
             <dd>
               <a href="#">T-SHIRT</a>
@@ -72,7 +74,9 @@ export function TotalMenu() {
           </dl>
           <dl>
             <dt>
-              <a href="#">STYLE</a>
+              <a href="#" onClick={goSub}>
+                STYLE
+              </a>
             </dt>
             <dd>
               <a href="#">COLLECTION</a>
