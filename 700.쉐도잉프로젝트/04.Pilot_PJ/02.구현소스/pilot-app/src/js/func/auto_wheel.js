@@ -79,7 +79,7 @@ function wheelFn(e) {
   else {
     pno--;
     if (pno === -1) pno = 0;
-    // 첫페이지번호에 고정!
+    // 첫 페이지번호에 고정!
   } //// else ////
 
   // console.log(pno);
