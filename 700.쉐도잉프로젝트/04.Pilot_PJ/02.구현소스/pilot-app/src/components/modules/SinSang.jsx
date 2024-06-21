@@ -31,7 +31,7 @@ function SinSang({ cat, chgItemFn }) {
   // 신상품 선택 데이터 만들기
   const selData = sinsangData[cat];
 
-  // [신상품 리스트 코드생성 함수] //////////
+  // [ 신상품 리스트 코드생성 함수 ] //////////
   const makeList = () => {
     // 코드 담을 배열
     let temp = [];
@@ -63,12 +63,12 @@ function SinSang({ cat, chgItemFn }) {
     return temp;
   };
 
-  // 코드리턴구역 /////////////////////
+  // 코드리턴 구역 /////////////////////
   return (
     <>
       <h2 className="c1tit">
         NEW MEN'S ARRIVAL
-        <button>전체리스트</button>
+        <button>전체 리스트</button>
       </h2>
       <div
         className="flowbx"
