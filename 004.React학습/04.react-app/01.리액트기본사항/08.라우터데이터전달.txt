@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 <Link to="라우터주소" state={{속성명:값}} />
 
-받는방법)
+받는 방법)
 useLocation 라우터 객체를 사용한다!
 
 코드)
@@ -23,7 +23,7 @@ import { useLocation } from "react-router-dom"
 const loc = useLocation();
 const sel = loc.state.속성명;
 
--> useLocation 생성 변수 하위의 state객체 하위 보낸속성명
+-> useLocation 생성 변수 하위의 state객체 하위 보낸 속성명
 
 
 [ 2. useNavigate 사용하여 전달값 보내기 ]
