@@ -52,12 +52,18 @@ function Searching({ kword }) {
       (newVal.indexOf(key) !== -1) &&
 
       // 2. 체크박스 항목 조건 (alignment 속성)
+      // 주의: 조건문 내의 삼항연산자는 반드시 소괄호로 묶어서
+      // 논리연산자(&&,||,!)와의 충돌을 막아줘야 함!
+      // OR문의 결과가 false이러면 모두 false여야 함!
+      // 체크박스 모두 불체크시 false로 처리!
       (
-        chk[0]?v.alignment=="hero":true ||
-        chk[1]?v.alignment=="comp":true ||
-        chk[2]?v.alignment=="villain":true
+        (chk[0]?v.alignment=="hero":false) ||
+        (chk[1]?v.alignment=="comp":false) ||
+        (chk[2]?v.alignment=="villain":false)
       )
-      // true && (true||true||true)
+      // true && (false||false||false)
+      // -> &&문은 모두 true여야 true
+      // -> ||문은 하나만 true면 true
     ) return true;
     // 문자열.indexOf(문자) 문자열 위치 번호 리턴함
     // 그런데 결과가 없으면 -1을 리턴함!
@@ -118,11 +124,11 @@ function Searching({ kword }) {
               // -> setKw(검색어)
               onKeyUp={(e) => {
                 if (e.key == "Enter") {
-                  // 검색어 상태값 변경
+                  // 1. 검색어 상태값 변경
                   setKw(e.target.value);
-                  // 처음 검색시 정렬은 기본 정렬 오름차순(asc)
+                  // 2. 처음 검색시 정렬은 기본 정렬 오름차순(asc)
                   setSort("asc");
-                  // 정렬선택박스 선택값 변경 (DOM에서 보이기 변경)
+                  // 3. 정렬선택박스 선택값 변경 (DOM에서 보이기 변경)
                   document.querySelector("#sel").value = "asc";
                 } /// if ///
               }}
@@ -154,7 +160,7 @@ function Searching({ kword }) {
                         console.log(e.target.checked);
 
                         // HOOK 값 업데이트
-                        setChk([chk[1], chk[2], e.target.checked]);
+                        setChk([e.target.checked, chk[1], chk[2]]);
                       }}
                     />
                     {/* 디자인 노출 라벨 */}
@@ -175,7 +181,7 @@ function Searching({ kword }) {
                         console.log(e.target.checked);
 
                         // HOOK 값 업데이트
-                        setChk([chk[0], chk[2], e.target.checked]);
+                        setChk([chk[0], e.target.checked, chk[2]]);
                       }}
                     />
                     {/* 디자인 노출 라벨 */}
