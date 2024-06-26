@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 // 폰트어썸
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +20,7 @@ function Searching({ kword }) {
 
   // 키워드에 따라 검색 결과가 달라지므로
   // 핵심 데이터인 검색어를 상태관리변수로 만든다!
+
   // ((상태관리변수)) //////////////
   // [1] 검색어 상태관리변수
   const [kw, setKw] = useState(kword);
@@ -33,6 +34,29 @@ function Searching({ kword }) {
   const [chk, setChk] = useState([true, true, true]);
   // 배열로 만들고 체크박스 상태를 묶어서 관리한다!
   console.log("체크 HOOK 배열:", chk);
+
+  // 상단 메뉴 검색창에서 다시 검색할 경우
+  // 검색 가능하도록 검색어 비교를 위한 검색어를 저장한다!
+  // 리랜더링 없이 값만 저장하는 후크는? useRef참조변수 사용!
+  const beforeKword = useRef(kword);
+  // 참조변수는 객체이다! 그래서 하위 속성 중
+  // current속성으로 값을 읽거나 업데이트 한다!
+
+  console.log("참조변수객체:",beforeKword);
+  
+  // 만약 조금 전 저장된 검색어와 지금 검색어가 다르다면
+  // 검색어 상태변수를 업데이트 한다!
+  if (beforeKword.current != kword) {
+    console.log(beforeKword.current,"==?",kword);
+    // 1. 컴포넌트 리랜더링 (검색 결과 변경)
+    setKw(kword);
+
+    // 2. 다음 검색을 위해 다시 현재 검색어를 참조변수에 저장
+    beforeKword.current = kword;
+
+    // 3. 상단 검색어를 현재 검색창에 넣기
+    document.querySelector("#schin").value = kword;
+  } /// if ///
 
   // 검색어가 있는 데이터 필터하기
   // filter()는 검색 결과가 항상 배열로 나옴!
@@ -49,22 +73,20 @@ function Searching({ kword }) {
     if (
       // 1과 2의 조건이 모두 true여야 return함!
       // 1. 검색어 조건 (cname 속성)
-      (newVal.indexOf(key) !== -1) &&
-
+      newVal.indexOf(key) !== -1 &&
       // 2. 체크박스 항목 조건 (alignment 속성)
       // 주의: 조건문 내의 삼항연산자는 반드시 소괄호로 묶어서
       // 논리연산자(&&,||,!)와의 충돌을 막아줘야 함!
       // OR문의 결과가 false이러면 모두 false여야 함!
       // 체크박스 모두 불체크시 false로 처리!
-      (
-        (chk[0]?v.alignment=="hero":false) ||
-        (chk[1]?v.alignment=="comp":false) ||
-        (chk[2]?v.alignment=="villain":false)
-      )
+      ((chk[0] ? v.alignment == "hero" : false) ||
+        (chk[1] ? v.alignment == "comp" : false) ||
+        (chk[2] ? v.alignment == "villain" : false))
       // true && (false||false||false)
       // -> &&문은 모두 true여야 true
       // -> ||문은 하나만 true면 true
-    ) return true;
+    )
+      return true;
     // 문자열.indexOf(문자) 문자열 위치 번호 리턴함
     // 그런데 결과가 없으면 -1을 리턴함!
     // 그래서 -1이 아닐 경우 true를 리턴하면
@@ -213,20 +235,20 @@ function Searching({ kword }) {
             </ul>
           </div>
         </div>
-        {/* 2. 결과리스트박스 */}
+        {/* 2. 결과 리스트 박스 */}
         <div className="listbx">
           {/* 2-1. 결과 타이틀 */}
-          <h2 className="restit">BROWSE CHARACTERS</h2>
-          {/* 2-2. 정렬선택박스 */}
+          <h2 className="restit">BROWSE CHARACTERS ({newList.length})</h2>
+          {/* 2-2. 정렬 선택 박스 */}
           <aside className="sortbx">
             <select
               name="sel"
               id="sel"
               className="sel"
-              // 값을 변경할 때 이벤트발생
+              // 값을 변경할 때 이벤트 발생
               onChange={(e) => {
                 console.log(e.target.value);
-                // 정렬기준 상태변수 업데이트
+                // 정렬 기준 상태변수 업데이트
                 setSort(e.target.value);
               }}
             >

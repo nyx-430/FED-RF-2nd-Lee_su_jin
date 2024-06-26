@@ -28,11 +28,11 @@ export default function TopArea() {
   // 예) goNav('') - 첫 페이지로 이동
   // 이동 주소는 대소문자 구분 안 함!
   // 슬래쉬(/) 없어도 루트로 인식함
-  // -> 빈값이면 루트로 이동함!
+  // -> 빈 값이면 루트로 이동함!
 
   // 검색 관련 함수들 /////////////
   // 1. 검색창 보이기 함수
-  const showSearch = (e)=>{
+  const showSearch = (e) => {
     // 기본 기능 막기
     e.preventDefault();
 
@@ -45,17 +45,17 @@ export default function TopArea() {
   }; ///////// showSearch 함수 /////////
 
   // 2. 검색창에 엔터키 누르면 검색 함수 호출
-  const enterKey = e => {
+  const enterKey = (e) => {
     // console.log(e.key,e.keyCode);
     // e.keyCode는 숫자, e.key문자로 리턴함
 
-    if(e.key=="Enter"){
+    if (e.key == "Enter") {
       // 입력창의 입력값 읽어오기 : val() 사용
       let txt = $(e.target).val().trim();
       console.log(txt);
 
-      // 빈값이 아니면 검색 함수 호출 (검색어 전달!)
-      if(txt!=''){
+      // 빈 값이 아니면 검색 함수 호출 (검색어 전달!)
+      if (txt != "") {
         // 입력창 비우고 부모박스 닫기
         $(e.target).val("").parents().hide();
 
@@ -63,15 +63,14 @@ export default function TopArea() {
         goSearch(txt);
       } /// if ///
     } /// if ///
-
   }; ///////// showSearch 함수 /////////
 
   // 3. 검색 페이지로 검색어와 함께 이동하기 함수
-  const goSearch = txt => {
+  const goSearch = (txt) => {
     console.log("나는 검색하러 간다규~!");
     // 라우터 이동 함수로 이동하기
     // 네비게이트메서드("라우터 주소",{state:{보낼 객체}})
-    goNav("search",{state:{keyword:txt}})
+    goNav("search", { state: { keyword: txt } });
   }; ///////// goSearch 함수 /////////
 
   // 코드 리턴 구역 //////////////
@@ -143,6 +142,18 @@ export default function TopArea() {
                   icon={faSearch}
                   className="schbtnGnb"
                   title="Open search"
+                  onClick={(e) => {
+                    // 검색어 읽기
+                    let stxt = e.currentTarget.nextElementSibling.value;
+                    if (stxt.trim() != "") {
+                      // 검색하기
+                      goSearch(stxt);
+                    } /// if ///
+                    else {
+                      // 검색어 비었을 때 메시지
+                      alert("Please enter a search term!");
+                    }
+                  }}
                 />
                 {/* 입력창 */}
                 <input
