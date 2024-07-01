@@ -20,7 +20,7 @@
 /* 전체 글자크기 */
 html{
     font-size: 10px;
-    /* rem단위 계산 편의를 위함 */
+    /* rem단위 계산편의를 위함 */
 }
 body{
     /* 글자체 */
@@ -92,7 +92,7 @@ body{
 /* -webkit- 밴더사명(크롬,사파리) 접두어 */
 /* 클래스명 scbar */
 .scbar::-webkit-scrollbar{
-    /* 전체 스크롤바 크기 변경 */
+    /* 전체 스크롤바 크기변경 */
     width: 7px;
 }
 .scbar::-webkit-scrollbar-thumb{

@@ -121,8 +121,8 @@ introMv.onclick = () => {
   `;
 })(); //// 미리보기 코드랩핑구역 종료 /////////
 
-// 3. 현장포토 파트 내용 넣기 /////////////////////
-///////// 현장포토 구현 코드랩핑구역 시작 /////////
+// 3. 현장포토 파트 내용 넣기 //////////
+/////// 현장포토 구현 코드랩핑구역 시작 //////
 (() => {
   // 대상: .live-box
   const liveBox = myFn.qs(".live-box");
@@ -142,7 +142,7 @@ introMv.onclick = () => {
   //                 <figure>
   //                     <img src="./images/live_photo/${v.imgName}.jpg" alt="${v.title}">
   //                     <figcaption>${v.title}</figcaption>
-  //                 </figure>      
+  //                 </figure>
   //             </li>
   //         `;
   // }); /////// forEach /////////////////
@@ -151,27 +151,31 @@ introMv.onclick = () => {
 
   // 데이터 확인
   // console.log(hcode);
-  // console.log('대상:',liveBox,'현장포토 data:',lvData);
+  //   console.log('대상:',liveBox,'현장포토 data:',lvData);
 
-  // 2. 화면출력하기 -> map()으로 데이터 생성하기
+  // 2. 화면출력하기 -> map()으로 데이터생성하기 ///////
   liveBox.innerHTML = `
-    <ul data-db="liveData">
-    ${lvData.map((v) =>`
-    <li data-idx="${v.idx}">
-      <figure>
+  <ul data-db="liveData">
+    ${lvData
+      .map(
+        (v) => `
+      <li data-idx="${v.idx}">
+        <figure>
         <img 
-        src="./images/live_photo/${v.imgName[0]}.jpg" 
-        alt="${v.title}">
+          src="./images/live_photo/${v.imgName[0]}.jpg" 
+          alt="${v.title}">
         <figcaption>${v.title}</figcaption>
-      </figure>  
-    </li>
-    `).join('')}
-    </ul>   
-    `;
-})(); ///////// 현장포토 코드랩핑구역 종료 /////////
+        </figure>  
+      </li>
+    `
+      )
+      .join("")}
+  </ul>
+  `;
+})(); //// 현장포토 코드랩핑구역 종료 /////////
 
-// 4. 대표이미지 파트 내용 넣기 /////////////////////
-///////// 대표이미지 구현 코드랩핑구역 시작 /////////
+// 4. 대표이미지 파트 내용 넣기 //////////
+/////// 대표이미지 구현 코드랩핑구역 시작 //////
 (() => {
   // 대상: .poster-box
   const posterBox = myFn.qs(".poster-box");
@@ -194,37 +198,41 @@ introMv.onclick = () => {
   //                 </figure>
   //             </li>
   //         `;
-  // }); /// forEach ///
+  // }); /////// forEach /////////////////
 
   // hcode += `</ul>`;
 
   // 데이터 확인
   // console.log(hcode);
-  // console.log('대상:',posterBox,'대표이미지 data:',pData);
+  //   console.log('대상:',posterBox,'대표이미지 data:',pData);
 
-  // 2. 화면출력하기 -> map()으로 데이터 생성하기
+  // 2. 화면출력하기 -> map()으로 데이터생성하기 ///////
   posterBox.innerHTML = `
-    <ul data-db="posterData">
-    ${pData.map(v =>`
+  <ul data-db="posterData">
+  ${pData
+    .map(
+      (v) => `
     <li data-idx="${v.idx}">
       <figure>
         <img 
-        src="./images/poster_img/${v.imgName}.jpg" 
-        alt="${v.title}">
+          src="./images/poster_img/${v.imgName}.jpg" 
+          alt="${v.title}">
         <figcaption>${v.title}</figcaption>
-      </figure>  
-    </li>
-    `).join('')}
-    </ul>
+      </figure> 
+    </li>  
+  `
+    )
+    .join("")}
+  </ul>
   `;
-})(); ///////// 대표이미지 코드랩핑구역 종료 /////////
+})(); //// 대표이미지 코드랩핑구역 종료 /////////
 
 // 5. 최신동영상 파트 데이터 태그 구성하여 화면출력하기 ///
 // 코드랩핑구역 시작 //////////////////////////
 (() => {
   // 5-1. 변경대상: .clip-box
   const clipBox = myFn.qs(".clip-box");
-  
+
   // 데이터 연결 변수할당
   const cData = dkbData.clipData;
 
@@ -246,26 +254,26 @@ introMv.onclick = () => {
   //     <h3>${v.title}</h3>
   //   </li>
   //   `;
-  // }); /// forEach ///
+  // }); /////////// forEach /////////////////
 
   // hcode += `</ul>`;
 
-  // 5-3. 화면출력하기 -> map()으로 데이터 생성하기
+  // 5-3. 화면출력하기 -> map()으로 데이터생성하기 ///////
   clipBox.innerHTML = `
-    <ul class="slide" data-db="clipData">
-    ${cData.map(v => `
-        <li data-idx="${v.idx}">
-        <div class="clip-mv-box">
-          <img
+  <ul class="slide" data-db="clipData">
+  ${cData.map(v=>`
+    <li data-idx="${v.idx}">
+      <div class="clip-mv-box">
+        <img
           src="./images/clip_img/${v.idx}.jpg"
           alt="${v.subtit}"
-          />
-        </div>
-        <h4>${v.subtit}</h4>
-        <h3>${v.title}</h3>
-      </li>
-    `).join('')}
-    </ul>
+        />
+      </div>
+      <h4>${v.subtit}</h4>
+      <h3>${v.title}</h3>
+    </li>
+  `).join('')}
+  </ul>
   `;
 })();
 // 코드랩핑구역 종료 //////////////////////////
@@ -274,7 +282,7 @@ introMv.onclick = () => {
 setSlide("banbx");
 
 /**************************************************** 
-  메인 페이지용 도깨비 메뉴 스크롤 이동 제이쿼리 구현 
+  메인 페이지용 도깨비 메뉴 스크롤이동 제이쿼리 구현 
 ****************************************************/
 // 메뉴 클릭 대상: .spart-menu a
 $(".spart-menu a").click((e) => {

@@ -637,11 +637,14 @@ function slideFn(selEl) {
     valSecond = leftVal * 0.9;
   }); ////////////// resize함수 //////////////////
 
-  // 해당 슬라이드 박스 (selEl) 휠 이벤트 버블링 막기
-  mFn.addEvt(selEl,"wheel",(e)=>{
+
+  // 해당 슬라이드 박스 (selEl) 휠이벤트 
+  // 기본기능막기 + 버블링막기
+  mFn.addEvt(selEl, "wheel", (e) => {
     console.log(111);
     e.preventDefault();
-  }); /// wheel ///
+    e.stopPropagation();
+  }); ///////// wheel //////////
 
 } /////////////// slideFn 함수 ///////////////
 /////////////////////////////////////////////
