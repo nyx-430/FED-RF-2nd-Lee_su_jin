@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+// 로컬스토리지 생성 JS
+import { initData } from "../func/mem_fn";
+
 // 회원가입 CSS 불러오기
 import "../../css/member.scss";
 
@@ -39,8 +42,11 @@ function Member(props) {
 
   // [ 아이디 관련 메시지 프리셋 ]
   const msgId = [
+    // 1. 최소 5글자 이상 입력할 것
     "User ID must contain a minimum of 5 characters",
+    // 2. 이미 사용중인 아이디
     "This ID is already in use!",
+    // 3. 훌륭한 아이디
     "That's a great ID!",
   ];
 
@@ -56,7 +62,8 @@ function Member(props) {
     email: "Please enter a valid email format",
   }; ///// msgEtc ///////
 
-  // [3] 에러메시지 상태변수
+  // [3] 에러메시지 상태변수 : 초기값 msgId[0]
+  // -> 기본 메시지가 출력됨
   const [idMsg, setIdMsg] = useState(msgId[0]);
 
   // [ 유효성 검사 함수 ]
@@ -73,14 +80,33 @@ function Member(props) {
     console.log(val);
 
     // 3. 에러 상태 분기하기
-    // 3-1. 에러 아닐 때
+    // 3-1. 에러 아닐 때 (유효성 검사만 통과한 경우)
     if(valid.test(val)){
-        console.log("통과!");
+        console.log("통과했지만...!");
+
+        // 아이디 검사를 위해 기본 데이터 생성 호출!
+        initData();
+        // 로컬스토리지에 "mem-data"가 없으면 초기 셋팅함!
+
+        // 이제 중복 아이디 검사를 실행한다!
+        // 1. 로컬스 변수할당
+        let memData = localStorage.getItem("mem-data");
+
+        // 2. 로컬스 객체변환 (왜? 문자형이니까)
+        memData = JSON.parse(memData);
+        // -> 배열 데이터로 변환!
+
+        // 3. 배열이니까 현재 입력 데이터의 아이디가 기존 배열값으로 있는지 검사함!
+        // 있으면 true, 없으면 false
+        console.log(memData);
+
+        // 아이디 에러 상태 업데이트(false)
         setUserIdError(false);
     } /// if ///
     // 3-2. 에러일 때
     else{
         console.log("에러!");
+        // 아이디 에러 상태 업데이트(true)
         setUserIdError(true);
     } /// else ///
 
