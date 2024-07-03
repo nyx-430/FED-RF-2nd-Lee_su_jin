@@ -22,9 +22,43 @@ export default function Board() {
     *********************************************/
   const bindList = () => {
     // console.log(baseData);
-    return baseData.map((v) => (
-      <tr>
-        <td>{v.idx}</td>
+
+    // 1. 전체 원본 데이터 선택
+    const orgData = baseData;
+
+    // 2. 정렬 적용하기 : 내림차순
+    orgData.sort((a, b) =>
+      Number(a.idx) > Number(b.idx) ? -1 : Number(a.idx) < Number(b.idx) ? 1 : 0
+    );
+
+    // 3. 일부 데이터만 선택
+    // 예시로 0번부터 9번까지만 선택
+    // 한 페이지당 10개라면...
+    // 페이지 번호와 연관시켜 본다!
+    // 1, 2, 3, 4, ...
+    // 시작번호 = (페이지 번호-1)*단위수
+    // 끝번호 = 페이지 번호*단위수
+
+    // 페이지 번호
+    const pgNum = 1;
+
+    // 페이지당 개수
+    const unitSize = 10;
+
+    const selData = [];
+    for ( // 시작값
+        let i = (pgNum - 1) * unitSize;
+        // 한계값
+        i < pgNum * unitSize; 
+        // 증감
+        i++) {
+      selData.push(orgData[i]);
+    }
+    console.log("일부 데이터:", selData);
+
+    return selData.map((v, i) => (
+      <tr key={i}>
+        <td>{i + 1}</td>
         <td>
           <a href="#" data-idx="51">
             {v.cont}
