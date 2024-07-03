@@ -56,15 +56,23 @@ export default function Board() {
     // 끝번호 = 페이지 번호*단위수
     let eNum = pageNum * unitSize;
 
+    console.log("첫번호:", sNum, "/끝번호:", eNum);
+
+    // 결과 배열
     const selData = [];
     for (let i = sNum; i < eNum; i++) {
+      // 끝번호가 전체 개수보다 크면 나가라!
+      if (i >= totalCount.current) break;
+      // 대상 배열값 추가
       selData.push(orgData[i]);
-    }
+    } /// for ///
+
     console.log("일부 데이터:", selData);
 
     return selData.map((v, i) => (
       <tr key={i}>
-        <td>{i + 1}</td>
+        {/* 시작번호를 더하여 페이지별 순번을 변경 */}
+        <td>{i + 1 + sNum}</td>
         <td>
           <a href="#" data-idx="51">
             {v.cont}
@@ -108,15 +116,25 @@ export default function Board() {
     for (let i = 1; i <= pagingCount; i++) {
       pgCode.push(
         <Fragment key={i}>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setPageNum(2);
-            }}
-          >
-            2
-          </a>
+          {
+            // 페이징 번호와 현재 페이지 번호 일치시 b요소
+            i === pageNum ? (
+              <b>{i}</b>
+            ) : (
+              // 불일치시 모드 링크 코드
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPageNum(i);
+                }}
+              >
+                {i}
+              </a>
+            )
+          }
+          {/* 사이에 바 넣기 */}
+          {i !== pagingCount && " | "}
         </Fragment>
       );
     } /// for ///
