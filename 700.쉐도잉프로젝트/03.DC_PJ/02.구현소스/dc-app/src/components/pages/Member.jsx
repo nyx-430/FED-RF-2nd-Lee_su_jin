@@ -70,7 +70,7 @@ function Member() {
     req: "This is a required entry",
     // 이메일
     email: "Please enter a valid email format",
-  }; ///// msgEtc ///////
+  }; ///// msgEtc /////
 
   // [3] 에러메시지 상태변수 : 초기값 msgId[0]
   // -> 기본 메시지가 출력됨
