@@ -18,4 +18,4 @@ export default function Series() {
       <VidSwipe catName="movies" />
     </>
   );
-} /////////// Series ///////////
+} /////////// Series /////////////////////

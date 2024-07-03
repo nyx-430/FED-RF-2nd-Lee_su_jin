@@ -35,7 +35,7 @@ export function SwiperCat() {
         navigation={true}
         /* 사용할 모듈을 여기에 적용시킨다 */
         modules={[Navigation]}
-        // 스와이퍼 사이즈별 슬라이드 수 변경!
+        // 스와이퍼 사이즈별 슬라이드수 변경!
         breakpoints={{
           200: {
             slidesPerView: 3,
@@ -54,31 +54,32 @@ export function SwiperCat() {
       >
         {selData.map(
           (v, i) =>
-            /* idx 고유번호가 7번 이하만 출력
-          idx가 문자형 숫자이므로 비교를 위해
-          숫자형 변환해 줌! Number(변수) */
+            /* idx 고유번호가 7번이하만 출력
+          idx가 문자형숫자 이므로 비교를 위해
+          숫자형변환해줌! Number(변수) */
             Number(v.idx) <= 7 && (
               <SwiperSlide key={i}>
-                <Link
-                 to="/detail"
-                 /* state로 3가지 값을 넘겨준다 */
-                 state={{
-                  cname: v.cname, // 캐릭터 이름
-                  cdesc: v.cdesc, // 캐릭터 설명
-                  facts: v.facts // 캐릭터 상세
-                 }}
-                 >
+                <Link 
+                to="/detail"
+                /* state로 3가지 값을 넘겨준다! */
+                state={{
+                  cname: v.cname, // 캐릭터이름
+                  cdesc: v.cdesc, // 캐릭터설명
+                  facts: v.facts // 캐릭터상세
+                }}
+                >
                   <section className="sw-inbox2">
-                    {/* 캐릭터 이미지 영역 */}
+                    {/* 캐릭터이미지영역 */}
                     <div className="cat-img2">
-                      <img src={process.env.PUBLIC_URL+v.tmsrc} alt={v.cname} />
+                      <img 
+                      src={process.env.PUBLIC_URL+v.tmsrc} 
+                      alt={v.cname} />
                     </div>
-                    {/* 캐릭터 타이틀 영역 */}
+                    {/* 캐릭터타이틀영역 */}
                     <div className="cat-tit2">
                       <h3>{v.cname}</h3>
                     </div>
                   </section>
-                  
                 </Link>
               </SwiperSlide>
             )

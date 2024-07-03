@@ -22,16 +22,17 @@ function Banner({ catName }) {
   // 코드 리턴구역 /////////
   return (
     <div className="banner">
-      {/* 이동 슬라이드 */}
+      {/* 이동슬라이드 */}
       <ul className="slider">
         {selData.map((v, i) => (
           <li key={i}>
-            <img src={process.env.PUBLIC_URL+v.src}
+            <img 
+            src={process.env.PUBLIC_URL+v.src} 
             alt={v.tit1 == "" ? "banner image" : v.tit1} />
             <section className="bantit">
               <h2>{v.tit1}</h2>
               <p>{v.tit2}</p>
-              {/* 버튼 데이터가 있을 때만 출력 */}
+              {/* 버튼 데이터가 있을때만 출력 */}
               {v.btn != "" && <button>{v.btn}</button>}
             </section>
           </li>

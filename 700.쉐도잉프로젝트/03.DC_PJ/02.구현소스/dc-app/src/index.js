@@ -11,12 +11,13 @@ import News from "./components/pages/News";
 import Main from "./components/pages/Main";
 import Comics from "./components/pages/Comics";
 import Board from "./components/pages/Board";
-import CatDetail from "./components/pages/CatDetail";
-import SearchPage from "./components/pages/SearchPage";
-import Member from "./components/pages/Member";
 
 // 전체 공통 CSS 불러오기
 import "../src/css/index.scss";
+import CatDetail from "./components/pages/CatDetail";
+import SearchPage from "./components/pages/SearchPage";
+import Member from "./components/pages/Member";
+import Login from "./components/pages/Login";
 
 /********************************************* 
     [ 리액트 라우터 ]
@@ -48,27 +49,29 @@ import "../src/css/index.scss";
     5. 라우터 연결흐름:
       (1) Route 의 path 정보셋팅
       (2) Link to 정보 클릭시 1번정보와 대조
-      (3) 1번 정보 일치시 element에 등록된 컴포넌트로딩
+      (3) 1번정보 일치시 element에 등록된 컴포넌트로딩
       (4) Outlet 표시 컴포넌트에 삽입
     
 *********************************************/
 
 export default function MainComponent() {
   return (
-    // 라우터 루트로 라우터 구성 시작
-    // basename속성은 pakage.json의 "homepage"속성값을 읽어옴
-    // 읽는 방법은 process.env.PUBLIC_URL
+    // 라우터 루트로 라우터 구성시작
+    // basename 속성은 package.json의 "homepage"속성값을 
+    // 읽어옴 (읽는 방법은 process.env.PUBLIC_URL)
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      {/* 라우터 경로 변경시 최상단 이동 컴포넌트 */}
-    <ScrollTop />
+      {/* 라우터 경로 변경시 최상단이동 컴포넌트 */}
+      <ScrollTop />
+      
       <Routes>
         {/* 중요!!! 레이아웃 컴포넌트를 루트로 설정!
-        루트 Route 는 홀로 닫지 말고 반드시 다른
-        하위 라우트를 감싸도록 한다!!! */}
+        루트 Route 는 홀로닫지말고 반드시 다른
+        하위 라우트를 감싸도록한다!!! */}
         <Route path="/" element={<Layout />}>
           {/* 하위 라우트 셋팅 
-        -> path 설정 대신 index키워드를 쓰면 첫 페이지로 구성됨
-        -> MainArea 컴포넌트 <Outlet/>에 출력된다!*/}
+        -> path설정대신 index키워드를 쓰면 
+        첫페이지로 구성됨 -> MainArea 컴포넌트 <Outlet/>에
+        출력된다!*/}
           <Route index element={<Main />} />
           <Route path="character" element={<Character />} />
           <Route path="comics" element={<Comics />} />
@@ -81,6 +84,7 @@ export default function MainComponent() {
           <Route path="detail" element={<CatDetail />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="member" element={<Member />} />
+          <Route path="login" element={<Login />} />
         </Route>
         {/* Layout 루트 Route로 하위 Route를 감싼다! */}
       </Routes>
@@ -88,31 +92,30 @@ export default function MainComponent() {
   );
 }
 
-/*******************************************
+/******************************************* 
   컴포넌트로 만들고 라우터 안에 넣고
-  라우터 경로 변경시 스크롤 최상단 이동
-******************************************/
+  라우터 경로변경시 스크롤 최상단이동
+*******************************************/
 const ScrollTop = () => {
 
-  // 라우터 경로 변경시 path값 읽어오기
-  // pathname객체 속성에 담긴다!
+  // 라우터 경로 변경시 path 값 읽어오기
+  // pathname 객체 속성에 담긴다!
   const {pathname} = useLocation();
 
-  // 화면 랜더링 구역에 스크롤 상단 이동 코드 넣기
+  // 화면랜더링 구역에 스크롤상단이동 코드넣기
   useEffect(()=>{
+    // 스크롤 최상단 이동
     window.scrollTo(0,0);
     // 변경된 라우터 경로값 확인
-    console.log("라우터 경로:",pathname);
-
+    // console.log("라우터경로:",pathname);
   },[pathname]);
   // 의존성을 라우터 경로 변수로 설정한다!
 
-  // 컴포넌트 리턴이 필요하나 소스 리턴이 아니므로
-  // null을 쓴다
+  // 컴포넌트 리턴이 필요하나
+  // 소스리턴이 아니므로 null를 쓴다
   return null;
 
-
-}; /////////// ScrollTop 컴포넌트 ///////////
+}; /////////// ScrollTop 컴포넌트 ////////////
 
 /// 컴포넌트 출력 ///
 // 먼저 root 객체 만들기
