@@ -1,4 +1,5 @@
 // 오피니언 페이지 컴포넌트 ///
+import { Fragment, useRef, useState } from "react";
 
 // 사용자 기본 정보 생성 함수
 import { initData } from "../func/mem_fn";
@@ -16,6 +17,19 @@ import "../../css/board.scss";
 import "../../css/board_file.scss";
 
 export default function Board() {
+  /// [ 상태관리변수 ] ///
+  // [1] 페이지 번호
+  const [pageNum, setPageNum] = useState(1);
+
+  /// [ 참조변수 ] ///
+  // [1] 전체 개수 - 매번 계산하지 않도록 참조변수로!
+  const totalCount = useRef(baseData.length);
+
+  console.log("전체 개수:", totalCount);
+
+  // 페이지당 개수
+  const unitSize = 8;
+
   /********************************************* 
         함수명: bindList
         기능: 페이지별 리스트를 생성하여 바인딩함
@@ -37,21 +51,13 @@ export default function Board() {
     // 페이지 번호와 연관시켜 본다!
     // 1, 2, 3, 4, ...
     // 시작번호 = (페이지 번호-1)*단위수
+    let sNum = (pageNum - 1) * unitSize;
+
     // 끝번호 = 페이지 번호*단위수
-
-    // 페이지 번호
-    const pgNum = 1;
-
-    // 페이지당 개수
-    const unitSize = 10;
+    let eNum = pageNum * unitSize;
 
     const selData = [];
-    for ( // 시작값
-        let i = (pgNum - 1) * unitSize;
-        // 한계값
-        i < pgNum * unitSize; 
-        // 증감
-        i++) {
+    for (let i = sNum; i < eNum; i++) {
       selData.push(orgData[i]);
     }
     console.log("일부 데이터:", selData);
@@ -70,6 +76,54 @@ export default function Board() {
       </tr>
     ));
   }; ////////// bindList //////////
+
+  /********************************************* 
+        함수명: pagingList
+        기능: 게시판 리스트의 페이징 기능 목록
+    *********************************************/
+  const pagingList = () => {
+    // 전체 페이징 개수: 전체 레코드 수/페이지당 개수
+    // 유의점: 나머지가 있는지 검사해서 있으면 +1
+
+    // 1. 페이징 개수
+    let pagingCount = Math.floor(totalCount.current / unitSize);
+
+    // 나머지가 있으면 다음 페이지가 필요함!
+    // 나머지가 0이 아니라면 1 더하기
+    if (totalCount.current % unitSize > 0) {
+      pagingCount++;
+    }
+
+    console.log(
+      "페이징 개수:",
+      pagingCount,
+      "나머지 개수:",
+      totalCount.current % unitSize
+    );
+
+    // 링크 코드 만들기
+    const pgCode = [];
+
+    // 1부터 페이지 끝번호까지 돌면서 코드 만들기
+    for (let i = 1; i <= pagingCount; i++) {
+      pgCode.push(
+        <Fragment key={i}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setPageNum(2);
+            }}
+          >
+            2
+          </a>
+        </Fragment>
+      );
+    } /// for ///
+
+    /// 코드 리턴 ///
+    return pgCode;
+  }; ////////// pagingList //////////
 
   //// 코드 리턴 구역 //////////////
   return (
@@ -103,9 +157,7 @@ export default function Board() {
           <tfoot>
             <tr>
               <td colSpan="5" className="paging">
-                <b>1</b> | <a href="#">2</a> | <a href="#">3</a> |{" "}
-                <a href="#">4</a> | <a href="#">5</a> | <a href="#">6</a> |{" "}
-                <a href="#">7</a> | <a href="#">8</a>
+                {pagingList()}
               </td>
             </tr>
           </tfoot>
