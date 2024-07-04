@@ -16,6 +16,9 @@ export function TotalMenu() {
     let pgName = e.target.innerText.toLowerCase();
     console.log("이동할 페이지:", pgName);
 
+    // -> 아이템 리스트 페이지는 중간 공백
+    pgName = pgName.replace("","-");
+
     // 3. 서브페이지 이동을 위한 상태변수 업데이트
     myCon.setPgName(pgName);
 
@@ -90,6 +93,14 @@ export function TotalMenu() {
             <dd>
               <a href="#">MAIN ITEM</a>
             </dd>
+          </dl>
+          <dl>
+            <dt>
+              <a href="#" onClick={goSub}>
+                ITEM LIST
+              </a>
+            </dt>
+            <dd></dd>
           </dl>
         </nav>
       </div>

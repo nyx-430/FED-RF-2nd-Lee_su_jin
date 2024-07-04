@@ -3,6 +3,7 @@ import React from "react";
 // 메뉴 데이터 불러오기
 import { gnbData } from "../../js/data/gnb";
 import { TotalMenu } from "../modules/TotalMenu";
+
 // 제이쿼리
 import $ from "jquery";
 

@@ -1,6 +1,7 @@
 import React from "react";
 import MainCont from "../pages/MainCont";
 import Fashion from "../pages/Fashion";
+import ItemList from "../pages/ItemList";
 
 function MainArea({ page }) {
   // page 페이지변경 문자값전달
@@ -12,6 +13,7 @@ function MainArea({ page }) {
     <>
       {/* 조건출력으로 페이지별 분기 */}
       {page == "main" && <MainCont />}
+      {page == "item-list" && <ItemList />}
       {
       (page == "men" ||
       page == "women" ||
