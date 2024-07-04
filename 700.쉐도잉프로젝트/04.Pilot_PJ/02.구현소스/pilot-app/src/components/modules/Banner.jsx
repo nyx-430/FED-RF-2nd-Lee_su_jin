@@ -44,7 +44,7 @@ function Banner(props) {
 
     // console.log(hcode);
 
-    // 코드리턴
+    // 코드 리턴
     return hcode;
   }; ///////// makeList 함수 /////////
 

@@ -31,16 +31,21 @@ function ItemList(props) {
           <input type="checkbox" className="chkbx" id="style" defaultChecked />
         </div>
         <div className="grid">
-          <div>
-            <a href="#">
-              [1]
-              <img src="./images/goods/men/m1.png" alt="dress" />
-              <aside>
-                <h2>[남성]카모전판프린트 PQ 티셔츠</h2>
-                <h3>99,000원</h3>
-              </aside>
-            </a>
-          </div>
+          {itemListData.map((v, i) => (
+            <div key={i}>
+              <a href="#">
+                [{i}]
+                <img
+                  src={process.env.PUBLIC_URL + `/images/goods/${v.cat}/${v.ginfo[0]}.png`}
+                  alt="dress"
+                />
+                <aside>
+                  <h2>{v.ginfo[1]}</h2>
+                  <h3>{v.ginfo[3]}</h3>
+                </aside>
+              </a>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -62,15 +67,36 @@ function ItemList(props) {
         <div id="imbx">
           <div className="inx">
             <section className="gim /g">
-              <img src="./images/goods/men/m1.png" alt="큰 이미지" />
+              <img
+                src={process.env.PUBLIC_URL + "/images/goods/men/m1.png"}
+                alt="큰 이미지"
+              />
               <div className="small">
                 <a href="#">
-                  <img src="./images/goods/men/m1.png" alt="썸네일 이미지" />
-                  <img src="./images/goods/men/m2.png" alt="썸네일 이미지" />
-                  <img src="./images/goods/men/m3.png" alt="썸네일 이미지" />
-                  <img src="./images/goods/men/m4.png" alt="썸네일 이미지" />
-                  <img src="./images/goods/men/m5.png" alt="썸네일 이미지" />
-                  <img src="./images/goods/men/m6.png" alt="썸네일 이미지" />
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/goods/men/m1.png"}
+                    alt="썸네일 이미지"
+                  />
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/goods/men/m2.png"}
+                    alt="썸네일 이미지"
+                  />
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/goods/men/m3.png"}
+                    alt="썸네일 이미지"
+                  />
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/goods/men/m4.png"}
+                    alt="썸네일 이미지"
+                  />
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/goods/men/m5.png"}
+                    alt="썸네일 이미지"
+                  />
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/goods/men/m6.png"}
+                    alt="썸네일 이미지"
+                  />
                 </a>
               </div>
             </section>
@@ -79,7 +105,13 @@ function ItemList(props) {
               <div>
                 <ol>
                   <li>
-                    <img src="./images/dx_ico_new-28143800.gif" alt="new버튼" />
+                    <img
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/dx_ico_new-28143800.gif"
+                      }
+                      alt="new버튼"
+                    />
                   </li>
                   <li id="gtit">상품명: [남성]카모전판프린트 PQ 티셔츠</li>
                   <li>
@@ -87,9 +119,23 @@ function ItemList(props) {
                       src="./images/icon_type02_social01.gif"
                       alt="페이스북"
                     />
-                    <img src="./images/icon_type02_social02.gif" alt="트위터" />
-                    <img src="./images/icon_mail02.gif" alt="이메일" />
-                    <img src="./images/btn_source_copy.gif" alt="URL복사" />
+                    <img
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/icon_type02_social02.gif"
+                      }
+                      alt="트위터"
+                    />
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/icon_mail02.gif"}
+                      alt="이메일"
+                    />
+                    <img
+                      src={
+                        process.env.PUBLIC_URL + "/images/btn_source_copy.gif"
+                      }
+                      alt="URL복사"
+                    />
                   </li>
                   <li>
                     <span>판매가</span>
@@ -98,7 +144,7 @@ function ItemList(props) {
                   <li>
                     <span>적립금</span>
                     <span>
-                      <img src="./images/icon_my_m02.gif" alt="적립금" />
+                      <img src="/images/icon_my_m02.gif" alt="적립금" />
                       4,950(5%적립)
                     </span>
                   </li>
@@ -107,7 +153,7 @@ function ItemList(props) {
                     <span>
                       부분 무이자 할부 혜택
                       <img
-                        src="./images/view_btn_nointerest_card.gif"
+                        src="/images/view_btn_nointerest_card.gif"
                         alt="무이자카드보기"
                       />
                     </span>
@@ -123,8 +169,8 @@ function ItemList(props) {
                     <span>
                       <input type="text" id="sum" defaultValue="1" />
                       <b className="chg_num">
-                        <img src="./images/cnt_up.png" alt="증가" />
-                        <img src="./images/cnt_down.png" alt="감소" />
+                        <img src="/images/cnt_up.png" alt="증가" />
+                        <img src="/images/cnt_down.png" alt="감소" />
                       </b>
                     </span>
                   </li>
