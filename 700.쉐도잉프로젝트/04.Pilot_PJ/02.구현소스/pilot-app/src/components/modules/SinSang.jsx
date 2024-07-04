@@ -58,18 +58,18 @@ function SinSang({ cat, chgItemFn }) {
             }}
           >
             <img
-              src={"./images/goods/" + cat + "/m" + (x + 1) + ".png"}
+              src={process.env.PUBLIC_URL+"/images/goods/" + cat + "/m" + (x + 1) + ".png"}
               alt="신상품"
             />
           </a>
         </li>
       );
     } ///// for /////
-    // JSX태그를 담은 배열을 리턴->자동태그변환!
+    // JSX태그를 담은 배열을 리턴 -> 자동 태그 변환!
     return temp;
   };
 
-  // 코드리턴 구역 /////////////////////
+  // 코드 리턴 구역 /////////////////////
   return (
     <>
       <h2 className="c1tit">
