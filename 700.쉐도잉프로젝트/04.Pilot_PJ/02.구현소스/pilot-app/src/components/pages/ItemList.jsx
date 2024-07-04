@@ -17,10 +17,10 @@ import ItemDetail from "../modules/ItemDetail";
 function ItemList() {
   // 상태변수 만들기 //////////
   // [1] 카테고리 정보
-  const [cat, setCat] = useState(ItemDetail[0].ginfo);
+  const [cat, setCat] = useState(itemListData[0].ginfo);
 
   // [2] 상품 정보
-  const [ginfo, setGinfo] = useState(ItemDetail[0].ginfo);
+  const [ginfo, setGinfo] = useState(itemListData[0].ginfo);
 
 
   // 화면 렌더링 구역 //////////
