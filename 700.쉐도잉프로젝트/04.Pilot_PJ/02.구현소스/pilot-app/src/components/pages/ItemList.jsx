@@ -1,6 +1,8 @@
 /// 아이템리스트 컴포넌트 - ItemList.jsx ///
-
 import React, { useEffect } from "react";
+
+// 상품 데이터 불러오기
+import itemListData from "../../js/data/item_list";
 
 // CSS 불러오기
 import "../../css/item_list.scss";
@@ -28,7 +30,18 @@ function ItemList(props) {
           <label htmlFor="style">스타일</label>
           <input type="checkbox" className="chkbx" id="style" defaultChecked />
         </div>
-        <div className="grid"></div>
+        <div className="grid">
+          <div>
+            <a href="#">
+              [1]
+              <img src="./images/goods/men/m1.png" alt="dress" />
+              <aside>
+                <h2>[남성]카모전판프린트 PQ 티셔츠</h2>
+                <h3>99,000원</h3>
+              </aside>
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* 상세 상품정보 박스 */}
