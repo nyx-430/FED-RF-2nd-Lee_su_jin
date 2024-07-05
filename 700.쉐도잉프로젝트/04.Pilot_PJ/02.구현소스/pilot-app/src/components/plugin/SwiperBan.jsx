@@ -87,12 +87,45 @@ export function SwiperBan({ cat }) {
     return temp;
   }; ///////////// makeList 함수 //////////
 
-  // 소멸자 만들기 //////////
+  // 화면 렌더링 구역 : 한번만 ////////////
   useEffect(() => {
+    // 스와이퍼 객체 : ref로 외부에 노출한 스와이퍼 객체
+    let objSwp = swpObj.current.swiper;
+
+    // 화면 절반 크기 기준값
+    const winCta = window.innerHeight / 2;
+    // 스크롤시 호출함수
+    const scrollFn = () => {
+      if (window.scrollY > winCta) {
+        // 영상플레이시 자동넘김 끄기
+        // objSwp.autoplay.stop();
+        // objSwp.autoplay.running = false;
+        // 영상멈추기
+        mvEle.pause();
+      } else {
+        // 자동넘김 시작
+        // objSwp.autoplay.start();
+        // 자동넘김 속성 true전환!
+        objSwp.autoplay.running = true;
+        // 영상재생
+        mvEle.play();
+      }
+    };
+
+    // 스크롤 이동시 기준값에 따라 동영상 재생/멈춤
+    // 단, 동영상 객체가 있을 때에만!
+    if (mvEle) window.addEventListener("scroll", scrollFn);
+
+    // 소멸자 만들기 //////////
     return () => {
       // 동영상 변수가 null이 아닐 때만 이벤트 삭제
-      
-      mvEle.removeEventListener("timeupdate", actionVideo);
+      if (mvEle) {
+        // 동영상 시간 업데이트 이벤트 설정
+        mvEle.removeEventListener("timeupdate", actionVideo);
+        // 스크롤 이벤트 삭제
+        window.removeEventListener("scroll", scrollFn);
+      }
+
       console.log("난 스와이퍼 소멸자!!!");
     };
   }, []); /////////// useEffect ///////////

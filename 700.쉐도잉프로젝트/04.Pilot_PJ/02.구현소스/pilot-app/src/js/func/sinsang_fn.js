@@ -39,7 +39,7 @@ const showInfo = (e, selData) => {
     );
 }; /////////// showInfo함수 ///////////////
 
-//정규식함수(숫자 세자리마다 콤마해주는 기능)
+// 정규식함수(숫자 세자리마다 콤마해주는 기능)
 function addComma(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -53,7 +53,7 @@ const removeInfo = (e) => {
 // [ 신상품 리스트 이동함수 ] //////
 const flowList = (ele, lpos, callSts) => {
   // ele-움직일대상
-  console.log(callSts.current);
+  // console.log(callSts.current);
   // 대상의 left값을 1씩 감소함
   lpos.current--;
 
@@ -69,7 +69,7 @@ const flowList = (ele, lpos, callSts) => {
   ele.css({ left: lpos.current + "px" });
 
   // 재귀호출
-  console.log("재귀:", callSts.current);
+  // console.log("재귀:", callSts.current);
   if (callSts.current) setTimeout(() => flowList(ele, lpos, callSts), 40);
 }; ////////// flowList ////////////
 

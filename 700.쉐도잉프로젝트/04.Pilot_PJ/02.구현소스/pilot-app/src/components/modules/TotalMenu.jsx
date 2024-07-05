@@ -17,7 +17,7 @@ export function TotalMenu() {
     console.log("이동할 페이지:", pgName);
 
     // -> 아이템 리스트 페이지는 중간 공백
-    pgName = pgName.replace("","-");
+    pgName = pgName.replace(" ","-");
 
     // 3. 서브페이지 이동을 위한 상태변수 업데이트
     myCon.setPgName(pgName);
