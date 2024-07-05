@@ -28,10 +28,10 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
   // fill(값) : 모든 배열 다 같은 값 채우기
   // fill(값,시작번호) : 0부터 시작하는 번호 중 특정 배열부터 끝까지 채움
   // fill(값,시작번호,끝번호) : 시작 번호부터 끝 번호까지 채움
-  console.log(Array(10));
-  console.log(Array(10).fill(8));
-  console.log(Array(10).fill(7, 2));
-  console.log(Array(10).fill(7, 2, 5));
+  // console.log(Array(10));
+  // console.log(Array(10).fill(8));
+  // console.log(Array(10).fill(7, 2));
+  // console.log(Array(10).fill(7, 2, 5));
 
   // 화면 렌더링 구역 : 한번만 ////////////////
   useEffect(() => {
@@ -61,7 +61,7 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
       console.log("현재 숫자:", num);
 
       // (3) 증감 반영하기 (0은 false, 1은 true 처리)
-      sum.val(!seq ? --num : num == 0 ? 1 : ++num);
+      sum.val(seq == 0 ? ++num : num == 1 ? 1 : --num);
       // seq가 0이냐? 그럼 증가:아니면 num이 1이냐? 그럼 1:아니면 감소
       // 증감 기호가 변수 앞에 있어야 먼저 증감하고 할당함
 
@@ -75,7 +75,7 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
       // (4) 총합계 반영하기
       // 원가격은 컴포넌트 전달변수 ginfo[3] -> 갱신 안 됨!
       // 원가격은 참조변수 getGinfo 사용 -> 매번 업데이트 됨!
-      total.text(addComma(ginfo[3]*num)+"원");
+      total.text(addComma(getGinfo.current[3] * num) + "원");
     }); ////// click //////
   }, []); ///////////////////////////
 
@@ -83,7 +83,7 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
   useEffect(()=>{
     // 매번 리렌더링될 때마다 수량 초기화!
     $("#sum").val(1);
-    
+
     // 총합계 초기화
     $("#total").text(addComma(ginfo[3])+"원");
   }); ///////////////////////////////
