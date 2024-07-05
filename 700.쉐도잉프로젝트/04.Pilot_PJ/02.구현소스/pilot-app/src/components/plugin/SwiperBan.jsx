@@ -23,6 +23,9 @@ export function SwiperBan({ cat }) {
   // 스와이퍼 객체를 담기 위한 참조변수
   const swpObj = useRef(null);
 
+  // 스와이퍼 슬라이드의 동영상 변수
+  let mvEle;
+
   // 화면 랜더링 구역 /////////////////////
   useEffect(() => {
     // 스와이퍼 배너 첫 페이지로 이동하기
@@ -35,6 +38,7 @@ export function SwiperBan({ cat }) {
     // 스와이퍼 객체는 어디 있지?
     // console.log("랜더링:", swpObj);
     // console.log("Swiper:", swpObj.current.swiper);
+
     // 플러그인 스와이퍼 컴포넌트 객체 생성시
     // ref속성에 useRef변수를 넣으면 거기에 스와이퍼 객체가 담겨진다!
     // -> 외부에서 사용 가능!!!
@@ -54,7 +58,9 @@ export function SwiperBan({ cat }) {
         <SwiperSlide key={x}>
           {(cat == "men" || cat == "women") && x == 0 ? (
             <video
-              src={process.env.PUBLIC_URL+"/images/sub/" + cat + "/banner/mv.mp4"}
+              src={
+                process.env.PUBLIC_URL + "/images/sub/" + cat + "/banner/mv.mp4"
+              }
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               //   muted
               // loop -> 루프는 동영상 멈춤 이벤트 체크시 주석
@@ -63,7 +69,14 @@ export function SwiperBan({ cat }) {
             />
           ) : (
             <img
-              src={process.env.PUBLIC_URL+"/images/sub/" + cat + "/banner/ban" + (x + 1) + ".png"}
+              src={
+                process.env.PUBLIC_URL +
+                "/images/sub/" +
+                cat +
+                "/banner/ban" +
+                (x + 1) +
+                ".png"
+              }
             />
           )}
         </SwiperSlide>
@@ -74,7 +87,34 @@ export function SwiperBan({ cat }) {
     return temp;
   }; ///////////// makeList 함수 //////////
 
-  // 리턴 코드 ///////////////////
+  // 소멸자 만들기 //////////
+  useEffect(() => {
+    return () => {
+      // 동영상 변수가 null이 아닐 때만 이벤트 삭제
+      
+      mvEle.removeEventListener("timeupdate", actionVideo);
+      console.log("난 스와이퍼 소멸자!!!");
+    };
+  }, []); /////////// useEffect ///////////
+
+  // 동영상 재생시 작동 함수 //////////
+  const actionVideo = (e) => {
+    // 스와이퍼 객체
+    let swp = swpObj.current.swiper;
+    // 비디오가 멈추면 멈춤 속성값이 true임
+    // 멈춤 속성 -> paused
+    // console.log("비디오 재생중~~", e.target.paused);
+    // 비디오가 멈추면 슬라이드 이동
+    if (e.target.paused) {
+      swp.slideNext();
+      // 자동 넘김 시작
+      swp.autoplay.start();
+      // 자동 넘김 true 전환
+      swp.autoplay.running = true;
+    } /// if ///
+  }; ////////// actionVideo //////////
+
+  // 코드 리턴 구역 ///////////////////
   return (
     <>
       <Swiper
@@ -111,9 +151,10 @@ export function SwiperBan({ cat }) {
             // 자동 넘김 false 전환
             swp.autoplay.running = false;
             return;
-          }
+          } /// if ///
 
-          let mvEle = document.querySelector(`.${cat}-vid`);
+          // 선택 동영상 : 상단 전역변수로 선언
+          mvEle = document.querySelector(`.${cat}-vid`);
 
           // 현재 진짜 순번
           let idx = swp.realIndex;
@@ -132,23 +173,18 @@ export function SwiperBan({ cat }) {
 
             // 비디오 재생시 발생 이벤트 체크
             // timeupdate: 비디오 재생 이벤트
-            mvEle.addEventListener("timeupdate", (e) => {
-              // 비디오가 멈추면 멈춤 속성값이 true임
-              // 멈춤 속성 -> paused
-              // console.log("비디오 재생중~~", e.target.paused);
-              // 비디오가 멈추면 슬라이드 이동
-              if (e.target.paused) {
-                swp.slideNext();
-                // 자동 넘김 시작
-                swp.autoplay.start();
-                // 자동 넘김 true 전환
-                swp.autoplay.running = true;
-              } /// if ///
-            }); ////// timeupdate //////
+            mvEle.addEventListener("timeupdate", actionVideo);
+            ////// timeupdate //////
           } /// if ///
           // 기타 페이지는 영상 멈춤
           else {
-            mvEle.pause();
+            // mvEle.pause(); // -> 에러남
+            let playPromise = mvEle.play();
+            if (playPromise !== undefined)
+              playPromise.then(() => mvEle.pause());
+            // 원래 then() 메서드는 Promise객체를 만들고 쓰는 것!
+            // play() 메서드가 기본적으로 Promise를 구성하고 있음!
+            // 그래서 then() 메서드 사용 가능!
           } /// else ///
         }}
       >

@@ -5,10 +5,11 @@ import $ from "jquery";
 
 // 상품에 오버시 상품정보를 보여주는 함수 /////
 const showInfo = (e, selData) => {
+  // console.log(selData);
   e.preventDefault();
   // 대상
   const tg = $(e.currentTarget);
-  // 1. 이벤트가 발생한 li의 class읽어오기 (상품정보 객체의 키)
+  // 1. 이벤트가 발생한 li의 class읽어오기(상품정보객체의 키)
   let gKey = tg.attr("class");
   // console.log('나야나!',selData[gKey]);
 
@@ -20,14 +21,14 @@ const showInfo = (e, selData) => {
   //   selData[gKey].split('^')
   //   .map((v)=>`<div>${v}</div>`));
 
-  // 3. 현재 li에 만든 .ibox에 데이터 넣기+등장
+  // 3. 현재li에 만든 .ibox에 데이터 넣기+등장
   tg.find(".ibox")
     .html(
       selData[gKey]
         .split("^")
         .map((v, i) => `<div>${i == 2 ? addComma(v) + "원" : v}</div>`)
     )
-    // 등장애니
+    // 등장 애니
     .animate(
       {
         top: "110%",
@@ -38,7 +39,7 @@ const showInfo = (e, selData) => {
     );
 }; /////////// showInfo함수 ///////////////
 
-//정규식함수 (숫자 세자리마다 콤마해 주는 기능)
+//정규식함수(숫자 세자리마다 콤마해주는 기능)
 function addComma(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -52,13 +53,13 @@ const removeInfo = (e) => {
 // [ 신상품 리스트 이동함수 ] //////
 const flowList = (ele, lpos, callSts) => {
   // ele-움직일대상
-  // console.log(ele);
+  console.log(callSts.current);
   // 대상의 left값을 1씩 감소함
   lpos.current--;
 
   // 이미지박스 한개가 나가면 잘라서 맨뒤로 보냄
   if (lpos.current < -300) {
-    // 위치값 초기화! (-301일 때 0으로 변경!)
+    // 위치값 초기화!(-301일때 0으로 변경!)
     lpos.current = 0;
     // 첫번째 li 맨뒤로 이동
     ele.append(ele.find("li").first());
@@ -68,6 +69,7 @@ const flowList = (ele, lpos, callSts) => {
   ele.css({ left: lpos.current + "px" });
 
   // 재귀호출
+  console.log("재귀:", callSts.current);
   if (callSts.current) setTimeout(() => flowList(ele, lpos, callSts), 40);
 }; ////////// flowList ////////////
 
