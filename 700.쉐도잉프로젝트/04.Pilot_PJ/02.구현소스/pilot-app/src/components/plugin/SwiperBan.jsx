@@ -33,8 +33,8 @@ export function SwiperBan({ cat }) {
     // 첫번째 슬라이드는 0번, 애니 시간은 0으로 안 보이게
 
     // 스와이퍼 객체는 어디 있지?
-    console.log("랜더링:", swpObj);
-    console.log("Swiper:", swpObj.current.swiper);
+    // console.log("랜더링:", swpObj);
+    // console.log("Swiper:", swpObj.current.swiper);
     // 플러그인 스와이퍼 컴포넌트 객체 생성시
     // ref속성에 useRef변수를 넣으면 거기에 스와이퍼 객체가 담겨진다!
     // -> 외부에서 사용 가능!!!
@@ -81,7 +81,7 @@ export function SwiperBan({ cat }) {
         ref={swpObj}
         /* ref 속성에 useRef 할당변수를 넣어서 외부에 연결함 */
         onInit={(swp) => {
-          console.log("스와이퍼 처음 셋팅!", swp);
+          // console.log("스와이퍼 처음 셋팅!", swp);
         }}
         slidesPerView={1}
         spaceBetween={0}
@@ -118,7 +118,7 @@ export function SwiperBan({ cat }) {
           // 현재 진짜 순번
           let idx = swp.realIndex;
 
-          console.log("슬라이드 순번:", idx);
+          // console.log("슬라이드 순번:", idx);
 
           // men / women일 때 첫 페이지 영상 플레이
           if (idx == 0) {
@@ -135,7 +135,7 @@ export function SwiperBan({ cat }) {
             mvEle.addEventListener("timeupdate", (e) => {
               // 비디오가 멈추면 멈춤 속성값이 true임
               // 멈춤 속성 -> paused
-              console.log("비디오 재생중~~", e.target.paused);
+              // console.log("비디오 재생중~~", e.target.paused);
               // 비디오가 멈추면 슬라이드 이동
               if (e.target.paused) {
                 swp.slideNext();
