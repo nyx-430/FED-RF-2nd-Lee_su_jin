@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { addComma } from "../../js/func/common_fn";
 
 import $ from "jquery";
@@ -9,7 +9,12 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
   // dt - 상품 데이터
   // setGinfo - ginfo값 변경 메서드
 
-  // console.log(cat, ginfo);
+  console.log(cat, ginfo);
+
+  // 제이쿼리 이벤트 함수에 전달할 ginfo값 참조변수
+  const getGinfo = useRef(ginfo);
+  // getGinfo참조변수는 새로 들어온 ginfo전달값이 달라진 경우 업데이트 한다!
+  if(getGinfo.current!=ginfo) getGinfo.current=ginfo;
 
   // [ 배열 생성 테스트 ]
   // 1. 배열변수 = [] -> 배열리터럴
@@ -37,7 +42,7 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
     const sum = $("#sum");
     // (2) 수량 증감 이미지 버튼
     const numBtn = $(".chg_num img");
-    // (3) 총합계 input
+    // (3) 총합계 요소
     const total = $("#total");
 
     // console.log(sum,numBtn);
@@ -59,6 +64,18 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
       sum.val(!seq ? --num : num == 0 ? 1 : ++num);
       // seq가 0이냐? 그럼 증가:아니면 num이 1이냐? 그럼 1:아니면 감소
       // 증감 기호가 변수 앞에 있어야 먼저 증감하고 할당함
+
+      console.log("ginfo전달변수 확인:",ginfo);
+      console.log("getGinfo참조변수 확인:",getGinfo.current);
+      // [ 문제!!! ginfo값으로 읽으면 최초에 셋팅된 값이 그대로 유지된다
+      //    왜? 본 함수는 최초 한번만 셋팅되기 때문! ]
+      // [ 해결책 : 새로 들어오는 ginfo값을 참조변수에 넣어서 본 함수에서
+      //    그 값을 읽으면 된다!]
+
+      // (4) 총합계 반영하기
+      // 원가격은 컴포넌트 전달변수 ginfo[3] -> 갱신 안 됨!
+      // 원가격은 참조변수 getGinfo 사용 -> 매번 업데이트 됨!
+      total.text(addComma(ginfo[3]*num)+"원");
     }); ////// click //////
   }, []); ///////////////////////////
 
