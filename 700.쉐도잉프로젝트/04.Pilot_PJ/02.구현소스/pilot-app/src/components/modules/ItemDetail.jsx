@@ -54,39 +54,54 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
               alt="큰 이미지"
             />
             {/* 
-              작은 상품 이미지
+              [ 작은 상품 이미지 ]
               - 본 상품을 제외한 5개의 상품이 나열되고 클릭시 본 화면의 상품을 변경해 준다!
-              단, 같은 카테고리 상품 상위 5개임!
+                단, 같은 카테고리 상품 상위 5개임!
               -> 배열을 임의로 만들고 값도 임의로 넣고 map을 사용하여 코드를 만들어보자!
                */}
             <div className="small">
               {Array(5)
                 .fill("")
                 .map((v, i) => {
-                  return <a href="#" key={i}
-                  onClick={(e)=>{
-                    // 기본 이동 막기
-                    e.preventDefault();
+                  // 한줄 리스트와 같은 번호면 6번 나오게 함!
+                  // 1~5까지니까!
+                  let num = ginfo[0].substr(1) <= i + 1 ? 6 : i + 1;
+                  // 현재 상품번호가 1~5 중 같은 게 있으면 6번
+                  // substr(시작순번,개수) -> 개수 없으면 순번부터 전부 다 가져옴
+                  // console.log("검사 번호:", ginfo[0].substr(1));
+                  // console.log("변경 번호:", num);
 
-                    // 선택 데이터 찾기
-                    // -> cat 항목값+ginfo[0]항목
-                    let res = dt.find(v=>{
-                      if(v.cat==cat && v.ginfo[0]=="m"+(i+1))
-                      return true;
-                    }); /// find ///
+                  return (
+                    <a
+                      href="#"
+                      key={i}
+                      onClick={(e) => {
+                        // 기본 이동 막기
+                        e.preventDefault();
 
-                    // 상품상세모듈 전달 상태변수 변경
-                    setGinfo(res.ginfo);
-                  }}
-                  >
-                    <img
-                      src={
-                        process.env.PUBLIC_URL +
-                        `/images/goods/${cat}/m${i+1}.png`
-                      }
-                      alt="썸네일 이미지"
-                    />
-                  </a>;
+                        // 선택 데이터 찾기
+                        // -> cat 항목값+ginfo[0]항목
+                        let res = dt.find((v) => {
+                          if (v.cat == cat && v.ginfo[0] == "m" + num)
+                            return true;
+                        }); /// find ///
+
+                        // 상품상세모듈 전달 상태변수 변경
+                        // find에서 받은 값은 객체값
+                        // 그중 ginfo속성값만 필요함
+                        setGinfo(res.ginfo);
+                        // 카테고리 값은 바꿀 필요 없음!
+                      }}
+                    >
+                      <img
+                        src={
+                          process.env.PUBLIC_URL +
+                          `/images/goods/${cat}/m${num}.png`
+                        }
+                        alt="썸네일 이미지"
+                      />
+                    </a>
+                  );
                 })}
             </div>
           </section>

@@ -90,9 +90,12 @@ function ItemList() {
       >
         {/* cat - 카테고리, ginfo - 상품 정보, dt - 상품 데이터, setGinfo - ginfo값 변경 메서드 */}
         <ItemDetail 
+        // cat, ginfo는 개별 상품 정보
         cat={cat} 
-        ginfo={ginfo} 
+        ginfo={ginfo}
+        // dt는 전체 데이터(한줄 리스트 때문)
         dt={itemListData} 
+        // setGinfo는 한줄 리스트 클릭시 변경을 위해
         setGinfo={setGinfo} />
       </div>
     </main>
