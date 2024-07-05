@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { addComma } from "../../js/func/common_fn";
 
 import $ from "jquery";
@@ -28,7 +28,41 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
   console.log(Array(10).fill(7, 2));
   console.log(Array(10).fill(7, 2, 5));
 
-  // 코드 리턴 구역
+  // 화면 렌더링 구역 : 한번만 ////////////////
+  useEffect(() => {
+    // [ 수량 증가 버튼 클릭시 증감 기능 구현 ]
+
+    // 1. 대상 요소
+    // (1) 숫자 출력 input
+    const sum = $("#sum");
+    // (2) 수량 증감 이미지 버튼
+    const numBtn = $(".chg_num img");
+    // (3) 총합계 input
+    const total = $("#total");
+
+    // console.log(sum,numBtn);
+
+    // 2. 수량 증감 이벤트 함수
+    numBtn.on("click", (e) => {
+      // 참고) 제거용 => numBtn.off("click");
+
+      // (1) 이미지 순번(구분하려고)
+      let seq = $(e.tartget).index();
+      // 0은 증가 / 1은 감소
+      // console.log("버튼 순번:", seq);
+
+      // (2) 기존 숫자 읽기
+      let num = Number(sum.val());
+      console.log("현재 숫자:", num);
+
+      // (3) 증감 반영하기 (0은 false, 1은 true 처리)
+      sum.val(!seq ? --num : num == 0 ? 1 : ++num);
+      // seq가 0이냐? 그럼 증가:아니면 num이 1이냐? 그럼 1:아니면 감소
+      // 증감 기호가 변수 앞에 있어야 먼저 증감하고 할당함
+    }); ////// click //////
+  }, []); ///////////////////////////
+
+  // 코드 리턴 구역 /////////////////
   return (
     <>
       <a
