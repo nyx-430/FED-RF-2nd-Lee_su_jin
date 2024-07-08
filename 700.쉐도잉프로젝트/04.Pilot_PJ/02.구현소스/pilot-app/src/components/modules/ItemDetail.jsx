@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { addComma } from "../../js/func/common_fn";
+import { pCon } from "./pCon";
 
 import $ from "jquery";
 
@@ -8,8 +9,11 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
   // ginfo - 상품 정보
   // dt - 상품 데이터
   // setGinfo - ginfo값 변경 메서드
-
+  
   console.log(cat, ginfo);
+
+  // 전역 카드 사용여부값 업데이트 사용 위한 전역 컨텍스트 사용!
+  const myCon = useContext(pCon);
 
   // 제이쿼리 이벤트 함수에 전달할 ginfo값 참조변수
   const getGinfo = useRef(ginfo);
@@ -126,7 +130,7 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
                 .map((v, i) => {
                   // 한줄 리스트와 같은 번호면 6번 나오게 함!
                   // 1~5까지니까!
-                  let num = ginfo[0].substr(1) <= i + 1 ? 6 : i + 1;
+                  let num = ginfo[0].substr(1) == i + 1 ? 6 : i + 1;
                   // 현재 상품번호가 1~5 중 같은 게 있으면 6번
                   // substr(시작순번,개수) -> 개수 없으면 순번부터 전부 다 가져옴
                   // console.log("검사 번호:", ginfo[0].substr(1));
@@ -266,7 +270,9 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
             </div>
             <div>
               <button className="btn btn1">BUY NOW</button>
-              <button className="btn">SHOPPING CART</button>
+              <button className="btn"
+              onClick={()=>{myCon.setCartSts(true)}}>
+                SHOPPING CART</button>
               <button className="btn">WISH LIST</button>
             </div>
           </section>
