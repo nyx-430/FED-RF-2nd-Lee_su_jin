@@ -5,7 +5,7 @@ import { Fragment, useRef, useState } from "react";
 import { initData } from "../func/mem_fn";
 
 // 로컬스토리지 게시판 기본 데이터 JSON
-import baseData from "../data/board.json";
+// import baseData from "../data/board.json"; -> 로컬쓰로 대체!!!
 // 리액트 웹팩에서 제이슨은 이름을 지어서 불러오면 된다!
 // 제이슨 파일 처리는 다르므로 확장자를 반드시 써야 함!
 
@@ -16,10 +16,26 @@ import $ from "jquery";
 import "../../css/board.scss";
 import "../../css/board_file.scss";
 
+// 로컬 스토리지 확인 JS
+import { initBoardData } from "../func/board_fn";
+
 export default function Board() {
-  /// [ 상태관리변수 ] ///
+  // 로컬 스토리지 게시판 데이터 정보 확인
+  initBoardData();
+
+  // 로컬쓰 데이터 변수 할당하기
+  const baseData = JSON.parse(localStorage.getItem("board-data"));
+
+  ////// [ 상태 관리 변수 ] //////
   // [1] 페이지 번호
   const [pageNum, setPageNum] = useState(1);
+
+  // [2] 기능 모드
+  const [mode, setMode] = useState("L");
+  // (1) 리스트 모드(L) : List Mode
+  // (2) 글보기 모드(R) : Read Mode
+  // (3) 글쓰기 모드(W) : Write Mode
+  // (4) 수정 모드(M) : Modify Mode (삭제 포함)
 
   /// [ 참조변수 ] ///
   // [1] 전체 개수 - 매번 계산하지 않도록 참조변수로!
@@ -74,7 +90,11 @@ export default function Board() {
         {/* 시작번호를 더하여 페이지별 순번을 변경 */}
         <td>{i + 1 + sNum}</td>
         <td>
-          <a href="#" data-idx="51">
+          <a href="#" onClick={(e)=>{
+            e.preventDefault();
+            // 읽기 모드로 변경!
+            setMode("R");
+          }}>
             {v.cont}
           </a>
         </td>
@@ -148,38 +168,18 @@ export default function Board() {
     <>
       <main className="cont">
         <h1 className="tit">OPINION</h1>
-        <div className="selbx">
-          <select name="cta" id="cta" className="cta">
-            <option value="tit">Title</option>
-            <option value="cont">Contents</option>
-            <option value="unm">Writer</option>
-          </select>
-          <select name="sel" id="sel" className="sel">
-            <option value="0">Descending</option>
-            <option value="1">Ascending</option>
-          </select>
-          <input id="stxt" type="text" maxLength="50" />
-          <button className="sbtn">Search</button>
-        </div>
-        <table className="dtbl" id="board">
-          <thead>
-            <tr>
-              <th>Number</th>
-              <th>Title</th>
-              <th>Writer</th>
-              <th>Date</th>
-              <th>Hits</th>
-            </tr>
-          </thead>
-          <tbody>{bindList()}</tbody>
-          <tfoot>
-            <tr>
-              <td colSpan="5" className="paging">
-                {pagingList()}
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+        {
+          // 1. 리스트 모드일 경우 리스트 출력하기
+          mode == "L" && (
+            <ListMode bindList={bindList} pagingList={pagingList} />
+          )
+        }
+        {
+          // 2. 읽기 모드일 경우 리스트 출력하기
+          mode == "R" && (
+            <ReadMode />
+          )
+        }
         <br />
         <table className="dtbl btngrp">
           <tbody>
@@ -195,4 +195,95 @@ export default function Board() {
       </main>
     </>
   );
-} /////////// Board /////////////////////
+} ////////////////// Board //////////////////
+
+/******************************************* 
+  리스트 모드 서브 컴포넌트
+*******************************************/
+
+const ListMode = ({ bindList, pagingList }) => {
+  return (
+    <>
+      <div className="selbx">
+        <select name="cta" id="cta" className="cta">
+          <option value="tit">Title</option>
+          <option value="cont">Contents</option>
+          <option value="unm">Writer</option>
+        </select>
+        <select name="sel" id="sel" className="sel">
+          <option value="0">Descending</option>
+          <option value="1">Ascending</option>
+        </select>
+        <input id="stxt" type="text" maxLength="50" />
+        <button className="sbtn">Search</button>
+      </div>
+      <table className="dtbl" id="board">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Title</th>
+            <th>Writer</th>
+            <th>Date</th>
+            <th>Hits</th>
+          </tr>
+        </thead>
+        <tbody>{bindList()}</tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="5" className="paging">
+              {pagingList()}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </>
+  );
+}; ////////////////// ListMode //////////////////
+
+/******************************************* 
+  읽기 모드 서브 컴포넌트
+*******************************************/
+
+const ReadMode = () => {
+  return (
+    <>
+      <table className="dtblview readone">
+        <caption>OPINION : Read</caption>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>
+              <input
+                type="text"
+                className="name"
+                size="20"
+                readOnly
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Title</td>
+            <td>
+              <input type="text" className="subject" size="60" readOnly />
+            </td>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>
+              <textarea
+                className="content"
+                cols="60"
+                rows="10"
+                readOnly
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Attachment</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </>
+  );
+}; ////////////////// ReadMode //////////////////
