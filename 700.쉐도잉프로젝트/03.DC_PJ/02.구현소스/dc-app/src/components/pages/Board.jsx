@@ -1,5 +1,8 @@
 // 오피니언 페이지 컴포넌트 ///
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useContext, useRef, useState } from "react";
+
+// 컨텍스트 API를 사용하기 위한 생성자
+import { dCon } from "../modules/dCon";
 
 // 사용자 기본 정보 생성 함수
 import { initData } from "../func/mem_fn";
@@ -20,6 +23,13 @@ import "../../css/board_file.scss";
 import { initBoardData } from "../func/board_fn";
 
 export default function Board() {
+  // 컨텍스트 사용하기
+  const myCon = useContext(dCon);
+
+  // 전역 로그인 상태 변수 확인하기
+  const sts = myCon.loginSts;
+  // console.log(myCon.loginSts);
+
   // 로컬 스토리지 게시판 데이터 정보 확인
   initBoardData();
 
@@ -41,7 +51,7 @@ export default function Board() {
   // [1] 전체 개수 - 매번 계산하지 않도록 참조변수로!
   const totalCount = useRef(baseData.length);
 
-  console.log("전체 개수:", totalCount);
+  // console.log("전체 개수:", totalCount);
 
   // [2] 선택 데이터 저장
   const selRecord = useRef(null);
@@ -55,7 +65,7 @@ export default function Board() {
     기능: 페이지별 리스트를 생성하여 바인딩함
   *********************************************/
   const bindList = () => {
-    // console.log(baseData);
+    // // console.log(baseData);
 
     // 1. 전체 원본 데이터 선택
     const orgData = baseData;
@@ -76,7 +86,7 @@ export default function Board() {
     // 끝번호 = 페이지 번호*단위수
     let eNum = pageNum * unitSize;
 
-    console.log("첫번호:", sNum, "/끝번호:", eNum);
+    // console.log("첫번호:", sNum, "/끝번호:", eNum);
 
     // 결과 배열
     const selData = [];
@@ -87,7 +97,7 @@ export default function Board() {
       selData.push(orgData[i]);
     } /// for ///
 
-    console.log("일부 데이터:", selData);
+    // console.log("일부 데이터:", selData);
 
     return selData.map((v, i) => (
       <tr key={i}>
@@ -131,12 +141,12 @@ export default function Board() {
       pagingCount++;
     }
 
-    console.log(
-      "페이징 개수:",
-      pagingCount,
-      "나머지 개수:",
-      totalCount.current % unitSize
-    );
+    // console.log(
+    //   "페이징 개수:",
+    //   pagingCount,
+    //   "나머지 개수:",
+    //   totalCount.current % unitSize
+    // );
 
     // 링크 코드 만들기
     const pgCode = [];
@@ -178,17 +188,56 @@ export default function Board() {
 
     // 버튼 글자 읽기
     let btnText = e.target.innerText;
-    console.log(btnText);
+    // console.log(btnText);
 
     // 버튼별 분기
-    switch (btnText){
+    switch (btnText) {
       // 글쓰기 모드로 변경
-      case "Write": console.log("글 써라!"); break;
+      case "Write":
+        setMode("W");
+        break;
       // 리스트 모드로 변경
-      case "List": setMode("L"); break;
-
+      case "List":
+        setMode("L");
+        break;
+      // 서브밋일 경우 함수 호출
+      case "Submit":
+        submitFn();
+        break;
     }
   }; ///////// clickButton /////////
+
+  // 서브밋 처리 함수 ///////////////
+  const submitFn = () => {
+    // 제목 입력 항목
+    let title = $("").val().trim();
+    // 내용 입력 항목
+    let cont = $("").val().trim();
+    // trim()으로 앞뒤 공백 제거 후 검사!
+
+    // 1. 공통 유효성 검사
+    // 제목, 내용 모두 비었으면 return
+    if (title == "" || cont == "") {
+      alert("Insert Title or Content!");
+      return; // 서브밋 없이 함수 나가기!
+    } /// if ///
+
+    // 2. 글쓰기 서브밋 (mode=="W")
+    if (mode == "W") {
+      let aa = {
+        "idx":"",
+        "tit":"",
+        "cont":"",
+        "att":"",
+        "date":"",
+        "uid":"",
+        "unm":"",
+        "cnt":"",
+      }
+    } /// if ///
+
+    // 3. 수정모드 서브밋 (mode=="M")
+  };
 
   //// 코드 리턴 구역 //////////////
   return (
@@ -205,20 +254,33 @@ export default function Board() {
           // 2. 읽기 모드일 경우 리스트 출력하기
           mode == "R" && <ReadMode selRecord={selRecord} />
         }
+        {
+          // 3. 쓰기 모드일 경우 리스트 출력하기
+          // sts값은 문자열이르모 파싱하여 객체로 보냄
+          mode == "W" && <WriteMode sts={JSON.parse(sts)} />
+        }
         <br />
+        {/* 모드별 버튼 출력 */}
         <table className="dtbl btngrp">
           <tbody>
             <tr>
               <td>
                 {
                   // 1. 글쓰기 버튼은 로그인 상태이고, L이면 출력
-                  mode == "L" && 
-                  <button onClick={clickButton}>Write</button>
+                  mode == "L" && <button onClick={clickButton}>Write</button>
                 }
                 {
                   // 2. 읽기 상태 "R"일 경우
-                  mode == "R" && 
-                  <button onClick={clickButton}>List</button>
+                  mode == "R" && <button onClick={clickButton}>List</button>
+                }
+                {
+                  // 3. 쓰기 상태 "W"일 경우
+                  mode == "W" && (
+                    <>
+                      <button onClick={clickButton}>Submit</button>
+                      <button onClick={clickButton}>List</button>
+                    </>
+                  )
                 }
               </td>
             </tr>
@@ -279,7 +341,7 @@ const ListMode = ({ bindList, pagingList }) => {
 const ReadMode = ({ selRecord }) => {
   // 읽기 모드가 호출되었다는 것은 리스트의 제목이 클릭되었다는 것을 의미
   // 따라서, 현재 레코드 값도 저장되었다는 의미
-  console.log("전달된 참조변수:", selRecord.current);
+  // console.log("전달된 참조변수:", selRecord.current);
   // 전달된 데이터 객체를 변수에 할당
   const data = selRecord.current;
 
@@ -333,3 +395,53 @@ const ReadMode = ({ selRecord }) => {
     </>
   );
 }; ////////////////// ReadMode //////////////////
+
+/******************************************* 
+  쓰기 모드 서브 컴포넌트
+*******************************************/
+
+const WriteMode = ({ sts }) => {
+  // sts - 로그인 상태 정보
+  // 로그인한 사람만 글쓰기 가능
+
+  console.log(sts);
+
+  return (
+    <>
+      <table className="dtblview readone">
+        <caption>OPINION : Write</caption>
+        <tbody>
+          <tr>
+            <td>Email</td>
+            <td>
+              <input
+                type="text"
+                className="email"
+                size="40"
+                readOnly
+                // 로그인한 사람 이름
+                value={sts.unm}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Title</td>
+            <td>
+              <input type="text" className="subject" size="60" />
+            </td>
+          </tr>
+          <tr>
+            <td>Content</td>
+            <td>
+              <textarea className="content" cols="60" rows="10"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Attachment</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </>
+  );
+}; ////////////////// WriteMode //////////////////
