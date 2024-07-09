@@ -4,13 +4,14 @@ import { pCon } from "./pCon";
 
 import $ from "jquery";
 
-function ItemDetail({ cat, ginfo, dt, setGinfo }) {
+function ItemDetail({ cat, ginfo, dt, setGinfo, gIdx }) {
   // cat - 카테고리
   // ginfo - 상품 정보
   // dt - 상품 데이터
   // setGinfo - ginfo값 변경 메서드
-  
-  console.log(cat, ginfo);
+  // gIdx - 상품 고유번호
+
+  console.log("카테고리:", cat, "/상품정보:", ginfo, "/고유번호:", gIdx);
 
   // 전역 카드 사용여부값 업데이트 사용 위한 전역 컨텍스트 사용!
   const myCon = useContext(pCon);
@@ -18,7 +19,7 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
   // 제이쿼리 이벤트 함수에 전달할 ginfo값 참조변수
   const getGinfo = useRef(ginfo);
   // getGinfo참조변수는 새로 들어온 ginfo전달값이 달라진 경우 업데이트 한다!
-  if(getGinfo.current!=ginfo) getGinfo.current=ginfo;
+  if (getGinfo.current != ginfo) getGinfo.current = ginfo;
 
   // [ 배열 생성 테스트 ]
   // 1. 배열변수 = [] -> 배열리터럴
@@ -69,8 +70,8 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
       // seq가 0이냐? 그럼 증가:아니면 num이 1이냐? 그럼 1:아니면 감소
       // 증감 기호가 변수 앞에 있어야 먼저 증감하고 할당함
 
-      console.log("ginfo전달변수 확인:",ginfo);
-      console.log("getGinfo참조변수 확인:",getGinfo.current);
+      console.log("ginfo전달변수 확인:", ginfo);
+      console.log("getGinfo참조변수 확인:", getGinfo.current);
       // [ 문제!!! ginfo값으로 읽으면 최초에 셋팅된 값이 그대로 유지된다
       //    왜? 본 함수는 최초 한번만 셋팅되기 때문! ]
       // [ 해결책 : 새로 들어오는 ginfo값을 참조변수에 넣어서 본 함수에서
@@ -84,14 +85,13 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
   }, []); ///////////////////////////
 
   // [ 화면 렌더링 구역 : 매번 ]
-  useEffect(()=>{
+  useEffect(() => {
     // 매번 리렌더링될 때마다 수량 초기화!
     $("#sum").val(1);
 
     // 총합계 초기화
-    $("#total").text(addComma(ginfo[3])+"원");
+    $("#total").text(addComma(ginfo[3]) + "원");
   }); ///////////////////////////////
-
 
   // 코드 리턴 구역 /////////////////
   return (
@@ -270,9 +270,33 @@ function ItemDetail({ cat, ginfo, dt, setGinfo }) {
             </div>
             <div>
               <button className="btn btn1">BUY NOW</button>
-              <button className="btn"
-              onClick={()=>{myCon.setCartSts(true)}}>
-                SHOPPING CART</button>
+              <button
+                className="btn"
+                onClick={() => {
+                  // 로컬스에 넣기
+                  if (!localStorage.getItem("cart-data")) {
+                    localStorage.setItem("cart-data", "[]");
+                  } /// if ///
+
+                  // 로컬스 읽어와서 파싱하기
+                  let locals = localStorage.getItem("cart-data");
+                  locals = JSON.parse(locals);
+                  // 로컬스에 객체 데이터 추가하기
+                  locals.push({
+                    cat: cat,
+                    ginfo: ginfo,
+                    idx: gIdx,
+                    num: 1,
+                  });
+                  // 로컬스에 문자화하여 입력하기
+                  localStorage.setItem("cart-data",JSON.stringify(locals));
+
+                  // 카드 상태값 변경
+                  myCon.setCartSts(true);
+                }}
+              >
+                SHOPPING CART
+              </button>
               <button className="btn">WISH LIST</button>
             </div>
           </section>

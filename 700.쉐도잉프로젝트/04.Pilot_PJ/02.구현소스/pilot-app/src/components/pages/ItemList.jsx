@@ -1,5 +1,5 @@
 /// 아이템리스트 컴포넌트 - ItemList.jsx ///
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // 상품 데이터 불러오기
 import itemListData from "../../js/data/item_list";
@@ -21,6 +21,10 @@ function ItemList() {
 
   // [2] 상품 정보
   const [ginfo, setGinfo] = useState(itemListData[0].ginfo);
+
+  // [3] 상품 고유번호 참조변수
+  const gIdx = useRef(0);
+
 
   // 화면 렌더링 구역 //////////
   useEffect(() => {
@@ -52,8 +56,11 @@ function ItemList() {
                   // 상품상세모듈 전달 상태변수 변경
                   setCat(v.cat);
                   setGinfo(v.ginfo);
+                  // 상품 고유번호 idx 업데이트
+                  gIdx.current=v.idx;
                   // 상품상세 정보 보이기
                   $(".bgbx").show();
+                  // console.log("data:",v);
                 }}
               >
                 [{i + 1}]
@@ -96,7 +103,10 @@ function ItemList() {
         // dt는 전체 데이터(한줄 리스트 때문)
         dt={itemListData} 
         // setGinfo는 한줄 리스트 클릭시 변경을 위해
-        setGinfo={setGinfo} />
+        setGinfo={setGinfo}
+        // 상품 고유번호 전달
+        gIdx={gIdx.current}
+        />
       </div>
     </main>
   );

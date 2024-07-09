@@ -37,6 +37,8 @@ function CartList(props) {
             <th>합계</th>
             <th>삭제</th>
           </tr>
+          {/* 카트 데이터 연동 파트 */}
+          
           <tr>
             <td>
               <img
