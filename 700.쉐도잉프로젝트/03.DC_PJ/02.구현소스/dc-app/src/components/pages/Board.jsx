@@ -8,7 +8,7 @@ import { dCon } from "../modules/dCon";
 import { initData } from "../func/mem_fn";
 
 // 로컬스토리지 게시판 기본 데이터 JSON
-// import baseData from "../data/board.json"; -> 로컬쓰로 대체!!!
+// import baseData from "../data/board.json"; -> 로컬스로 대체!!!
 // 리액트 웹팩에서 제이슨은 이름을 지어서 불러오면 된다!
 // 제이슨 파일 처리는 다르므로 확장자를 반드시 써야 함!
 
@@ -33,7 +33,7 @@ export default function Board() {
   // 로컬 스토리지 게시판 데이터 정보 확인
   initBoardData();
 
-  // 로컬쓰 데이터 변수 할당하기
+  // 로컬스 데이터 변수 할당하기
   const baseData = JSON.parse(localStorage.getItem("board-data"));
 
   ////// [ 상태 관리 변수 ] //////
@@ -224,7 +224,7 @@ export default function Board() {
 
     // 2. 글쓰기 서브밋 (mode=="W")
     if (mode == "W") {
-      // 오늘 날짜
+      // [ 1. 오늘 날짜 생성하기 ]
       let today = new Date();
       // yyyy-mm-dd 형식으로 구하기
       // 제이슨 날짜 형식 : toJSON()
@@ -232,15 +232,15 @@ export default function Board() {
       // -> 시간까지 나오므로 앞에 10자리만 가져간다
       // -> 문자열.substr(0,10)
 
-      // 글 번호 만들기
-      // 전체 데이터 중 idx만 모아서 배열 만들기
+      // [ 2. 글 번호 만들기 ]
+      // (1) 전체 데이터 중 idx만 모아서 배열 만들기
       let arrIdx = baseData.map(v=>parseInt(v.idx));
-      console.log(arrIdx);
-      // 최대값 찾기 : 스프레드 연산자로 배열값만 넣음!
+      // console.log(arrIdx);
+      // (2) 최대값 찾기 : 스프레드 연산자로 배열값만 넣음!
       let maxNum = Math.max(...arrIdx);
-      console.log(maxNum);
+      // console.log(maxNum);
 
-
+      // [ 3. 입력 데이터 객체형식으로 구성하기 ]
       let data = {
         "idx":maxNum+1,
         "tit":title,
@@ -252,14 +252,19 @@ export default function Board() {
         "cnt":"0"
       }
 
-      // [ 로컬스에 입력하기 ]
-      // 1. 로컬스 파싱
+      // [ 4. 로컬스에 입력하기 ]
+      // (1) 로컬스 파싱
       let locals = localStorage.getItem("board-data");
       locals = JSON.parse(locals);
-      // 2. 파싱배열에 push
+      // (2) 파싱 배열에 push
       locals.push(data);
-      // 3. 새배열을 문자화하여 로컬스에 넣기
+      // (3) 새 배열을 문자화하여 로컬스에 넣기
       localStorage.setItem("board-data",JSON.stringify(locals));
+
+      // console.log(localStorage.getItem("board-data"));
+
+      // [ 5. 리스트로 돌아가기 -> 모드 변경 "L" ]
+      setMode("L");
     } /// if ///
 
 
