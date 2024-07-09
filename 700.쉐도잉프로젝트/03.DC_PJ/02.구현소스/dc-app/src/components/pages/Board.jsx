@@ -209,10 +209,10 @@ export default function Board() {
 
   // 서브밋 처리 함수 ///////////////
   const submitFn = () => {
-    // 제목 입력 항목
-    let title = $("").val().trim();
-    // 내용 입력 항목
-    let cont = $("").val().trim();
+    // 제목입력항목
+    let title = $(".subject").val().trim();
+    // 내용입력항목
+    let cont = $(".content").val().trim();
     // trim()으로 앞뒤 공백 제거 후 검사!
 
     // 1. 공통 유효성 검사
@@ -224,15 +224,32 @@ export default function Board() {
 
     // 2. 글쓰기 서브밋 (mode=="W")
     if (mode == "W") {
-      let aa = {
-        "idx":"",
-        "tit":"",
-        "cont":"",
+      // 오늘 날짜
+      let today = new Date();
+      // yyyy-mm-dd 형식으로 구하기
+      // 제이슨 날짜 형식 : toJSON()
+      // ISO 표준형식 : toISOString()
+      // -> 시간까지 나오므로 앞에 10자리만 가져간다
+      // -> 문자열.substr(0,10)
+
+      // 글 번호 만들기
+      // 전체 데이터 중 idx만 모아서 배열 만들기
+      let arrIdx = baseData.map(v=>parseInt(v.idx));
+      console.log(arrIdx);
+      // 최대값 찾기 : 스프레드 연산자로 배열값만 넣음!
+      let maxNum = Math.max(...arrIdx);
+      console.log(maxNum);
+
+
+      let data = {
+        "idx":maxNum+1,
+        "tit":title,
+        "cont":cont,
         "att":"",
-        "date":"",
-        "uid":"",
-        "unm":"",
-        "cnt":"",
+        "date":today.toJSON().substr(0,10),
+        "uid":sts.uid,
+        "unm":sts.unm,
+        "cnt":"0"
       }
     } /// if ///
 
