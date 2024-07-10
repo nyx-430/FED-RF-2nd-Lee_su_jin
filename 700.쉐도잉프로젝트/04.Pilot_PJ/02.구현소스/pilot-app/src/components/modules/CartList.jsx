@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { pCon } from "./pCon";
 
+// 콤마 함수 불러오기
+import { addComma } from "../../js/func/common_fn";
+
 // 카트 리스트 CSS
 import "../../css/cart_list.scss";
-import { addComma } from "../../js/func/common_fn";
 
 function CartList(props) {
   // 컨텍스트 사용
@@ -47,6 +49,7 @@ function CartList(props) {
         <tbody>
           <tr>
             <td colSpan={8}>
+              {/* 내부 스크롤 박스 div */}
               <div
                 style={{
                   overflowY: "auto",
@@ -55,7 +58,7 @@ function CartList(props) {
                 }}
               >
                 {/* 내부용 스크롤 되는 테이블 */}
-                <table>
+                <table style={{ margin: "0", width: "100%" }}>
                   <tbody>
                     {/* 
                       카트 데이터 연동 파트
