@@ -4,7 +4,7 @@ import { pCon } from "./pCon";
 
 import $ from "jquery";
 
-function ItemDetail({ tot, dt, setTot }) {
+function ItemDetail({ tot, setTot, dt }) {
   // tot - 상품 토탈 정보
 
   /// 상품 정보 개별 셋업 ///
@@ -17,8 +17,6 @@ function ItemDetail({ tot, dt, setTot }) {
 
   // dt - 상품 데이터
   // setTot - 상품 토탈 정보 업데이트 함수
-
-  console.log("카테고리:", cat, "/상품정보:", ginfo, "/고유번호:", gIdx);
 
   // 전역 카드 사용여부값 업데이트 사용 위한 전역 컨텍스트 사용!
   const myCon = useContext(pCon);
@@ -160,9 +158,8 @@ function ItemDetail({ tot, dt, setTot }) {
 
                         // 상품상세모듈 전달 상태변수 변경
                         // find에서 받은 값은 객체값
-                        // 그중 ginfo속성값만 필요함
-                        setGinfo(res.ginfo);
-                        // 카테고리 값은 바꿀 필요 없음!
+                        // 상품 토탈 정보로 모든 객체값을 업데이트 함
+                        setTot(res);
                       }}
                     >
                       <img
@@ -290,15 +287,25 @@ function ItemDetail({ tot, dt, setTot }) {
                   locals = JSON.parse(locals);
                   // 로컬스에 객체 데이터 추가하기
                   locals.push({
+                    num: 1,
+                    idx: gIdx,
                     cat: cat,
                     ginfo: ginfo,
-                    idx: gIdx,
-                    num: 1,
+                    cnt: 1
                   });
+                  /* 
+                    [ 데이터 구조 정의 ]
+                    1. num : 카트 리스트 순번
+                    2. idx : 상품 고유 번호
+                    3. cat : 카테고리
+                    4. ginfo : 상품 정보
+                    5. cnt : 상품 개수
+                  */
+                  
                   // 로컬스에 문자화하여 입력하기
                   localStorage.setItem("cart-data",JSON.stringify(locals));
 
-                  // 카드 상태값 변경
+                  // 카트 상태값 변경
                   myCon.setCartSts(true);
                 }}
               >
