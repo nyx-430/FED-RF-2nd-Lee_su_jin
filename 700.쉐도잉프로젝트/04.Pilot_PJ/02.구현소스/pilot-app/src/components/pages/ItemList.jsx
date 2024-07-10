@@ -4,6 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 // 상품 데이터 불러오기
 import itemListData from "../../js/data/item_list";
 
+// 상품 상세 모듈 불러오기
+import ItemDetail from "../modules/ItemDetail";
+
 // CSS 불러오기
 import "../../css/item_list.scss";
 
@@ -12,18 +15,11 @@ import $ from "jquery";
 
 // 공통 함수 불러오기
 import { addComma } from "../../js/func/common_fn";
-import ItemDetail from "../modules/ItemDetail";
 
 function ItemList() {
   // 상태변수 만들기 //////////
-  // [1] 카테고리 정보
-  const [cat, setCat] = useState(itemListData[0].ginfo);
-
-  // [2] 상품 정보
-  const [ginfo, setGinfo] = useState(itemListData[0].ginfo);
-
-  // [3] 상품 고유번호 참조변수
-  const gIdx = useRef(0);
+  // 상품 토탈 정보
+  const [tot, setTot] = useState(itemListData[0]);
 
 
   // 화면 렌더링 구역 //////////
@@ -53,11 +49,8 @@ function ItemList() {
                 onClick={(e) => {
                   // 기본 이동 막기
                   e.preventDefault();
-                  // 상품상세모듈 전달 상태변수 변경
-                  setCat(v.cat);
-                  setGinfo(v.ginfo);
-                  // 상품 고유번호 idx 업데이트
-                  gIdx.current=v.idx;
+                  // 상품 토탈 정보 업데이트
+                  setTot(v);
                   // 상품상세 정보 보이기
                   $(".bgbx").show();
                   // console.log("data:",v);
@@ -97,15 +90,12 @@ function ItemList() {
       >
         {/* cat - 카테고리, ginfo - 상품 정보, dt - 상품 데이터, setGinfo - ginfo값 변경 메서드 */}
         <ItemDetail 
-        // cat, ginfo는 개별 상품 정보
-        cat={cat} 
-        ginfo={ginfo}
+        // 상품 토탈 정보
+        tot={tot}
         // dt는 전체 데이터(한줄 리스트 때문)
         dt={itemListData} 
-        // setGinfo는 한줄 리스트 클릭시 변경을 위해
-        setGinfo={setGinfo}
-        // 상품 고유번호 전달
-        gIdx={gIdx.current}
+        // setTot는 한줄 리스트 클릭시 변경을 위해
+        setTot={setTot}
         />
       </div>
     </main>

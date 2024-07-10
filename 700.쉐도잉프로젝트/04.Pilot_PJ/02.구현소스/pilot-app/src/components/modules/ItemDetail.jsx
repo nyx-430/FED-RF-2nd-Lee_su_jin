@@ -4,12 +4,19 @@ import { pCon } from "./pCon";
 
 import $ from "jquery";
 
-function ItemDetail({ cat, ginfo, dt, setGinfo, gIdx }) {
+function ItemDetail({ tot, dt, setTot }) {
+  // tot - 상품 토탈 정보
+
+  /// 상품 정보 개별 셋업 ///
   // cat - 카테고리
+  let cat = tot.cat;
   // ginfo - 상품 정보
-  // dt - 상품 데이터
-  // setGinfo - ginfo값 변경 메서드
+  let ginfo = tot.ginfo;
   // gIdx - 상품 고유번호
+  let gIdx = tot.idx;
+
+  // dt - 상품 데이터
+  // setTot - 상품 토탈 정보 업데이트 함수
 
   console.log("카테고리:", cat, "/상품정보:", ginfo, "/고유번호:", gIdx);
 
