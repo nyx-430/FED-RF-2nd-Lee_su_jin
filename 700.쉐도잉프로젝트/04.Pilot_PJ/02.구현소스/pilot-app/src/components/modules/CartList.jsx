@@ -38,7 +38,7 @@ function CartList(props) {
   // 화면 렌더링 구역 : 한번만 ///////////
   useEffect(()=>{
     // 총합계 찍기
-    $(".total-num").text(addComma(totalFn()));
+    $(".total-num").text((totalFn()));
 
   },[]); //////////////////////////////
 
