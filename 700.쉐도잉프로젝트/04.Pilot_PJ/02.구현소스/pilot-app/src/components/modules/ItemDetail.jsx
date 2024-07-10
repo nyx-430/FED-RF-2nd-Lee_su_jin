@@ -62,7 +62,7 @@ function ItemDetail({ tot, setTot, dt }) {
       // 참고) 제거용 => numBtn.off("click");
 
       // (1) 이미지 순번(구분하려고)
-      let seq = $(e.tartget).index();
+      let seq = $(e.currentTarget).index();
       // 0은 증가 / 1은 감소
       // console.log("버튼 순번:", seq);
 
@@ -109,6 +109,8 @@ function ItemDetail({ tot, setTot, dt }) {
           e.preventDefault();
           // 창닫기
           $(".bgbx").hide();
+          // 창닫기 초기화 하기
+          $("#total").text(addComma(ginfo[3]) + "원");
         }}
       >
         <span className="ir">닫기버튼</span>
