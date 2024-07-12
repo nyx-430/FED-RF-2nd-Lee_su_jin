@@ -7,8 +7,10 @@ import { TotalMenu } from "../modules/TotalMenu";
 // 제이쿼리
 import $ from "jquery";
 
-function TopArea(props) {
-  // 전체 메뉴 열기닫기 함수 ////
+function TopArea({ pgName }) {
+  // pgName - 이동할 페이지 이름
+
+  // 전체 메뉴 열기/닫기 함수 ////
   const showHideMenu = (e) => {
     // console.log(e.currentTarget);
 
@@ -21,9 +23,9 @@ function TopArea(props) {
 
     // 2. 햄버거 버튼에 클래스 "on"넣기/빼기
     $(e.currentTarget).toggleClass("on");
-    // addClass() 클래스넣기
-    // removeClass() 클래스빼기
-    // toggleClass() 클래스넣기/빼기
+    // addClass() 클래스 넣기
+    // removeClass() 클래스 빼기
+    // toggleClass() 클래스 넣기/빼기
 
     // console.log($(e.currentTarget).is(".on"));
 
@@ -58,7 +60,7 @@ function TopArea(props) {
           <nav className="gnb">
             <ul>
               <li className="bld">배너순번 li 숨기기</li>
-              {gnbData.main.map((v, i) => (
+              {gnbData[pgName].map((v, i) => (
                 <li key={i}>
                   <a href="#">{v}</a>
                 </li>
