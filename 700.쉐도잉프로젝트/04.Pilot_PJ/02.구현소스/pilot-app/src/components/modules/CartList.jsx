@@ -1,14 +1,19 @@
-import React, { useContext, useEffect } from "react";
-
-// 카트 리스트 CSS
-import "../../css/cart_list.scss";
+import React, { useContext, useEffect, useState } from "react";
 import { pCon } from "./pCon";
 import { addComma } from "../../js/func/common_fn";
 
 // 제이쿼리
 import $ from "jquery";
 
+// 카트 리스트 CSS
+import "../../css/cart_list.scss";
+
 function CartList(props) {
+  // 강제 리랜더링을 위한 상태변수
+  const [force, setForce] = useState(false);
+  // -> 불린 값을 넣어놓고 강제 리랜더링이 필요한 경우
+  // setForce(!force) -> 기존 불린 값을 반대로 넣어준다!
+
   // 컨텍스트 사용
   const myCon = useContext(pCon);
 
@@ -29,29 +34,31 @@ function CartList(props) {
 
     $(".sum-num2").each((idx, ele) => {
       console.log("값:", $(ele).val());
-      // 숫자로 변환후 기존값에 더하기함!
+      // 숫자로 변환후 기존 값에 더하기 함!
       result += Number($(ele).val());
     });
 
-    // 호출한 곳에 합계리턴
+    // 호출한 곳에 합계 리턴
     return result;
   }; ////////// totalFn ///////////
 
-  // 화면 랜더링 구역 : dataCnt의존성 /////////
+  // 화면 랜더링 구역 : dataCnt, force 의존성 /////////
   useEffect(() => {
-    console.log("dataCnt의존성");
-    // 카트버튼 나타나기
+    console.log("dataCnt,force 의존성");
+    // 카트 버튼 나타나기
     $("#mycart")
       .removeClass("on")
-      .delay(500) //애니메이션 지연시간
+      .delay(500) // 애니메이션 지연시간
       .fadeIn(300, function () {
-        // 나타난 후 클래스 넣으면 오른쪽 이동+작아짐
+        // 나타난 후 클래스 넣으면 오른쪽 이동 + 작아짐
         $(this).addClass("on");
       }); ///// fadeIn /////
 
     // 총합계 찍기 : 3자리마다 콤마함수호출도 함
     $(".total-num").text(addComma(totalFn()));
-  }, [dataCnt]); //-> 숫자값은 값 할당이므로 변함 없음!
+  }, [dataCnt, force]); //-> 숫자값은 값 할당이므로 변함 없음!
+  // 의존성 추가 -> 강제 리랜더링 상태변수로 등록해 준다!
+
   // },[selData]); //-> 리랜더링시 객체 주소값이 변경되어
   // 매번 새로운 값이 업데이트 되기 때문에 부적격임!
 
@@ -172,10 +179,12 @@ function CartList(props) {
                                     // 대상: selData -> 배열 변환 데이터
                                     // i는 배열 순번임! (map돌 때 i가 들어옴)
                                     selData[i].cnt = $(e.currentTarget)
+                                      .css({ width: "0" })
+                                      .next() // 취소 버튼
                                       .siblings(".item-cnt")
                                       .val();
                                     console.log("수량 업데이트:", selData);
-                                    
+
                                     // 2. 데이터 문자화하기 : 변경된 원본을 문자화
                                     let res = JSON.stringify(selData);
 
@@ -186,16 +195,44 @@ function CartList(props) {
                                     myCon.setLocalsCart(res);
 
                                     // 5. 반영 버튼 숨기기
-                                    $(e.currentTarget).css({width: "0"});
+                                    $(e.currentTarget)
+                                    .hide() // 숨기기
+                                    .next() // 취소 버튼
+                                    .hide(); // 숨기기
+                                    
+
+                                    // -> 아래 6번은 리랜더링 되면 해결됨
+                                    // 그리고 데이터 변경 sync가 맞지 않는 경우가 생기게 됨!
+                                    // 데이터를 변경했음에도 리랜더링이 안 된 이유는
+                                    // 배열의 객체값이 변경되거나 배열 순서를 변경한 경우
+                                    // 배열이 변경되었다고 체크되지 않는다!
+                                    // 따라서 이때 강제 리랜더링이 필요하다!
+                                    setForce(!force);
 
                                     // 6. 전체 총합계 계산 다시 하기
-                                    $(".total-num").text(addComma(totalFn()));
+                                    // $(".total-num").text(addComma(totalFn()));
                                   }}
                                   onBlur={() => {
                                     console.log("하하하");
                                   }}
                                 >
                                   반영
+                                </button>
+                                {/* 취소 버튼 */}
+                                <button
+                                  className="btn-cancel"
+                                  onClick={(e) => {
+                                    $(e.currentTarget)
+                                      .hide()
+                                      .prev() // 반영 버튼
+                                      .hide()
+                                      .siblings("input")
+                                      .val(v.cnt);
+                                    // 취소 버튼 자신의 css를 변경하고(안 보이게)
+                                    // 형제요소 중 input을 찾아 값으로 기존값인 v.cnt를 넣는다!
+                                  }}
+                                >
+                                  취소
                                 </button>
                                 <b
                                   className="btn-cnt"
@@ -232,7 +269,9 @@ function CartList(props) {
                                     // 클릭시 반영 버튼 나타나기
                                     $(e.currentTarget)
                                       .siblings(".btn-insert")
-                                      .css({ width: "auto" });
+                                      .show()
+                                      .next() // 취소 버튼
+                                      .show();
                                   }}
                                 >
                                   <img
