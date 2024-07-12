@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
+
+// 카트 리스트 CSS
+import "../../css/cart_list.scss";
 import { pCon } from "./pCon";
 import { addComma } from "../../js/func/common_fn";
 
 // 제이쿼리
 import $ from "jquery";
 
-// 카트 리스트 CSS
-import "../../css/cart_list.scss";
-
 function CartList(props) {
   // 강제 리랜더링을 위한 상태변수
   const [force, setForce] = useState(false);
-  // -> 불린 값을 넣어놓고 강제 리랜더링이 필요한 경우
-  // setForce(!force) -> 기존 불린 값을 반대로 넣어준다!
+  // -> 불린값을 넣어놓고 강제 리랜더링이 필요한 경우
+  // setForce(!force) -> 기존 불린값을 반대로 넣어준다!
 
   // 컨텍스트 사용
   const myCon = useContext(pCon);
@@ -25,48 +25,48 @@ function CartList(props) {
   const dataCnt = selData.length;
   console.log("데이터수:", dataCnt);
 
-  // 총합계 함수 /////////////
+  // 총합계함수 /////////////
   const totalFn = () => {
-    // 합계 금액은 모든 합계 히든필드 값을 더한다!
+    // 합계금액은 모든 합계 히든필드 값을 더한다!
     // 제이쿼리 forEach는 each((순번,요소)=>{}) 메서드다!
 
     let result = 0;
 
     $(".sum-num2").each((idx, ele) => {
       console.log("값:", $(ele).val());
-      // 숫자로 변환후 기존 값에 더하기 함!
+      // 숫자로 변환후 기존값에 더하기함!
       result += Number($(ele).val());
     });
 
-    // 호출한 곳에 합계 리턴
+    // 호출한 곳에 합계리턴
     return result;
   }; ////////// totalFn ///////////
 
-  // 화면 랜더링 구역 : dataCnt, force 의존성 /////////
+  // 화면랜더링 구역 : dataCnt, force 의존성 /////////
   useEffect(() => {
-    console.log("dataCnt,force 의존성");
-    // 카트 버튼 나타나기
+    console.log("dataCnt,force의존성");
+    // 카트버튼 나타나기
     $("#mycart")
       .removeClass("on")
-      .delay(500) // 애니메이션 지연시간
+      .delay(500) //애니메이션 지연시간
       .fadeIn(300, function () {
-        // 나타난 후 클래스 넣으면 오른쪽 이동 + 작아짐
+        // 나타난후 클래스 넣으면 오른쪽이동+작아짐
         $(this).addClass("on");
       }); ///// fadeIn /////
 
-    // 총합계 찍기 : 3자리마다 콤마함수호출도 함
+    // 총합계 찍기 : 3자리마다 콤마함수호출도함
     $(".total-num").text(addComma(totalFn()));
-  }, [dataCnt, force]); //-> 숫자값은 값 할당이므로 변함 없음!
-  // 의존성 추가 -> 강제 리랜더링 상태변수로 등록해 준다!
+  }, [dataCnt, force]); //-> 숫자값은 값할당이므로 변함없음!
+  // 의존성 추가-> 강제 리랜더링 상태변수도 등록해준다!
 
-  // },[selData]); //-> 리랜더링시 객체 주소값이 변경되어
-  // 매번 새로운 값이 업데이트 되기 때문에 부적격임!
+  // },[selData]); //-> 리랜더링시 객체주소값이 변경되어
+  // 매번 새로운값이 업데이트 되기때문에 부적격임!
 
-  // 화면 랜더링 구역 : 한번만 /////////////
+  // 화면랜더링 구역 : 한번만 /////////////
   // useEffect(()=>{
   // },[]); /////// useEffect /////////////
 
-  ///// 코드 리턴 구역 /////////////
+  ///// 코드리턴구역 /////////////
   return (
     <>
       <section id="cartlist">
@@ -136,7 +136,7 @@ function CartList(props) {
                     }}
                   >
                     <tbody>
-                      {/* 카트 데이터 연동파트
+                      {/* 카트데이터 연동파트
             **************************
               [데이터 구조정의]
               1. idx : 상품고유번호
@@ -170,66 +170,67 @@ function CartList(props) {
                                   className="item-cnt"
                                   readOnly
                                   defaultValue={v.cnt}
+                                  onBlur={() => {
+                                    console.log("ㅎㅎㅎ");
+                                  }}
                                 />
-                                {/* 반영 버튼 */}
+                                {/* 반영버튼 */}
                                 <button
                                   className="btn-insert"
                                   onClick={(e) => {
-                                    // 1. 클릭시 실제 데이터 수량 변경 반영하기
-                                    // 대상: selData -> 배열 변환 데이터
-                                    // i는 배열 순번임! (map돌 때 i가 들어옴)
+                                    /// 1. 클릭시 실제 데이터 수량변경 반영하기
+                                    // 대상: selData -> 배열변환데이터
+                                    // i는 배열순번임!(map 돌때 i가 들어옴)
                                     selData[i].cnt = $(e.currentTarget)
-                                      .css({ width: "0" })
-                                      .next() // 취소 버튼
                                       .siblings(".item-cnt")
                                       .val();
-                                    console.log("수량 업데이트:", selData);
-
+                                    console.log("수량업데이트:", selData);
                                     // 2. 데이터 문자화하기 : 변경된 원본을 문자화
                                     let res = JSON.stringify(selData);
 
-                                    // 3.로컬스 "cart-data" 반영하기
+                                    // 3.로컬스 "cart-data"반영하기
                                     localStorage.setItem("cart-data", res);
 
                                     // 4. 카트리스트 전역상태변수 변경
                                     myCon.setLocalsCart(res);
 
-                                    // 5. 반영 버튼 숨기기
+                                    // 5. 반영버튼 숨기기
                                     $(e.currentTarget)
-                                    .hide() // 숨기기
-                                    .next() // 취소 버튼
-                                    .hide(); // 숨기기
-                                    
+                                      .hide() // 숨기기
+                                      .next() // "취소"버튼
+                                      .hide(); // 숨기기
 
                                     // -> 아래 6번은 리랜더링 되면 해결됨
-                                    // 그리고 데이터 변경 sync가 맞지 않는 경우가 생기게 됨!
-                                    // 데이터를 변경했음에도 리랜더링이 안 된 이유는
-                                    // 배열의 객체값이 변경되거나 배열 순서를 변경한 경우
-                                    // 배열이 변경되었다고 체크되지 않는다!
+                                    // 그리고 데이터변경 sync가 맞지 않는 경우가
+                                    // 생기게 됨!
+                                    // 데이터를 변경했음에도 리랜더링이 안된 이유는
+                                    // 배열의 객체값이 변경되거나 배열 순서를 변경한
+                                    // 경우 배열이 변경되었다고 체크되지 않는다!
                                     // 따라서 이때 강제 리랜더링이 필요하다!
                                     setForce(!force);
 
-                                    // 6. 전체 총합계 계산 다시 하기
+                                    // 6. 전체 총합계 계산 다시하기
                                     // $(".total-num").text(addComma(totalFn()));
-                                  }}
-                                  onBlur={() => {
-                                    console.log("하하하");
                                   }}
                                 >
                                   반영
                                 </button>
-                                {/* 취소 버튼 */}
+                                {/* 취소버튼 */}
                                 <button
                                   className="btn-cancel"
                                   onClick={(e) => {
                                     $(e.currentTarget)
                                       .hide()
-                                      .prev() // 반영 버튼
+                                      .prev() // "반영"버튼
                                       .hide()
                                       .siblings("input")
                                       .val(v.cnt);
-                                    // 취소 버튼 자신의 css를 변경하고(안 보이게)
-                                    // 형제요소 중 input을 찾아 값으로 기존값인 v.cnt를 넣는다!
+                                    // 취소버튼 자신의
+                                    // css를 변경하고(안보이게)
+                                    // 이전버튼인 "반영"버튼도
+                                    // 안보이게 하고
+                                    // 형제요소중 input을 찾아
+                                    // 값으로 기존값인 v.cnt를 넣는다!
                                   }}
                                 >
                                   취소
@@ -242,35 +243,37 @@ function CartList(props) {
                                       "input"
                                     );
 
-                                    // input창에 blur이벤트 발생을 위해 강제로 focus를 준다!
-                                    tg.focus();
+                                    // 입력창의 blur이벤트 발생을 위해
+                                    // 강제로 포커스를 준다!
+                                    // tg.focus();
 
-                                    // 하위 클릭된 이미지 종류 파악하기
-                                    // e.target으로 설정하여 하위 요소만 이미지가 선택되게 해준다!
-                                    // e.crreuntTarget은 이벤트가 걸린 요소 자신이다! (target/currentTarget 구분할 것!)
+                                    // 하위 클릭된 이미지 종류파악하기
+                                    // e.target으로 설정하여 하위요소인
+                                    // 이미지가 선택되게 해준다!
+                                    // e.currentTarget은 이벤트가 걸린
+                                    // 요소 자신이다!(비교할것!)
                                     let btnAlt = $(e.target).attr("alt");
                                     console.log(btnAlt);
-
-                                    // 증가/감소 분기하여 숫자 변경 반영하기
+                                    // 증가감소 분기하여 숫자변경반영하기
                                     if (btnAlt == "증가") {
-                                      // tg 값을 읽어와서 1을 더한다
+                                      // tg값을 읽어와서 1을 더한다!
                                       tg.val(Number(tg.val()) + 1);
-                                    } /// if ///
+                                    } //// if ///////
                                     else if (btnAlt == "감소") {
-                                      // tg 값을 읽어와서 1을 뺀다
-                                      // 단, 1보다 작아지지 않게 한다
+                                      // tg값을 읽어와서 1을 뺀다!
+                                      // 단, 1보다 작아지지 않게 한다!
                                       tg.val(
                                         Number(tg.val()) == 1
                                           ? 1
                                           : Number(tg.val()) - 1
                                       );
-                                    } /// else if ///
+                                    } ///// else if ////////
 
-                                    // 클릭시 반영 버튼 나타나기
+                                    // 클릭시 반영,취소버튼 나타나기
                                     $(e.currentTarget)
                                       .siblings(".btn-insert")
                                       .show()
-                                      .next() // 취소 버튼
+                                      .next() // 취소버튼
                                       .show();
                                   }}
                                 >
@@ -297,7 +300,7 @@ function CartList(props) {
                               {addComma(v.ginfo[3] * v.cnt)}
                             </span>
                             원
-                            {/* 계산된 합계 금액 숫자만 히든필드에 넣어놓고 총합계 계산에 사용함! */}
+                            {/* 계산된 합계금액 숫자만 히든필드에 넣어놓고 총합계 계산에 사용함! */}
                             <input
                               className="sum-num2"
                               type="hidden"
@@ -305,7 +308,7 @@ function CartList(props) {
                             />
                           </td>
                           <td>
-                            {/* 데이터 삭제 기능 버튼 */}
+                            {/* 데이터 삭제기능 버튼 */}
                             <button
                               className="cfn"
                               onClick={() => {
@@ -318,7 +321,7 @@ function CartList(props) {
                                   // console.log("삭제함!!!");
                                   // console.log("현재객체:",selData);
                                   // console.log("지울순번:",i);
-                                  // splice 자체를 찍으면 지워진 요소가 찍힘
+                                  // // splice 자체를 찍으면 지워진 요소가 찍힘
                                   // console.log("지우기:",selData.splice(i,1));
 
                                   // 지울 배열 순번은 map()에서 i로 들어옴
@@ -343,7 +346,7 @@ function CartList(props) {
 
                                   // let aa = [];
                                   // aa.splice(지울순번,지울개수)
-                                } //// if ////
+                                } //// if /////
                               }}
                             >
                               ×
