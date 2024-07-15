@@ -36,6 +36,11 @@ export default function Board() {
   // 로컬스 데이터 변수 할당하기
   const baseData = JSON.parse(localStorage.getItem("board-data"));
 
+  // 원본 데이터에 정렬 적용하기 : 내림차순
+  baseData.sort((a, b) =>
+      Number(a.idx) > Number(b.idx) ? -1 : Number(a.idx) < Number(b.idx) ? 1 : 0
+    );
+
   ////// [ 상태 관리 변수 ] //////
   // [1] 페이지 번호
   const [pageNum, setPageNum] = useState(1);
@@ -275,7 +280,54 @@ export default function Board() {
     } /// if ///
 
     // 3. 수정모드 서브밋 (mode=="M")
-  };
+    else if (mode == "M") {
+      // 현재 로그인 사용자 정보 파싱하기
+      let person = JSON.parse(sts);
+
+      // [ 1. 오늘 날짜 생성하기 ]
+      // -> 수정시 수정 날짜 항목을 새로 만들고 입력함!
+      let today = new Date();
+      // yyyy-mm-dd 형식으로 구하기
+      // 제이슨 날짜 형식 : toJSON()
+      // ISO 표준형식 : toISOString()
+      // -> 시간까지 나오므로 앞에 10자리만 가져간다
+      // -> 문자열.substr(0,10)
+
+      // 현재 데이터 idx값
+      let currIdx = selRecord.current.idx;
+
+      // [ 2. 기존 데이터로 찾아서 변경하기 : 로컬스 데이터 -> baseData ]
+      // find()는 특정 항목을 찾아서 리턴하여 데이터를 가져오기도 하지만
+      // 업데이트 등 작업도 가능하다!
+      baseData.find(v=>{
+        console.log(v,selRecord);
+        if(v.idx == currIdx){
+          // 업데이트 작업하기
+          // 기존 항목 변경 : tit, cont
+          v.tit = title;
+          v.cont = cont;
+          // 새 항목 추가 : mdate
+          // (원래는 확정된 DB스키마에 따라 입력해야 하지만
+          // 우리가 사용하는 로컬스토리지의 확장성에 따라 필요한
+          // 항목을 추가하여 넣는다!)
+          // (3) 수정일: mdate
+          v.mdate = today.toJSON().substr(0,10);
+          
+          // 해당 항목을 찾으면 끝남!
+          return true;
+        } /// if ///
+      }) ////// find 메서드 //////
+
+      // [ 4. 로컬스에 업데이트하기 ]
+      // (1) 로컬스 파싱
+      // let locals = localStorage.getItem("board-data");
+      localStorage.setItem("board-data", JSON.stringify(locals));
+      locals = JSON.parse(locals);
+
+      // [ 5. 리스트로 돌아가기 -> 모드 변경 "L" ]
+      setMode("L");
+    } /// else if ///
+  }; ///////// submitFn /////////
 
   //// 코드 리턴 구역 //////////////
   return (
