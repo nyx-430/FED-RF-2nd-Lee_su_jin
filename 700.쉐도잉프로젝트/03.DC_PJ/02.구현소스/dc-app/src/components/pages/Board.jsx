@@ -38,8 +38,8 @@ export default function Board() {
 
   // 원본 데이터에 정렬 적용하기 : 내림차순
   baseData.sort((a, b) =>
-      Number(a.idx) > Number(b.idx) ? -1 : Number(a.idx) < Number(b.idx) ? 1 : 0
-    );
+    Number(a.idx) > Number(b.idx) ? -1 : Number(a.idx) < Number(b.idx) ? 1 : 0
+  );
 
   ////// [ 상태 관리 변수 ] //////
   // [1] 페이지 번호
@@ -221,15 +221,32 @@ export default function Board() {
   }; ///////// clickButton /////////
 
   // 삭제 처리 함수 ///////////////
-  const deletFn = () => {
+  const deleteFn = () => {
     // 삭제 여부 확인
-    if(window.confirm("Are you sure you want to delete?")){
+    if (window.confirm("Are you sure you want to delete?")) {
       // 1. 해당 항목 idx 담기
+      let currIdx = selRecord.current.idx;
 
-      // 2. find()로 순회하여 해당 항목 삭제하기
+      // 2. some()로 순회하여 해당 항목 삭제하기
+      // find()와 달리 some()은 결과값을 bollean값으로 리턴하여 처리한다!
+      // 이것을 이용하여 코드 처리해보자!
+      baseData.some((v, i) => {
+        if (v.idx == currIdx) {
+          // 해당 순번 배열값을 삭제하자!
+          // 배열 삭제는 splice(순번,1)
+          baseData.splice(i, 1);
+          return true;
+        } /// if ///
+      }); ////// some 메서드 //////
 
+      // 3. 로컬스에 업데이트하기 //////
+      localStorage.setItem("board-data", JSON.stringify(baseData));
+
+      // 4. 리스트로 돌아가기 /////
+      // -> 모드변경! "L"
+      setMode("L");
     } /// if ///
-  }; ///////// deletFn /////////
+  }; ///////// deleteFn /////////
 
   // 서브밋 처리 함수 ///////////////
   const submitFn = () => {
@@ -314,9 +331,9 @@ export default function Board() {
       // [ 2. 기존 데이터로 찾아서 변경하기 : 로컬스 데이터 -> baseData ]
       // find()는 특정 항목을 찾아서 리턴하여 데이터를 가져오기도 하지만
       // 업데이트 등 작업도 가능하다!
-      baseData.find(v=>{
-        console.log(v,selRecord);
-        if(v.idx == currIdx){
+      baseData.find((v) => {
+        console.log(v, selRecord);
+        if (v.idx == currIdx) {
           // 업데이트 작업하기
           // 기존 항목 변경 : tit, cont
           v.tit = title;
@@ -326,16 +343,15 @@ export default function Board() {
           // 우리가 사용하는 로컬스토리지의 확장성에 따라 필요한
           // 항목을 추가하여 넣는다!)
           // (3) 수정일: mdate
-          v.mdate = today.toJSON().substr(0,10);
-          
+          v.mdate = today.toJSON().substr(0, 10);
+
           // 해당 항목을 찾으면 끝남!
           return true;
         } /// if ///
-      }) ////// find 메서드 //////
+      }); ////// find 메서드 //////
 
       // [ 4. 로컬스에 업데이트하기 ]
-      localStorage.setItem("board-data", 
-      JSON.stringify(baseData));
+      localStorage.setItem("board-data", JSON.stringify(baseData));
 
       // [ 5. 리스트로 돌아가기 -> 모드 변경 "L" ]
       setMode("L");
