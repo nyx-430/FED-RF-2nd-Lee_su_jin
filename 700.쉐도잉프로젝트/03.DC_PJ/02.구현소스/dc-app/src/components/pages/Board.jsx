@@ -213,8 +213,23 @@ export default function Board() {
       case "Modify":
         setMode("M");
         break;
+      // 삭제일 경우 삭제 함수 호출
+      case "Delete":
+        deleteFn();
+        break;
     }
   }; ///////// clickButton /////////
+
+  // 삭제 처리 함수 ///////////////
+  const deletFn = () => {
+    // 삭제 여부 확인
+    if(window.confirm("Are you sure you want to delete?")){
+      // 1. 해당 항목 idx 담기
+
+      // 2. find()로 순회하여 해당 항목 삭제하기
+
+    } /// if ///
+  }; ///////// deletFn /////////
 
   // 서브밋 처리 함수 ///////////////
   const submitFn = () => {
@@ -319,10 +334,8 @@ export default function Board() {
       }) ////// find 메서드 //////
 
       // [ 4. 로컬스에 업데이트하기 ]
-      // (1) 로컬스 파싱
-      // let locals = localStorage.getItem("board-data");
-      localStorage.setItem("board-data", JSON.stringify(locals));
-      locals = JSON.parse(locals);
+      localStorage.setItem("board-data", 
+      JSON.stringify(baseData));
 
       // [ 5. 리스트로 돌아가기 -> 모드 변경 "L" ]
       setMode("L");
