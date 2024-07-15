@@ -1,5 +1,5 @@
 // 오피니언 페이지 컴포넌트 ///
-import { Fragment, useContext, useRef, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 
 // 컨텍스트 API를 사용하기 위한 생성자
 import { dCon } from "../modules/dCon";
@@ -357,6 +357,12 @@ export default function Board() {
       setMode("L");
     } /// else if ///
   }; ///////// submitFn /////////
+
+  // 데이터 삭제 등의 변경시 전체 개수 업데이트하기
+  useEffect(() => {
+    // 전체 개수 참조변수에 데이터 개수 업데이트하기
+    totalCount.current = baseData.length;
+  }, [baseData]); // 의존성[baseData]
 
   //// 코드 리턴 구역 //////////////
   return (
