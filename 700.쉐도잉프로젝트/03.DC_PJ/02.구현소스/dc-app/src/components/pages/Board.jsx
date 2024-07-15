@@ -426,7 +426,7 @@ export default function Board() {
                     <>
                       <button onClick={clickButton}>Submit</button>
                       <button onClick={clickButton}>List</button>
-                      <button onClick={clickButton}>Delet</button>
+                      <button onClick={clickButton}>Delete</button>
                     </>
                   )
                 }
