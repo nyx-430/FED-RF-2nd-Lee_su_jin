@@ -242,7 +242,10 @@ export default function Board() {
       // 3. 로컬스에 업데이트하기 //////
       localStorage.setItem("board-data", JSON.stringify(baseData));
 
-      // 4. 리스트로 돌아가기 /////
+      // 4.
+      totalCount.current=baseData.length;
+
+      // 5. 리스트로 돌아가기 /////
       // -> 모드변경! "L"
       setMode("L");
     } /// if ///
@@ -357,12 +360,6 @@ export default function Board() {
       setMode("L");
     } /// else if ///
   }; ///////// submitFn /////////
-
-  // 데이터 삭제 등의 변경시 전체 개수 업데이트하기
-  useEffect(() => {
-    // 전체 개수 참조변수에 데이터 개수 업데이트하기
-    totalCount.current = baseData.length;
-  }, [baseData]); // 의존성[baseData]
 
   //// 코드 리턴 구역 //////////////
   return (
