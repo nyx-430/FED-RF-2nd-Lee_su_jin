@@ -1,13 +1,15 @@
 // 하단영역 컴포넌트 ///
+import { memo } from "react";
 
+// 모듈
 import Logo from "../modules/Logo";
+import Weather from "../modules/Weather";
 
-// 하단메뉴 데이터 불러오기
+// 하단 메뉴 데이터
 import { bmData } from "../data/bmenu";
 
-// 하단영역 CSS 불러오기
+// 하단영역 CSS
 import "../../css/footer_area.scss";
-import { memo } from "react";
 
 // React.memo()를 사용한 컴포넌트 메모이제이션
 // -> 컴포넌트를 할당형을 변경한다!
@@ -39,6 +41,8 @@ export const FooterArea = memo(() => {
         </li>
         <li>© & ™ DC. ALL RIGHTS RESERVED</li>
       </ul>
+      {/* 날씨정보 컴포넌트 */}
+      <Weather />
     </footer>
   );
 }); /////////// FooterArea /////////////////////
