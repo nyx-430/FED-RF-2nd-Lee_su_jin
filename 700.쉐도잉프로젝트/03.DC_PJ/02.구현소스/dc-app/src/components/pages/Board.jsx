@@ -142,11 +142,11 @@ export default function Board() {
       case "Write":
         setMode("W");
         break;
-      // 리스트모드로 변경
+      // 리스트 모드로 변경
       case "List":
         setMode("L");
         break;
-      // 서브밋일 경우 함수호출!
+      // 서브밋일 경우 함수 호출!
       case "Submit":
         submitFn();
         break;
@@ -161,19 +161,19 @@ export default function Board() {
     }
   }; ////////// clickButton //////////
 
-  // 삭제 처리함수 //////////////
+  // 삭제 처리 함수 //////////////
   const deleteFn = () => {
-    // 삭제여부확인
+    // 삭제 여부 확인
     if (window.confirm("Are you sure you want to delete?")) {
-      // 1. 해당항목 idx담기
+      // 1. 해당 항목 idx담기
       let currIdx = selRecord.current.idx;
-      // 2. some()로 순회하여 해당항목 삭제하기
+      // 2. some()로 순회하여 해당 항목 삭제하기
       // find()와 달리 some()은 결과값을 boolean값으로
-      // 리턴하여 처리한다! 이것을 이용하여 코드처리해보자!
+      // 리턴하여 처리한다! 이것을 이용하여 코드 처리해보자!
       baseData.some((v, i) => {
         if (v.idx == currIdx) {
-          // 해당순번 배열값을 삭제하자!
-          // 배열삭제는  splice(순번,1)
+          // 해당 순번 배열값을 삭제하자!
+          // 배열 삭제는 splice(순번,1)
           baseData.splice(i, 1);
 
           // 리턴true할 경우 종료!
@@ -189,23 +189,23 @@ export default function Board() {
       totalCount.current = baseData.length;
 
       // 4. 리스트로 돌아가기 -> 리랜더링 /////
-      // -> 모드변경! "L"
+      // -> 모드 변경! "L"
       setMode("L");
-      // -> 삭제후 첫페이지로 이동!
+      // -> 삭제후 첫 페이지로 이동!
       setPageNum(1);
     } ///////// if ///////////////
   }; //////// deleteFn ///////////////
 
-  // 서브밋 처리함수 //////////////
+  // 서브밋 처리 함수 //////////////
   const submitFn = () => {
     // 제목입력항목
     let title = $(".subject").val().trim();
     // 내용입력항목
     let cont = $(".content").val().trim();
-    // trim()으로 앞뒤공백 제거후 검사!
+    // trim()으로 앞뒤 공백 제거 후 검사!
 
-    // 1. 공통 유효성검사
-    // 제목,내용 모두 비었으면 리턴!
+    // 1. 공통 유효성 검사
+    // 제목, 내용 모두 비었으면 리턴!
     if (title == "" || cont == "") {
       alert("Insert title or content!");
       return; // 서브밋없이 함수나가기!
@@ -213,7 +213,7 @@ export default function Board() {
 
     // 2. 글쓰기 서브밋 (mode=="W")
     if (mode == "W") {
-      // 0.현재 로그인 사용자 정보 파싱하기
+      // 0. 현재 로그인 사용자 정보 파싱하기
       let person = JSON.parse(sts);
 
       // 1. 오늘날짜 생성하기 /////
@@ -336,6 +336,8 @@ export default function Board() {
             unitSize={unitSize}
             pageNum={pageNum}
             setPageNum={setPageNum}
+            pgPgNum={pgPgNum}
+            pgPgSize={pgPgSize}
           />
         )
       }
@@ -420,7 +422,7 @@ export default function Board() {
 /****************************************** 
         리스트 모드 서브 컴포넌트
 ******************************************/
-const ListMode = ({ bindList, totalCount, unitSize, pageNum, setPageNum }) => {
+const ListMode = ({ bindList, totalCount, unitSize, pageNum, setPageNum, pgPgNum, pgPgSize }) => {
   /*********************************************** 
     [ 전달변수 ] - 2~5까지 4개는 페이징 전달변수
     1. bindList : 리스트 결과 요소
@@ -466,6 +468,8 @@ const ListMode = ({ bindList, totalCount, unitSize, pageNum, setPageNum }) => {
                   unitSize={unitSize}
                   pageNum={pageNum}
                   setPageNum={setPageNum}
+                  pgPgNum={pgPgNum}
+                  pgPgSize={pgPgSize}
                 />
               }
             </td>
@@ -480,7 +484,7 @@ const ListMode = ({ bindList, totalCount, unitSize, pageNum, setPageNum }) => {
         읽기 모드 서브 컴포넌트
 ******************************************/
 const ReadMode = ({ selRecord, sts }) => {
-  // selRecord - 현재글정보 / sts - 로그인 사용자정보
+  // selRecord - 현재 글 정보 / sts - 로그인 사용자 정보
   // 읽기 모드가 호출되었다는 것은
   // 리스트의 제목이 클릭되었다는 것을 의미!
   // 따라서 현재 레코드 값도 저장되었다는 의미!
@@ -731,7 +735,7 @@ const ModifyMode = ({ selRecord }) => {
 /****************************************** 
     pagingList : 페이징 기능 컴포넌트
   ******************************************/
-const PagingList = ({ totalCount, unitSize, pageNum, setPageNum }) => {
+const PagingList = ({ totalCount, unitSize, pageNum, setPageNum, pgPgNum, pgPgSize }) => {
   /*********************************************** 
       [ 전달변수 ]
       1. totalCount : 전체 레코드 개수
@@ -742,7 +746,6 @@ const PagingList = ({ totalCount, unitSize, pageNum, setPageNum }) => {
 
   // 전체 페이징 개수 : 전체 레코드 수 / 페이지당 개수
   // 유의점: 나머지가 있는지 검사해서 있으면 +1
-
   // 1. 페이징 개수
   let pagingCount = Math.floor(totalCount.current / unitSize);
 
@@ -765,37 +768,96 @@ const PagingList = ({ totalCount, unitSize, pageNum, setPageNum }) => {
   // [2] 페이징의 페이징 현재 번호
   // - pgPgNum 변수(기본값1)
 
-  // 페이지의 페이징 한계 수 구하기
+  // 1. 페이지의 페이징 한계 수 구하기
+  // 전체 페이징 개수 / 페이징의 페이징 단위 수
+  let pgPgCount = Math.floor(pagingCount / unitSize);
 
-  /// 링크 코드 만들기 ///
+  // 페이징 개수를 페이징의 페이징 단위 수로 나눈 나머지가 있으면
+  // 다음 페이징 번호가 필요함!
+  // 나머지가 0이 아니면 1더하기
+  if (pagingCount % pgPgSize > 0) {
+    pgPgCount++;
+
+    console.log("페이징의 페이징 개수:",pgPgCount);
+  } /// if ///
+
+  // (2) 리스트 시작값/ 끝값
+  // 시작값 : (페페넘-1)*페페단
+  let initNum = (pgPgNum.current-1)*pgPgSize;
+  // 한계값 : 페페넘*페페단
+  let limitNum = pgPgNum.current*pgPgSize;
+
+  console.log("시작값:",initNum,"/한계값",limitNum);
+
+  /// [ 링크 코드 만들기 ] ///
   const pgCode = [];
 
-  // 1부터 페이지 끝번호까지 돌면서 코드 만들기
-  for (let i = 1; i <= pagingCount; i++) {
+  // 페이징의 페이징에 맞게 돌면서 코드 만들기
+  // 계산된 시작값, 한계값을 기준으로 코드를 생성!
+  // [1] for : 페이징 리스트 출력 시작 //////////////
+  for (let i = initNum; i < limitNum; i++) {
     pgCode.push(
       <Fragment key={i}>
         {
           // 페이징 번호와 현재 페이지 번호 일치시 b요소
-          i === pageNum ? (
-            <b>{i}</b>
+          i+1 === pageNum ? (
+            <b>{i+1}</b>
           ) : (
             // 불일치시에 모드 링크 코드
             <a
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                setPageNum(i);
+                setPageNum(i+1);
               }}
             >
-              {i}
+              {i+1}
             </a>
           )
         }
         {/* 사이에 바 넣기 */}
-        {i !== pagingCount && " | "}
+        {i !== limitNum && " | "}
       </Fragment>
     );
-  } ////// for /////
+  } /// [1] for : 페이징 리스트 출력 끝 ///
+
+  {
+    // [2] 페이징 이전 블록 이동 버튼 만들기
+    // 기준 : 1페이지가 아니면 보여라!
+    // 배열 맨앞 추가는 unshift()
+
+  }
+  {
+    // [3] 페이징 다음 블록 이동 버튼 만들기
+    // 기준 : 끝 페이지가 아니면 보여라!
+    // 배열 맨뒤 추가는 push()
+    pgCode.push(
+      pgPgNum.current === pgPgCount ? "" :
+      // for문으로 만든 리스트에 추가하는 것이르모 key값이 있어야 함!
+      // 단, 중복되면 안 됨!
+      // 중복 안 되는 수인 마이너스로 셋팅한다!
+      <Fragment key={-2}>
+        &nbsp;&nbsp;
+        <a
+          href="#"
+          onClick={() => {}}
+          title="move next"
+          style={{marginLeft: "10px"}}
+          >
+            ▶
+        </a>
+        <a
+          href="#"
+          onClick={() => {}}
+          title="move next"
+          style={{marginLeft: "10px"}}
+          >
+            »
+        </a>
+      </Fragment>
+    );
+  }
+
 
   // 코드 리턴
   return pgCode;
