@@ -41,12 +41,12 @@ export default function Board() {
   ///////////// [ 상태관리변수 ] /////////////
   // [1] 페이지 번호
   const [pageNum, setPageNum] = useState(1);
-  // [2] 기능모드
+  // [2] 기능 모드
   const [mode, setMode] = useState("L");
   // (1) 리스트 모드(L) : List Mode
   // (2) 글보기 모드(R) : Read Mode
   // (3) 글쓰기 모드(W) : Write Mode
-  // (4) 수정 모드(M) : Modify Mode (삭제포함)
+  // (4) 수정 모드(M) : Modify Mode (삭제 포함)
 
   ///////////// [ 참조변수 ] /////////////
   // [1] 전체 개수 - 매번 계산하지 않도록 참조변수로!
@@ -62,7 +62,7 @@ export default function Board() {
   // 페이지당 개수 : 페이징당 레코드 수
   const unitSize = 4;
   // 페이징의 페이징 개수 : 한번에 보여줄 페이징 개수
-  const pgPgSize = 4;
+  const pgPgSize = 3;
 
   /********************************************** 
     함수명: bindList
