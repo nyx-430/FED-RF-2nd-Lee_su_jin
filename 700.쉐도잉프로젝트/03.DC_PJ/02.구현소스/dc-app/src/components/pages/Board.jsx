@@ -133,7 +133,7 @@ export default function Board() {
 
   // 버튼 클릭시 변경함수 ////////
   const clickButton = (e) => {
-    // 버튼글자 읽기
+    // 버튼 글자 읽기
     let btnText = e.target.innerText;
     // console.log(btnText);
     // 버튼별 분기
@@ -184,7 +184,7 @@ export default function Board() {
       // 3. 로컬스에 업데이트하기 //////
       localStorage.setItem("board-data", JSON.stringify(baseData));
 
-      // 4. 삭제후 리스트 리랜더링시 리스트 불일치로 인한
+      // 4. 삭제 후 리스트 리랜더링시 리스트 불일치로 인한
       // 에러를 방지하기 위하여 전체 개수를 바로 업데이트한다!
       totalCount.current = baseData.length;
 
@@ -208,7 +208,7 @@ export default function Board() {
     // 제목, 내용 모두 비었으면 리턴!
     if (title == "" || cont == "") {
       alert("Insert title or content!");
-      return; // 서브밋없이 함수나가기!
+      return; // 서브밋 없이 함수 나가기!
     } ////// if ////
 
     // 2. 글쓰기 서브밋 (mode=="W")
@@ -216,23 +216,23 @@ export default function Board() {
       // 0. 현재 로그인 사용자 정보 파싱하기
       let person = JSON.parse(sts);
 
-      // 1. 오늘날짜 생성하기 /////
+      // 1. 오늘 날짜 생성하기 /////
       let today = new Date();
       // yy-mm-dd 형식으로 구하기
-      // 제이슨 날짜형식 : toJSON()
-      // ISO 표준형식 : toISOString()
+      // 제이슨 날짜 형식 : toJSON()
+      // ISO 표준 형식 : toISOString()
       // 시간까지 나오므로 앞에 10자리만 가져감!
       // 문자열.substr(0,10)
 
-      // 2. 글번호 만들기 /////
-      // 전체 데이터중 idx 만 모아서 배열만들기
+      // 2. 글 번호 만들기 /////
+      // 전체 데이터중 idx 만 모아서 배열 만들기
       let arrIdx = baseData.map((v) => parseInt(v.idx));
       // console.log(arrIdx);
       // 최대값 찾기 : 스프레드 연산자로 배열값만 넣음!
       let maxNum = Math.max(...arrIdx);
       // console.log(maxNum);
 
-      // 3. 입력 데이터 객체형식으로 구성하기 ////
+      // 3. 입력 데이터 객체 형식으로 구성하기 ////
       let data = {
         idx: maxNum + 1,
         tit: title,
@@ -257,7 +257,7 @@ export default function Board() {
       // 로컬스 확인!
       // console.log(localStorage.getItem("board-data"));
 
-      // 4. 추가후 리스트 리랜더링시 리스트 불일치로 인한
+      // 4. 추가 후 리스트 리랜더링시 리스트 불일치로 인한
       // 에러를 방지하기 위하여 전체 개수를 바로 업데이트한다!
       // 이때 실제로 업데이트된 locals 배열객체의 개수를 센다!
       totalCount.current = locals.length;
