@@ -92,8 +92,8 @@ export default function Board() {
 
         // console.log(v[keyword[0]].indexOf(keyword[1]));
 
-        // 2. 필터 조건에 맞는 데이터 처리하기
-        if (v[keyword[0]].indexOf(keyword[1]) != -1) return true;
+        // 2. 필터 조건에 맞는 데이터 수집하기
+        if (orgTxt.indexOf(txt) != -1) return true;
       });
     } /// if ///
     else {
@@ -101,8 +101,8 @@ export default function Board() {
       orgData = baseData;
     } /// else ///
 
-    // 1-3.
-    totalCount.currentCount += orgData.length;
+    // 1-3. 새로 데이터를 담은 후 바로 전체개수 업데이트 필수!
+    totalCount.current = orgData.length;
 
     // 2. 정렬 적용하기 : 내림차순
     orgData.sort((a, b) =>
@@ -170,7 +170,7 @@ export default function Board() {
         </tr>
       )
     ); /// return ///
-  }; /////////// bindList 함수 /////////////////
+  }; ///////////////// bindList 함수 /////////////////
 
   // 버튼 클릭시 변경함수 ////////
   const clickButton = (e) => {
@@ -186,6 +186,8 @@ export default function Board() {
       // 리스트 모드로 변경
       case "List":
         setMode("L");
+        // 검색시에도 전체 데이터 나오게 하기
+        setKeyword(['','']);
         break;
       // 서브밋일 경우 함수 호출!
       case "Submit":
