@@ -48,6 +48,10 @@ export default function Board() {
   // (3) 글쓰기 모드(W) : Write Mode
   // (4) 수정 모드(M) : Modify Mode (삭제 포함)
 
+  // [3] 검색어 저장변수
+  const [keyword, setKeyword] = useState(['','']);
+  console.log(keyword);
+
   ///////////// [ 참조변수 ] /////////////
   // [1] 전체 개수 - 매번 계산하지 않도록 참조변수로!
   const totalCount = useRef(baseData.length);
@@ -454,7 +458,25 @@ const ListMode = ({
           <option value="1">Ascending</option>
         </select>
         <input id="stxt" type="text" maxLength="50" />
-        <button className="sbtn">Search</button>
+        <button className="sbtn" 
+        onClick={(e)=>{
+          // 검색 기준값 읽어오기
+          let criteria = $(e.target).siblings('.cta').val();
+          console.log("기준값:",criteria);
+
+          // 검색어 읽어오기
+          let txt = $(e.target).prev().val();
+          console.log("/검색어",typeof txt,txt);
+
+          // input값은 안 쓰면 빈 스트링이 넘어옴!
+          if(txt!=''){
+            console.log("검색해!");
+          }
+          // 빈값일 경우
+          else{
+            alert("Please enter a keyword!");
+          }
+        }}>Search</button>
       </div>
       <table className="dtbl" id="board">
         <thead>
@@ -793,7 +815,7 @@ const PagingList = ({
   if (pagingCount % pgPgSize > 0) {
     pgPgCount++;
 
-    console.log("페이징의 페이징 개수:", pgPgCount);
+    // console.log("페이징의 페이징 개수:", pgPgCount);
   } /// if ///
 
   // (2) 리스트 시작값/ 끝값
@@ -802,7 +824,7 @@ const PagingList = ({
   // 한계값 : 페페넘*페페단
   let limitNum = pgPgNum.current * pgPgSize;
 
-  console.log("시작값:", initNum, "/한계값", limitNum);
+  // console.log("시작값:", initNum, "/한계값", limitNum);
 
   /// [ 링크 코드 만들기 ] ///
   const pgCode = [];
@@ -920,7 +942,7 @@ const PagingList = ({
   const goPaging = (dir, opt) => {
     // dir - 이동 방향(오른쪽: +1, 왼쪽: -1)
     // opt - 일반 이동(true), 끝이동(false)
-    console.log("방향:", dir, "/옵션:", opt);
+    // console.log("방향:", dir, "/옵션:", opt);
 
     // 새 페이징의 페이징 번호
     let newPgPgNum;
@@ -940,7 +962,7 @@ const PagingList = ({
     // -> 항상 이전 블록의 마지막 번호 +1이 다음 페이지 첫 번호임!
     // 이동할 페이지 번호
     let landingPage = (pgPgNum.current - 1) * pgPgSize + 1;
-    console.log("도착 페이지 번호:", landingPage);
+    // console.log("도착 페이지 번호:", landingPage);
 
     // 페이지 번호 상태변수 업데이트로 전체 리랜더링!
     setPageNum(landingPage);
