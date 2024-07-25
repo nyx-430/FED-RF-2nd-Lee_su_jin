@@ -2,7 +2,7 @@
 import { Fragment, useContext, useRef, useState } from "react";
 
 // 사용자 기본 정보 생성 함수
-import { initData } from "../func/mem_fn";
+// import { initData } from "../func/mem_fn";
 
 // 로컬스토리지 게시판 기본데이터 제이슨 -> 로컬쓰로 대체!!!
 // import baseData from "../data/board.json";
@@ -41,6 +41,7 @@ export default function Board() {
   ///////////// [ 상태관리변수 ] /////////////
   // [1] 페이지 번호
   const [pageNum, setPageNum] = useState(1);
+
   // [2] 기능 모드
   const [mode, setMode] = useState("L");
   // (1) 리스트 모드(L) : List Mode
@@ -49,16 +50,18 @@ export default function Board() {
   // (4) 수정 모드(M) : Modify Mode (삭제 포함)
 
   // [3] 검색어 저장변수
-  const [keyword, setKeyword] = useState(['','']);
-  console.log(keyword);
+  const [keyword, setKeyword] = useState(["", ""]);
+  console.log("[기준,키워드]", keyword);
 
   ///////////// [ 참조변수 ] /////////////
   // [1] 전체 개수 - 매번 계산하지 않도록 참조변수로!
   const totalCount = useRef(baseData.length);
   // console.log("전체 개수:", totalCount);
+
   // [2] 선택 데이터 저장
   const selRecord = useRef(null);
   // -> 특정 리스트 글 제목 클릭시 데이터 저장함!
+
   // [3] 페이징의 페이징 번호
   const pgPgNum = useRef(1);
 
@@ -76,7 +79,30 @@ export default function Board() {
     // console.log(baseData);
 
     // 1. 전체 원본 데이터 선택
-    let orgData = baseData;
+    let orgData;
+
+    // 1-1. 검색어가 있는 경우 filter()
+    if (keyword[1] != "") {
+      orgData = baseData.filter((v) => {
+        // 1. 소문자 처리하기
+        // (1) 검색 원본 데이터
+        let orgTxt = v[keyword[0]].toLowerCase();
+        // (2) 검색어 데이터
+        let txt = keyword[1].toLowerCase();
+
+        // console.log(v[keyword[0]].indexOf(keyword[1]));
+
+        // 2. 필터 조건에 맞는 데이터 처리하기
+        if (v[keyword[0]].indexOf(keyword[1]) != -1) return true;
+      });
+    } /// if ///
+    else {
+      // 1-2. 검색어가 없는 경우 전체 넣기
+      orgData = baseData;
+    } /// else ///
+
+    // 1-3.
+    totalCount.currentCount += orgData.length;
 
     // 2. 정렬 적용하기 : 내림차순
     orgData.sort((a, b) =>
@@ -102,7 +128,7 @@ export default function Board() {
       // console.log(i);
       // 끝번호가 전체 개수보다 크면 나가라!
       if (i >= totalCount.current) break;
-      // 대상배열값 추가
+      // 대 상배열값 추가
       selData.push(orgData[i]);
     } ///// for //////
 
@@ -110,29 +136,40 @@ export default function Board() {
     // console.log("여기:", selData.length);
     if (selData.length == 0) setPageNum(pageNum - 1);
 
-    return selData.map((v, i) => (
-      <tr key={i}>
-        {/* 시작번호를 더하여 페이지별 순번을 변경 */}
-        <td>{i + 1 + sNum}</td>
-        <td>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              // 읽기 모드로 변경!
-              setMode("R");
-              // 해당 데이터 저장하기
-              selRecord.current = v;
-            }}
-          >
-            {v.tit}
-          </a>
-        </td>
-        <td>{v.unm}</td>
-        <td>{v.date}</td>
-        <td>{v.cnt}</td>
-      </tr>
-    ));
+    return (
+      // 전체 데이터 개수가 0 초과일 경우 출력
+      // 0 초과 ? map돌기 코드 : 없음 코드
+      totalCount.current > 0 ? (
+        selData.map((v, i) => (
+          <tr key={i}>
+            {/* 시작번호를 더하여 페이지별 순번을 변경 */}
+            <td>{i + 1 + sNum}</td>
+            <td>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  // 읽기 모드로 변경!
+                  setMode("R");
+                  // 해당 데이터 저장하기
+                  selRecord.current = v;
+                }}
+              >
+                {v.tit}
+              </a>
+            </td>
+            <td>{v.unm}</td>
+            <td>{v.date}</td>
+            <td>{v.cnt}</td>
+         </tr>
+        ))
+      ) : (
+        // 데이터가 없을 때 출력
+        <tr>
+          <td colSpan="5">There is no data!</td>
+        </tr>
+      )
+    ); /// return ///
   }; /////////// bindList 함수 /////////////////
 
   // 버튼 클릭시 변경함수 ////////
@@ -342,6 +379,7 @@ export default function Board() {
             setPageNum={setPageNum}
             pgPgNum={pgPgNum}
             pgPgSize={pgPgSize}
+            setKeyword={setKeyword}
           />
         )
       }
@@ -434,6 +472,7 @@ const ListMode = ({
   setPageNum,
   pgPgNum,
   pgPgSize,
+  setKeyword,
 }) => {
   /*********************************************** 
     [ 전달변수 ] - 2~5까지 4개는 페이징 전달변수
@@ -458,25 +497,31 @@ const ListMode = ({
           <option value="1">Ascending</option>
         </select>
         <input id="stxt" type="text" maxLength="50" />
-        <button className="sbtn" 
-        onClick={(e)=>{
-          // 검색 기준값 읽어오기
-          let criteria = $(e.target).siblings('.cta').val();
-          console.log("기준값:",criteria);
+        <button
+          className="sbtn"
+          onClick={(e) => {
+            // 검색 기준값 읽어오기
+            let criteria = $(e.target).siblings(".cta").val();
+            console.log("기준값:", criteria);
 
-          // 검색어 읽어오기
-          let txt = $(e.target).prev().val();
-          console.log("/검색어",typeof txt,txt);
+            // 검색어 읽어오기
+            let txt = $(e.target).prev().val();
+            console.log("/검색어", typeof txt, txt);
 
-          // input값은 안 쓰면 빈 스트링이 넘어옴!
-          if(txt!=''){
-            console.log("검색해!");
-          }
-          // 빈값일 경우
-          else{
-            alert("Please enter a keyword!");
-          }
-        }}>Search</button>
+            // input값은 안 쓰면 빈 스트링이 넘어옴!
+            if (txt != "") {
+              console.log("검색해!");
+              // [검색기준/검색어] -> setKeyword 업데이트
+              setKeyword([criteria, txt]);
+            }
+            // 빈값일 경우
+            else {
+              alert("Please enter a keyword!");
+            }
+          }}
+        >
+          Search
+        </button>
       </div>
       <table className="dtbl" id="board">
         <thead>
@@ -866,7 +911,9 @@ const PagingList = ({
     // 기준 : 1페이지가 아니면 보여라!
     // 배열 맨앞 추가는 unshift()
     pgCode.unshift(
-      pgPgNum.current === 1 ? "" : (
+      pgPgNum.current === 1 ? (
+        ""
+      ) : (
         // for문으로 만든 리스트에 추가하는 것이르모 key값이 있어야 함!
         // 단, 중복되면 안 됨!
         // 중복 안 되는 수인 마이너스로 셋팅한다!
