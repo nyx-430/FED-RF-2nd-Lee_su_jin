@@ -128,13 +128,17 @@ export default function Board() {
       // console.log(i);
       // 끝번호가 전체 개수보다 크면 나가라!
       if (i >= totalCount.current) break;
-      // 대 상배열값 추가
+      // 대상 배열값 추가
       selData.push(orgData[i]);
     } ///// for //////
 
     // console.log("일부 데이터:", selData);
     // console.log("여기:", selData.length);
-    if (selData.length == 0) setPageNum(pageNum - 1);
+
+    // if (selData.length == 0) setPageNum(pageNum - 1);
+    // -> ListMode컴포넌트가 업데이트 되는 동안에 리스트 관련 상태변수를
+    // 업데이트를 하면 업데이트 불가 에러 메시지가 발생한다!
+    // 따라서 이런 코드는 다른 방식으로 변경해야 한다!
 
     return (
       // 전체 데이터 개수가 0 초과일 경우 출력
@@ -405,13 +409,13 @@ export default function Board() {
           <tr>
             <td>
               {
-                // 1. 글쓰기 버튼은 로그인상태이고 "L"이면출력
+                // 1. 글쓰기 버튼은 로그인 상태이고 "L"이면 출력
                 mode == "L" && sts && (
                   <button onClick={clickButton}>Write</button>
                 )
               }
               {
-                // 2. 읽기상태 "R" 일 경우
+                // 2. 읽기 상태 "R"일 경우
                 <>
                   {mode == "R" && <button onClick={clickButton}>List</button>}
 
@@ -423,11 +427,11 @@ export default function Board() {
                   }
 
                   {
-                    // 로그인한 상태이고 글쓴이와 일치할때
-                    // 수정보드 이동버튼이 노출됨!
-                    // 현재글은 selRecord 참조변수에 저장됨
-                    // 글정보 항목중 uid 가 사용자 아이디임!
-                    // 로그인 상태정보하위의 sts.uid와 비교함
+                    // 로그인한 상태이고 글쓴이와 일치할 때
+                    // 수정 보드 이동 버튼이 노출됨!
+                    // 현재 글은 selRecord 참조변수에 저장됨
+                    // 글 정보 항목중 uid가 사용자 아이디임!
+                    // 로그인 상태정보 하위의 sts.uid와 비교함
                     mode == "R" &&
                       sts &&
                       JSON.parse(sts).uid == selRecord.current.uid && (
@@ -515,6 +519,10 @@ const ListMode = ({
               console.log("검색해!");
               // [검색기준/검색어] -> setKeyword 업데이트
               setKeyword([criteria, txt]);
+              // 검색 후에는 첫 페이지로 보내기
+              setPageNum(1);
+              // 검색 후에 페이지의 페이징 번호 초기화
+              pgPgNum.current = 1;
             }
             // 빈값일 경우
             else {
@@ -540,6 +548,8 @@ const ListMode = ({
           <tr>
             <td colSpan="5" className="paging">
               {
+                // 데이터 개수가 0 이상일 때에만 출력
+                totalCount.current > 0 &&
                 <PagingList
                   totalCount={totalCount}
                   unitSize={unitSize}
