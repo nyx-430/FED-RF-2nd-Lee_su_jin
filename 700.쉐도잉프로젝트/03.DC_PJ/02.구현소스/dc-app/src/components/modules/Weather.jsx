@@ -7,11 +7,11 @@ import axios from "axios";
 import "../../css/weather.scss";
 
 // 여기서는 컴포넌트를 class로 만들어 보자!!
-// 클래스 컴포넌트는 기본적으로 Component 클래스를 상속받는다!
+// 클래스 컴포넌트는 기본적으로 Component 클래스를 상속 받는다!
 // extends 부모클래스
 class Weather extends Component {
   // 생성자 메서드는 호출하지 않아도 자동으로 호출됨!
-  // ->constructor(){}
+  // -> constructor(){}
   constructor(props) {
     // 부모에게 전달변수를 전달한다!
     // 부모클래스는 super 키워드로!
@@ -19,7 +19,7 @@ class Weather extends Component {
     // 생성자함수 구역에 맴버변수 즉, 클래스 속성을
     // 만들면 이것이 상태변수가 된다!!
     // 클래스 내부속성은 this키워드를 사용함!
-    // 받아온 날씨정보를 셋업할 객체임!
+    // 받아온 날씨 정보를 셋업할 객체임!
     // state 이름의 상태변수에 setState()로 셋팅함
     this.state = {
       // 1. 기온
