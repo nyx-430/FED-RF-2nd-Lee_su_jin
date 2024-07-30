@@ -7,7 +7,7 @@ import { pCon } from "./pCon";
 // 데이터 불러오기
 import { fsData } from "../../js/data/fashion_intro";
 
-// CSS 불러오기
+// CSS불러오기
 import "../../css/fashion_intro.scss";
 
 function FashionIntro({ catName, subCat, opt, seq }) {
@@ -17,13 +17,16 @@ function FashionIntro({ catName, subCat, opt, seq }) {
   // 3. opt - 방향옵션(역방향은 true / 정방향은 false)
   //  (역방향은 flex-direction: row-reverse 적용!)
   // 4. sub일 경우 seq순번으로 선택 배열데이터를 정함!
+  console.log(catName, subCat, opt, seq);
 
   // 컨텍스트 API사용하기
   const myCon = useContext(pCon);
 
   // 선택 데이터 변수할당
   const selData =
-    subCat == "sub" ? fsData[catName][subCat][seq] : fsData[catName];
+    catName == "sub" ? fsData[catName][subCat][seq] : fsData[catName];
+
+  console.log("패션인트로 선택 Data:", selData);
 
   return (
     <div id={catName} className="fs-page">
@@ -79,7 +82,7 @@ function FashionIntro({ catName, subCat, opt, seq }) {
         {/* 3. 세번째 이미지박스 : 스타일만! */}
         {
           // 스타일인 경우 li 이미지박스 생성
-          catName == "style" && (
+          (catName == "style" || (catName == "sub" && seq == 1)) && (
             <li className="imgc">
               <img
                 src={process.env.PUBLIC_URL + selData.isrc[1]}
