@@ -14,9 +14,12 @@ import "../../css/fashion.scss";
 import { SwiperBan } from "../plugin/SwiperBan";
 import SinSang from "../modules/SinSang";
 
-function Fashion({subCat}) {
-    // subCat - 서브 카테고리명
-    // 값: men / women / style
+// 리액트용 패럴랙스 - 설치 : npm i react-parallax
+import { Parallax } from "react-parallax";
+
+function Fashion({ subCat }) {
+  // subCat - 서브 카테고리명
+  // 값: men / women / style
 
   // 컨텍스트 API사용하기
   const myCon = useContext(pCon);
@@ -75,8 +78,6 @@ function Fashion({subCat}) {
     }); ////////// click ////////////
   }, []);
 
-  
-
   // 후크 상태변수
   const [item, setItem] = useState("m1");
 
@@ -109,8 +110,12 @@ function Fashion({subCat}) {
         <Parallax
           className="c2"
           // 패럴랙스할 배경이미지 설정속성 bgImage
-          bgImage={process.env.PUBLIC_URL+"/images/sub/" + 
-          props.cat + "/02.special.png"}
+          bgImage={
+            process.env.PUBLIC_URL +
+            "/images/sub/" +
+            props.cat +
+            "/02.special.png"
+          }
           // 패럴랙스 이동정도 조정속성 strength
           // 수치범위 :  -500 ~ 1000 -> 높은 숫자는 반대방향
           strength={200}
