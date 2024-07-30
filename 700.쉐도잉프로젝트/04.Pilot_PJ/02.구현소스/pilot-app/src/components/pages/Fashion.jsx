@@ -6,16 +6,22 @@ import { scrolled, setPos } from "../../js/func/smoothScroll24";
 // 컨텍스트 API 불러오기
 import { pCon } from "../modules/pCon";
 
+// 모듈
+import FashionIntro from "../modules/FashionIntro";
+
 // 제이쿼리 불러오기
 import $ from "jquery";
 
-// CSS불러오기
+// CSS 불러오기
 import "../../css/fashion.scss";
 import { SwiperBan } from "../plugin/SwiperBan";
 import SinSang from "../modules/SinSang";
 
 // 리액트용 패럴랙스 - 설치 : npm i react-parallax
 import { Parallax } from "react-parallax";
+
+// 메뉴 데이터 불러오기
+import { gnbData } from "../../js/data/gnb";
 
 function Fashion({ subCat }) {
   // subCat - 서브 카테고리명
@@ -92,7 +98,7 @@ function Fashion({ subCat }) {
     $(".bgbx").slideDown(400);
   }; /////////// chgItem 함수 //////
 
-  // 코드리턴구역 //////////////////
+  // 코드 리턴 구역 //////////////////
   return (
     <>
       {/* 1. 배너영역 */}
@@ -109,24 +115,25 @@ function Fashion({ subCat }) {
       <section id="c2" className="cont">
         <Parallax
           className="c2"
-          // 패럴랙스할 배경이미지 설정속성 bgImage
+          // 패럴랙스할 배경이미지 설정 속성 bgImage
           bgImage={
-            process.env.PUBLIC_URL +
-            "/images/sub/" +
-            props.cat +
-            "/02.special.png"
+            process.env.PUBLIC_URL + "/images/sub/" + subCat + "/02.special.png"
           }
           // 패럴랙스 이동정도 조정속성 strength
           // 수치범위 :  -500 ~ 1000 -> 높은 숫자는 반대방향
           strength={200}
         >
-          <h2 className="c2tit sc-ani">2024 {gnbData[props.cat][1]}</h2>
+          <h2 className="c2tit sc-ani">2024 {gnbData[subCat]}</h2>
         </Parallax>
       </section>
       {/* 4. 단일상품영역 */}
-      <section id="c3" className="cont c3"></section>
+      <section id="c3" className="cont c3">
+        <FashionIntro catName="sub" subCat={subCat} opt={true} seq={0} />
+      </section>
       {/* 5. 스타일상품영역 */}
-      <section id="c4" className="cont c4"></section>
+      <section id="c4" className="cont c4">
+        <FashionIntro catName="sub" subCat={subCat} opt={true} seq={1} />
+      </section>
     </>
   );
 }
