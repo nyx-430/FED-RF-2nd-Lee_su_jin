@@ -751,7 +751,17 @@ const ListMode = ({
           <option value="idx">Recent</option>
           <option value="tit">Title</option>
         </select>
-        <b>{memory}</b>
+        <button style={{ position: "relative" }}>
+          History
+          <b style={{ position: "absolute", lineHeight: "1.7" }}>
+            {memory.indexOf("*") !== -1 &&
+              memory.split("*").map((v) => (
+                <div>
+                  <a href="#">{v}</a>
+                </div>
+              ))}
+          </b>
+        </button>
       </div>
       <table className="dtbl" id="board">
         <thead>
@@ -768,7 +778,7 @@ const ListMode = ({
           <tr>
             <td colSpan="5" className="paging">
               {
-                // 데이터 개수가 0이상일때만 출력
+                // 데이터 개수가 0 이상일 때만 출력
                 totalCount.current > 0 && (
                   <PagingList
                     totalCount={totalCount}
