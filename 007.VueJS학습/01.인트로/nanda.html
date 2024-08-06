@@ -34,7 +34,7 @@
         <div class="logo" v-html="logo"></div>
         <!-- v-html 디렉티브 : 태그 출력 속성 -->
       </section>
-      
+
       <!-- 2. 배너 파트 -->
       <section class="part">
         <p class="banner" v-html="content"></p>
@@ -44,7 +44,10 @@
       <!-- 3. 상품 리스트 파트 -->
       <section class="part gwrap">
         <ol class="glist" v-for="(item,idx) in itemData">
-          <li></li>
+            <!-- 조건 출력은 안에서! -->
+            <li v-html="makeImg(item.img)"></li>
+            <li>Item: {{item.name}}</li>
+            <li>Price: ￦{{addCommas(item.price)}}</li>
         </ol>
       </section>
     </div>
