@@ -38,7 +38,7 @@ class GetList {
   }
 } //////////////// GetList ////////////////
 
-// 1. 뷰JS 인스턴스 생성하기
+// [ 1. 뷰JS 인스턴스 생성하기 ]
 const vm = new Vue({
   // (1) 대상 선정
   // 대상은 꼭 id일 필요 없음, 클래스를 사용하면 첫번째 만나는 요소를 대상으로 함
@@ -83,7 +83,7 @@ const vm = new Vue({
     // ],
   },
 
-  // 3. 메서드 설정
+  // [ 3. 메서드 설정 ]
   methods: {
     // 이미지 태그를 만들어서 리턴함
     makeImg(val) {
@@ -100,7 +100,7 @@ const vm = new Vue({
     },
   }, /// methods ///
 
-  // 4. 뷰인스턴스 초기화 완료 단계 : created
+  // [ 4. 뷰인스턴스 초기화 완료 단계 : created ]
   // -> 이 단계에서 데이터 셋팅함!
   created() {
     // 상품 데이터 클래스를 호출하여 객체를 생성하자!
@@ -133,5 +133,27 @@ const vm = new Vue({
       // 생성된 데이터 확인
       console.log("itemData:", this.itemData);
     } /// for ///
-  }, /// created ///
+  }, ////// created //////
+
+  // [ 5. 뷰 랜더링 완료 단계 : mounted ]
+  // -> 이 단계에서 DOM 관련 스트립트 코딩을 해준다!
+  mounted() {
+    // 랜더링 후 자동실행 구역
+    // (1) 제목 숨겼다 보이기
+    $(".tit").hide().delay(1000).slideDown(300);
+
+    // (2) 로고 왼쪽에서 날아오기
+    $(".logo").css({translate: "-100vw"}).delay(2000)
+    .animate({translate: "0"},800,'easeOutElastic',
+        // 애니메이션 후 실행 구역
+        ()=>{
+            // (3) 상품리스트로 스크롤 이동
+            // $(상품리스트박스).offset().top
+            $("html,body").animate({scrollTop: $(".gwrap").offset().top+"px"},600,'easeInOutExpo')
+        }
+    );
+
+
+  }, ////// mounted //////
+
 }); //////////////// vue ////////////////
