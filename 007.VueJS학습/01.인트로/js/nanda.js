@@ -152,8 +152,6 @@ const vm = new Vue({
             $("html,body").animate({scrollTop: $(".gwrap").offset().top+"px"},600,'easeInOutExpo')
         }
     );
-
-
   }, ////// mounted //////
 
 }); //////////////// vue ////////////////
