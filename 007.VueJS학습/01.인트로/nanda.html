@@ -6,6 +6,7 @@
     <title>뷰JS 기본 구현 연습</title>
     <!-- 메인 CSS -->
     <link rel="stylesheet" href="./css/nanda.css" />
+
     <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 
@@ -21,22 +22,31 @@
   <body>
     <!-- 뷰JS 대상요소는 하나! -->
     <div id="vue-app">
-        <!-- 원래는 컴포넌트 구성하지만 여기서는 연습용으로 태그를 직접 구성함! -->
-        <!-- 1. 타이틀 로고 파트 -->
-        <section class="part">
-            <!-- 1-1. 샵명 -->
-            <h1 class="tit" v-text="bigTit"></h1>
-            <!-- v-text 디렉티브 : 텍스트 출력 속성 -->
-            <!-- 1-2. 로고 -->
-            <div class="logo" v-html="logo"></div>
-            <!-- v-html 디렉티브 : 태그 출력 속성 -->
-        </section>
+      <!-- 원래는 컴포넌트 구성하지만 여기서는 연습용으로 태그를 직접 구성함! -->
 
-        <!-- 2. 배너 파트 -->
-        <section class="part"></section>
+      <!-- 1. 타이틀 로고 파트 -->
+      <section class="part">
+        <!-- 1-1. 샵명 -->
+        <h1 class="tit" v-text="bigTit"></h1>
+        <!-- v-text 디렉티브 : 텍스트 출력 속성 -->
 
-        <!-- 3. 상품 리스트 파트 -->
-        <section class="part"></section>
+        <!-- 1-2. 로고 -->
+        <div class="logo" v-html="logo"></div>
+        <!-- v-html 디렉티브 : 태그 출력 속성 -->
+      </section>
+      
+      <!-- 2. 배너 파트 -->
+      <section class="part">
+        <p class="banner" v-html="content"></p>
+        <!-- v-html 디렉티브 : 태그 출력 속성 -->
+      </section>
+
+      <!-- 3. 상품 리스트 파트 -->
+      <section class="part gwrap">
+        <ol class="glist" v-for="(item,idx) in itemData">
+          <li></li>
+        </ol>
+      </section>
     </div>
     <!-- 
         기본 구성 : 3단 구성
