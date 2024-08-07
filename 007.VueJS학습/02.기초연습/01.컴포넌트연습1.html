@@ -28,13 +28,9 @@
     <div class="you-box"></div>
     <!-- 2.그리드 레이아웃 박스 -->
     <div class="grid">
-      <div v-for="(n,i) in 50">
-        <img src="./images/1.jpg" alt="의류아이템">
-        <aside>
-          <h2>aa</h2>
-          <h3>qq</h3>
-        </aside>
-      </div>
+      <!-- v-for 숫자 돌리기
+      (숫자증가,순번) in 개수 -->
+      <list-comp v-for="(n,i) in 50"></list-comp>
     </div>
     <!-- 3.하단정보 -->
     <div class="tit2">
