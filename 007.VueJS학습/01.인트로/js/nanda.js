@@ -131,8 +131,8 @@ const vm = new Vue({
         )
       ); /// push ///
       // 생성된 데이터 확인
-      console.log("itemData:", this.itemData);
     } /// for ///
+    // console.log("itemData:", this.itemData);
   }, ////// created //////
 
   // [ 5. 뷰 랜더링 완료 단계 : mounted ]
@@ -143,15 +143,23 @@ const vm = new Vue({
     $(".tit").hide().delay(1000).slideDown(300);
 
     // (2) 로고 왼쪽에서 날아오기
-    $(".logo").css({translate: "-100vw"}).delay(2000)
-    .animate({translate: "0"},800,'easeOutElastic',
+    $(".logo")
+      .css({ translate: "-100vw" })
+      .delay(2000)
+      .animate(
+        { translate: "0" },
+        800,
+        "easeOutElastic",
         // 애니메이션 후 실행 구역
-        ()=>{
-            // (3) 상품리스트로 스크롤 이동
-            // $(상품리스트박스).offset().top
-            $("html,body").animate({scrollTop: $(".gwrap").offset().top+"px"},600,'easeInOutExpo')
+        () => {
+          // (3) 상품리스트로 스크롤 이동
+          // $(상품리스트박스).offset().top
+          $("html,body").animate(
+            { scrollTop: $(".gwrap").offset().top + "px" },
+            600,
+            "easeInOutExpo"
+          );
         }
-    );
+      );
   }, ////// mounted //////
-
 }); //////////////// vue ////////////////
