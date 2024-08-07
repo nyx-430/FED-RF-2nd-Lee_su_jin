@@ -43,8 +43,25 @@ Vue.component("list-comp", {
     </div>
     `, /// template ///
 
+    // [ 상위 컴포넌트 전달변수 설정속성 : props ]
+    props: ["list-num","my-seq","end-left"],
+    // 이 변수를 사용할 때에는 캐믈케이스 변수로 사용함!
+    // "list-num" -> this.listNum
+    // -> 내부용 변수이므로 this 키워드 반드시 사용!
+
+    // 배열형은 설정한 변수명을 문자형으로 나열만 하면 되고
+    // 만약 각 변수의 데이터형(type)을 특정하고 싶으면
+    // 객체형을 사용하여 아래와 같이 표현한다!
+    // props: {변수명:변수형}
+
+    // props: {
+    //   "list-num": Number,
+    //   "my-seq": Number,
+    //   "end-left": String,
+    // },
+
   // (2-2) data 옵션 : 컴포넌트 내부 변수 셋팅
-  // 실행 원리 : 컴포넌트가 빌드할 때 data 속성의 함수를 호출한다
+  // 실행 원리 : 컴포넌트가 빌드할 때 data속성의 함수를 호출한다
   // 그래서 함수의 리턴되는 객체값이 컴포넌트 내부에 전달된다
   // data: function(){}
   data() {
@@ -53,11 +70,12 @@ Vue.component("list-comp", {
       // 이미지 경로
       gsrc: `./images/${this.setNum()}.jpg`,
       // 상품명
-      gname: this.setName(),
+      gname: this.setName()+" "+this.endLeft+this.mySeq,
       // 가격
       gprice: this.setPrice(),
     };
   }, /// data ///
+
   // (2-3) methods 속성 : 컴포넌트 내부 메서드 셋팅
   methods: {
     // [1] 이미지 번호 만들기 함수
@@ -91,20 +109,30 @@ Vue.component("ifr-comp",{
     v-bind:src="ifrSrc" title="#고윤정 과 함께 차가운 겨울을 더욱 액티브하게!  l 디스커버리 23FW #goyounjung #크롭패딩" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     `, /// template ///
 
+    // [ 프롭스 다운 설정하기 ]
+    props: ["mv-code"],
+    // 사용시 this.mvCode
+
     // (3-2) data 옵션
     data(){
         return {
-            ifrSrc: `https://www.youtube.com/embed/ZH1Y1l1OmTY?autoplay=1&mute=1&loop=1&playlist=ZH1Y1l1OmTY`,
+          ifrSrc: this.getIframeSrc(this.mvCode),
         };
     }, /// data ///
 
-
+    // (3-3) methods 속성
+    methods: {
+      // 동영상 정보 리턴 함수
+      getIframeSrc(code){ // 동영상 코드
+        return `https://www.youtube.com/embed/${code}?autoplay=1&mute=1&loop=1&playlist=${code}`
+      }
+    },
 }); //////////// 전역 컴포넌트 3 ////////////
 
 // 뷰인스턴스 생성하기 : 유튜브 동영상 컴포넌트
 makeVue(".you-box");
 
-// 뷰인스턴스 생성하기 : 하단영역 컴포넌트
+// 뷰인스턴스 생성하기 : 하단정보 컴포넌트
 Vue.component("footer-comp",{
     template:`
     <div class="footer">
@@ -121,5 +149,5 @@ Vue.component("footer-comp",{
     `,
 });
 
-// 뷰인스턴스 생성하기 : 하단영역 컴포넌트
+// 뷰인스턴스 생성하기 : 하단정보 컴포넌트
 makeVue(".tit2");

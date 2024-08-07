@@ -103,7 +103,7 @@ Vue.component("ifr-comp",{
 // 뷰인스턴스 생성하기 : 유튜브 동영상 컴포넌트
 makeVue(".you-box");
 
-
+// 뷰인스턴스 생성하기 : 하단정보 컴포넌트
 Vue.component("footer-comp",{
     template:`
     <div class="footer">
@@ -120,5 +120,5 @@ Vue.component("footer-comp",{
     `,
 });
 
-// 뷰인스턴스 생성하기 : 하단영역 컴포넌트
+// 뷰인스턴스 생성하기 : 하단정보 컴포넌트
 makeVue(".tit2");
