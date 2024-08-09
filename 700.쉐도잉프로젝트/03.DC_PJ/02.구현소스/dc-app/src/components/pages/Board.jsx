@@ -84,16 +84,42 @@ export default function Board() {
   // 페이징의 페이징 개수 : 한번에 보여줄 페이징개수
   const pgPgSize = 3;
 
+  // 리듀서 함수에서 리턴값 만들기 함수 ////////////////////
+  const retVal = (gval, txt) => {
+    return (
+      // *문제열이 있으면 split으로 잘라서 배열로 만들고
+      // 배열값 중 현재 입력된 txt가 배열 중에 없으면 새로 등록하고
+      // 있으면 등록하지 않는다를 코드로 작성할 것!
+      // 힌트1: 등록 않는다는 gval만 넣으면 됨
+      // 힌트2: 배열값 중 단순 비교는 includes() 사용
+
+      // 1. 별(*) 구분자가 있는가?
+      gval.indexOf("*") !== -1
+        ? // 2. true면 split으로 잘라서 배열값 검사하기
+          gval.split("*").includes(txt)
+          ? // 2-1. 배열값에 있으면 true이므로 gval 추가 안 함
+            gval
+          : // 2-2. false면 gval에 현재값 별 넣고 추가
+            gval + (gval != "" ? "*" : "") + txt
+        : // 3. 전체 false면 빈값이 아니면 문자열 검사하기
+        gval == txt
+        ? // 3-1. 값이 서로 같으면 추가하지 말기
+          gval
+        : // 3-2. 그밨의 경우엔 추가하기
+          gval + (gval != "" ? "*" : "") + txt
+    );
+  }; ////////////// retVal //////////////
+
   // 검색 기능을 위한 리듀서 함수 ////////////////////
   const reducerFn = (gval, action) => {
     // gval - 지가 벨류래...의 줄임말...
     // -> 리듀서 변수가 들어옴(왜 들어와???)
     // 기존값을 활용하여 업데이트 하기 위해 들어옴!
-    console.log("지발:", gval);
+    // console.log("지발:", gval);
 
     // 1. 구조분해할당으로 배열값 받기
     const [key, ele] = action.type;
-    // action.type은 리듀서 호출시 보낸 객체값(배열임!)
+    // action.type은 리듀서 호출시 보낸 객체값 (배열임!)
     console.log("key:", key, "\nele:", ele);
     // 2. key값에 따라 분기하기
     switch (key) {
@@ -112,7 +138,7 @@ export default function Board() {
           setKeyword([creteria, txt]);
           // 검색 후엔 첫 페이지로 보내기
           setPageNum(1);
-          // 검색 후엔 페이지의 페이징 번호 초기화(1)
+          // 검색 후엔 페이지의 페이징 번호 초기화 (1)
           pgPgNum.current = 1;
         }
         // 빈값일 경우
@@ -120,15 +146,7 @@ export default function Board() {
           alert("Please enter a keyword!");
         }
         // 리턴 코드값은 리듀서 변수에 할당!
-        return (
-          // [ 숙제 ] *문제열이 있으면 split으로 잘라서 배열로 만들고
-          // 배열값 중 현재 입력된 txt가 배열 중에 없으면 새로 등록하고
-          // 있으면 등록하지 않는다를 코드로 작성할 것!
-          // 힌트1: 등록 않는다는 gval만 넣으면 됨
-          // 힌트2: 배열값 중 단순 비교는 includes() 사용
-          gval +(gval != "" ? "*" : "")+ txt
-
-        );
+        return retVal(gval, txt);
       }
       // (2) 전체 리스트로 돌아가기 실행 코드
       case "back":
@@ -173,7 +191,7 @@ export default function Board() {
           alert("Please enter a keyword!");
         }
         // 리턴 코드값은 리듀서 변수에 할당!
-        return gval + txt;
+        return retVal(gval,txt);
       }
     }
   };
