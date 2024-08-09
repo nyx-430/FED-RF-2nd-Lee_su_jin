@@ -12,8 +12,8 @@
       enforced for module scripts per HTML spec."
       ____________________________________________
 
-      ((해결방법!))
-      import 변수 from 제이슨파일경로 width {type:"json"}
+      ((해결 방법!))
+      import 변수 from 제이슨파일경로 with {type:"json"}
 
       assert{type:"json"} -> 이 문법은 2023년 폐기됨!(에러남)
 */
