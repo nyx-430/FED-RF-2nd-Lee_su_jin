@@ -1,5 +1,5 @@
 // 오피니언 페이지 컴포넌트 ///
-import { Fragment, useContext, useReducer, useRef, useState } from "react";
+import { Fragment, useContext, useEffect, useReducer, useRef, useState } from "react";
 
 // 사용자 기본정보 생성 함수
 // import { initData } from "../func/mem_fn";
@@ -83,6 +83,22 @@ export default function Board() {
   const unitSize = 4;
   // 페이징의 페이징 개수 : 한번에 보여줄 페이징개수
   const pgPgSize = 3;
+
+  // 햄버거용 함수 : 전체메뉴 보이기
+  const showMenu = () => $(".top-area").toggleClass('on');
+
+  // 랜더링 후 실행구역 ///////////////
+  useEffect(()=>{
+
+    // GNB a요소 클릭시 전체메뉴 닫기
+    // 대상: .gnb a[href!='#'] 
+    // -> href가 '#'이 아닌 gnb 하위 모든 a요소
+    // -> != 은 제이쿼리 전용!
+    $(".gnb a[href!='#']").on('click',()=>{
+      $(".top-area").removeClass('on');
+    }); /////////// click //////////
+
+  }); ///////// useEffect /////////
 
   // 리듀서 함수에서 리턴값 만들기 함수 ////////////////////
   const retVal = (gval, txt) => {
