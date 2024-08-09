@@ -1,6 +1,7 @@
 <!-- 1. 템플릿 구역 -->
 <template>
-  <div class="app">
+  <!-- 원래 루트인 #app은 대체 된다! -->
+  <div id="app">
     <TopArea />
   </div>
 </template>
