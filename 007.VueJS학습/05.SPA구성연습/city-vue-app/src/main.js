@@ -3,6 +3,7 @@ import Vue from 'vue'
 // 구성 Root Vue 파일
 import App from './App.vue'
 // 뷰JS 라우터 불러오기
+// (기본적으로 라우터 폴더에 index.js을 읽어옴)
 import router from './router'
 // 뷰엑스 스토어 JS 불러오기
 import store from './store'

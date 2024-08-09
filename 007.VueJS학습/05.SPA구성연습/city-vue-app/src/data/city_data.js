@@ -4,7 +4,7 @@ const myD0 = {
   인트로: {
     이미지:
       "https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg",
-    설명: "도시소개에 오신것을 환영합니다!",
+    설명: "도시 소개에 오신 것을 환영합니다!",
   },
 };
 
